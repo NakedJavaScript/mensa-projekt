@@ -22,6 +22,6 @@
 * Delete your old xampp folder and install the latest version (can be found under: T:/Klasse E3FI1AT/SAE/projektgruppe_nn_jm_ah).
 * Start Apache and Mysql with xampp
 * Open Mysql and create a connection
-* Create a new schema and import the latest data dumps
+* Create a new schema (name it `mensa`) and import the latest data dumps
 * Use any browser except firefox (a google installer is in the same folder as the xampp installer)
 * Type "localhost/php/" to get to the index page
