@@ -57,9 +57,9 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$kontostand = $_POST['kontostand'];
 
 				$options = array("cost"=>4);
-				$hashPassword = password_hash($passwort,PASSWORD_BCRYPT,$options);
+				$hashPassword = password_hash($passwort,PASSWORD_DEFAULT);
 
-		$insert = "INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand) value('".$vorname."', '".$nachname."', '".$email."','".$hashPassword."', '".$kontostand."')";
+		$insert = 'INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand) value("'.$vorname.'", "'.$nachname.'", "'.$email.'","'.$hashPassword.'", "'.$kontostand.'")';
 		$result = $conn->query($insert);
 		if($result === true)
 		{
