@@ -1,7 +1,6 @@
-<?php session_start(); ?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
-<?php include_once 'dependencies.php'; ?>
 	<head>
 		<?php
 			echo $head_dependencies;

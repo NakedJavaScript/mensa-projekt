@@ -1,7 +1,6 @@
-<?php session_start(); ?>
+<?php include 'dependencies.php' ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title>Datenschutz</title>
 		<?php

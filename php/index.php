@@ -1,8 +1,6 @@
-<?php
-session_start();?>
+<?php include 'dependencies.php' ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
@@ -54,7 +52,7 @@ session_start();?>
           <td>Essen</td>
           <td>Essen</td>
           <td>Essen</td>
-          <td>Essen</td>          
+          <td>Essen</td>
         </tbody>
       </table>
         </div>
@@ -66,7 +64,7 @@ session_start();?>
         </div>
       </div>
 		</div>
-		
+
 	</body>
 	<?php include 'footer.php' ?>
 </html>

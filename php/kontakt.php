@@ -1,5 +1,4 @@
 <?php
-session_start();
 $mailConfig = array(
     'foodmengroup'
    ,'julianmilicevic1@gmail.com'
@@ -19,10 +18,9 @@ if( formSubmission() && ( $formFields = validateFormSubmission( $errors )) ){
     }
 }
 ?>
-
+<?php include 'dependencies.php' ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title></title>
 		<?php
