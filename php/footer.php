@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include_once 'dependencies.php';
 ?>
 </div> <!--Ende vom PagecontentWrapper(siehe Header)-->
@@ -8,4 +8,3 @@
 	  </div>
     </footer>
 <?php echo $footer_dependencies; ?>
-

@@ -1,21 +1,64 @@
 <?php
-if(isset($_POST['submit'])){
-    $to = "nikolai.nowolodski@googlemail.com"; // this is your Email address
-    $from = $_POST['email']; // this is the sender's Email address
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $subject = "Form submission";
-    $subject2 = "Copy of your form submission";
-    $message = $first_name . " " . $last_name . " wrote the following:" . "\n\n" . $_POST['message'];
-    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+require_once './vendor/autoload.php';
 
-    $headers = "From:" . $from;
-    $headers2 = "From:" . $to;
-    mail($to,$subject,$message,$headers);
-    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-    echo "Mail Sent. Thank you " . $first_name . ", we will contact you shortly.";
-    // You can also use header('Location: thank_you.php'); to redirect to another page.
+$helperLoader = new SplClassLoader('Helpers', './vendor');
+$mailLoader   = new SplClassLoader('SimpleMail', './vendor');
+
+$helperLoader->register();
+$mailLoader->register();
+
+use Helpers\Config;
+use SimpleMail\SimpleMail;
+
+$config = new Config;
+$config->load('./config/config.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name    = stripslashes(trim($_POST['form-name']));
+    $email   = stripslashes(trim($_POST['form-email']));
+    $phone   = stripslashes(trim($_POST['form-phone']));
+    $subject = stripslashes(trim($_POST['form-subject']));
+    $message = stripslashes(trim($_POST['form-message']));
+    $pattern = '/[\r\n]|Content-Type:|Bcc:|Cc:/i';
+
+    if (preg_match($pattern, $name) || preg_match($pattern, $email) || preg_match($pattern, $subject)) {
+        die("Header injection detected");
     }
+
+    $emailIsValid = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+    if ($name && $email && $emailIsValid && $subject && $message) {
+        $mail = new SimpleMail();
+
+        $mail->setTo($config->get('emails.to'));
+        $mail->setFrom($config->get('emails.from'));
+        $mail->setSender($name);
+        $mail->setSenderEmail($email);
+        $mail->setSubject($config->get('subject.prefix') . ' ' . $subject);
+
+        $body = "
+        <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">
+        <html>
+            <head>
+                <meta charset=\"utf-8\">
+            </head>
+            <body>
+                <h1>{$subject}</h1>
+                <p><strong>{$config->get('fields.name')}:</strong> {$name}</p>
+                <p><strong>{$config->get('fields.email')}:</strong> {$email}</p>
+                <p><strong>{$config->get('fields.phone')}:</strong> {$phone}</p>
+                <p><strong>{$config->get('fields.message')}:</strong> {$message}</p>
+            </body>
+        </html>";
+
+        $mail->setHtml($body);
+        $mail->send();
+
+        $emailSent = true;
+    } else {
+        $hasError = true;
+    }
+}
 ?>
 
 <!DOCTYPE HTML>
@@ -31,34 +74,63 @@ if(isset($_POST['submit'])){
   <body>
     <?php include 'header.php' ?>
 
-    <form method="post" action="send-mail.php">
-    <p><label>Name:<br><input type="text" name="Name"></label></p>
-    <p><label>E-Mail:<br><input type="text" name="Mail"></label></p>
-    <p><label>Betreff:<br><input type="text" name="Betreff"></label></p>
-    <p><label>Nachricht:<br>
-    <textarea name="Nachricht" cols="50" rows="8"></textarea></label></p>
-    <input type="submit" value="OK">
-    </form>
-    <!-- <div class="container">
-      <form action="" method="post">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="name" class="form-control" id="name" placeholder="Vor- und Nachname">
-          <label for="email">Email Adresse:</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="E-Mail">
-          <small id="emailHelp" class="form-text text-muted">Wir werden Ihre Email NICHT veröffentlichen oder teilen</small>
+    <?php if(!empty($emailSent)): ?>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="alert alert-success text-center"><?php echo $config->get('messages.success'); ?></div>
         </div>
-        <div class="form-group">
-          <label for="betreff">Betreff:</label>
-          <input type="text" class="form-control" id="betreff" placeholder="Was willsch?">
+    <?php else: ?>
+        <?php if(!empty($hasError)): ?>
+        <div class="col-md-5 col-md-offset-4">
+            <div class="alert alert-danger text-center"><?php echo $config->get('messages.error'); ?></div>
         </div>
-        <div class="form-group">
-          <label for="nachricht">Nachricht:</label>
-          <textarea class="form-control" id="nachricht" rows="3" placeholder="Erzähle uns mehr von deinem Bedürfniss"></textarea>
-        </div>
-        <button type="submit" name="senden" class="btn btn-primary">Nachricht senden</button>
-      </form>
-    </div> -->
+        <?php endif; ?>
+
+    <div class="col-md-6 col-md-offset-3">
+        <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" enctype="application/x-www-form-urlencoded" id="contact-form" class="form-horizontal" method="post">
+            <div class="form-group">
+                <label for="form-name" class="col-lg-2 control-label"><?php echo $config->get('fields.name'); ?></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="form-name" name="form-name" placeholder="<?php echo $config->get('fields.name'); ?>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-email" class="col-lg-2 control-label"><?php echo $config->get('fields.email'); ?></label>
+                <div class="col-lg-10">
+                    <input type="email" class="form-control" id="form-email" name="form-email" placeholder="<?php echo $config->get('fields.email'); ?>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-phone" class="col-lg-2 control-label"><?php echo $config->get('fields.phone'); ?></label>
+                <div class="col-lg-10">
+                    <input type="tel" class="form-control" id="form-phone" name="form-phone" placeholder="<?php echo $config->get('fields.phone'); ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-subject" class="col-lg-2 control-label"><?php echo $config->get('fields.subject'); ?></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="form-subject" name="form-subject" placeholder="<?php echo $config->get('fields.subject'); ?>" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-message" class="col-lg-2 control-label"><?php echo $config->get('fields.message'); ?></label>
+                <div class="col-lg-10">
+                    <textarea class="form-control" rows="3" id="form-message" name="form-message" placeholder="<?php echo $config->get('fields.message'); ?>" required></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-default"><?php echo $config->get('fields.btn-send'); ?></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <?php endif; ?>
+
+    <script type="text/javascript" src="public/js/contact-form.js"></script>
+    <script type="text/javascript">
+        new ContactForm('#contact-form');
+    </script>
+
     <?php include 'footer.php' ?>
   </body>
 </html>
