@@ -50,11 +50,21 @@ session_start();?>
           </tr>
         </thead>
         <tbody>
-          <td>Essen</td>
-          <td>Essen</td>
-          <td>Essen</td>
-          <td>Essen</td>
-          <td>Essen</td>          
+					<?php
+					for ($i=0;$i <5; $i++) {
+						$output=  "<td>";
+						if(true) {
+							$output = $output . "<button class='btn btn-success'>Essen hinzufügen</button></a>";
+						}
+						else {
+							$output = $output . "Hier ist laut dem Code Essen.";
+						}
+
+						$output = $output . "</td>";
+						echo $output;
+					}
+					?>
+
         </tbody>
       </table>
         </div>
@@ -66,7 +76,7 @@ session_start();?>
         </div>
       </div>
 		</div>
-		
+
 	</body>
 	<?php include 'footer.php' ?>
 </html>
