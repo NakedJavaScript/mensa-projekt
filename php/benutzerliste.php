@@ -2,7 +2,7 @@
 <html>
 <?php include 'dependencies.php' ?>
 	<head>
-		<?php 
+		<?php
 			echo $head_dependencies;
 
 			$sql = "SELECT * FROM benutzer";
@@ -10,7 +10,7 @@
 		?>
 		<title></title>
 	</head>
-	
+
 	<body>
 		<?php include 'header.php' ?>
 		<div class="container">
@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-				<?php 
+				<?php
 					if ($result->num_rows > 0) {
 					// ausgabe der Daten aus jeder Zeile der Tabelle.
 					while($row = $result->fetch_assoc()) {
@@ -53,8 +53,8 @@
 					$conn->close();
 				?>
 			</table>
-		</div>	
-		
+		</div>
+
 		<!--New User Modal-->
 		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 								<div class="modal-dialog">
@@ -63,26 +63,26 @@
 									<div class="modal-header">
 									<h3 class="modal-title">Neuer Nutzer</h3>
 									  <button type="button" class="close" data-dismiss="modal">&times;</button>
-									  
+
 									</div>
 									<!-- body -->
 									<div class="modal-body">
 									  <form role="form" method="POST" action="benutzerliste.php?newUser">
 										<div class="form-group">
-										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max"/>
-										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann"/>
-										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="max.mustermann@musterdomäne.de"/>
-										  <label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" />
-										  <label for="kontostand" >Kontostand</label><input type="int" name="kontostand" class="form-control" placeholder="WAAAS?! Du hast doch wohl kaum eine Millionen?!" />
+										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max" required/>
+										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/>
+										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="max.mustermann@musterdomäne.de" required/>
+										  <label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" required/>
+										  <label for="kontostand" >Kontostand</label><input type="int" name="kontostand" class="form-control" placeholder="WAAAS?! Du hast doch wohl kaum eine Millionen?!" required/>
 										</div>
-									  
+
 									</div>
 									<!-- footer -->
 									<div class="modal-footer">
 									  <input type="submit" name="neuer_nutzer" class="btn btn-primary btn-block" value="Neuen Nutzer anlegen">
 									</div>
 									</form>
-									
+
 								  </div>
 								</div>
 							  </div>

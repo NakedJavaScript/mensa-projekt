@@ -49,7 +49,17 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 			}
 
 			//Code um einen Nutzer anzulegen
+
 			if (isset($_POST['neuer_nutzer'])) {
+				if (!is_numeric($_POST['kontostand'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
+				$Output = "<div class='alert alert-danger alert-dismissable'>
+  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.</div>";
+				}
+				else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
+					$Output= "<div class='alert alert-danger alert-dismissable'>
+  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.</div>";
+}
+				else {
 				$vorname = $_POST['vorname'];
 				$nachname = $_POST['nachname'];
 				$email = $_POST['email'];
@@ -57,9 +67,9 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$kontostand = $_POST['kontostand'];
 
 				$options = array("cost"=>4);
-				$hashPassword = password_hash($passwort,PASSWORD_DEFAULT);
+				$hashPassword = password_hash($passwort,PASSWORD_BCRYPT,$options);
 
-		$insert = 'INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand) value("'.$vorname.'", "'.$nachname.'", "'.$email.'","'.$hashPassword.'", "'.$kontostand.'")';
+		$insert = "INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand) value('".$vorname."', '".$nachname."', '".$email."','".$hashPassword."', '".$kontostand."')";
 		$result = $conn->query($insert);
 		if($result === true)
 		{
@@ -71,6 +81,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $insert . "<br>" . $conn->error . "</div>";
 		}
 	}
+			}
 
 
 
@@ -91,8 +102,12 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 				if (!is_numeric($preis)) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 				$Output = "<div class='alert alert-danger alert-dismissable'>
-  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bitte trage bei Preis nur Nummern ein.</div>";
+  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.</div>";
 				}
+				else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
+					$Output= "<div class='alert alert-danger alert-dismissable'>
+  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.</div>";
+}
 				else {
 				$preis = doubleval($_POST['preis']); //wandelt preis in double um.
 				$check = "SELECT EXISTS(SELECT * FROM speise WHERE name = $name)"; //sql befehl zum prüfen ob es die Speise bereits gibt
