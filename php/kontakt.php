@@ -1,7 +1,8 @@
-<?php 
+<?php
+session_start();
 $mailConfig = array(
-    'foodmengroup'                     
-   ,'julianmilicevic1@gmail.com' 
+    'foodmengroup'
+   ,'julianmilicevic1@gmail.com'
 );
 
 $OUTPUT = '';
@@ -24,11 +25,11 @@ if( formSubmission() && ( $formFields = validateFormSubmission( $errors )) ){
 <?php include 'dependencies.php' ?>
 	<head>
 		<title></title>
-		<?php 
+		<?php
 			echo $head_dependencies;
 		?>
 	</head>
-	
+
 	<body>
 	<!-- https://webdesign.tutsplus.com/tutorials/how-to-integrate-no-captcha-recaptcha-in-your-website--cms-23024 -->
 		<?php include 'header.php' ?>
@@ -57,7 +58,7 @@ if( formSubmission() && ( $formFields = validateFormSubmission( $errors )) ){
 	</body>
 </html>
 <!-- DIe logik zur kontrolle und senden der Mail  -->
-<?php 
+<?php
 function formSubmission(){
     if( isset( $_POST['senden'] ) ){
         if( get_magic_quotes_gpc() ){ stripslashes_deep( $_POST ); }
@@ -73,19 +74,19 @@ function stripslashes_deep( $value ){
 }
 function validateFormSubmission( &$errors=array() ){
     $formData = array( '','','' );
-    
+
     if( empty( $_POST['nachricht'] ) ){
-        $errors['nachricht'] = "Bitte schreibe eine Nachricht."; 
+        $errors['nachricht'] = "Bitte schreibe eine Nachricht.";
     }else{
         $formData[0] = $_POST['nachricht'];
     }
-    
+
     if( empty( $_POST['name'] ) ){
         $errors['name'] = "Bitte nenne uns deinen Namen.";
     }else{
         $formData[1] = $_POST['name'];
     }
-    
+
     if( empty( $_POST['email'] ) ){
         $errors['email'] = "Bitte trag deine e-mail adresse ein.";
     }elseif( !filter_var( $_POST['email'],FILTER_VALIDATE_EMAIL ) || !preg_match( '#\w\.\w{2,}$#',$_POST['email'] ) ){
@@ -93,24 +94,24 @@ function validateFormSubmission( &$errors=array() ){
     }else{
         $formData[2] = $_POST['email'];
     }
-    
+
     return $formData;
 }
 
 function sendEmail( $mailConfig,$formFields ){
     list( $myname,$myemail ) = $mailConfig;
-    
+
     list( $name,$email,$nachricht ) = $formFields;
-    
+
     $headers = "From: $myemail
 ";
     $headers .= "Reply-to: $email
 ";
     $headers .= "X-Mailer: PHP Contact Form Example";
-    
+
     $t = new DateTime( '@'.time() );
     $datetime = $t->format( 'r' );
-    
+
     $subject = "Contact Form Submission";
     $message = "
 $subject
@@ -123,7 +124,7 @@ $nachricht
 ----------------------------------------------------------------------
 Gesendet am $datetime";
     $message = wordwrap( $message,70 );
-    
+
     if( mail( $myemail,$subject,$message,$headers ) ){
         return true;
     }else{
