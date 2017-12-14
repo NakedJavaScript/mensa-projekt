@@ -2,21 +2,19 @@
 if(isset($_POST['submit'])){
 	$email = trim($_POST['email']);
 	$passwort = trim($_POST['passwort']);
+  $pepper = 'mensa_pfeffer';
 
 	$sql = "select * from benutzer where email = '".$email."'";
 	$rs = $conn->query($sql);
 
-	$hashed_shit = password_hash ( $passwort, PASSWORD_DEFAULT );
-
-
 	if($rs -> num_rows  == 1){
 
 		$row = $rs->fetch_assoc();
-		if(password_verify($passwort,$row['passwort'])){
+		if(password_verify($passwort . $pepper,$row['passwort'])){
 			echo "Password verified";
 		}
 		else{
-					echo $hashed_shit . " + " . $row['passwort'];
+					echo 'Wrong password';
 		}
 	}
 	else{

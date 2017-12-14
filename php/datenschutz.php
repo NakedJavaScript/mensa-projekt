@@ -1,13 +1,14 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 <?php include 'dependencies.php' ?>
 	<head>
 		<title>Datenschutz</title>
-		<?php 
+		<?php
 			echo $head_dependencies;
 		?>
 	</head>
-	
+
 	<body>
 		<?php include 'header.php' ?>
 		<div class="container">
@@ -50,7 +51,7 @@ senden, eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie 
 die Adresszeile des Browsers von &quot;http://&quot; auf &quot;https://&quot; wechselt und an dem
 Schloss-Symbol in Ihrer Browserzeile.</p> <p>Wenn die SSL Verschlüsselung aktiviert ist,
 können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.</p><p>
-&nbsp;</p> <h2>Recht auf Auskunft, Löschung, Sperrung</h2> <p>Sie haben jederzeit das Recht 
+&nbsp;</p> <h2>Recht auf Auskunft, Löschung, Sperrung</h2> <p>Sie haben jederzeit das Recht
 auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und
 Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder
 Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten

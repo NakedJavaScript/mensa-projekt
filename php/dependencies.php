@@ -65,9 +65,10 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$email = $_POST['email'];
 				$passwort = $_POST['passwort'];
 				$kontostand = $_POST['kontostand'];
+				$pepper = 'mensa_pfeffer';
 
-				$options = array("cost"=>4);
-				$hashPassword = password_hash($passwort,PASSWORD_BCRYPT,$options);
+				$options = array("cost"=>12);
+				$hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
 
 		$insert = "INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand) value('".$vorname."', '".$nachname."', '".$email."','".$hashPassword."', '".$kontostand."')";
 		$result = $conn->query($insert);

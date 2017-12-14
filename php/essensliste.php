@@ -1,8 +1,9 @@
+<?php session_start(); ?>
 <!DOCTYPE HTML>
 <html>
 <?php include_once 'dependencies.php'; ?>
 	<head>
-		<?php 
+		<?php
 			echo $head_dependencies;
 
 			$sql = "SELECT * FROM speise";
@@ -10,7 +11,7 @@
 		?>
 		<title></title>
 	</head>
-	
+
 	<body>
 		<?php include 'header.php'; ?>
 		<div class="container">
@@ -19,10 +20,10 @@
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
-			
+
 			<br>
 			<br>
-			
+
 			<table class="table table-hover">
     <thead>
       <tr>
@@ -34,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-				<?php 
+				<?php
 					if ($result->num_rows > 0) {
 					// ausgabe der Daten aus jeder Zeile der Tabelle.
 					while($row = $result->fetch_assoc()) {
@@ -55,8 +56,8 @@
 				?>
 			</table>
 		</div>
-		
-		
+
+
 		<!--New Food Modal-->
 		<div class="modal fade" id="NewFood" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 								<div class="modal-dialog">
@@ -65,7 +66,7 @@
 									<div class="modal-header">
 									<h3 class="modal-title">Neues Essen hinzufügen</h3>
 									  <button type="button" class="close" data-dismiss="modal">&times;</button>
-									  
+
 									</div>
 									<!-- body -->
 									<div class="modal-body">
@@ -76,14 +77,14 @@
 										  <label for="sonstiges" >Sonstiges:</label><input type="sonstiges" name="sonstiges" class="form-control" placeholder="mmhmm..Braaiiinns" required />
 										  <label for="preis" >Preis:</label><input type="preis" name="preis" class="form-control" placeholder="Eins euro vong preis her"  required/>
 										</div>
-									  
+
 									</div>
 									<!-- footer -->
 									<div class="modal-footer">
 									  <input type="submit" name="Essen_hinzufügen" class="btn btn-primary btn-block" value="Essen hinzufügen">
 									</div>
 									</form>
-									
+
 								  </div>
 								</div>
 							  </div>
