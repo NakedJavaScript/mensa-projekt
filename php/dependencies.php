@@ -145,6 +145,20 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					}
 			}
 
+/* Hier stehen die Funktionen für die index.php Seite*/
 
+			//Code um ein Tagesangebot zu erstellen
+			if (isset($_POST['Essen_hinzufügen'])) {
+				$meal = $_POST['name'];
+				$date = $_POST['allergene'];
 
+				if ($conn->query($insert) === TRUE) {
+					$Output = "<div class='alert alert-success alert-dismissable'>
+  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich erstellt</div>";
+				}
+				else {
+					$Output = "<div class='alert alert-danger alert-dismissable'>
+    <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Error: " . $sql . "<br>" . $conn->error . "</div>";
+					}
+				}
 ?>

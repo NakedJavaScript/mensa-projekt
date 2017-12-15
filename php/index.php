@@ -54,7 +54,7 @@ session_start();?>
 					for ($i=0;$i <5; $i++) {
 						$output=  "<td>";
 						if(true) {
-							$output = $output . "<button class='btn btn-success'>Essen hinzufügen</button></a>";
+							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal'>Hinzufügen</button>";
 						}
 						else {
 							$output = $output . "Hier ist laut dem Code Essen.";
@@ -76,6 +76,44 @@ session_start();?>
         </div>
       </div>
 		</div>
+
+		<!--New Food Modal-->
+		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				<!-- header -->
+				<div class="modal-header">
+					<h3 class="modal-title">Ein neues Tagesangebot erstellen</h3>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+				</div>
+				<!-- body -->
+				<div class="modal-body">
+					<form role="form" method="POST" action="index.php">
+							<div class="form-group">
+								<label for="foodlist">Speisen</label>
+								<select name="foodlist" id="foodlist">						
+									<?php
+										$sql = "SELECT * FROM speise";
+										$result = $conn->query($sql);
+										$food_options ="";
+										while($food = $result->fetch_assoc()) {
+											$food_options = $food_options . "<option value=". $food['name'] .">" . $food['name'] ."</option>";
+										}
+										echo $food_options;
+									?>
+								</select>
+							</div>
+						</div>
+						<!-- footer -->
+						<div class="modal-footer">
+							<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!--New Food Modal End-->
 
 	</body>
 	<?php include 'footer.php' ?>
