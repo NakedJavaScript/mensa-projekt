@@ -55,3 +55,12 @@ color:#088a08;
 background:#f5a9a9;
 color:#610b0b;
 }
+
+/* ----- CONTACT-FORM ----- */
+
+.contact-box {
+  background-color: #f7f7f9;
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #d8d8d8;
+}
