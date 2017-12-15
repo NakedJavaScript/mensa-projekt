@@ -1,5 +1,5 @@
 html{
-  position:relative; 
+  position:relative;
   min-height: 100%;
 }
 /*Normalize html and body elements,this style is just good to have*/
@@ -9,7 +9,7 @@ html,body{
 }
 .pageContentWrapper{
   margin-bottom:120px;/* Height of footer*/
-} 
+}
 .footer{
     position: absolute;
     bottom: 0;
@@ -46,7 +46,7 @@ list-group-item .btn-danger .btn-success {
 		float:right;
 		text-align:right;
     }
-	
+
 .message {
 background:#cef6ce;
 color:#088a08;
