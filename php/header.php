@@ -4,13 +4,14 @@ if(isset($_POST['submit'])){
 	$passwort = trim($_POST['passwort']);
   $pepper = 'mensa_pfeffer';
 
-	$sql = "select * from benutzer where email = '".$email."'";
+	$sql = "select * from benutzer where email = '$email'";
 	$rs = $conn->query($sql);
 
 	if($rs -> num_rows  == 1){
 
 		$row = $rs->fetch_assoc();
 		if(password_verify($passwort . $pepper,$row['passwort'])){
+			$_SESSION['nutzer'] = $email;
 			echo "Password verified";
 		}
 		else{
@@ -47,36 +48,55 @@ if(isset($_POST['submit'])){
       </li>
     </ul>
    <ul class="nav navbar-nav navbar-right">
-               <button type='button' class="btn btn-success" data-toggle="modal" data-target="#popUpWindow">Login</button>
-
-							  <div class="modal fade" id="popUpWindow">
-								<div class="modal-dialog">
-								  <div class="modal-content">
-									<!-- header -->
-									<div class="modal-header">
-									<h3 class="modal-title">Login Form</h3>
-									  <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-									</div>
-									<!-- body -->
-									<div class="modal-body">
-									  <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
-										<div class="form-group">
-										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/>
-										  <label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
-										</div>
-
-									</div>
-									<!-- footer -->
-									<div class="modal-footer">
-									  <input type="submit" name="submit" class="btn btn-primary btn-block" value="Einloggen">
-									</div>
-									</form>
-
-								  </div>
-								</div>
-							  </div>
+		 <?php if (isset($_SESSION['nutzer'])) {
+			echo  "<div class='btn-group'>
+ 		 		<button type='button' class='btn btn-primary'>Action</button>
+ 				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+	 			<span class='sr-only'>" . $_SESSION['nutzer'] . "</span>
+ 				</button>
+ 					<div class='dropdown-menu'>
+	 					<a class='dropdown-item' href='#'>Profil</a>
+	 					<a class='dropdown-item' href='#'>Bestellungen</a>
+	 					<div class='dropdown-divider'></div>
+	 					<a class='dropdown-item' href='logout.php'>Logout</a>
+ 					</div>
+						</div>";
+			}
+			 else {
+					echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#popUpWindow'>Login</button>";
+				}
+				?>
 	</ul>
 </nav>
 
- <div class="pageContentWrapper">
+<!-- Login Modal Begin -->
+<div class="modal fade" id="popUpWindow">
+<div class="modal-dialog">
+	<div class="modal-content">
+	<!-- header -->
+	<div class="modal-header">
+	<h3 class="modal-title">Login Form</h3>
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+	</div>
+	<!-- body -->
+	<div class="modal-body">
+		<form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
+		<div class="form-group">
+			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/>
+			<label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
+		</div>
+
+	</div>
+	<!-- footer -->
+	<div class="modal-footer">
+		<input type="submit" name="submit" class="btn btn-primary btn-block" value="Einloggen">
+	</div>
+	</form>
+
+	</div>
+</div>
+</div>
+<!-- Login Modal End -->
+
+ <div class="pageContentWrapper"> <!-- Wird verwendet damit content zwischen footer und Header bleibt und damit footer wirklich am Ende der Seite steht. -->
