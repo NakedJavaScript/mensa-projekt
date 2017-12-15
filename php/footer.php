@@ -1,6 +1,3 @@
-<?php 
-	include_once 'dependencies.php';
-?>
 </div> <!--Ende vom PagecontentWrapper(siehe Header)-->
 <footer class="footer">
       <div class="container" style="margin-top:1%;">
@@ -8,4 +5,3 @@
 	  </div>
     </footer>
 <?php echo $footer_dependencies; ?>
-
