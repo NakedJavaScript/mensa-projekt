@@ -51,10 +51,10 @@ session_start();?>
         </thead>
         <tbody>
 					<?php
-					for ($i=0;$i <5; $i++) {
+					for ($i=1 ;$i <=5; $i++) {
 						$output=  "<td>";
 						if(true) {
-							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal'>Hinzufügen</button>";
+							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick='AddDateToModal(".strtotime($year ."W". $week . $i).")'>Hinzufügen</button>";
 						}
 						else {
 							$output = $output . "Hier ist laut dem Code Essen.";
@@ -62,6 +62,8 @@ session_start();?>
 
 						$output = $output . "</td>";
 						echo $output;
+						echo date("Y-w-d", strtotime($year ."W". $week . $i));
+						echo  "\n";
 					}
 					?>
 
@@ -91,14 +93,15 @@ session_start();?>
 				<div class="modal-body">
 					<form role="form" method="POST" action="index.php">
 							<div class="form-group">
+								<input type="hidden" id="date_field" name="date" value="">
 								<label for="foodlist">Speisen</label>
-								<select name="foodlist" id="foodlist">						
+								<select name="foodlist" id="foodlist">
 									<?php
 										$sql = "SELECT * FROM speise";
 										$result = $conn->query($sql);
 										$food_options ="";
 										while($food = $result->fetch_assoc()) {
-											$food_options = $food_options . "<option value=". $food['name'] .">" . $food['name'] ."</option>";
+											$food_options = $food_options . "<option name='food_id' value=". $food['id'] .">" . $food['name'] ."</option>";
 										}
 										echo $food_options;
 									?>

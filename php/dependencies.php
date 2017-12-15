@@ -149,8 +149,13 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 			//Code um ein Tagesangebot zu erstellen
 			if (isset($_POST['Essen_hinzufügen'])) {
-				$meal = $_POST['name'];
-				$date = $_POST['allergene'];
+				$food_id = $_POST['food_id'];
+				$date = $_POST['date'];
+				$result = $conn->query($sql);
+				date("Y-w-d", $date);
+
+				$insert = "INSERT INTO speise ()
+						VALUES ('$name', '$all_inh', '$sonst','$preis')";
 
 				if ($conn->query($insert) === TRUE) {
 					$Output = "<div class='alert alert-success alert-dismissable'>
