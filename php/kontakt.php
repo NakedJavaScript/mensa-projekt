@@ -24,20 +24,21 @@
           <input type="hidden" name="_next" value="mensa-projekt/php/success.php" />
           <div class="form-group">
             <label for="name">Name:</label>
-            <input type="name" class="form-control" id="name" placeholder="Nachname Vorname" required>
+            <input type="name" class="form-control" name="Name" id="name" placeholder="Nachname Vorname" required>
+            <br>
             <label for="email">Email Adresse:</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name@domain.de" required>
+            <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailHelp" placeholder="name@domain.de" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
             <small id="emailHelp" class="form-text text-muted">Wir werden Ihre Email Adresse NIEMALS veröffentlichen oder teilen</small>
           </div>
           <div class="form-group">
             <label for="betreff">Betreff:</label>
-            <input type="text" class="form-control" id="betreff" placeholder="Betreffzeile" required>
+            <input type="text" class="form-control" name="Betreff" id="betreff" placeholder="Betreffzeile" required>
           </div>
           <div class="form-group">
             <label for="nachricht">Nachricht:</label>
-            <textarea class="form-control" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
+            <textarea class="form-control" name="Nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
           </div>
-          <button type="submit" name="senden" class="btn btn-primary">Nachricht senden</button>
+          <button type="submit" class="btn btn-primary">Nachricht senden</button>
         </form>
       </div>
     </div>

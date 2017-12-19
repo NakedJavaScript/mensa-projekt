@@ -28,8 +28,17 @@ html, body {
   margin-bottom: 80px;
 }
 
+.nav-link:hover {
+  color: #28a745 !important;
+}
+
+.active-link {
+  color: #28a745 !important;
+  font-weight:600;
+}
+
 .bg-custom {
-  background-color: #ddd!important;
+  background-color: #eee!important;
 }
 
 .dropdown {
@@ -58,6 +67,15 @@ list-group-item .btn-danger .btn-success {
 .message.error {
   background:#f5a9a9;
   color:#610b0b;
+}
+
+.container a {
+  color: white;
+}
+
+.container a:hover {
+  text-decoration: none;
+  color: #28a745;
 }
 
 /* ----- CONTACT-FORM ----- */
