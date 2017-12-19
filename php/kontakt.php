@@ -4,17 +4,17 @@ $mailConfig = array(
    ,'julianmilicevic1@gmail.com'
 );
 
-$OUTPUT = '';
+$Output = '';
 
 if( formSubmission() && ( $formFields = validateFormSubmission( $errors )) ){
     if( !$errors ){
         if( sendEmail( $mailConfig,$formFields ) ){
-            $OUTPUT = successMessage();
+            $Output = successMessage();
         }else{
-            $OUTPUT = failureMessage();
+            $Output = failureMessage();
         }
     }else{
-        $OUTPUT = errorMessage( $errors );
+        $Output = errorMessage( $errors );
     }
 }
 ?>
@@ -33,10 +33,11 @@ if( formSubmission() && ( $formFields = validateFormSubmission( $errors )) ){
 		<?php include 'header.php' ?>
 		<div class="container">
 		<form action="" method="post">
-		<?php print $OUTPUT; ?>
 		  <div class="form-group">
 			<label for="name">Dein Name:</label>
 			<input type="name" class="form-control" id="name" placeholder="Horst? Max? Eva? Wie heißt du denn nun?!">
+    </div>
+    <div class="form-group">
 			<label for="email">Deine Email Adresse:</label>
 			<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="deinname@deinedomain.de">
 			<small id="emailHelp" class="form-text text-muted">Wir werden deine Email NIEMALS veröffentlichen oder teilen</small>

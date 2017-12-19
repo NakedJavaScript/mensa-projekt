@@ -14,7 +14,7 @@
 	<body>
 		<?php include 'header.php'; ?>
 		<div class="container">
-			<?php echo $Output; ?>
+
 			<h1>Essensliste</h1>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">
 				Hinzufügen <i class='fa fa-plus'> </i>
@@ -71,10 +71,10 @@
 									<div class="modal-body">
 									  <form role="form" method="POST" action="essensliste.php?AddFood"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
 										<div class="form-group">
-										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Gehirn" required/>
-										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Krebolaids" required/>
-										  <label for="sonstiges" >Sonstiges:</label><input type="sonstiges" name="sonstiges" class="form-control" placeholder="mmhmm..Braaiiinns" required />
-										  <label for="preis" >Preis:</label><input type="preis" name="preis" class="form-control" placeholder="Eins euro vong preis her"  required/>
+										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
+										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Gluten, Schwefeldioxid..." required/><br>
+										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" required /><br>
+										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€"  required/>
 										</div>
 
 									</div>

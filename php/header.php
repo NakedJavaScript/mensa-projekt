@@ -11,15 +11,15 @@ if(isset($_POST['submit'])){
 
 		$row = $rs->fetch_assoc();
 		if(password_verify($passwort . $pepper,$row['passwort'])){
-			$_SESSION['nutzer'] = $email;
-			echo "Password verified";
+			$_SESSION['email'] = $email;
+			$Output= "Login erfolgreich";
 		}
 		else{
-					echo 'Wrong password';
+					$Output ='Wrong password';
 		}
 	}
 	else{
-		echo "No User found";
+		$Output ="No User found";
 	}
 }
 
@@ -48,11 +48,11 @@ if(isset($_POST['submit'])){
       </li>
     </ul>
    <ul class="nav navbar-nav navbar-right">
-		 <?php if (isset($_SESSION['nutzer'])) {
+		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<button type='button' class='btn btn-primary'>Action</button>
+ 		 		<button type='button' class='btn btn-primary'" . $_SESSION['vorname'] . "</button>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-	 			<span class='sr-only'>" . $_SESSION['nutzer'] . "</span>
+	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
 	 					<a class='dropdown-item' href='#'>Profil</a>
@@ -69,6 +69,11 @@ if(isset($_POST['submit'])){
 	</ul>
 </nav>
 
+<div class="container">
+<?PHP echo $Output; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
+</div>
+
+
 <!-- Login Modal Begin -->
 <div class="modal fade" id="popUpWindow">
 <div class="modal-dialog">
@@ -83,7 +88,7 @@ if(isset($_POST['submit'])){
 	<div class="modal-body">
 		<form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
 		<div class="form-group">
-			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/>
+			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/><br>
 			<label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
 		</div>
 

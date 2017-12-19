@@ -25,15 +25,15 @@
 						  <tbody>
 							<tr>
 							  <th scope="row">Name</th>
-							  <td>Nigglai NewWolölolodski</td>
+							  <td><?PHP echo  . $_SESSION['vorname'] . " " . $_SESSION['nachname'] . ?></td>
 							</tr>
 							<tr>
 							  <th scope="row">E-Mail</th>
-							  <td>coolshit@jo.com</td>
+							  <td><?PHP echo . $_SESSION['email']?></td>
 							</tr>
 							<tr>
 							  <th scope="row">Kontostand</th>
-							  <td>9001.00 €</td>
+							  <td><?PHP echo . $_SESSION['kontostand']?></td>
 							</tr>
 						  </tbody>
 						</table>

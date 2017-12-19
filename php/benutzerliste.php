@@ -14,7 +14,7 @@
 	<body>
 		<?php include 'header.php' ?>
 		<div class="container">
-		<?php echo $Output; ?>
+
 			<h1>Benutzerliste</h1>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
 				Hinzufügen <i class='fa fa-plus'> </i>
@@ -69,11 +69,11 @@
 									<div class="modal-body">
 									  <form role="form" method="POST" action="benutzerliste.php?newUser">
 										<div class="form-group">
-										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max" required/>
-										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/>
-										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="max.mustermann@musterdomäne.de" required/>
-										  <label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" required/>
-										  <label for="kontostand" >Kontostand</label><input type="int" name="kontostand" class="form-control" placeholder="WAAAS?! Du hast doch wohl kaum eine Millionen?!" required/>
+										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max" required/> <br>
+										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/><br>
+										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="max.mustermann@musterdomäne.de" required/><br>
+										  <label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" required/><br>
+										  <label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" placeholder="Trage den gewünschten Betrag ein" required/>
 										</div>
 
 									</div>
