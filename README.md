@@ -4,11 +4,11 @@
 
 * Download git or use the git.exe in the folder
 * Install it
-* Clone the repo https://github.com/NakedJavaScript/mensa-projekt.git
 * Do: `git config --global http.proxy http://proxyuser:proxypwd@proxy.its-stuttgart.de:3128`
   * Replace `proxyuser` with your its-stuttgart user (e.g nikolai.nowolodski)
   * Replace `proxypwd` with your its-stuttgart user password (e.g andreassucksdicks)
   * And you're done
+* Clone the repo https://github.com/NakedJavaScript/mensa-projekt.git
 * `git fetch` to check if there are new commits
 * `git pull` to pull new commits on your branch
 * `git checkout BRANCH` (checkout another branch)
