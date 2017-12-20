@@ -21,6 +21,9 @@
 				<div class="tab-content col-sm-10" id="v-pills-tabContent">
 					<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
 						<h1>Dein Profil</h1>
+						<br>
+						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast.</p>
+						<br>
 						<table class="table table-bordered">
 						  <tbody>
 							<tr>
@@ -38,31 +41,39 @@
 						  </tbody>
 						</table>
 						<button type='button' class='btn btn-success'>
-							Bearbeiten <i class='fa fa-pencil'> </i>
+							Bearbeiten <i class='fas fa-pencil-alt'> </i>
 						</button>
 					</div>
 				  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-						<ul class="list-group">
+						<h1>Deine Bestellungen</h1>
+						<br>
+						<table class="table table-bordered">
+						<tbody>
+							<tr>
 							<?php
+								$count = 1;
 								if ($result->num_rows > 0) {
-								// output data of each row
+								// ausgabe der Daten aus jeder Zeile der Tabelle.
 								while($row = $result->fetch_assoc()) {
-									echo 	"<li class='list-group-item justify-content-between'> "
-												. $row["name"] . " " . $row["preis"] .
-												"<button type='button' class='btn btn-success' style='float:right; text-align:center;''>
-													<i class='fa fa-pencil'> </i>
-												</button>
-												<button type='button' class='btn btn-danger' style='float:right; text-align:center;''>
-													<i class='fa fa-trash'> </i>
-												</button>
-											</li>";
+										echo "<th scope='row'>Bestellung " . $count++ . "</th>";
+										echo 	"<td>".$row['name']."</td>";
+										echo		"<td>".$row['preis']."€</td>";
+										echo		"<td><button type='button' class='btn btn-success'>
+													<i class='fas fa-pencil-alt'> </i></button>
+													<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+																<i class='fas fa-trash'> </i></button>
+													</td>
+											</tr>";
 								}
 								} else {
 									echo "0 results";
 								}
 								$conn->close();
 							?>
-						</ul>
+						</tbody>
+						</table>
+
+
 					</div>
 				</div>
 			</div>

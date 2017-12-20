@@ -27,7 +27,7 @@ session_start();?>
         <div class="col-sm-1">
 		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
           <button class="btn btn-success index-btns">
-            <i class='fa fa-arrow-circle-left'> </i>
+            <i class='fas fa-chevron-circle-left'> </i>
           </button></a> <!--Button um eine Woche zurück zu springen -->
         </div>
         <div class="col-sm-10">
@@ -54,19 +54,19 @@ session_start();?>
           <td>Essen</td>
           <td>Essen</td>
           <td>Essen</td>
-          <td>Essen</td>          
+          <td>Essen</td>
         </tbody>
       </table>
         </div>
         <div class="col-sm-1 test1">
-		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>">
+		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
           <button class="btn btn-success index-btns">
-            <i class='fa fa-arrow-circle-right'> </i>
+            <i class='fas fa-chevron-circle-right'> </i>
           </button></a> <!--Button um eine Woche vor zu springen -->
         </div>
       </div>
 		</div>
-		
+
 	</body>
 	<?php include 'footer.php' ?>
 </html>

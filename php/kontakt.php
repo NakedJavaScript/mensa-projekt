@@ -14,7 +14,7 @@
 
     <div class="container">
       <div>
-        <h1>Kontaktformular <i class="fas fa-envelope" style="color:#007bff"></i></h1>
+        <h1>Kontaktformular <i class="fas fa-envelope" style="color:#28a745"></i></h1>
         <br>
         <p>Für Fragen, Vorschläge oder Beschwerden nutzen Sie bitte das untenstehende Kontaktformular. Wir kümmern uns so schnell wie möglich um die Bearbeitung Ihrer Anfrage. Bei dringenden Angelegenheiten können Sie auch direkt unsere Angestellten ansprechen.</p>
         <br>
@@ -38,7 +38,7 @@
             <label for="nachricht">Nachricht:</label>
             <textarea class="form-control" name="Nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Nachricht senden</button>
+          <button type="submit" class="btn btn-success">Nachricht senden</button>
         </form>
       </div>
     </div>

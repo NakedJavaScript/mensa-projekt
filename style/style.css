@@ -24,16 +24,42 @@ html, body {
   text-align: center;
 }
 
+.close {
+  color: #000 !important;
+}
+
+.user-table {
+  margin-top: 50px;
+}
+
+.profile-btns {
+  margin-left: 5px;
+  float:right;
+  text-align:center;
+}
+
+.index-btns:hover {
+  cursor: pointer;
+}
+
 .navbar {
   margin-bottom: 80px;
 }
 
-.nav-link:hover {
-  color: #28a745 !important;
+.mr-auto .nav-link:hover {
+  color: #e05120 !important;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: #28a745;
+}
+
+.nav-pills .nav-link {
+  color: #000;
 }
 
 .active-link {
-  color: #28a745 !important;
+  color: #e05120 !important;
   font-weight:600;
 }
 
