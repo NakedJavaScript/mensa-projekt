@@ -12,14 +12,21 @@ if(isset($_POST['submit'])){
 		$row = $rs->fetch_assoc();
 		if(password_verify($passwort . $pepper,$row['passwort'])){
 			$_SESSION['email'] = $email;
-			$Output= "Login erfolgreich";
+			$_SESSION['vorname'] = $row['vorname'];
+			$_SESSION['nachname'] = $row['nachname'];
+			$_SESSION['kontostand'] = $row['kontostand'];
+			$_SESSION['id'] = $row['benutzer_ID'];
+			$Output= "<div class='alert alert-success alert-dismissable'>
+					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Login erfolgreich</div>";
 		}
 		else{
-					$Output ='Wrong password';
+					$Output ="<div class='alert alert-danger alert-dismissable fade in'>
+					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Wrong password</div>";
 		}
 	}
 	else{
-		$Output ="No User found";
+		$Output ="<div class='alert alert-danger alert-dismissable fade in'>
+					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>No User found</div>";
 	}
 }
 
@@ -50,13 +57,13 @@ if(isset($_POST['submit'])){
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<button type='button' class='btn btn-primary'" . $_SESSION['vorname'] . "</button>
+ 		 		<button type='button' class='btn btn-primary'>" . $_SESSION['vorname'] . "</button>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='#'>Profil</a>
-	 					<a class='dropdown-item' href='#'>Bestellungen</a>
+	 					<a class='dropdown-item' href='profil.php?profile'>Profil</a>
+	 					<a class='dropdown-item' href='profil.php?orders'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>
  					</div>

@@ -32,22 +32,9 @@
 		<script src="../vendor/tether/js/tether.min.js"></script>
 		<script src="../js/script.js"></script>
 ';
-//Code zum abfangen de aktuellen user Daten
-if (isset($_SESSION['email'])) {
-	$res = $conn->query("SELECT * FROM benutzer WHERE email = '" . $_SESSION['email'] . "'");
-	$UserInfo = $res->fetch_assoc();
-			if ($UserInfo) {
-    	$_SESSION['vorname'] = $UserInfo['vorname'];
-			$_SESSION['nachname'] = $UserInfo['nachname'];
-			$_SESSION['kontostand'] = $UserInfo['kontostand'];
-		}
-	}
 
 
-
-
-
-$Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zmm Beispiel ob eine Mail erfolgreich versendet wurde.
+$Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zum Beispiel ob eine Mail erfolgreich versendet wurde.
 
 /*Hier stehen die Funktionen für benutzerliste.php; */
 //Code zum löschen eines Nutzers
