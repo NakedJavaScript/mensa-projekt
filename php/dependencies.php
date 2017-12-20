@@ -145,25 +145,20 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					}
 			}
 
-/* Hier stehen die Funktionen für die index.php Seite*/
 
-			//Code um ein Tagesangebot zu erstellen
-			if (isset($_POST['Essen_hinzufügen'])) {
-				$food_id = $_POST['food_id'];
-				$date = $_POST['date'];
-				$result = $conn->query($sql);
-				date("Y-w-d", $date);
+			/* Hier stehen die Funktionen für essensliste.php Seite*/
 
-				$insert = "INSERT INTO speise ()
-						VALUES ('$name', '$all_inh', '$sonst','$preis')";
+						//Code um eine Speise hinzuzufügen
+						if (isset($_POST['Tagesangebot_erstellen'])) {
+							$s_ID =$_POST['foodlist'];
+							$datum =$_POST['date'];
+							$insert = "INSERT INTO tagesangebot (speise_ID,datum)
+									VALUES ('$s_ID','$datum')";
+							if ($conn->query($insert) === TRUE) {
+								$Output = "<div class='alert alert-success alert-dismissable'>
+			  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
+				echo $Output;
+							}
+							}
 
-				if ($conn->query($insert) === TRUE) {
-					$Output = "<div class='alert alert-success alert-dismissable'>
-  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich erstellt</div>";
-				}
-				else {
-					$Output = "<div class='alert alert-danger alert-dismissable'>
-    <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Error: " . $sql . "<br>" . $conn->error . "</div>";
-					}
-				}
 ?>

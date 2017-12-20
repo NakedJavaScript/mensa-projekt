@@ -43,6 +43,7 @@ session_start();?>
 				for($day= 1; $day <= 5; $day++) {
 					$d = strtotime($year ."W". $week . $day);
 
+
 					echo "<th>". date('l', $d) ."<br>". date('d M', $d) ."</th>";
 					//die ersten 5 tage der aktuellen woche werden ausgegeben.
 }
@@ -54,7 +55,10 @@ session_start();?>
 					for ($i=1 ;$i <=5; $i++) {
 						$output=  "<td>";
 						if(true) {
-							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick='AddDateToModal(".strtotime($year ."W". $week . $i).")'>Hinzufügen</button>";
+							$gendate = new DateTime();
+							$gendate->setISODate($year,$week,$i);
+							$date = $gendate->format('Y-m-d');						
+							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
 						}
 						else {
 							$output = $output . "Hier ist laut dem Code Essen.";
@@ -62,8 +66,6 @@ session_start();?>
 
 						$output = $output . "</td>";
 						echo $output;
-						echo date("Y-w-d", strtotime($year ."W". $week . $i));
-						echo  "\n";
 					}
 					?>
 
@@ -101,7 +103,7 @@ session_start();?>
 										$result = $conn->query($sql);
 										$food_options ="";
 										while($food = $result->fetch_assoc()) {
-											$food_options = $food_options . "<option name='food_id' value=". $food['id'] .">" . $food['name'] ."</option>";
+											$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>";
 										}
 										echo $food_options;
 									?>
@@ -117,7 +119,6 @@ session_start();?>
 			</div>
 		</div>
 		<!--New Food Modal End-->
-
 	</body>
 	<?php include 'footer.php' ?>
 </html>
