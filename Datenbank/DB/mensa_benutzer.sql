@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
--- Server version	5.5.8
+-- Server version	5.5.5-10.1.28-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `benutzer` (
   `admin_rechte` int(1) DEFAULT NULL,
   `kontostand` double DEFAULT NULL,
   PRIMARY KEY (`benutzer_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `benutzer` (
 
 LOCK TABLES `benutzer` WRITE;
 /*!40000 ALTER TABLE `benutzer` DISABLE KEYS */;
-INSERT INTO `benutzer` VALUES (1,'Quark','Kopf','q.kopf@its.de','123',0,10),(2,'Warlow','Udeldupf','w.udeldupf@its.de','123',0,10.21),(3,'Edgar','Allenpo','a.uallenpo@its.de','123',0,213.21),(4,'Rüdiberg','Adolfo','r.adolfo@its.de','123',0,2430),(5,'Transvestit','Sexbomb','t.sexbomb@its.de','123',0,432.43),(6,'Zero','ToSix','z.tosix@its.de','123',0,41.21),(7,'Udol','Knödel','u.knoedel@its.de','123',0,321.21),(8,'Ingbert','Wichsfress','i.wichsfress@its.de','123',0,10.21),(9,'Julian','Niedacevic','j.niedacevic@its.de','123',0,23.21),(10,'Gold','Digger','g.digger@its.de','123',0,210.21);
+INSERT INTO `benutzer` VALUES (11,'Julian','Milicevic','julian.milicevic@its.de','$2y$12$7bffZBm.58lU4ZuFDcsdY.VuhWWXWfx/02MxXWO.uiZND9Pz/HOVq',0,12.5),(12,'Andreas','Hruschka','andreas.hruschka@its.de','$2y$12$oiiQUyiFoI6s7iwX2h335eZP2OWbyMpefznP.ItnoQ/iLR441Ida2',0,0.3),(13,'Nikolai','Nowolodski','nikolai.nowolodski@its.de','$2y$12$2/dHj1V0n91/QIGpmbBNAePABPZTquVz6FEADTKjiTg9K3PGtM5ha',0,15),(14,'Rüdiger','Berg','ruediger.berg@its.de','$2y$12$Ks/oyQ7tPHmsZM2wGTNbnubTUtLUlIdtUglJKDoClUk3ZJ8Cus7O.',0,50.6),(15,'Thorsten','Misch','thorsten.misch@its.de','$2y$12$xoZL.sz.Pl20HnOKTSE7MumO3OQPnHTtwavh2lMJ9.kSCAnfabHte',1,30.5);
 /*!40000 ALTER TABLE `benutzer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-09 11:46:16
+-- Dump completed on 2017-12-21 11:14:47

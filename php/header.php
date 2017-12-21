@@ -16,16 +16,17 @@ if(isset($_POST['submit'])){
 			$_SESSION['nachname'] = $row['nachname'];
 			$_SESSION['kontostand'] = $row['kontostand'];
 			$_SESSION['id'] = $row['benutzer_ID'];
+			$_SESSION['adminrechte'] = $row['admin_rechte'];
 			$Output= "<div class='alert alert-success alert-dismissable'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Login erfolgreich</div>";
 		}
 		else{
-					$Output ="<div class='alert alert-danger alert-dismissable fade in'>
+					$Output ="<div class='alert alert-danger alert-dismissable'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Wrong password</div>";
 		}
 	}
 	else{
-		$Output ="<div class='alert alert-danger alert-dismissable fade in'>
+		$Output ="<div class='alert alert-danger alert-dismissable'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>No User found</div>";
 	}
 }
@@ -41,18 +42,22 @@ if(isset($_POST['submit'])){
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+			<?PHP if($_SESSION['adminrechte'] = '1') { //nur Admin sieht diese Seiten?>
+      <li class="nav-item">
         <a class="nav-link" href="benutzerliste.php">Benutzerliste <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="essensliste.php">Essensliste</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="profil.php">Profil</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="umsatz.php">Umsatz</a>
       </li>
+			<?PHP }
+			else { //alle anderen sehen das.?>
+			<li class="nav-item">
+				<a class="nav-link" href="profil.php">Profil</a>
+			</li>
+			<?PHP } ?>
     </ul>
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
@@ -87,7 +92,7 @@ if(isset($_POST['submit'])){
 	<div class="modal-content">
 	<!-- header -->
 	<div class="modal-header">
-	<h3 class="modal-title">Login Form</h3>
+	<h3 class="modal-title">Login</h3>
 		<button type="button" class="close" data-dismiss="modal">&times;</button>
 
 	</div>
@@ -96,7 +101,7 @@ if(isset($_POST['submit'])){
 		<form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
 		<div class="form-group">
 			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/><br>
-			<label for="password" >Password</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
+			<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
 		</div>
 
 	</div>

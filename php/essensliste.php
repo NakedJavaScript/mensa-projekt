@@ -69,12 +69,13 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="essensliste.php?AddFood"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
+									  <form role="form" method="POST" action="essensliste.php?FoodAdded"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
 										<div class="form-group">
 										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
 										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Gluten, Schwefeldioxid..." required/><br>
-										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" required /><br>
-										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€"  required/>
+										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" /><br>
+										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€" aria-labelledby="preisHelp"  required/>
+											<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
 										</div>
 
 									</div>
