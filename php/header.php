@@ -35,8 +35,8 @@ if(isset($_POST['submit'])){
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="benutzerliste.php">Benutzerliste <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="benutzerliste.php">Benutzerliste</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="essensliste.php">Essensliste</a>
