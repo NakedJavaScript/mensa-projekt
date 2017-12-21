@@ -1,4 +1,5 @@
-# mensa-projekt
+
+## mensa-projekt
 
 ## How to git
 
@@ -25,3 +26,9 @@
 * Create a new schema (name it `mensa`) and import the latest data dumps
 * Use any browser except firefox (a google installer is in the same folder as the xampp installer)
 * Type "localhost/php/" to get to the index page
+
+#Useful Stuff:
+
+https://sqlwiki.netspi.com/ - Wiki to identify SQL injection vulnerabilities
+
+https://codeigniter.com/ - Possible PHP Framework for the Project
