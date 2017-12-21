@@ -144,21 +144,4 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
 					}
 			}
-
-
-			/* Hier stehen die Funktionen für essensliste.php Seite*/
-
-						//Code um eine Speise hinzuzufügen
-						if (isset($_POST['Tagesangebot_erstellen'])) {
-							$s_ID =$_POST['foodlist'];
-							$datum =$_POST['date'];
-							$insert = "INSERT INTO tagesangebot (speise_ID,datum)
-									VALUES ('$s_ID','$datum')";
-							if ($conn->query($insert) === TRUE) {
-								$Output = "<div class='alert alert-success alert-dismissable'>
-			  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
-				echo $Output;
-							}
-							}
-
 ?>

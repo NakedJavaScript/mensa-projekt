@@ -17,6 +17,21 @@ session_start();?>
 				$year--;
 				$week = 52;
 			}
+			//Code um eine Speise hinzuzufügen
+			if (isset($_POST['Tagesangebot_erstellen'])) {
+				$s_ID =$_POST['foodlist'];
+				$datum =$_POST['date'];
+				$insert = "INSERT INTO tagesangebot (speise_ID,datum)
+						VALUES ('$s_ID','$datum')";
+				if ($conn->query($insert) === true) {
+					$result_message = "<div class='alert alert-success alert-dismissable'>
+  				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
+				} else {
+					$result_message = "<div class='alert alert-danger alert-dismissable'>
+					<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
+				}
+				echo $result_message;
+				}
 			?>
 	</head>
 
@@ -57,7 +72,7 @@ session_start();?>
 						if(true) {
 							$gendate = new DateTime();
 							$gendate->setISODate($year,$week,$i);
-							$date = $gendate->format('Y-m-d');						
+							$date = $gendate->format('Y-m-d');
 							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
 						}
 						else {
@@ -119,6 +134,8 @@ session_start();?>
 			</div>
 		</div>
 		<!--New Food Modal End-->
+
+
 	</body>
 	<?php include 'footer.php' ?>
 </html>
