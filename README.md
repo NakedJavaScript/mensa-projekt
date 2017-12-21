@@ -27,7 +27,7 @@
 * Use any browser except firefox (a google installer is in the same folder as the xampp installer)
 * Type "localhost/php/" to get to the index page
 
-#Useful Stuff:
+## Useful Links
 
 https://sqlwiki.netspi.com/ - Wiki to identify SQL injection vulnerabilities
 
