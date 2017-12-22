@@ -40,7 +40,7 @@ CREATE TABLE `benutzer` (
 
 LOCK TABLES `benutzer` WRITE;
 /*!40000 ALTER TABLE `benutzer` DISABLE KEYS */;
-INSERT INTO `benutzer` VALUES (11,'Julian','Milicevic','julian.milicevic@its.de','$2y$12$7bffZBm.58lU4ZuFDcsdY.VuhWWXWfx/02MxXWO.uiZND9Pz/HOVq',0,12.5),(12,'Andreas','Hruschka','andreas.hruschka@its.de','$2y$12$oiiQUyiFoI6s7iwX2h335eZP2OWbyMpefznP.ItnoQ/iLR441Ida2',0,0.3),(13,'Nikolai','Nowolodski','nikolai.nowolodski@its.de','$2y$12$2/dHj1V0n91/QIGpmbBNAePABPZTquVz6FEADTKjiTg9K3PGtM5ha',0,15),(14,'Rüdiger','Berg','ruediger.berg@its.de','$2y$12$Ks/oyQ7tPHmsZM2wGTNbnubTUtLUlIdtUglJKDoClUk3ZJ8Cus7O.',0,50.6),(15,'Thorsten','Misch','thorsten.misch@its.de','$2y$12$xoZL.sz.Pl20HnOKTSE7MumO3OQPnHTtwavh2lMJ9.kSCAnfabHte',1,30.5);
+INSERT INTO `benutzer` VALUES (11,'Julian','Milicevic','julian.milicevic@its.de','$2y$12$7bffZBm.58lU4ZuFDcsdY.VuhWWXWfx/02MxXWO.uiZND9Pz/HOVq',3,12.5),(12,'Andreas','Hruschka','andreas.hruschka@its.de','$2y$12$oiiQUyiFoI6s7iwX2h335eZP2OWbyMpefznP.ItnoQ/iLR441Ida2',3,0.3),(13,'Nikolai','Nowolodski','nikolai.nowolodski@its.de','$2y$12$2/dHj1V0n91/QIGpmbBNAePABPZTquVz6FEADTKjiTg9K3PGtM5ha',3,15),(14,'Rüdiger','Berg','ruediger.berg@its.de','$2y$12$Ks/oyQ7tPHmsZM2wGTNbnubTUtLUlIdtUglJKDoClUk3ZJ8Cus7O.',3,50.6),(15,'Thorsten','Misch','thorsten.misch@its.de','$2y$12$xoZL.sz.Pl20HnOKTSE7MumO3OQPnHTtwavh2lMJ9.kSCAnfabHte',2,30.5);
 /*!40000 ALTER TABLE `benutzer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
