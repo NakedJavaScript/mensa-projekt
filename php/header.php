@@ -30,9 +30,8 @@ if(isset($_POST['submit'])){
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>No User found</div>";
 	}
 }
-
 ?>
-
+	
 
 <nav class="navbar navbar-expand-lg navbar-light bg-custom">
   <a class="navbar-brand" href="index.php"><img src='../images/logo.png' width="120px"/></a>
@@ -42,22 +41,24 @@ if(isset($_POST['submit'])){
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-			<?PHP if($_SESSION['adminrechte'] = '1') { //nur Admin sieht diese Seiten?>
-      <li class="nav-item">
-        <a class="nav-link" href="benutzerliste.php">Benutzerliste <span class="sr-only">(current)</span></a>
+			<?PHP if($_SESSION['adminrechte'] == 2) { //nur Admin sieht diese Seiten
+      echo "<li class='nav-item'>
+        <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="essensliste.php">Essensliste</a>
+      <li class='nav-item'>
+        <a class='nav-link' href='essensliste.php'>Essensliste</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="umsatz.php">Umsatz</a>
-      </li>
-			<?PHP }
-			else { //alle anderen sehen das.?>
-			<li class="nav-item">
-				<a class="nav-link" href="profil.php">Profil</a>
-			</li>
-			<?PHP } ?>
+      <li class='nav-item'>
+        <a class='nav-link' href='umsatz.php'>Umsatz</a>
+      </li>";
+			 }
+			else if($_SESSION['adminrechte'] == 3) { //normale user sehen das.
+			echo "<li class='nav-item'>
+				<a class='nav-link' href='profil.php'>Profil</a>
+			</li>";
+			} 
+			else {
+			}?>
     </ul>
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {

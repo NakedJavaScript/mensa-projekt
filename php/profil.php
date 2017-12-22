@@ -1,4 +1,4 @@
-<?php include 'dependencies.php' ?>
+<?php include 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -11,7 +11,9 @@
 		?>
 	</head>
 	<body>
-		<?php include 'header.php' ?>
+		<?php include 'header.php';
+			if(!isset($_SESSION['email'])) {
+			die('Du musst eingeloggt sein um dein Profil zu sehen.'); }//Nutzer die nicht eingeloggt sind können nicht auf diese Seite zugreifen.?>
 		<div class="container">
 		<div class="row">
 				<div class="nav flex-column nav-pills col-sm-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">

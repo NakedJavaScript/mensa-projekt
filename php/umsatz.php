@@ -1,4 +1,4 @@
-<?php include 'dependencies.php' ?>
+<?php include 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -9,7 +9,9 @@
 	</head>
 
 	<body>
-		<?php include 'header.php' ?>
+		<?php include 'header.php'; 
+		if($_SESSION['adminrechte'] != 2) {
+		die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite?>
 		<div class="container">
 			<div class="row">
 				<h3>Umsatz anzeigen für</h3>

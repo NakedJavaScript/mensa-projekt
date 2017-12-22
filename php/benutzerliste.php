@@ -12,7 +12,9 @@
 	</head>
 
 	<body>
-		<?php include 'header.php' ?>
+		<?php include 'header.php'
+			if($_SESSION['adminrechte'] != 2) {
+				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert nicht Admins den Zugriff auf diese Seite?>?>
 		<div class="container">
 
 			<h1>Benutzerliste</h1>
@@ -75,8 +77,8 @@
 										  <label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" required/><br>
 										  <label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" placeholder="Trage den gewünschten Betrag ein" required/><br>
 											<label for="adminrechte" >Adminrechte</label><br>
-														<input type="radio" name="adminrechte" class="radio-inline" value="0" checked>Nein &nbsp
-														<input type="radio" name="adminrechte" class="radio-inline" value="1">Ja
+														<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
+														<input type="radio" name="adminrechte" class="radio-inline" value="2">Ja
 										</div>
 
 									</div>
