@@ -1,4 +1,4 @@
-<?php include 'dependencies.php' ?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -19,7 +19,7 @@
 	</head>
 
 	<body>
-		<?php include 'header.php' ?>
+		<?php include 'header.php'; ?>
 		<div class="container">
       <div class="row">
         <div class="col-sm-1">
@@ -66,5 +66,5 @@
 		</div>
 
 	</body>
-	<?php include 'footer.php' ?>
+	<?php include 'footer.php'; ?>
 </html>

@@ -1,4 +1,4 @@
-<?php include 'dependencies.php' ?>
+<?php include_once 'dependencies.php' ?>
 <!DOCTYPE HTML>
 <html>
 	<head>

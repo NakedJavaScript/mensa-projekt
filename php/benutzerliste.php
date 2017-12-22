@@ -1,4 +1,4 @@
-<?php include 'dependencies.php' ?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -12,7 +12,7 @@
 	</head>
 
 	<body>
-		<?php include 'header.php'
+		<?php include 'header.php';
 			if($_SESSION['adminrechte'] != 2) {
 				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert nicht Admins den Zugriff auf diese Seite?>?>
 		<div class="container">
@@ -93,5 +93,5 @@
 							  </div>
 		<!--New User Modal End-->
 	</body>
-	<?php include 'footer.php' ?>
+	<?php include 'footer.php'; ?>
 </html>
