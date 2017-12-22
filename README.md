@@ -1,14 +1,15 @@
-# mensa-projekt
+
+## mensa-projekt
 
 ## How to git
 
 * Download git or use the git.exe in the folder
 * Install it
-* Clone the repo https://github.com/NakedJavaScript/mensa-projekt.git
 * Do: `git config --global http.proxy http://proxyuser:proxypwd@proxy.its-stuttgart.de:3128`
   * Replace `proxyuser` with your its-stuttgart user (e.g nikolai.nowolodski)
   * Replace `proxypwd` with your its-stuttgart user password (e.g andreassucksdicks)
   * And you're done
+* Clone the repo https://github.com/NakedJavaScript/mensa-projekt.git
 * `git fetch` to check if there are new commits
 * `git pull` to pull new commits on your branch
 * `git checkout BRANCH` (checkout another branch)
@@ -25,3 +26,9 @@
 * Create a new schema (name it `mensa`) and import the latest data dumps
 * Use any browser except firefox (a google installer is in the same folder as the xampp installer)
 * Type "localhost/php/" to get to the index page
+
+## Useful Links
+
+https://sqlwiki.netspi.com/ - Wiki to identify SQL injection vulnerabilities
+
+https://codeigniter.com/ - Possible PHP Framework for the Project

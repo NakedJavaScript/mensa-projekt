@@ -18,7 +18,7 @@
 	$head_dependencies = '
 		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/font-awesome.min.css">
+		<script defer src="../vendor/fontawesome/js/fontawesome-all.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">

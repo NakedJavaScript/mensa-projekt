@@ -10,6 +10,7 @@
 
   <body>
     <!-- Quick link to login to fake-mailbox: https://inboxbear.com/q/864xjrw/2ffswdg -->
+
     <?php include 'header.php'; ?>
 
     <div class="container">
@@ -38,10 +39,11 @@
             <label for="nachricht">Nachricht:</label>
             <textarea class="form-control" name="Nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Nachricht senden</button>
+          <button type="submit" class="btn btn-success">Nachricht senden</button>
         </form>
       </div>
     </div>
+
 
     <?php include 'footer.php'; ?>
   </body>

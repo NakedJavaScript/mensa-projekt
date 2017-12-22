@@ -41,6 +41,7 @@ if(isset($_POST['submit'])){
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+
 			<?PHP if($_SESSION['adminrechte'] == 2) { //nur Admin sieht diese Seiten
       echo "<li class='nav-item'>
         <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>

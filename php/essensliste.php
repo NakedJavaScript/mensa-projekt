@@ -18,8 +18,11 @@
 		<div class="container">
 
 			<h1>Essensliste</h1>
+			<br>
+			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten auch ein neues Essen erstellen.</p>
+			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">
-				Hinzufügen <i class='fa fa-plus'> </i>
+				Hinzufügen <i class='fas fa-plus'> </i>
 			</button>
 
 			<br>
@@ -44,10 +47,11 @@
 							echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
 							echo		"<td>".$row['sonstiges']."</td>";
 							echo		"<td>".$row['preis']."€</td>";
-							echo		"<td><a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-										<i class='fa fa-trash'> </i></button></a>
-									<button type='button' class='btn btn-success'>
-										<i class='fa fa-pencil'> </i></button></td>
+							echo		"<td><button type='button' class='btn btn-success'>
+										<i class='fas fa-pencil-alt'> </i></button>
+										<a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+													<i class='fas fa-trash'> </i></button></a>
+										</td>
 								</tr>";
 					}
 					} else {
