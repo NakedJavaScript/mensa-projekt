@@ -1,12 +1,20 @@
 <?php
 	include_once 'dependencies.php';
 ?>
-
-	<footer class="footer">
-      <div class="container">
-        <a href='kontakt.php'>Kontakt</a> | <a href='impressum.php'>Impressum</a> | <a href='datenschutz.php'>Datenschutz</a>
-	  	</div>
-  </footer>
+	<div class="container-fluid test">
+		<div class="row">
+			<div class="col-sm-12" id="cookieCon"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<footer class="footer">
+			      <div class="container">
+			        <a href='kontakt.php'>Kontakt</a> | <a href='impressum.php'>Impressum</a> | <a href='datenschutz.php'>Datenschutz</a>
+				  	</div>
+			  </footer>
+			</div>
+		</div>
+	</div>
 
 	<?php echo $footer_dependencies; ?>
 

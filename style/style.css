@@ -2,28 +2,40 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   height: 100%;
 }
 
-.pageContentWrapper {
+body {
+  position: relative;
   min-height: 100%;
-  position:relative;
+  padding-bottom: 20px;
+}
+
+.test {
+  position: absolute;
+  bottom: 0;
 }
 
 .footer {
-  position:absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 20px;   /* Height of the footer */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #1b1e21;
   text-align: center;
+  padding: 20px;   /* Height of the footer */
+}
+
+.cc_banner-wrapper {
+  position: static !important;
 }
 
 .cc_container {
-  bottom: 60px !important; /* Making cookies not stick on the footer */
+  bottom: 0 !important;
+  position: absolute !important;
 }
 
 .close {
