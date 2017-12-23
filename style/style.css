@@ -11,31 +11,17 @@ html {
 body {
   position: relative;
   min-height: 100%;
-  padding-bottom: 20px;
-}
-
-.test {
-  position: absolute;
-  bottom: 0;
+  padding-bottom: 6em;
 }
 
 .footer {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   background-color: #1b1e21;
   text-align: center;
   padding: 20px;   /* Height of the footer */
-}
-
-.cc_banner-wrapper {
-  position: static !important;
-}
-
-.cc_container {
-  bottom: 0 !important;
-  position: absolute !important;
 }
 
 .close {
@@ -117,6 +103,15 @@ list-group-item .btn-danger .btn-success {
   text-decoration: none;
   color: #28a745;
 }
+
+
+/* Additional Cookie-CSS */
+
+.cc_container .cc_btn {
+  background-color: #28A745 !important; /* Farbe des Buttons */
+  color: #fff !important; /* Textfarbe des Buttons */
+}
+
 
 /* ----- CONTACT-FORM ----- */
 
