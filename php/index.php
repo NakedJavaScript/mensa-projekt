@@ -17,26 +17,27 @@ session_start();?>
 				$year--;
 				$week = 52;
 			}
-			//Code um eine Speise hinzuzufügen
-			if (isset($_POST['Tagesangebot_erstellen'])) {
-				$s_ID =$_POST['foodlist'];
-				$datum =$_POST['date'];
-				$insert = "INSERT INTO tagesangebot (speise_ID,datum)
-						VALUES ('$s_ID','$datum')";
-				if ($conn->query($insert) === true) {
-					$result_message = "<div class='alert alert-success alert-dismissable'>
-  				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
-				} else {
-					$result_message = "<div class='alert alert-danger alert-dismissable'>
-					<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
-				}
-				echo $result_message;
-				}
 			?>
 	</head>
 
 	<body>
-		<?php include 'header.php' ?>
+		<?php include 'header.php';
+		//Code um eine Speise hinzuzufügen
+		if (isset($_POST['Tagesangebot_erstellen'])) {
+			$s_ID =$_POST['foodlist'];
+			$datum =$_POST['date'];
+			$insert = "INSERT INTO tagesangebot (speise_ID,datum)
+					VALUES ('$s_ID','$datum')";
+			if ($conn->query($insert) === true) {
+				$result_message = "<div class='alert alert-success alert-dismissable'>
+				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
+			} else {
+				$result_message = "<div class='alert alert-danger alert-dismissable'>
+				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
+			}
+			echo $result_message;
+			}
+		?>
 		<div class="container">
       <div class="row">
         <div class="col-sm-1">
@@ -67,16 +68,29 @@ session_start();?>
         </thead>
         <tbody>
 					<?php
+					$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
+					$result = $conn->query($sql);
+					$entrys =[];
+					while($entry = $result->fetch_assoc()) {
+						$entrys[] = $entry;
+					}
 					for ($i=1 ;$i <=5; $i++) {
 						$output=  "<td>";
-						if(true) {
-							$gendate = new DateTime();
-							$gendate->setISODate($year,$week,$i);
-							$date = $gendate->format('Y-m-d');
-							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+						$daymeal_exists = false;
+						$gendate = new DateTime();
+						$gendate->setISODate($year,$week,$i);
+						$date = $gendate->format('Y-m-d');
+						foreach ($entrys as $entry){
+							if ($entry['datum'] == $date) {
+								$daymeal_exists = true;
+								break;
+							}
+						}
+						if($daymeal_exists) {
+							$output = $output . "Hier ist laut dem Code Essen.";
 						}
 						else {
-							$output = $output . "Hier ist laut dem Code Essen.";
+							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
 						}
 
 						$output = $output . "</td>";
