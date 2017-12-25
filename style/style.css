@@ -1,17 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
-  position:relative;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  position: relative;
   min-height: 100%;
-}
-
-/*Normalize html and body elements,this style is just good to have*/
-
-html, body {
-  margin:0;
-  padding:0;
-}
-
-.pageContentWrapper {
-  margin-bottom:120px; /* Height of footer*/
+  padding-bottom: 6em;
 }
 
 .footer {
@@ -19,9 +19,9 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  height:60px;
   background-color: #1b1e21;
   text-align: center;
+  padding: 20px;   /* Height of the footer */
 }
 
 .close {
@@ -103,6 +103,15 @@ list-group-item .btn-danger .btn-success {
   text-decoration: none;
   color: #28a745;
 }
+
+
+/* Additional Cookie-CSS */
+
+.cc_container .cc_btn {
+  background-color: #28A745 !important; /* Farbe des Buttons */
+  color: #fff !important; /* Textfarbe des Buttons */
+}
+
 
 /* ----- CONTACT-FORM ----- */
 
