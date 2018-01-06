@@ -3,7 +3,7 @@
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
 
--- Server version	5.6.34-log
+-- Server version	5.5.8
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -33,11 +33,9 @@ CREATE TABLE `benutzer` (
   `admin_rechte` int(1) DEFAULT NULL,
   `kontostand` double DEFAULT NULL,
   PRIMARY KEY (`benutzer_ID`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
-=======
+
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
->>>>>>> ae4a8de4b16dbf1f8ccebc110e163526144e4099
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
