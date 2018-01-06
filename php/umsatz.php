@@ -9,8 +9,8 @@
 	</head>
 
 	<body>
-		<?php include 'header.php'; 
-		if($_SESSION['adminrechte'] != 2) {
+		<?php include 'header.php';
+		if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 		die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite?>
 		<div class="container">
 			<div class="row">
