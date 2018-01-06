@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.28-MariaDB
+
+-- Server version	5.6.34-log
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +33,11 @@ CREATE TABLE `benutzer` (
   `admin_rechte` int(1) DEFAULT NULL,
   `kontostand` double DEFAULT NULL,
   PRIMARY KEY (`benutzer_ID`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+=======
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+>>>>>>> ae4a8de4b16dbf1f8ccebc110e163526144e4099
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +47,7 @@ CREATE TABLE `benutzer` (
 LOCK TABLES `benutzer` WRITE;
 /*!40000 ALTER TABLE `benutzer` DISABLE KEYS */;
 INSERT INTO `benutzer` VALUES (11,'Julian','Milicevic','julian.milicevic@its.de','$2y$12$7bffZBm.58lU4ZuFDcsdY.VuhWWXWfx/02MxXWO.uiZND9Pz/HOVq',3,12.5),(12,'Andreas','Hruschka','andreas.hruschka@its.de','$2y$12$oiiQUyiFoI6s7iwX2h335eZP2OWbyMpefznP.ItnoQ/iLR441Ida2',3,0.3),(13,'Nikolai','Nowolodski','nikolai.nowolodski@its.de','$2y$12$2/dHj1V0n91/QIGpmbBNAePABPZTquVz6FEADTKjiTg9K3PGtM5ha',3,15),(14,'Rüdiger','Berg','ruediger.berg@its.de','$2y$12$Ks/oyQ7tPHmsZM2wGTNbnubTUtLUlIdtUglJKDoClUk3ZJ8Cus7O.',3,50.6),(15,'Thorsten','Misch','thorsten.misch@its.de','$2y$12$xoZL.sz.Pl20HnOKTSE7MumO3OQPnHTtwavh2lMJ9.kSCAnfabHte',2,30.5);
+
 /*!40000 ALTER TABLE `benutzer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +60,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-21 11:14:47
+
+-- Dump completed on 2017-12-22 10:10:51
