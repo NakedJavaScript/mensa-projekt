@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -32,7 +33,8 @@
 		<script src="../js/script.js"></script>
 ';
 
-$Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zmm Beispiel ob eine Mail erfolgreich versendet wurde.
+
+$Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zum Beispiel ob eine Mail erfolgreich versendet wurde.
 
 /*Hier stehen die Funktionen für benutzerliste.php; */
 //Code zum löschen eines Nutzers
@@ -43,7 +45,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					$Output = "<div class='alert alert-success alert-dismissable'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Nutzer wurde erfolgreich entfernt</div>";
 				} else {
-					$Output = "<div class='alert alert-danger alert-dismissable fade in'>
+					$Output = "<div class='alert alert-danger alert-dismissable '>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
 					}
 			}
@@ -65,23 +67,33 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$email = $_POST['email'];
 				$passwort = $_POST['passwort'];
 				$kontostand = $_POST['kontostand'];
+				$adminrechte = $_POST['adminrechte'];
+				$pepper = 'mensa_pfeffer';
 
-				$options = array("cost"=>4);
-				$hashPassword = password_hash($passwort,PASSWORD_BCRYPT,$options);
+				$options = array("cost"=>12);
+				$hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
+				$check = $conn->query("SELECT * FROM benutzer WHERE email = '$email'"); //sql befehl zum prüfen ob es den User bereits gibt
 
-		$insert = "INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand) value('".$vorname."', '".$nachname."', '".$email."','".$hashPassword."', '".$kontostand."')";
-		$result = $conn->query($insert);
-		if($result === true)
-		{
-			$Output = "<div class='alert alert-success alert-dismissable'>
-					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Registration successfully</div>";
-		}
-		else {
-			$Output = "<div class='alert alert-danger alert-dismissable'>
-					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $insert . "<br>" . $conn->error . "</div>";
-		}
-	}
-			}
+										if($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
+										$insert = "INSERT INTO benutzer (vorname, nachname,email, passwort, kontostand, admin_rechte)
+										VALUES('".$vorname."', '".$nachname."', '".$email."','".$hashPassword."', '".$kontostand."', ". $adminrechte .")";
+												$result = $conn->query($insert);
+														if($result === true) {
+																$Output = "<div class='alert alert-success alert-dismissable'>
+																<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Nutzer wurde erfolgreich angelegt</div>";
+																}
+																		else {
+																					$Output = "<div class='alert alert-danger alert-dismissable'>
+																						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $insert . "<br>" . $conn->error . "</div>";
+																					}
+																				}
+																				else { //Ausgabe wenn es diesen Nutzer bereits gibt
+																					$Output = "<div class='alert alert-danger alert-dismissable'>
+																	<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Es gibt bereits einen Nutzer mit dieser Email.</div>";
+																				}
+
+															}
+														}
 
 
 
@@ -94,7 +106,6 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 			//Code um eine Speise hinzuzufügen
 			if (isset($_POST['Essen_hinzufügen'])) {
-				echo $_POST['name'];
 				$name = strtoupper(trim($_POST['name']));
 				$all_inh = strtoupper(trim($_POST['allergene']));
 				$sonst = strtoupper(trim($_POST['sonstiges']));
@@ -107,28 +118,27 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 					$Output= "<div class='alert alert-danger alert-dismissable'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.</div>";
-}
-				else {
-				$preis = doubleval($_POST['preis']); //wandelt preis in double um.
-				$check = "SELECT EXISTS(SELECT * FROM speise WHERE name = $name)"; //sql befehl zum prüfen ob es die Speise bereits gibt
+																			}
+								else {
+											$preis = doubleval($_POST['preis']); //wandelt preis in double um.
+											$check = $conn->query("SELECT * FROM speise WHERE name = '$name'"); //sql befehl zum prüfen ob es die Speise bereits gibt
+														if($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
+																$insert = "INSERT INTO speise (name,allergene_inhaltsstoffe,sonstiges,preis)
+																VALUES ('$name', '$all_inh', '$sonst','$preis')";
 
-				if($conn->query($check) == false) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
-				$insert = "INSERT INTO speise (name,allergene_inhaltsstoffe,sonstiges,preis)
-						VALUES ('$name', '$all_inh', '$sonst','$preis')";
-
-				if ($conn->query($insert) === TRUE) {
-					$Output = "<div class='alert alert-success alert-dismissable'>
-  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich hinzugefügt</div>";
-				}
-				else {
-					$Output = "<div class='alert alert-danger alert-dismissable'>
-    <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Error: " . $sql . "<br>" . $conn->error . "</div>";
+																	if ($conn->query($insert) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
+																			$Output = "<div class='alert alert-success alert-dismissable'>
+	  																	<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich hinzugefügt</div>";
+																	}
+																else {
+																	$Output = "<div class='alert alert-danger alert-dismissable'>
+	    														<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Error: " . $sql . "<br>" . $conn->error . "</div>";
+																		}
 					}
-				}
-				else {
-					$Output = "<div class='alert alert-danger alert-dismissable'>
-  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Es gibt bereits ein Produkt mit diesem Namen.</div>";
-					}
+					else {
+						$Output = "<div class='alert alert-danger alert-dismissable'>
+	  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Es gibt bereits ein Produkt mit diesem Namen.</div>";
+						}
 
 				}
 			}
@@ -140,7 +150,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					$Output = "<div class='alert alert-success alert-dismissable'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich entfernt</div>";
 				} else {
-					$Output = "<div class='alert alert-danger alert-dismissable fade in'>
+					$Output = "<div class='alert alert-danger alert-dismissable'>
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
 					}
 			}

@@ -1,8 +1,6 @@
-<?php
-session_start();?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
@@ -90,7 +88,9 @@ session_start();?>
 							$output = $output . "Hier ist laut dem Code Essen.";
 						}
 						else {
-							$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+							if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
+								 $output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+							}
 						}
 
 						$output = $output . "</td>";
@@ -148,5 +148,5 @@ session_start();?>
 		</div>
 		<!--New Food Modal End-->
 	</body>
-	<?php include 'footer.php' ?>
+	<?php include 'footer.php'; ?>
 </html>
