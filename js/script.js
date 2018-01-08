@@ -6,3 +6,15 @@ $(document).ready(function () {
         }
     });
 });
+
+/*Skript für abfrage bevor gelöscht wird. */
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Willst du diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+

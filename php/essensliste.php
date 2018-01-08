@@ -48,7 +48,7 @@
 							echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
 							echo		"<td>".$row['sonstiges']."</td>";
 							echo		"<td>".$row['preis']."€</td>";
-							echo		"<td><a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+							echo		"<td><a href='essensliste.php?delete?speiseID=".$row['speise_ID']."' class='delete'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
 										<i class='fas fa-trash'> </i></button></a>
 										<button type='button' class='btn btn-success'>
 										<i class='fas fa-pencil-alt'> </i></button>
@@ -76,7 +76,7 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="essensliste.php?FoodAdded"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
+									  <form role="form" method="POST" action="essensliste.php?FoodAdded">
 										<div class="form-group">
 										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
 										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Gluten, Schwefeldioxid..." required/><br>
@@ -98,5 +98,17 @@
 		<!--New Food Modal End-->
 
 		<?php include 'footer.php'; ?>
+		
+		<script language="JavaScript" type="text/javascript">
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Willst du diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+</script>
 	</body>
 </html>

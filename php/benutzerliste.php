@@ -44,7 +44,7 @@
 							echo		"<td>".$row['nachname']."</td>";
 							echo		"<td>".$row['email']."</td>";
 							echo		"<td>".$row['kontostand']."€</td>";
-							echo		"<td><a href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."'><button type='button' method='POST' name='delete_user' class='btn btn-danger'>
+							echo		"<td><a href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."' class='delete'><button type='button' method='POST' name='delete_user' class='btn btn-danger'>
 										<i class='fas fa-trash'> </i></button></a>
 									<button type='button' class='btn btn-success'>
 										<i class='fas fa-pencil-alt'> </i></button></td>
@@ -95,4 +95,15 @@
 		<!--New User Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
+	<script language="JavaScript" type="text/javascript">
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Willst du diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+</script>
 </html>
