@@ -13,7 +13,7 @@
 	<body>
 		<?php include 'header.php';
 			if(!isset($_SESSION['email'])) {
-				include('footer.php');
+				include'footer.php';
 			die('Du musst eingeloggt sein um dein Profil zu sehen.'); }//Nutzer die nicht eingeloggt sind können nicht auf diese Seite zugreifen.?>
 		<div class="container">
 		<div class="row">
