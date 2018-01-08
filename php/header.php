@@ -2,7 +2,7 @@
 if(isset($_POST['submit'])){
 	$email = trim($_POST['email']);
 	$passwort = trim($_POST['passwort']);
-  $pepper = 'mensa_pfeffer';
+	$pepper = 'mensa_pfeffer';
 
 	$sql = "select * from benutzer where email = '$email'";
 	$rs = $conn->query($sql);

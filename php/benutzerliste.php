@@ -14,7 +14,8 @@
 	<body>
 		<?php include 'header.php';
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
-				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert nicht Admins den Zugriff auf diese Seite?>
+				include('footer.php');
+				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.');  } //Verweigert nicht Admins den Zugriff auf diese Seite?>
 		<div class="container">
 
 			<h1>Benutzerliste</h1>
