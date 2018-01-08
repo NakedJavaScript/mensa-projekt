@@ -1,13 +1,13 @@
+<?php include_once 'dependencies.php' ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title></title>
-		<?php 
+		<?php
 			echo $head_dependencies;
 		?>
 	</head>
-	
+
 	<body>
 		<?php include 'header.php' ?>
 		<div class="container">

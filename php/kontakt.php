@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-  <?php include 'dependencies.php' ?>
+  <?php include_once 'dependencies.php'; ?>
   <head>
     <title>Kontaktformular</title>
     <?php
@@ -10,11 +10,12 @@
 
   <body>
     <!-- Quick link to login to fake-mailbox: https://inboxbear.com/q/864xjrw/2ffswdg -->
-    <?php include 'header.php' ?>
+
+    <?php include 'header.php'; ?>
 
     <div class="container">
       <div>
-        <h1>Kontaktformular <i class="fas fa-envelope" style="color:#28a745"></i></h1>
+        <h1>Kontaktformular <i class="fas fa-envelope" style="color:#007bff"></i></h1>
         <br>
         <p>Für Fragen, Vorschläge oder Beschwerden nutzen Sie bitte das untenstehende Kontaktformular. Wir kümmern uns so schnell wie möglich um die Bearbeitung Ihrer Anfrage. Bei dringenden Angelegenheiten können Sie auch direkt unsere Angestellten ansprechen.</p>
         <br>
@@ -43,6 +44,7 @@
       </div>
     </div>
 
-    <?php include 'footer.php' ?>
+
+    <?php include 'footer.php'; ?>
   </body>
 </html>

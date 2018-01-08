@@ -68,7 +68,19 @@ body {
 }
 
 .dropdown {
+
+	margin-right: 15px;
+}
+
+.dropdown-menu {
+	min-width: 0;
+	max-width: 100%;
+}
+
+.dropdown-item {
+	padding: 0;
   margin-left: 15px;
+
 }
 
 .index-btns {
