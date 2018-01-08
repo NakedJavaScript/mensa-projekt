@@ -1,8 +1,6 @@
-<?php
-session_start();?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
@@ -148,5 +146,5 @@ session_start();?>
 		</div>
 		<!--New Food Modal End-->
 	</body>
-	<?php include 'footer.php' ?>
+	<?php include 'footer.php'; ?>
 </html>

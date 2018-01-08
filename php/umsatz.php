@@ -1,6 +1,6 @@
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
-<?php include 'dependencies.php' ?>
 	<head>
 		<title></title>
 		<?php
@@ -9,7 +9,10 @@
 	</head>
 
 	<body>
-		<?php include 'header.php' ?>
+		<?php include 'header.php';
+		if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
+			include'footer.php';
+		die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite?>
 		<div class="container">
 			<div class="row">
 				<h3>Umsatz anzeigen für</h3>
@@ -27,6 +30,6 @@
 			<div class="row">
 			</div>
 		</div>
-		<?php include 'footer.php' ?>
+		<?php include 'footer.php'; ?>
 	</body>
 </html>

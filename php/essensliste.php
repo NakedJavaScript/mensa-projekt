@@ -1,6 +1,6 @@
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
-<?php include_once 'dependencies.php'; ?>
 	<head>
 		<?php
 			echo $head_dependencies;
@@ -12,9 +12,12 @@
 	</head>
 
 	<body>
-		<?php include 'header.php'; ?>
+		<?php include 'header.php';
+			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
+				include'footer.php';
+				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite?>
 		<div class="container">
-			<?php echo $Output; ?>
+
 			<h1>Essensliste</h1>
 			<br>
 			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten auch ein neues Essen erstellen.</p>
@@ -45,10 +48,10 @@
 							echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
 							echo		"<td>".$row['sonstiges']."</td>";
 							echo		"<td>".$row['preis']."€</td>";
-							echo		"<td><button type='button' class='btn btn-success'>
+							echo		"<td><a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+										<i class='fas fa-trash'> </i></button></a>
+										<button type='button' class='btn btn-success'>
 										<i class='fas fa-pencil-alt'> </i></button>
-										<a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-													<i class='fas fa-trash'> </i></button></a>
 										</td>
 								</tr>";
 					}
@@ -73,12 +76,13 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="essensliste.php?AddFood"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
+									  <form role="form" method="POST" action="essensliste.php?FoodAdded"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
 										<div class="form-group">
-										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Gehirn" required/>
-										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Krebolaids" required/>
-										  <label for="sonstiges" >Sonstiges:</label><input type="sonstiges" name="sonstiges" class="form-control" placeholder="mmhmm..Braaiiinns" required />
-										  <label for="preis" >Preis:</label><input type="preis" name="preis" class="form-control" placeholder="Eins euro vong preis her"  required/>
+										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
+										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Gluten, Schwefeldioxid..." required/><br>
+										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" /><br>
+										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€" aria-labelledby="preisHelp"  required/>
+											<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
 										</div>
 
 									</div>
@@ -93,6 +97,6 @@
 							  </div>
 		<!--New Food Modal End-->
 
-		<?php include 'footer.php' ?>
+		<?php include 'footer.php'; ?>
 	</body>
 </html>
