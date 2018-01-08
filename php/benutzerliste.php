@@ -45,9 +45,9 @@
 							echo		"<td>".$row['email']."</td>";
 							echo		"<td>".$row['kontostand']."€</td>";
 							echo		"<td><a href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."'><button type='button' method='POST' name='delete_user' class='btn btn-danger'>
-										<i class='fa fa-trash'> </i></button></a>
+										<i class='fas fa-trash'> </i></button></a>
 									<button type='button' class='btn btn-success'>
-										<i class='fa fa-pencil'> </i></button></td>
+										<i class='fas fa-pencil-alt'> </i></button></td>
 								</tr>";
 					}
 					} else {

@@ -48,10 +48,10 @@
 							echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
 							echo		"<td>".$row['sonstiges']."</td>";
 							echo		"<td>".$row['preis']."€</td>";
-							echo		"<td><button type='button' class='btn btn-success'>
+							echo		"<td><a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+										<i class='fas fa-trash'> </i></button></a>
+										<button type='button' class='btn btn-success'>
 										<i class='fas fa-pencil-alt'> </i></button>
-										<a href='essensliste.php?delete?speiseID=".$row['speise_ID']."'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-													<i class='fas fa-trash'> </i></button></a>
 										</td>
 								</tr>";
 					}
