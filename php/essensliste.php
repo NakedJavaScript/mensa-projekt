@@ -15,12 +15,13 @@
 		<?php include 'header.php';
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 				include'footer.php';
-				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite?>
+				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite
+		?>
 		<div class="container">
 
 			<h1>Essensliste</h1>
 			<br>
-			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten auch ein neues Essen erstellen.</p>
+			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten ein neues Essen erstellen.</p>
 			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">
 				Hinzufügen <i class='fas fa-plus'> </i>
@@ -36,7 +37,7 @@
         <th>Allergene/Inhaltsstoffe</th>
         <th>Sonstiges</th>
         <th>Preis</th>
-		<th>Löschen/Bearbeiten</th>
+				<th>Löschen/Bearbeiten</th>
       </tr>
     </thead>
     <tbody>
@@ -62,13 +63,13 @@
 				?>
 			</table>
 		</div>
-		
+
 		<!--Confirm Delet Modal -->
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<strong>Willst du diesen Eintrag wirklich Löschen?</strong>
+						<strong>Wollen Sie diesen Eintrag wirklich löschen?</strong>
 					</div>
             <div class="modal-body">
                 Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
@@ -117,11 +118,11 @@
 		<!--New Food Modal End-->
 
 		<?php include 'footer.php'; ?>
-		
+
 		<script language="JavaScript" type="text/javascript">
-		$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-</script>
+			$('#confirm-delete').on('show.bs.modal', function(e) {
+	    	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+			});
+		</script>
 	</body>
 </html>

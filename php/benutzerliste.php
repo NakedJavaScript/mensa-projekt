@@ -8,19 +8,20 @@
 			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
-		<title></title>
+		<title>Benutzerliste</title>
 	</head>
 
 	<body>
 		<?php include 'header.php';
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 				include'footer.php';
-				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.');  } //Verweigert nicht Admins den Zugriff auf diese Seite?>
+				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als Administrator ein.');  } //Verweigert nicht Admins den Zugriff auf diese Seite
+		?>
 		<div class="container">
 
 			<h1>Benutzerliste</h1>
 			<br>
-			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "hinzufügen" - Buttons neue Nutzer anlegen..</p>
+			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
 			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
 				Hinzufügen <i class='fa fa-plus'> </i>
@@ -60,13 +61,13 @@
 				?>
 			</table>
 		</div>
-		
+
 		<!--Confirm Delet Modal -->
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<strong>Willst du diesen Eintrag wirklich Löschen?</strong>
+						<strong>Wollen Sie diesen Nutzer wirklich löschen?</strong>
 					</div>
             <div class="modal-body">
                 Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
@@ -119,7 +120,7 @@
 	<?php include 'footer.php'; ?>
 	<script language="JavaScript" type="text/javascript">
 		$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-</script>
+    	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
 </html>
