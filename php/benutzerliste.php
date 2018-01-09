@@ -19,6 +19,9 @@
 		<div class="container">
 
 			<h1>Benutzerliste</h1>
+			<br>
+			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "hinzufügen" - Buttons neue Nutzer anlegen..</p>
+			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
