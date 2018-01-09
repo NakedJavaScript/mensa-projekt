@@ -15,7 +15,7 @@
 		die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert leuten den Zugriff auf diese Seite?>
 		<div class="container">
 			<div class="row">
-				<h3>Umsatz anzeigen für</h3>
+				<h3>Umsatz anzeigen für</h3> &nbsp&nbsp
 				<div class="dropdown">
 				  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    Dropdown button
