@@ -4,8 +4,10 @@
 	<head>
 		<?php
 			echo $head_dependencies;
-
-			$sql = "SELECT * FROM speise";
+			echo $head_dependencies;
+			if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };//Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite.
+			$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind
+			$sql = "SELECT * FROM speise ORDER BY speise_ID ASC LIMIT $start_from ,10";
 			$result = $conn->query($sql);
 		?>
 		<title></title>
@@ -56,11 +58,26 @@
 								</tr>";
 					}
 					} else {
-						echo "0 results";
+						echo "<strong>0 Ergebnisse</strong>";
 					}
-					$conn->close();
 				?>
 			</table>
+			
+			<div class="page_nav">
+			<?php 
+$count = "SELECT COUNT(speise_ID) AS total FROM mensa.speise";
+$result = $conn->query($count);
+$row = $result->fetch_assoc();
+$total_pages = ceil($row["total"] / 5); // Berechnung der insgesamten Seiten mit Ergebnissen
+  
+for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
+            echo "<a href='essensliste.php?page=".$i."'";
+            if ($i==$page)  echo " class='curPage'";
+            echo ">".$i."</a> "; 
+}; 
+$conn->close();
+?>
+		</div>	
 		</div>
 		
 		<!--Confirm Delet Modal -->
