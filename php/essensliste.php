@@ -48,8 +48,8 @@
 							echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
 							echo		"<td>".$row['sonstiges']."</td>";
 							echo		"<td>".$row['preis']."€</td>";
-							echo		"<td><a href='essensliste.php?delete?speiseID=".$row['speise_ID']."' class='delete'><button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-										<i class='fas fa-trash'> </i></button></a>
+							echo		"<td><button type='button' method='POST' data-href='essensliste.php?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+										<i class='fas fa-trash'> </i></button>
 										<button type='button' class='btn btn-success'>
 										<i class='fas fa-pencil-alt'> </i></button>
 										</td>
@@ -62,6 +62,25 @@
 				?>
 			</table>
 		</div>
+		
+		<!--Confirm Delet Modal -->
+		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<strong>Willst du diesen Eintrag wirklich Löschen?</strong>
+					</div>
+            <div class="modal-body">
+                Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                <a class="btn btn-danger btn-ok">Löschen</a>
+            </div>
+        </div>
+    </div>
+</div>
+		<!--Confirm Delet Modal END -->
 
 
 		<!--New Food Modal-->
@@ -100,15 +119,9 @@
 		<?php include 'footer.php'; ?>
 		
 		<script language="JavaScript" type="text/javascript">
-		$(document).ready(function(){
-		$("a.delete").click(function(e){
-        if(!confirm('Willst du diesen Eintrag wirklich löschen?')){
-            e.preventDefault();
-            return false;
-        }
-        return true;
-		});
-	});
+		$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
 </script>
 	</body>
 </html>

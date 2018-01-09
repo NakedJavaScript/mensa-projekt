@@ -28,6 +28,28 @@ body {
   color: #000 !important;
 }
 
+.alert-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert {
+  position: relative;
+  z-index: 999999;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
 .user-table {
   margin-top: 50px;
 }
@@ -43,7 +65,11 @@ body {
 }
 
 .navbar {
-  margin-bottom: 80px;
+	margin-bottom: 40px;
+}
+
+.pageContentWrapper {
+  margin-top: 80px;
 }
 
 .mr-auto .nav-link:hover {

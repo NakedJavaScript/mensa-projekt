@@ -42,10 +42,10 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$userID = $_GET['delete?userID'];
 				$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
 				if ($conn->query($delete) === TRUE) {
-					$Output = "<div class='alert alert-success alert-dismissable'>
+					$Output = "<div class='alert alert-success alert-dismissable fade show'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Nutzer wurde erfolgreich entfernt</div>";
 				} else {
-					$Output = "<div class='alert alert-danger alert-dismissable '>
+					$Output = "<div class='alert alert-danger alert-dismissable fade show'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
 					}
 			}
@@ -54,11 +54,11 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 			if (isset($_POST['neuer_nutzer'])) {
 				if (!is_numeric($_POST['kontostand'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
-				$Output = "<div class='alert alert-danger alert-dismissable'>
+				$Output = "<div class='alert alert-danger alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.</div>";
 				}
 				else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
-					$Output= "<div class='alert alert-danger alert-dismissable'>
+					$Output= "<div class='alert alert-danger alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.</div>";
 }
 				else {
@@ -79,16 +79,16 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 										VALUES('".$vorname."', '".$nachname."', '".$email."','".$hashPassword."', '".$kontostand."', ". $adminrechte .")";
 												$result = $conn->query($insert);
 														if($result === true) {
-																$Output = "<div class='alert alert-success alert-dismissable'>
+																$Output = "<div class='alert alert-success alert-dismissable fade show'>
 																<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Nutzer wurde erfolgreich angelegt</div>";
 																}
 																		else {
-																					$Output = "<div class='alert alert-danger alert-dismissable'>
+																					$Output = "<div class='alert alert-danger alert-dismissable fade show'>
 																						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $insert . "<br>" . $conn->error . "</div>";
 																					}
 																				}
 																				else { //Ausgabe wenn es diesen Nutzer bereits gibt
-																					$Output = "<div class='alert alert-danger alert-dismissable'>
+																					$Output = "<div class='alert alert-danger alert-dismissable fade show'>
 																	<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Es gibt bereits einen Nutzer mit dieser Email.</div>";
 																				}
 
@@ -112,11 +112,11 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$preis = $_POST['preis'];
 
 				if (!is_numeric($preis)) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
-				$Output = "<div class='alert alert-danger alert-dismissable'>
+				$Output = "<div class='alert alert-danger alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.</div>";
 				}
 				else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
-					$Output= "<div class='alert alert-danger alert-dismissable'>
+					$Output= "<div class='alert alert-danger alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.</div>";
 																			}
 								else {
@@ -127,16 +127,16 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 																VALUES ('$name', '$all_inh', '$sonst','$preis')";
 
 																	if ($conn->query($insert) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
-																			$Output = "<div class='alert alert-success alert-dismissable'>
+																			$Output = "<div class='alert alert-success alert-dismissable fade show'>
 	  																	<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich hinzugefügt</div>";
 																	}
 																else {
-																	$Output = "<div class='alert alert-danger alert-dismissable'>
+																	$Output = "<div class='alert alert-danger alert-dismissable fade show'>
 	    														<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Error: " . $sql . "<br>" . $conn->error . "</div>";
 																		}
 					}
 					else {
-						$Output = "<div class='alert alert-danger alert-dismissable'>
+						$Output = "<div class='alert alert-danger alert-dismissable fade show'>
 	  <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Es gibt bereits ein Produkt mit diesem Namen.</div>";
 						}
 
@@ -147,10 +147,10 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				$speiseID = $_GET['delete?speiseID'];
 				$delete = "DELETE FROM speise WHERE speise_ID = $speiseID";
 				if ($conn->query($delete) === TRUE) {
-					$Output = "<div class='alert alert-success alert-dismissable'>
+					$Output = "<div class='alert alert-success alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich entfernt</div>";
 				} else {
-					$Output = "<div class='alert alert-danger alert-dismissable'>
+					$Output = "<div class='alert alert-danger alert-dismissable fade show'>
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
 					}
 			}
