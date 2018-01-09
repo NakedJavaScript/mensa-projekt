@@ -19,23 +19,7 @@
 	</head>
 
 	<body>
-		<?php include 'header.php';
-		//Code um eine Speise hinzuzufügen
-		if (isset($_POST['Tagesangebot_erstellen'])) {
-			$s_ID =$_POST['foodlist'];
-			$datum =$_POST['date'];
-			$insert = "INSERT INTO tagesangebot (speise_ID,datum)
-					VALUES ('$s_ID','$datum')";
-			if ($conn->query($insert) === true) {
-				$result_message = "<div class='alert alert-success alert-dismissable'>
-				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
-			} else {
-				$result_message = "<div class='alert alert-danger alert-dismissable'>
-				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
-			}
-			echo $result_message;
-			}
-		?>
+		<?php include 'header.php';	?>
 		<div class="container">
       <div class="row">
         <div class="col-sm-1">

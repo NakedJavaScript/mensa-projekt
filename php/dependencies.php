@@ -153,5 +153,30 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					$Output = "<div class='alert alert-danger alert-dismissable'>
     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
 					}
+
+
+
+
+
+
+/*Code für index.php*/
+					}
+//Code um eine Speise hinzuzufügen
+		if (isset($_POST['Tagesangebot_erstellen'])) {
+			$s_ID =$_POST['foodlist'];
+			$datum =strtotime($_POST['date']);
+			$formated= date('Y-m-d',$datum);
+			$insert = "INSERT INTO tagesangebot (speise_ID,datum)
+					VALUES ('$s_ID','$formated')";
+			if ($conn->query($insert) === TRUE) {
+				$Output = "<div class='alert alert-success alert-dismissable'>
+				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot wurde erfolgreich hinzugefügt</div>";
+			} else {
+				$Output = "<div class='alert alert-danger alert-dismissable'>
+				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
 			}
-?>
+		}
+			
+			
+			
+			?>
