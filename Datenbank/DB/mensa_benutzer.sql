@@ -29,7 +29,7 @@ CREATE TABLE `benutzer` (
   `vorname` varchar(45) NOT NULL,
   `nachname` varchar(45) NOT NULL,
   `email` varchar(80) NOT NULL,
-  `passwort` varchar(255) NOT NULL,
+  `passwort` varchar(45) NOT NULL,
   `admin_rechte` int(1) DEFAULT NULL,
   `kontostand` double DEFAULT NULL,
   PRIMARY KEY (`benutzer_ID`)

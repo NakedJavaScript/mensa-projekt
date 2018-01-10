@@ -1,6 +1,6 @@
 <?PHP include '../functions/login.php'; ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+<nav class="navbar navbar-expand-lg navbar-light bg-custom" id="cd-top-link">
   <a class="navbar-brand" href="index.php"><img src='../images/logo.png' width="120px"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

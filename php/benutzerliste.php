@@ -22,12 +22,20 @@
 		<div class="container">
 
 			<h1>Benutzerliste</h1>
+
 			<br>
 			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
 			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
+
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
+			<div class="input-group add-on" style="float:right; width:400px;">
+      <input class="form-control search-box" placeholder="Suche" name="srch-term" id="srch-term" type="text">
+      <div class="input-group-btn">
+        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+      </div>
+	  </div>
 				<br>
 				<br>
 				<br>
