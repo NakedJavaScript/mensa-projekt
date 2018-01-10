@@ -47,6 +47,7 @@ function dangerMessage($text) {
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 }
 
+
 function confModal($headerText) {
 	echo "<div class='modal fade' id='confirm-delete' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
 			<div class='modal-dialog'>
@@ -65,4 +66,6 @@ function confModal($headerText) {
     </div>
 </div> ";
 }
-?>
+
+			
+			?>
