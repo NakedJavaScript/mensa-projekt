@@ -72,6 +72,12 @@ body {
 	margin-right: 15px;
 }
 
+.search-box {
+	padding: .5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 .dropdown-menu {
 	min-width: 0;
 	max-width: 100%;
