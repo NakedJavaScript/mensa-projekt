@@ -484,3 +484,39 @@ list-group-item .btn-danger .btn-success {
     bottom: 30px;
   }
 }
+
+/* Like Button */
+
+.like-box {
+    display: flex;
+    justify-content: center;
+}
+
+.like-numbers {
+    margin: 0px;
+}
+
+.heart-btn {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px 5px 0px 0px;
+}
+
+.heart-btn:active {
+  box-shadow: none !important;
+}
+
+.heart-btn:focus {
+  box-shadow: none !important;
+}
+
+.like-heart, .like-heart-disabled {
+  color: #007BFF;
+}
+
+.like-heart:hover {
+  background-color: transparent !important;
+  font-size: 1.2em;
+  transition: font-size 0.35s ease;
+  color: #218838;
+}
