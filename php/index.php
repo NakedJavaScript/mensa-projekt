@@ -52,10 +52,14 @@
 								<p>Essen</p>
 								<div class="like-box">
 									<?php
-										if (isset($_SESSION['email'])) {
+										if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
 											echo '<button type="button" class="btn heart-btn">
 	  	  										<i class="fas fa-heart like-heart"></i>
 	  	  									</button>';
+										} elseif (isset($_SESSION['adminrechte'])) {
+											echo '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
+  											  <i class="fas fa-heart like-heart-disabled"></i>
+  										  </button>';
 										}
 										else {
 										  echo '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Einloggen um selbst zu liken!">
