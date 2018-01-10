@@ -1,4 +1,6 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once '../functions/benutzerliste_func.php';
+ ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -62,25 +64,9 @@
 			</table>
 		</div>
 
-		<!--Confirm Delet Modal -->
-		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<strong>Wollen Sie diesen Nutzer wirklich löschen?</strong>
-					</div>
-            <div class="modal-body">
-                Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-                <a class="btn btn-danger btn-ok">Löschen</a>
-            </div>
-        </div>
-    </div>
-</div>
-		<!--Confirm Delet Modal END -->
-
+		<?PHP
+			confModal('Wollen Sie diesen Nutzer wirklich löschen?');
+		?>
 		<!--New User Modal-->
 		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 								<div class="modal-dialog">
@@ -118,9 +104,4 @@
 		<!--New User Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
-	<script language="JavaScript" type="text/javascript">
-		$('#confirm-delete').on('show.bs.modal', function(e) {
-    	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-		});
-	</script>
 </html>

@@ -1,4 +1,6 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php'; 
+	  include_once '../functions/index_func.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,13 +10,14 @@
 			//Jahr wird in 52 Wochen geteilt
 			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
 			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
-			if($week > 52) {
-				$year++;
-				$week = 1;
-			} elseif($week < 1) {
-				$year--;
-				$week = 52;
-			}
+				if($week > 52) {
+					$year++;
+					$week = 1;
+				} 
+					elseif($week < 1) {
+						$year--;
+						$week = 52;
+					}
 			?>
 	</head>
 
@@ -35,13 +38,12 @@
         <thead class="thead-light">
           <tr>
             <?php
-						  if($week < 10) {
+				if($week < 10) {
 					$week = '0'. $week;
 				}
-				for($day= 1; $day <= 5; $day++) {
-					$d = strtotime($year ."W". $week . $day);
-
-					echo "<th>". date('l', $d) ."<br>". date('d M', $d) ."</th>";
+					for($day= 1; $day <= 5; $day++) {
+						$d = strtotime($year ."W". $week . $day);
+							echo "<th>". date('l', $d) ."<br>". date('d M', $d) ."</th>";
 					//die ersten 5 tage der aktuellen woche werden ausgegeben.
 }
 				?>

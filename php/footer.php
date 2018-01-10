@@ -23,5 +23,12 @@
 	</script>
 	<script type="text/javascript" src="//s3.amazonaws.com/valao-cloud/cookie-hinweis/script.js"></script>
 	<!-- Ende Cookie Plugin -->
+	
+	<!--Script für Confirmation Modal -->
+	<script language="JavaScript" type="text/javascript">
+		$('#confirm-delete').on('show.bs.modal', function(e) {
+    	$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	</script>
 
 </div> <!--Ende vom PagecontentWrapper(siehe Header)-->
