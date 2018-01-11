@@ -63,19 +63,29 @@
 							$result = $conn->query($count);
 							$row = $result->fetch_assoc();
 							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
-		
-								for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
-									echo "<li class='page-item";
-										if ($i==$page) { 
-											echo " active'";
-										}
-										echo "'><a class='page-link' href='benutzerliste.php?page=".$i."'";
-										
-											echo ">".$i."</a></li>"; 
-								}; 
+								
+								echo "<li class='page-item";//Previous Button
+									if($page == 1) {
+										echo " disabled";
+									}
+										echo "'><a class='page-link' href='benutzerliste.php?page=". ($page-1)."'><i class='fas fa-arrow-left'></i></a></li>";
+											for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
+												echo "<li class='page-item";
+													if ($i==$page) { 
+														echo " active'";
+													}
+													echo "'><a class='page-link' href='benutzerliste.php?page=".$i."'";
+													
+														echo ">".$i."</a></li>"; 
+											}; 
+												echo "<li class='page-item";//Next Button
+													if($page == $total_pages) {
+														echo " disabled";
+													}
+														echo "'><a class='page-link' href='benutzerliste.php?page=". ($page+1) ."'><i class='fas fa-arrow-right'></i></a></li>";
 								$conn->close();
 						?>
-		</div>	
+		</nav>	
 		</div>
 		
 		<!--Confirm Delet Modal -->
