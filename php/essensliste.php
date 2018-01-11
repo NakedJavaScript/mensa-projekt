@@ -62,22 +62,27 @@
 					}
 				?>
 			</table>
-			
-			<div class="page_nav">
-			<?php 
-$count = "SELECT COUNT(speise_ID) AS total FROM mensa.speise";
-$result = $conn->query($count);
-$row = $result->fetch_assoc();
-$total_pages = ceil($row["total"] / 5); // Berechnung der insgesamten Seiten mit Ergebnissen
-  
-for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
-            echo "<a href='essensliste.php?page=".$i."'";
-            if ($i==$page)  echo " class='curPage'";
-            echo ">".$i."</a> "; 
-}; 
-$conn->close();
-?>
-		</div>	
+				<nav class="page_nav">
+					<ul class='pagination justify-content-center'>
+						<?php 
+							$count = "SELECT COUNT(speise_ID) AS total FROM mensa.speise";
+							$result = $conn->query($count);
+							$row = $result->fetch_assoc();
+							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
+							
+										for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
+											echo "<li class='page-item";
+												if ($i==$page) { 
+													echo " active'";
+												}
+												echo "'><a class='page-link' href='essensliste.php?page=".$i."'";
+												
+													echo ">".$i."</a></li>"; 
+										}; 
+										$conn->close();
+						?>
+					</ul>
+				</nav>	
 		</div>
 		
 		<!--Confirm Delet Modal -->

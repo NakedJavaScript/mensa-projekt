@@ -25,7 +25,6 @@
 			</button>
 				<br>
 				<br>
-				<br>
 			<table class="table table-hover">
     <thead>
       <tr>
@@ -45,7 +44,7 @@
 							echo		"<td>".$row['nachname']."</td>";
 							echo		"<td>".$row['email']."</td>";
 							echo		"<td>".$row['kontostand']."€</td>";
-							echo		"<td><button type='button' method='POST' data-href='essensliste.php?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+							echo		"<td><button type='button' method='POST' data-href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 										<i class='fas fa-trash'> </i></button>
 									<button type='button' class='btn btn-success'>
 										<i class='fas fa-pencil-alt'> </i></button></td>
@@ -57,20 +56,25 @@
 					
 				?>
 			</table>
-			<div class="page_nav">
-			<?php 
-$count = "SELECT COUNT(benutzer_ID) AS total FROM mensa.benutzer";
-$result = $conn->query($count);
-$row = $result->fetch_assoc();
-$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
-  
-for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
-            echo "<a href='benutzerliste.php?page=".$i."'";
-            if ($i==$page)  echo " class='curPage'";
-            echo ">".$i."</a> "; 
-}; 
-$conn->close();
-?>
+			<nav class="page_nav">
+					<ul class='pagination justify-content-center'>
+						<?php 
+							$count = "SELECT COUNT(benutzer_ID) AS total FROM mensa.benutzer";
+							$result = $conn->query($count);
+							$row = $result->fetch_assoc();
+							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
+		
+								for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
+									echo "<li class='page-item";
+										if ($i==$page) { 
+											echo " active'";
+										}
+										echo "'><a class='page-link' href='benutzerliste.php?page=".$i."'";
+										
+											echo ">".$i."</a></li>"; 
+								}; 
+								$conn->close();
+						?>
 		</div>	
 		</div>
 		
