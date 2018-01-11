@@ -5,9 +5,9 @@
 		<?php
 			echo $head_dependencies;
 			echo $head_dependencies;
-			if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };//Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite.
-			$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind
-			$sql = "SELECT * FROM speise ORDER BY speise_ID ASC LIMIT $start_from ,10";
+			if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };//Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite. $page = aktuelle Seite.
+			$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind, 10 entspricht den Limit pro Seite.
+			$sql = "SELECT * FROM speise ORDER BY speise_ID ASC LIMIT $start_from ,10"; //nimmt das Ergebnis aus $start_from und nimmt dann die darauf folgenden 10 Ergebnisse.
 			$result = $conn->query($sql);
 		?>
 		<title></title>
@@ -68,7 +68,7 @@
 							$count = "SELECT COUNT(speise_ID) AS total FROM mensa.speise";
 							$result = $conn->query($count);
 							$row = $result->fetch_assoc();
-							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
+							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen, 10 = anzahl der Ergebnisse pro Seite
 								
 								echo "<li class='page-item";//Previous Button
 									if($page == 1) {
