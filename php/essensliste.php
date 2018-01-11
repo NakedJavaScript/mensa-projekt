@@ -74,7 +74,7 @@
 									if($page == 1) {
 										echo " disabled";
 									}
-										echo "'><a class='page-link' href='essensliste.php?page=". ($page-1)."'>Previous</a></li>";
+										echo "'><a class='page-link' href='essensliste.php?page=". ($page-1)."'><i class='fas fa-arrow-left'></i></a></li>";
 											for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
 												echo "<li class='page-item";
 													if ($i==$page) { 
@@ -88,7 +88,7 @@
 													if($page == $total_pages) {
 														echo " disabled";
 													}
-														echo "'><a class='page-link' href='essensliste.php?page=". ($page+1) ."'>Next</a></li>";
+														echo "'><a class='page-link' href='essensliste.php?page=". ($page+1) ."'><i class='fas fa-arrow-right'></i></a></li>";
 								$conn->close();
 						?>
 		</nav>	
