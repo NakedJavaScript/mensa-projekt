@@ -30,7 +30,6 @@
 		<script src="../vendor/bootstrap/js/popper.min.js"></script>
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="../vendor/tether/js/tether.min.js"></script>
-		
 ';
 
 
