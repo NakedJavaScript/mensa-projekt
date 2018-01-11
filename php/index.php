@@ -38,16 +38,17 @@
         <thead class="thead-light">
           <tr>
             <?php
-				if($week < 10) {
-					$week = '0'. $week;
-				}
+							setlocale(LC_TIME, 'de_DE', 'deu_deu');
+						     if($week < 10) {
+					          $week = '0'. $week;
+				          }
 
 				for($day= 1; $day <= 5; $day++) {
 					$d = strtotime($year ."W". $week . $day);
+					echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
 
-					echo "<th>". date('l', $d) ."<br>". date('d M', $d) ."</th>";
-					//die ersten 5 tage der aktuellen woche werden ausgegeben.
-}
+					//die ersten 5 tage der aktuellen woche werden ausgegeben
+        }
 				?>
           </tr>
         </thead>
@@ -134,6 +135,7 @@
 			</div>
 		</div>
 		<!--New Food Modal End-->
+
 	</body>
 	<?php include 'footer.php'; ?>
 </html>
