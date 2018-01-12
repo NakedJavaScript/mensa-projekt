@@ -91,6 +91,7 @@
           </button></a> <!--Button um eine Woche vor zu springen -->
         </div>
       </div>
+			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p> 
 		</div>
 
 		<!--New Food Modal-->

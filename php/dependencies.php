@@ -107,7 +107,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 			//Code um eine Speise hinzuzufügen
 			if (isset($_POST['Essen_hinzufügen'])) {
 				$name = strtoupper(trim($_POST['name']));
-				$all_inh = strtoupper(trim($_POST['allergene']));
+				$all_inh = implode(", ",$_POST['allergene']);
 				$sonst = strtoupper(trim($_POST['sonstiges']));
 				$preis = $_POST['preis'];
 
@@ -176,7 +176,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
 			}
 		}
-			
-			
-			
+
+
+
 			?>
