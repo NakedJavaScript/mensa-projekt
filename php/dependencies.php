@@ -107,8 +107,16 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 			//Code um eine Speise hinzuzufügen
 			if (isset($_POST['Essen_hinzufügen'])) {
 				$name = strtoupper(trim($_POST['name']));
-				$all_inh = strtoupper(trim($_POST['allergene']));
-				$sonst = strtoupper(trim($_POST['sonstiges']));
+				if ($_POST['allergene']) {
+					$all_inh = strtoupper(trim($_POST['allergene']));
+				} else {
+					$all_inh = "Enthält keine bedenklichen Inhaltsstoffe";
+				}
+				if ($_POST['allergene']) {
+					$sonst = strtoupper(trim($_POST['sonstiges']));
+				} else {
+					$sonst = "Keine Angaben";
+				}
 				$preis = $_POST['preis'];
 
 				if (!is_numeric($preis)) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
@@ -176,7 +184,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
 			}
 		}
-			
-			
-			
+
+
+
 			?>
