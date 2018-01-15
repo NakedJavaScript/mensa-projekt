@@ -5,17 +5,17 @@
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
 			echo $head_dependencies;
-			//Jahr wird in 52 Wochen geteilt
-			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
-			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
-			if($week > 52) {
-				$year++;
-				$week = 1;
-			} elseif($week < 1) {
-				$year--;
-				$week = 52;
-			}
-			?>
+			setlocale(LC_TIME, 'de_DE', 'deu_deu', 'de');
+			$dt = new DateTime;
+    		if (isset($_GET['year']) && isset($_GET['week'])) {
+        		$dt->setISODate($_GET['year'], $_GET['week']);
+    		}
+					else {
+        		$dt->setISODate($dt->format('o'), $dt->format('W'));
+    			}
+    				$year = $dt->format('o');
+    				$week = $dt->format('W');
+		?>
 	</head>
 
 	<body>
@@ -39,11 +39,9 @@
 						  if($week < 10) {
 					$week = '0'. $week;
 				}
-				for($day= 1; $day <= 5; $day++) {
-					$d = strtotime($year ."W". $week . $day);
-					echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
-
-					//die ersten 5 tage der aktuellen woche werden ausgegeben.
+				for($day=1;$day<=5;$day++){
+    			echo "<th>" . $dt->format('l') . "<br>" . $dt->format('F d') . "</th>\n";
+    			$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
         }
 				?>
           </tr>
@@ -91,7 +89,7 @@
           </button></a> <!--Button um eine Woche vor zu springen -->
         </div>
       </div>
-			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p> 
+			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
 		</div>
 
 		<!--New Food Modal-->
