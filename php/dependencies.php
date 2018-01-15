@@ -106,20 +106,25 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 			//Code um eine Speise hinzuzufügen
 			if (isset($_POST['Essen_hinzufügen'])) {
-				$name = strtoupper(trim($_POST['name']));
-				$all_inh = implode(", ",$_POST['allergene']);
-				$sonst = strtoupper(trim($_POST['sonstiges']));
-				$preis = $_POST['preis'];
 
-				if (!is_numeric($preis)) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
+				if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 				$Output = "<div class='alert alert-danger alert-dismissable'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.</div>";
 				}
 				else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 					$Output= "<div class='alert alert-danger alert-dismissable'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.</div>";
-																			}
+				}
+				else if (empty($_POST['allergene'])) {
+					$Output= "<div class='alert alert-danger alert-dismissable'>
+  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bitte wählen Sie mindestens ein <strong>Allergen</strong>.</div>";
+				}
 								else {
+												$name = strtoupper(trim($_POST['name']));
+												$all_inh = implode(", ",$_POST['allergene']);
+												$sonst = strtoupper(trim($_POST['sonstiges']));
+												$preis = $_POST['preis'];
+
 											$preis = doubleval($_POST['preis']); //wandelt preis in double um.
 											$check = $conn->query("SELECT * FROM speise WHERE name = '$name'"); //sql befehl zum prüfen ob es die Speise bereits gibt
 														if($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
