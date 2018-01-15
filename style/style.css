@@ -98,6 +98,12 @@ body {
 	margin-right: 15px;
 }
 
+.search-box {
+	padding: .5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
 .dropdown-menu {
 	min-width: 0;
 	max-width: 100%;
@@ -449,4 +455,91 @@ list-group-item .btn-danger .btn-success {
   100% {
     margin-top: 15%;
   }
+}
+
+/* Back to top button */
+
+.cd-top {
+  color: #fff;
+  display: inline-block;
+  padding: 20px 25px;
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  background: #28A745 no-repeat center 50%;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+
+.cd-top:hover {
+  color: #fff !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    padding: 20px 25px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+
+/* Like Button */
+
+.like-box {
+    display: flex;
+    justify-content: center;
+}
+
+.like-numbers {
+    margin: 0px;
+}
+
+.heart-btn {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px 5px 0px 0px;
+}
+
+.heart-btn:active {
+  box-shadow: none !important;
+}
+
+.heart-btn:focus {
+  box-shadow: none !important;
+}
+
+.like-heart, .like-heart-disabled {
+  color: #007BFF;
+}
+
+.like-heart:hover {
+  background-color: transparent !important;
+  font-size: 1.2em;
+  transition: font-size 0.35s ease;
+  color: #218838;
 }

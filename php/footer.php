@@ -6,6 +6,7 @@
       <div class="container">
         <a href='kontakt.php'>Kontakt</a> | <a href='impressum.php'>Impressum</a> | <a href='datenschutz.php'>Datenschutz</a>
 	  	</div>
+			<a href="#cd-top-link" class="cd-top"><i class='fas fa-angle-double-up fa-2x'> </i></a>
   </footer>
 
 	<?php echo $footer_dependencies; ?>
