@@ -14,6 +14,10 @@ body {
   padding-bottom: 6em;
 }
 
+#search-btn {
+  padding: .5rem .75rem;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -94,7 +98,6 @@ body {
 }
 
 .dropdown {
-
 	margin-right: 15px;
 }
 

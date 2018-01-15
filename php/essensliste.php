@@ -34,11 +34,11 @@
 			<div class="input-group add-on" style="float:right; width:400px;">
 				<input class="form-control search-box" placeholder="Suche" name="srch-term" id="srch-term" type="text">
 				<div class="input-group-btn">
-					<button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+					<button class="btn btn-default" id="search-btn" type="submit"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
-			<br>
-			<br>
+			<br/>
+			<br/>
 
 			<table class="table table-hover">
     		<thead>
