@@ -1,5 +1,5 @@
-<?php include_once 'dependencies.php'; 
-	  include_once '../functions/index_func.php';
+<?php include_once 'dependencies.php';
+	  include_once 'functions/index_func.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -13,7 +13,7 @@
 				if($week > 52) {
 					$year++;
 					$week = 1;
-				} 
+				}
 					elseif($week < 1) {
 						$year--;
 						$week = 52;

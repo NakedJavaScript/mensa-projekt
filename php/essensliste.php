@@ -1,5 +1,5 @@
-<?php include_once 'dependencies.php'; 
-	  include_once '../functions/essensliste_func.php';
+<?php include_once 'dependencies.php';
+	  include_once 'functions/essensliste_func.php';
 ?>
 
 <!DOCTYPE HTML>

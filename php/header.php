@@ -1,4 +1,4 @@
-<?PHP include '../functions/login.php'; ?>
+<?PHP include_once 'functions/login.php'; ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-custom" id="cd-top-link">
   <a class="navbar-brand" href="index.php"><img src='../images/logo.png' width="120px"/></a>
