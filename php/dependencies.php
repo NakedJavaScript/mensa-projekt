@@ -117,7 +117,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				}
 				else if (empty($_POST['allergene'])) {
 					$Output= "<div class='alert alert-danger alert-dismissable'>
-  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bitte wählen Sie mindestens ein <strong>Allergen</strong>.</div>";
+  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Bitte wählen Sie mindestens ein <strong>Allergen</strong> oder wählen sie 'Keine Allergene'.</div>";
 				}
 								else {
 												$name = strtoupper(trim($_POST['name']));

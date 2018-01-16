@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title></title>
+		<title>Impressum</title>
 		<?php
 			echo $head_dependencies;
 		?>

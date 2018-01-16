@@ -8,7 +8,7 @@
 			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
-		<title></title>
+		<title>Benutzerliste</title>
 	</head>
 
 	<body>

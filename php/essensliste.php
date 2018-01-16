@@ -84,14 +84,21 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="essensliste.php?FoodAdded"> <!-- Mit NewFood.php als action funktioniert es, aber mit dem da oben nicht...-->
+									  <form role="form" method="POST" action="essensliste.php?FoodAdded">
 										<div class="form-group">
 										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
-										  <p>Allergene/Inhaltsstoffe:</p>
+											<fieldset>
+											<p>Allergene/Inhaltsstoffe:</p>
+														<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="ka" value="- Keine Allergene -">
+															<label class="form-check-label" for="ka">Keine Allergene</label>
+
+														</div>
+
 											<div class="form-check">
 												<input class="form-check-input" name="allergene[]" type="checkbox" id="gg" value="GG">
 												<label class="form-check-label" for="gg">Glutenhaltiges Getreide</label>
-												<fieldset>
+
 											</div>
 
 													<div class="form-check">
@@ -177,5 +184,12 @@
 		<!--New Food Modal End-->
 
 		<?php include 'footer.php'; ?>
+		<!--Script disables and unchecks all other checkboxes if 'Keine Allergene' is checked -->
+		<script>
+		$("#ka").change(function() {
+			$(":checkbox").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
+		  $(":checkbox").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
+		});
+		</script>
 	</body>
 </html>
