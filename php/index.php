@@ -18,21 +18,40 @@
 						$year--;
 						$week = 52;
 					}
-			?>
+		
+		function likeButtons()
+		{
+			if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
+				return '<button type="button" class="btn heart-btn">
+					<i class="fas fa-heart like-heart"></i>
+				</button>';
+			} elseif (isset($_SESSION['adminrechte'])) {
+				return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
+				  <i class="fas fa-heart like-heart-disabled"></i>
+			  </button>';
+			}
+			else {
+			  return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Einloggen um selbst zu liken!">
+				  <i class="fas fa-heart like-heart-disabled"></i>
+			  </button>';
+			}
+		}
+		?>
+
 	</head>
 
 	<body>
 		<?php include 'header.php';	?>
 		<div class="container">
-      <div class="row">
-        <div class="col-sm-1">
-		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
-          <button class="btn btn-success index-btns">
-            <i class='fas fa-chevron-circle-left'> </i>
-          </button></a> <!--Button um eine Woche zurück zu springen -->
-        </div>
-        <div class="col-sm-10">
-            <h1>Wochenansicht</h1>
+			<div class="row">
+				<div class="col-sm-1">
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
+					<button class="btn btn-success index-btns">
+						<i class='fas fa-chevron-circle-left'> </i>
+					</button></a> <!--Button um eine Woche zurück zu springen -->
+				</div>
+				<div class="col-sm-10">
+					<h1>Wochenansicht</h1>
 
            <table class="table table-bordered">
         <thead class="thead-light">
@@ -81,7 +100,7 @@
 							}
 						}
 
-						$output = $output . "</td>";
+						$output = $output . "<div class='like-box'>" . likeButtons() . "<p class='like-numbers'>+2</p> </div> </td>";
 						echo $output;
 					}
 					?>
@@ -135,7 +154,6 @@
 			</div>
 		</div>
 		<!--New Food Modal End-->
-
 	</body>
 	<?php include 'footer.php'; ?>
 </html>
