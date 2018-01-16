@@ -4,8 +4,9 @@
 	<head>
 		<?php
 			echo $head_dependencies;
-
-			$sql = "SELECT * FROM benutzer";
+			if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };//Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite.
+			$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind
+			$sql = "SELECT * FROM benutzer ORDER BY benutzer_ID ASC LIMIT $start_from ,10";
 			$result = $conn->query($sql);
 		?>
 		<title></title>
@@ -16,53 +17,109 @@
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 				include'footer.php';
 				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.');  } //Verweigert nicht Admins den Zugriff auf diese Seite?>
-		<div class="container">
+					<div class="container">
 
 			<h1>Benutzerliste</h1>
-			<button type='button' class='btn btn-success btn-lg' style="float:left;" data-toggle="modal" data-target="#NewUser">
+			<br/>
+			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben.
+				Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
+			<br/>
+			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
 			<div class="input-group add-on" style="float:right; width:400px;">
       <input class="form-control search-box" placeholder="Suche" name="srch-term" id="srch-term" type="text">
       <div class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
+        <button class="btn btn-default search-btn" id="search-btn" type="submit"><i class="fas fa-search"></i></button>
       </div>
 	  </div>
-				<br>
-				<br>
-				<br>
+				<br/>
+				<br/>
+
+
 			<table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Vorname</th>
-        <th>Nachname</th>
-        <th>Email</th>
-        <th>Kontostand</th>
-		<th>Löschen/Bearbeiten</th>
-      </tr>
-    </thead>
-    <tbody>
-				<?php
-					if ($result->num_rows > 0) {
-					// ausgabe der Daten aus jeder Zeile der Tabelle.
-					while($row = $result->fetch_assoc()) {
-							echo 	"<tr><td>".$row['vorname']."</td>";
-							echo		"<td>".$row['nachname']."</td>";
-							echo		"<td>".$row['email']."</td>";
-							echo		"<td>".$row['kontostand']."€</td>";
-							echo		"<td><a href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."'><button type='button' method='POST' name='delete_user' class='btn btn-danger'>
-										<i class='fas fa-trash'> </i></button></a>
-									<button type='button' class='btn btn-success'>
-										<i class='fas fa-pencil-alt'> </i></button></td>
-								</tr>";
-					}
-					} else {
-						echo "0 results";
-					}
-					$conn->close();
-				?>
+		    <thead>
+		      <tr>
+		        <th>Vorname</th>
+		        <th>Nachname</th>
+		        <th>Email</th>
+		        <th>Kontostand</th>
+						<th>Löschen/Bearbeiten</th>
+		      </tr>
+		    </thead>
+				    <tbody>
+								<?php
+									if ($result->num_rows > 0) {
+									// ausgabe der Daten aus jeder Zeile der Tabelle.
+									while($row = $result->fetch_assoc()) {
+											echo 	"<tr><td>".$row['vorname']."</td>";
+											echo		"<td>".$row['nachname']."</td>";
+											echo		"<td>".$row['email']."</td>";
+											echo		"<td>".$row['kontostand']."€</td>";
+											echo		"<td><button type='button' method='POST' data-href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+														<i class='fas fa-trash'> </i></button>
+													<button type='button' class='btn btn-success'>
+														<i class='fas fa-pencil-alt'> </i></button></td>
+												</tr>";
+									}
+									} else {
+										echo "0 results";
+									}
+
+								?>
+								<tbody>
 			</table>
+
+			<nav class="page_nav">
+					<ul class='pagination justify-content-center'>
+						<?php
+							$count = "SELECT COUNT(benutzer_ID) AS total FROM mensa.benutzer";
+							$result = $conn->query($count);
+							$row = $result->fetch_assoc();
+							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
+
+								echo "<li class='page-item";//Previous Button
+									if($page == 1) {
+										echo " disabled";
+									}
+										echo "'><a class='page-link' href='benutzerliste.php?page=". ($page-1)."'><i class='fas fa-arrow-left'></i></a></li>";
+											for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
+												echo "<li class='page-item";
+													if ($i==$page) {
+														echo " active'";
+													}
+													echo "'><a class='page-link' href='benutzerliste.php?page=".$i."'";
+
+														echo ">".$i."</a></li>";
+											};
+												echo "<li class='page-item";//Next Button
+													if($page == $total_pages) {
+														echo " disabled";
+													}
+														echo "'><a class='page-link' href='benutzerliste.php?page=". ($page+1) ."'><i class='fas fa-arrow-right'></i></a></li>";
+								$conn->close();
+						?>
+		</nav>
 		</div>
+
+		<!--Confirm Delet Modal -->
+		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<strong>Willst du diesen Eintrag wirklich Löschen?</strong>
+					</div>
+            <div class="modal-body">
+                Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
+                <a class="btn btn-danger btn-ok">Löschen</a>
+            </div>
+        </div>
+    </div>
+</div>
+		<!--Confirm Delet Modal END -->
 
 		<!--New User Modal-->
 		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
@@ -101,4 +158,9 @@
 		<!--New User Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
+	<script language="JavaScript" type="text/javascript">
+		$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
+</script>
 </html>

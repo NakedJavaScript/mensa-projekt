@@ -86,7 +86,7 @@ if(isset($_POST['submit'])){
 	</ul>
 </nav>
 
-<div class="container">
+<div class="container alert-container">
 <?PHP echo $Output; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
 </div>
 
