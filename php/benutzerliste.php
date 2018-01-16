@@ -8,7 +8,7 @@
 			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
-		<title></title>
+		<title>Benutzerliste</title>
 	</head>
 
 	<body>
@@ -19,7 +19,7 @@
 		<div class="container">
 
 			<h1>Benutzerliste</h1>
-			<button type='button' class='btn btn-success btn-lg' style="float:left;" data-toggle="modal" data-target="#NewUser">
+			<button type='button' class='btn btn-success btn-lg'  data-toggle="modal" data-target="#NewUser">
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
 			<div class="input-group add-on" style="float:right; width:400px;">
@@ -28,7 +28,6 @@
         <button class="btn btn-default" type="submit"><i class="fas fa-search"></i></button>
       </div>
 	  </div>
-				<br>
 				<br>
 				<br>
 			<table class="table table-hover">
