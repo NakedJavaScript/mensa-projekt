@@ -22,7 +22,7 @@
 									return '<button type="button" class="btn heart-btn">
 										<i class="fas fa-heart like-heart"></i>
 									</button>';
-								} elseif ($_SESSION['adminrechte'] == 2) {
+								} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] = 2)) {
 									return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
 									  <i class="fas fa-heart like-heart-disabled"></i>
 								  </button>';

@@ -148,9 +148,15 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				if ($conn->query($delete) === TRUE) {
 					$Output = "<div class='alert alert-success alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich entfernt</div>";
-				} else {
+				}
+						if ($conn->errno == 1451) {
+							$Output = "<div class='alert alert-danger alert-dismissable fade show'>
+		    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.</div>";
+						}
+
+				else {
 					$Output = "<div class='alert alert-danger alert-dismissable fade show'>
-    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br>" . $conn->error . "</div>";
+    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br><strong>[" . $conn->errno "]</strong>" . $conn->error  ."</div>";
 					}
 
 
@@ -160,7 +166,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 /*Code für index.php*/
 					}
-//Code um eine Speise hinzuzufügen
+//Code um ein Tagesangebot zu erstellen.
 		if (isset($_POST['Tagesangebot_erstellen'])) {
 			$s_ID =$_POST['foodlist'];
 			$datum =strtotime($_POST['date']);
@@ -175,7 +181,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
 			}
 		}
-			
-			
-			
+
+
+
 			?>
