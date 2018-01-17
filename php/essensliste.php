@@ -1,4 +1,7 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once 'functions/essensliste_func.php';
+?>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -21,12 +24,13 @@
 		<?php include 'header.php';
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 				include'footer.php';
-				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.'); } //Verweigert Unbefugten den Zugriff auf diese Seite?>
-				<div class="container">
+				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.'); } //Verweigert Unbefugten den Zugriff auf diese Seite
+		?>
+		<div class="container">
 
 			<h1>Essensliste</h1>
 			<br>
-			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten auch ein neues Essen erstellen.</p>
+			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten ein neues Essen erstellen.</p>
 			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">
 				Hinzufügen <i class='fas fa-plus'> </i>
@@ -126,6 +130,10 @@
     </div>
 	</div>
 		<!--Confirm Delet Modal END -->
+
+		<?PHP
+			confModal('Wollen Sie diese Speise wirklich löschen?');
+		?>
 
 
 		<!--New Food Modal-->

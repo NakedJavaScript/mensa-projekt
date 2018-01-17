@@ -1,4 +1,6 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once 'functions/benutzerliste_func.php';
+ ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -9,22 +11,25 @@
 			$sql = "SELECT * FROM benutzer ORDER BY benutzer_ID ASC LIMIT $start_from ,10";
 			$result = $conn->query($sql);
 		?>
-		<title></title>
+		<title>Benutzerliste</title>
 	</head>
 
 	<body>
 		<?php include 'header.php';
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 				include'footer.php';
-				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.');  } //Verweigert nicht Admins den Zugriff auf diese Seite?>
-					<div class="container">
+
+				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als Administrator ein.');  } //Verweigert nicht Admins den Zugriff auf diese Seite
+		?>
+		<div class="container">
 
 			<h1>Benutzerliste</h1>
-			<br/>
-			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben.
-				Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
-			<br/>
+
+			<br>
+			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
+			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
+
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
 			<div class="input-group add-on" style="float:right; width:400px;">
@@ -38,6 +43,7 @@
 
 
 			<table class="table table-hover">
+
 		    <thead>
 		      <tr>
 		        <th>Vorname</th>
@@ -102,24 +108,9 @@
 		</nav>
 		</div>
 
-		<!--Confirm Delet Modal -->
-		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<strong>Willst du diesen Eintrag wirklich Löschen?</strong>
-					</div>
-            <div class="modal-body">
-                Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-                <a class="btn btn-danger btn-ok">Löschen</a>
-            </div>
-        </div>
-    </div>
-</div>
-		<!--Confirm Delet Modal END -->
+		<?PHP
+			confModal('Wollen Sie diesen Nutzer wirklich löschen?');
+		?>
 
 		<!--New User Modal-->
 		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">

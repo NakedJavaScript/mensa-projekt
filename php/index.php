@@ -1,4 +1,6 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once 'functions/index_func.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -8,6 +10,7 @@
 			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
 			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
 				if($week > 52) {
+
     			$year++;
     			$week = 1;
 				}
@@ -33,8 +36,8 @@
 								  </button>';
 								}
 							}
-		?>
 
+		?>
 
 	</head>
 
@@ -59,11 +62,12 @@
 						  if($week < 10) {
 									$week = '0'. $week;
 							}
-				for($day= 1; $day <= 5; $day++) {
-					$d = strtotime($year ."W". $week . $day);
-					echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
 
-					//die ersten 5 tage der aktuellen woche werden ausgegeben.
+                for($day= 1; $day <= 5; $day++) {
+                  $d = strtotime($year ."W". $week . $day);
+                  echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
+
+					//die ersten 5 tage der aktuellen woche werden ausgegeben
         }
 				?>
           </tr>

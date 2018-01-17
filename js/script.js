@@ -46,6 +46,18 @@ jQuery('#cody-info ul li').eq(1).on('click', function(){
 $('#cody-info').hide();
 });
 
+
+/*Skript für abfrage bevor gelöscht wird. */
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Wollen Sie diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+
 $('body').tooltip({
     selector: '[rel="tooltip"]'
 });
@@ -62,6 +74,7 @@ $(".heart-btn").click(function(e) {
     }
 });
 
+
 /*Skript für abfrage bevor gelöscht wird. */
 		$(document).ready(function(){
 		$("a.delete").click(function(e){
@@ -72,4 +85,5 @@ $(".heart-btn").click(function(e) {
         return true;
 		});
 	});
+
 
