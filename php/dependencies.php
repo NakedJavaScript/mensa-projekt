@@ -149,7 +149,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 					$Output = "<div class='alert alert-success alert-dismissable fade show'>
   <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Speise wurde erfolgreich entfernt</div>";
 				}
-						if ($conn->errno == 1451) {
+						else if ($conn->errno == 1451) {
 							$Output = "<div class='alert alert-danger alert-dismissable fade show'>
 		    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.</div>";
 						}
