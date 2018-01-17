@@ -7,35 +7,36 @@
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
 			echo $head_dependencies;
-			//Jahr wird in 52 Wochen geteilt
 			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
 			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
 				if($week > 52) {
-					$year++;
-					$week = 1;
+
+    			$year++;
+    			$week = 1;
 				}
-					elseif($week < 1) {
-						$year--;
-						$week = 52;
-					}
-		
-		function likeButtons()
-		{
-			if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
-				return '<button type="button" class="btn heart-btn">
-					<i class="fas fa-heart like-heart"></i>
-				</button>';
-			} elseif (isset($_SESSION['adminrechte'])) {
-				return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
-				  <i class="fas fa-heart like-heart-disabled"></i>
-			  </button>';
-			}
-			else {
-			  return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Einloggen um selbst zu liken!">
-				  <i class="fas fa-heart like-heart-disabled"></i>
-			  </button>';
-			}
-		}
+				elseif($week < 1) {
+    			$year--;
+    			$week = 52;
+				}
+
+							function likeButtons()
+							{
+								if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
+									return '<button type="button" class="btn heart-btn">
+										<i class="fas fa-heart like-heart"></i>
+									</button>';
+								} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] = 2)) {
+									return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
+									  <i class="fas fa-heart like-heart-disabled"></i>
+								  </button>';
+								}
+								else {
+								  return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Bitte loggen Sie sich ein um zu liken!">
+									  <i class="fas fa-heart like-heart-disabled"></i>
+								  </button>';
+								}
+							}
+
 		?>
 
 	</head>
@@ -58,13 +59,13 @@
           <tr>
             <?php
 							setlocale(LC_TIME, 'de_DE', 'deu_deu');
-						     if($week < 10) {
-					          $week = '0'. $week;
-				          }
+						  if($week < 10) {
+									$week = '0'. $week;
+							}
 
-				for($day= 1; $day <= 5; $day++) {
-					$d = strtotime($year ."W". $week . $day);
-					echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
+                for($day= 1; $day <= 5; $day++) {
+                  $d = strtotime($year ."W". $week . $day);
+                  echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
 
 					//die ersten 5 tage der aktuellen woche werden ausgegeben
         }

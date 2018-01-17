@@ -14,6 +14,10 @@ body {
   padding-bottom: 6em;
 }
 
+#search-btn {
+  padding: .5rem .75rem;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -111,7 +115,6 @@ body {
 .dropdown-item {
 	padding: 0;
 	margin-right: 15px;
-
 }
 
 .index-btns {
@@ -129,24 +132,10 @@ list-group-item .btn-danger .btn-success {
   text-align:right;
 }
 
-.message {
-  background:#cef6ce;
-  color:#088a08;
+.page_nav{
+	color: black;
+	text-align: center;
 }
-.message.error {
-  background:#f5a9a9;
-  color:#610b0b;
-}
-
-.container a {
-  color: white;
-}
-
-.container a:hover {
-  text-decoration: none;
-  color: #28a745;
-}
-
 
 /* Additional Cookie-CSS */
 
