@@ -156,7 +156,7 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 
 				else {
 					$Output = "<div class='alert alert-danger alert-dismissable fade show'>
-    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br><strong>[" . $conn->errno "]</strong>" . $conn->error  ."</div>";
+    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Error:</strong> " . $delete . "<br><strong>[" . $conn->errno . "]</strong>" . $conn->error  ."</div>";
 					}
 
 
