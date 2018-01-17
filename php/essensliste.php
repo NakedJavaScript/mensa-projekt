@@ -236,7 +236,7 @@
 			$(":checkbox").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
 		  $(":checkbox").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
 		});
-		</script>
+	</script>
 
 	</body>
 </html>
