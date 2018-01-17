@@ -1,35 +1,58 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once 'functions/index_func.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
 			echo $head_dependencies;
-			//Jahr wird in 52 Wochen geteilt
 			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
 			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
-			if($week > 52) {
-				$year++;
-				$week = 1;
-			} elseif($week < 1) {
-				$year--;
-				$week = 52;
-			}
-			?>
+				if($week > 52) {
+
+    			$year++;
+    			$week = 1;
+				}
+				elseif($week < 1) {
+    			$year--;
+    			$week = 52;
+				}
+
+							function likeButtons()
+							{
+								if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
+									return '<button type="button" class="btn heart-btn">
+										<i class="fas fa-heart like-heart"></i>
+									</button>';
+								} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] = 2)) {
+									return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
+									  <i class="fas fa-heart like-heart-disabled"></i>
+								  </button>';
+								}
+								else {
+								  return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Bitte loggen Sie sich ein um zu liken!">
+									  <i class="fas fa-heart like-heart-disabled"></i>
+								  </button>';
+								}
+							}
+
+		?>
+
 	</head>
 
 	<body>
 		<?php include 'header.php';	?>
 		<div class="container">
-      <div class="row">
-        <div class="col-sm-1">
-		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
-          <button class="btn btn-success index-btns">
-            <i class='fas fa-chevron-circle-left'> </i>
-          </button></a> <!--Button um eine Woche zurück zu springen -->
-        </div>
-        <div class="col-sm-10">
-            <h1>Wochenansicht</h1>
+			<div class="row">
+				<div class="col-sm-1">
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
+					<button class="btn btn-success index-btns">
+						<i class='fas fa-chevron-circle-left'> </i>
+					</button></a> <!--Button um eine Woche zurück zu springen -->
+				</div>
+				<div class="col-sm-10">
+					<h1>Wochenansicht</h1>
 
            <table class="table table-bordered">
         <thead class="thead-light">
@@ -37,13 +60,14 @@
             <?php
 							setlocale(LC_TIME, 'de_DE', 'deu_deu');
 						  if($week < 10) {
-					$week = '0'. $week;
-				}
-				for($day= 1; $day <= 5; $day++) {
-					$d = strtotime($year ."W". $week . $day);
-					echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
+									$week = '0'. $week;
+							}
 
-					//die ersten 5 tage der aktuellen woche werden ausgegeben.
+                for($day= 1; $day <= 5; $day++) {
+                  $d = strtotime($year ."W". $week . $day);
+                  echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
+
+					//die ersten 5 tage der aktuellen woche werden ausgegeben
         }
 				?>
           </tr>
@@ -77,7 +101,7 @@
 							}
 						}
 
-						$output = $output . "</td>";
+						$output = $output . "<div class='like-box'>" . likeButtons() . "<p class='like-numbers'>+2</p> </div> </td>";
 						echo $output;
 					}
 					?>
@@ -132,7 +156,6 @@
 			</div>
 		</div>
 		<!--New Food Modal End-->
-
 	</body>
 	<?php include 'footer.php'; ?>
 </html>

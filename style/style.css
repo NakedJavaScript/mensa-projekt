@@ -14,6 +14,10 @@ body {
   padding-bottom: 6em;
 }
 
+#search-btn {
+  padding: .5rem .75rem;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -26,6 +30,28 @@ body {
 
 .close {
   color: #000 !important;
+}
+
+.alert-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert {
+  position: relative;
+  z-index: 999999;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 
 .user-table {
@@ -43,7 +69,11 @@ body {
 }
 
 .navbar {
-  margin-bottom: 80px;
+	margin-bottom: 40px;
+}
+
+.pageContentWrapper {
+  margin-top: 80px;
 }
 
 .mr-auto .nav-link:hover {
@@ -74,7 +104,7 @@ body {
 }
 
 .dropdown {
-  margin-right: 15px;
+	margin-right: 15px;
 }
 
 .search-box {
@@ -90,8 +120,7 @@ body {
 
 .dropdown-item {
 	padding: 0;
-  margin-right: 15px;
-
+	margin-right: 15px;
 }
 
 .index-btns {
@@ -109,20 +138,10 @@ list-group-item .btn-danger .btn-success {
   text-align:right;
 }
 
-.message {
-  background:#cef6ce;
-  color:#088a08;
+.page_nav{
+	color: black;
+	text-align: center;
 }
-.message.error {
-  background:#f5a9a9;
-  color:#610b0b;
-}
-
-.container a:hover {
-  text-decoration: none;
-  color: #28a745;
-}
-
 
 /* Additional Cookie-CSS */
 
@@ -490,4 +509,40 @@ list-group-item .btn-danger .btn-success {
     right: 30px;
     bottom: 30px;
   }
+}
+
+/* Like Button */
+
+.like-box {
+    display: flex;
+    justify-content: center;
+}
+
+.like-numbers {
+    margin: 0px;
+}
+
+.heart-btn {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px 5px 0px 0px;
+}
+
+.heart-btn:active {
+  box-shadow: none !important;
+}
+
+.heart-btn:focus {
+  box-shadow: none !important;
+}
+
+.like-heart, .like-heart-disabled {
+  color: #007BFF;
+}
+
+.like-heart:hover {
+  background-color: transparent !important;
+  font-size: 1.2em;
+  transition: font-size 0.35s ease;
+  color: #218838;
 }

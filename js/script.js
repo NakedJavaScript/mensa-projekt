@@ -37,8 +37,53 @@ $(function(){
 		);
 	});
 
+    // Aktiviert den Bootstrap Tooltip
+    $('[data-toggle="tooltip"]').tooltip()
+
 });
 
 jQuery('#cody-info ul li').eq(1).on('click', function(){
 $('#cody-info').hide();
 });
+
+
+/*Skript für abfrage bevor gelöscht wird. */
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Wollen Sie diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+
+$('body').tooltip({
+    selector: '[rel="tooltip"]'
+});
+
+
+// Erlaubt es dem deaktivierten Button ein tooltip anzuzeigen
+$(".heart-btn").click(function(e) {
+    if (! $(this).hasClass("disabled"))
+    {
+        $(".disabled").removeClass("disabled").attr("data-toggle", null);
+        $(this).addClass("disabled").attr("data-toggle", "tooltip");
+
+        $(this).mouseenter();
+    }
+});
+
+
+/*Skript für abfrage bevor gelöscht wird. */
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Willst du diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+
+
