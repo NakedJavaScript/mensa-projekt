@@ -1,4 +1,4 @@
-<?PHP 
+<?PHP
 	//Code um eine Speise hinzuzufügen
 		if (isset($_POST['Essen_hinzufügen'])) {
 			$name = strtoupper(trim($_POST['name']));
@@ -25,24 +25,27 @@
 										else {
 											$Alert = dangerMessage("Error: " . $sql . "<br>" . $conn->error . "");
 										}
-							}		
+							}
 					else {
 						$Alert = dangerMessage("Es gibt bereits ein Produkt mit diesem Namen.");
 					}
 
 				}
 			}
-			
-			
+
+
 	//Code zum löschen einer Speise
 		if (isset($_GET['delete?speiseID'])) {
 			$speiseID = $_GET['delete?speiseID'];
 			$delete = "DELETE FROM speise WHERE speise_ID = $speiseID";
 				if ($conn->query($delete) === TRUE) {
 					$Alert = successMessage("Speise wurde erfolgreich entfernt");
-				} 
+				}
+				else if ($conn->errno == 1451) {
+						$Alert = dangerMessage("Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.");
+					}
 					else {
-						$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error . "");
+						$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br><strong>[" . $conn->errno . "]</strong>" . $conn->error  .");
 					}
 		}
 ?>
