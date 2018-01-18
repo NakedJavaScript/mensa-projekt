@@ -12,8 +12,11 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-		$conn->query("SET NAMES 'utf8'");//Für korrekte Ausgabe der Umlaute;
+		$conn->query("SET CHARSET 'utf8'");//Für korrekte Ausgabe der Umlaute;
+		$expireDate = date("Y-m-d", strtotime("-21 day"));
+		$deleteOldTagesangebote = "DELETE FROM mensa.tagesangebot WHERE datum <= '$expireDate'";
 
+		$conn->query($deleteOldTagesangebote); //Löscht alle Einträge,die Älter als 3 Wochen sind(21 tage)
 
 	$head_dependencies = '
 		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -31,7 +34,7 @@
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="../vendor/tether/js/tether.min.js"></script>
 
-		
+
 ';
 
 
