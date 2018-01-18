@@ -95,6 +95,14 @@ body {
   transform: translateY(-50%);
 }
 
+.daymealTable {
+    table-layout: fixed;
+}
+
+.foodDetailList {
+    list-style-type: none;
+}
+
 table, tbody, td, th {
   text-align: center;
 }

@@ -49,7 +49,7 @@
 				<div class="col-sm-10">
 					<h1>Wochenansicht</h1>
 
-           			<table class="table table-bordered">
+           			<table class="table table-bordered daymealTable">
         				<thead class="thead-light">
           					<tr>
             					<?php
@@ -89,12 +89,12 @@
 									if($daymeal_exists) { // Display attributes of the asocciated meal
 										$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 										$meal = $conn->query($sql)->fetch_assoc();
-										$output = $output . "<ul class='list-group'>
-										<li class='list-group-item'>Name:<br>".$meal['name']."</li>
-										<li class='list-group-item'>Allergene/Inhaltsstoffe:<br>".$meal['allergene_inhaltsstoffe']."</li>
-										<li class='list-group-item'>Sonstiges:<br>".$meal['sonstiges']."</li>
-										<li class='list-group-item'>Preis:<br>".$meal['preis']."€</li>
-										<li class='list-group-item like-box'>" . likeButtons() . "<p class='like-numbers'>+2</p></li>
+										$output = $output . "<ul class='foodDetailList'>
+										<li><b>Name:</b><br>".$meal['name']."</li>
+										<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
+										<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
+										<li><b>Preis:</b><br>".$meal['preis']."€</li>
+										<li>" . likeButtons() . "<p class='like-numbers'>+2</p></li>
 										</ul>";
 									} else { // Display a button for the adding of a meal
 										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
