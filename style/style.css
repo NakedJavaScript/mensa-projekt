@@ -88,6 +88,11 @@ body {
   color: #000;
 }
 
+.form-check-input {
+    position: absolute;
+    margin-top: .25rem;
+}
+
 .active-link {
   color: #e05120 !important;
   font-weight:600;

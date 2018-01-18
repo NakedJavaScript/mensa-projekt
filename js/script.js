@@ -3,6 +3,25 @@ function AddDateToModal(date) {
     date_field.value = date;
 }
 
+/*Skript für abfrage bevor gelöscht wird. */
+		$(document).ready(function(){
+		$("a.delete").click(function(e){
+        if(!confirm('Wollen Sie diesen Eintrag wirklich löschen?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+		});
+	});
+
+  //Skript für Check buttons im NewFood Modal
+  $("#ka").change(function() {
+    $(":checkbox").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
+    $(":checkbox").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
+  });
+
+
+//Damit man in der Nav-Bar sieht bei welchen Link man sich gerade befindet
 $(function(){
   var links = $('.navbar-collapse ul li .nav-link');
   $.each(links, function (key, va) {
@@ -46,18 +65,6 @@ jQuery('#cody-info ul li').eq(1).on('click', function(){
 $('#cody-info').hide();
 });
 
-
-/*Skript für abfrage bevor gelöscht wird. */
-		$(document).ready(function(){
-		$("a.delete").click(function(e){
-        if(!confirm('Wollen Sie diesen Eintrag wirklich löschen?')){
-            e.preventDefault();
-            return false;
-        }
-        return true;
-		});
-	});
-
 $('body').tooltip({
     selector: '[rel="tooltip"]'
 });
@@ -73,17 +80,3 @@ $(".heart-btn").click(function(e) {
         $(this).mouseenter();
     }
 });
-
-
-/*Skript für abfrage bevor gelöscht wird. */
-		$(document).ready(function(){
-		$("a.delete").click(function(e){
-        if(!confirm('Willst du diesen Eintrag wirklich löschen?')){
-            e.preventDefault();
-            return false;
-        }
-        return true;
-		});
-	});
-
-

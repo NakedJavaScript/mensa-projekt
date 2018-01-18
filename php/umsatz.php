@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title></title>
+		<title>Umsatz</title>
 		<?php
 			echo $head_dependencies;
 		?>

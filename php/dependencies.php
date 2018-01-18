@@ -19,7 +19,6 @@
 		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
 		<script defer src="../vendor/fontawesome/js/fontawesome-all.min.js"></script>
-		<script src="../js/script.js"></script>
 		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">
@@ -27,11 +26,12 @@
 ';
 	$footer_dependencies = '<!-- Javascript -->
 		<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="../js/script.js"></script>
 		<script src="../vendor/bootstrap/js/popper.min.js"></script>
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="../vendor/tether/js/tether.min.js"></script>
 
-		
+
 ';
 
 
@@ -42,6 +42,7 @@ function successMessage($text) {
 	return "<div class='alert alert-success alert-dismissable fade show'>
 					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 }
+
 
 function dangerMessage($text) {
 	return "<div class='alert alert-danger alert-dismissable fade show'>
@@ -67,6 +68,5 @@ function confModal($headerText) {
     </div>
 </div> ";
 }
-
 
 			?>
