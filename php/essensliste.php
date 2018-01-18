@@ -63,7 +63,7 @@
 											echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
 											echo		"<td>".$row['sonstiges']."</td>";
 											echo		"<td>".$row['preis']."€</td>";
-											echo		"<td><button type='button' method='POST' data-href='essensliste.php?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+											echo		"<td><button type='button' method='POST' data-href='?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 														<button type='button' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button>

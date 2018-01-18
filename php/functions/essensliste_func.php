@@ -2,7 +2,7 @@
 	//Code um eine Speise hinzuzufügen
 		if (isset($_POST['Essen_hinzufügen'])) {
 			$name = strtoupper(trim($_POST['name']));
-			$all_inh = strtoupper(trim($_POST['allergene']));
+			$all_inh = implode($_POST['allergene']);
 			$sonst = strtoupper(trim($_POST['sonstiges']));
 			$preis = $_POST['preis'];
 

@@ -58,13 +58,14 @@
 									if ($result->num_rows > 0) {
 									// ausgabe der Daten aus jeder Zeile der Tabelle.
 									while($row = $result->fetch_assoc()) {
-											echo 	"<tr><td>".$row['vorname']."</td>";
-											echo		"<td>".$row['nachname']."</td>";
-											echo		"<td>".$row['email']."</td>";
-											echo		"<td>".$row['kontostand']."€</td>";
-											echo		"<td><button type='button' method='POST' data-href='benutzerliste.php?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+											 echo	"<tr><td>".$row['vorname']."</td>
+														<td>".$row['nachname']."</td>
+														<td>".$row['email']."</td>
+														<td>".$row['kontostand']."€</td>
+														<td><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
-													<button type='button' class='btn btn-success'>
+
+													<button type='button' method='POST'id='edit_button' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' data-href='#?edit?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button></td>
 												</tr>";
 									}
@@ -147,11 +148,57 @@
 								</div>
 							  </div>
 		<!--New User Modal End-->
+
+		<!--Edit User Modal-->
+		<div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+									<!-- header -->
+									<div class="modal-header">
+									<h3 class="modal-title">Nutzer bearbeiten</h3>
+										<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+									</div>
+									<!-- body -->
+									<div class="modal-body">
+										<form role="form" method="POST" action="#UserAdded">
+										<div class="form-group" id="editform">
+											<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
+											<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>
+											<label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="max.mustermann@musterdomäne.de" required/><br>
+											<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" disabled/><br>
+											<label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" id="kontostand" placeholder="Trage den gewünschten Betrag ein" required/><br>
+											<label for="adminrechte" >Adminrechte</label><br>
+														<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
+														<input type="radio" name="adminrechte" class="radio-inline" value="2">Ja
+										</div>
+
+									</div>
+									<!-- footer -->
+									<div class="modal-footer">
+										<input type="submit" name="bearbeiten_nutzer" class="btn btn-primary btn-block" value="Änderungen Speichern">
+									</div>
+									</form>
+
+									</div>
+								</div>
+								</div>
+		<!--Edit User Modal End-->
+
 	</body>
 	<?php include 'footer.php'; ?>
-	<script language="JavaScript" type="text/javascript">
-		$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+	<script>
+	//zum Bearbeiten der Nutzer
+	$(document).on("click",'#edit_button' , function (e) {
+  var vorname= $(this).attr('vorname');
+	var nachname=$(this).attr('nachname');
+	var email=$(this).attr('email');
+	var kontostand=$(this).attr('kontostand');
+//set what we got to our form
+  $('#vorname').val(vorname);
+	$('#nachname').val(nachname);
+	$('#email').val(email);
+	$('#kontostand').val(kontostand);
 });
 </script>
 </html>

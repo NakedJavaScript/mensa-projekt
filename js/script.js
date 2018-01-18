@@ -3,6 +3,19 @@ function AddDateToModal(date) {
     date_field.value = date;
 }
 
+//zum Bearbeiten der Nutzer
+    $(document).on("click",'#edit_button' , function (e) {
+      var vorname= $(this).attr('vorname');
+      var nachname=$(this).attr('nachname');
+      var email=$(this).attr('email');
+      var kontostand=$(this).attr('kontostand');
+        //setzen der Werte
+          $('#vorname').val(vorname);
+          $('#nachname').val(nachname);
+          $('#email').val(email);
+          $('#kontostand').val(kontostand);
+    });
+
 /*Skript für abfrage bevor gelöscht wird. */
 		$(document).ready(function(){
 		$("a.delete").click(function(e){
