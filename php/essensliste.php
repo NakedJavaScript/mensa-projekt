@@ -130,7 +130,7 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="essensliste.php?FoodAdded">
+									  <form role="form" method="POST" action="#FoodAdded">
 										<div class="form-group">
 										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
 											<fieldset>

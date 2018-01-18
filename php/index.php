@@ -115,7 +115,7 @@
           </button></a> <!--Button um eine Woche vor zu springen -->
         </div>
       </div>
-			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p> 
+			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
 		</div>
 
 		<!--New Food Modal-->
@@ -130,7 +130,7 @@
 				</div>
 				<!-- body -->
 				<div class="modal-body">
-					<form role="form" method="POST" action="index.php">
+					<form role="form" method="POST" action="#AddedTagesangebot">
 							<div class="form-group">
 								<input type="hidden" id="date_field" name="date" value="">
 								<label for="foodlist">Speisen</label>
