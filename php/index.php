@@ -1,11 +1,12 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once 'functions/index_func.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
 			echo $head_dependencies;
-			//Jahr wird in 52 Wochen geteilt
 			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
 			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
 			if($week > 52) {
@@ -21,7 +22,7 @@
 					return '<button type="button" class="btn heart-btn">
 						<i class="fas fa-heart like-heart"></i>
 					</button>';
-				} elseif (isset($_SESSION['adminrechte'])) {
+				} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] = 2)) {
 					return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
 					  <i class="fas fa-heart like-heart-disabled"></i>
 				  </button>';
@@ -48,7 +49,6 @@
 				</div>
 				<div class="col-sm-10">
 					<h1>Wochenansicht</h1>
-
            			<table class="table table-bordered daymealTable">
         				<thead class="thead-light">
           					<tr>
@@ -101,12 +101,13 @@
 											$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
 										}
 									}
-									$output = $output ."</td>";
+									$output = $output . "</td>";
 									echo $output;
 								}
 							?>
         				</tbody>
       				</table>
+					<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
         		</div>
 				<div class="col-sm-1 test1">
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
@@ -116,6 +117,7 @@
 					</a> <!--Button um eine Woche vor zu springen -->
 				</div>
       		</div>
+
 		</div>
 		<!--New Food Modal-->
 		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
@@ -128,7 +130,7 @@
 					</div>
 				<!-- body -->
 					<div class="modal-body">
-						<form role="form" method="POST" action="index.php">
+						<form role="form" method="POST" action="#AddedTagesangebot">
 								<div class="form-group">
 									<input type="hidden" id="date_field" name="date" value="">
 									<label for="foodlist">Speisen</label>
@@ -149,7 +151,7 @@
 							<div class="modal-footer">
 								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
-					</form>
+						</form>
 				</div>
 			</div>
 		</div>
