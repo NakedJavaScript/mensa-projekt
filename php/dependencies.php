@@ -5,6 +5,7 @@
 	$password = "";
 	$dbname = "mensa";
 
+
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
@@ -18,7 +19,7 @@
 	$head_dependencies = '
 		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
-		<script defer src="../vendor/fontawesome/js/fontawesome-all.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">
@@ -176,7 +177,36 @@ $Output = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. 
 				<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Tagesangebot konnte nicht hinzugefügt werden</div>";
 			}
 		}
-			
-			
-			
+
+		// Code für likes
+		if(isset($_POST['action'])) {
+			$post_id = $_POST['speise_ID'];
+			$action = $_POST['action'];
+
+			switch ($action) {
+				case 'like':
+					$sql = "INSERT INTO likes (speise_ID, benutzer_ID, like_action)
+							VALUES ($post_id, $user_id, '$action')
+							ON DUPLICATE KEY UPDATE like_action='like'";
+					break;
+				case 'dislike':
+					$sql = "INSERT INTO likes (speise_ID, benutzer_ID, like_action)
+							VALUES ($post_id, $user_id, '$action')
+							ON DUPLICATE KEY UPDATE like_action='dislike'";
+					break;
+				case 'unlike':
+					$sql = "DELETE FROM like_action WHERE benutzer_ID=$user_id AND speise_ID=$post_id";
+					break;
+				case 'undislike':
+					$sql = "DELETE FROM like_action WHERE benutzer_ID=$user_id AND speise_ID=$post_id";
+					break;
+				default:
+					break;
+			}
+
+			mysqli_query($conn, $sql);
+			exit(0);
+		}
+
+
 			?>

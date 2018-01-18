@@ -498,14 +498,17 @@ list-group-item .btn-danger .btn-success {
     justify-content: center;
 }
 
-.like-numbers {
-    margin: 0px;
+.heart-btn {
+    background-color: transparent !important;
+    border: 1px solid #e2dede;
 }
 
-.heart-btn {
-  background-color: transparent !important;
-  border: none !important;
-  padding: 0px 5px 0px 0px;
+.like-btn {
+    color: #007bff;
+}
+
+.unlike-btn {
+  color: #28a745;
 }
 
 .heart-btn:active {
@@ -514,15 +517,4 @@ list-group-item .btn-danger .btn-success {
 
 .heart-btn:focus {
   box-shadow: none !important;
-}
-
-.like-heart, .like-heart-disabled {
-  color: #007BFF;
-}
-
-.like-heart:hover {
-  background-color: transparent !important;
-  font-size: 1.2em;
-  transition: font-size 0.35s ease;
-  color: #218838;
 }

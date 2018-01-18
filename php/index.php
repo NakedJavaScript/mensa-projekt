@@ -99,7 +99,11 @@
 							}
 						}
 
-						$output = $output . "<div class='like-box'>" . likeButtons() . "<p class='like-numbers'>+2</p> </div> </td>";
+						if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
+							$test = '<button type="button" class="btn like-btn heart-btn" data-id="' . $entry['speise_ID'] . '"><i class="fas fa-heart"></i></button>';
+						}
+
+						$output = $output . "<div class='like-box'>" . $test . "</div> </td>";
 						echo $output;
 					}
 					?>

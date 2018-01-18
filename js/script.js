@@ -61,3 +61,43 @@ $(".heart-btn").click(function(e) {
         $(this).mouseenter();
     }
 });
+
+
+// Like Funktion
+
+var like_state = 0;
+
+$(document).ready(function(){
+    $('.like-btn').on('click', function(){
+        var food_id = $(this).data('id');
+        $clicked_btn = $(this);
+
+        if($clicked_btn.hasClass('like-btn') && like_state === 0) {
+            action = "like";
+            like_state = 1;
+        } else if ($clicked_btn.hasClass('like-btn') && like_state === 1) {
+            action = "unlike";
+            like_state = 0;
+        }
+
+        $.ajax({
+            url: 'index.php',
+            type: 'speise',
+            data: {
+                'action': action,
+                'food_id': food_id
+            },
+            success: function(data){
+                res = JSON.parse(data);
+
+                if (action == 'like') {
+                    $clicked_btn.removeClass('like-btn');
+                    $clicked_btn.addClass('unlike-btn');
+                } else if (action == 'unlike'){
+                    $clicked_btn.removeClass('unlike-btn');
+                    $clicked_btn.addClass('like-btn');
+                }
+            }
+        })
+    });
+});
