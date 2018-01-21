@@ -14,6 +14,10 @@ body {
   padding-bottom: 6em;
 }
 
+#search-btn {
+  padding: .5rem .75rem;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -26,6 +30,28 @@ body {
 
 .close {
   color: #000 !important;
+}
+
+.alert-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert {
+  position: relative;
+  z-index: 999999;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 35px 8px 14px;
+  margin-bottom: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 
 .user-table {
@@ -43,7 +69,11 @@ body {
 }
 
 .navbar {
-  margin-bottom: 80px;
+	margin-bottom: 40px;
+}
+
+.pageContentWrapper {
+  margin-top: 80px;
 }
 
 .mr-auto .nav-link:hover {
@@ -58,6 +88,11 @@ body {
   color: #000;
 }
 
+.form-check-input {
+    position: absolute;
+    margin-top: .25rem;
+}
+
 .active-link {
   color: #e05120 !important;
   font-weight:600;
@@ -68,7 +103,6 @@ body {
 }
 
 .dropdown {
-
 	margin-right: 15px;
 }
 
@@ -85,14 +119,21 @@ body {
 
 .dropdown-item {
 	padding: 0;
-  margin-left: 15px;
-
+	margin-right: 15px;
 }
 
 .index-btns {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.daymealTable {
+    table-layout: fixed;
+}
+
+.foodDetailList {
+    list-style-type: none;
 }
 
 table, tbody, td, th {
@@ -104,24 +145,10 @@ list-group-item .btn-danger .btn-success {
   text-align:right;
 }
 
-.message {
-  background:#cef6ce;
-  color:#088a08;
+.page_nav{
+	color: black;
+	text-align: center;
 }
-.message.error {
-  background:#f5a9a9;
-  color:#610b0b;
-}
-
-.container a {
-  color: white;
-}
-
-.container a:hover {
-  text-decoration: none;
-  color: #28a745;
-}
-
 
 /* Additional Cookie-CSS */
 
