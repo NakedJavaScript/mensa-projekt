@@ -69,4 +69,4 @@ function confModal($headerText) {
 </div> ";
 }
 
-			?>
+?>
