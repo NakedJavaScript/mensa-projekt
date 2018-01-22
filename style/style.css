@@ -97,6 +97,11 @@ body {
   background-color: #eee!important;
 }
 
+.disable {
+  pointer-events: none;
+  cursor: default;
+}
+
 .dropdown {
 	margin-right: 15px;
 }
