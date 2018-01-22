@@ -65,7 +65,7 @@
 														<td><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
-													<button type='button' method='POST'id='edit_button' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' data-href='#?edit?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
+													<button type='button' method='POST'id='edit_button' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' data-href='#?edit?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button></td>
 												</tr>";
 									}
@@ -161,12 +161,13 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-										<form role="form" method="POST" action="#UserAdded">
+										<form role="form" method="POST" action="#UserEdited">
 										<div class="form-group" id="editform">
+											<label for="benutzer_ID">Benutzer ID</label><input type="text" name="benutzer_ID" class="form-control" id="benutzer_ID"  placeholder="123" readonly/> <br>
 											<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
 											<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>
 											<label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="max.mustermann@musterdomäne.de" required/><br>
-											<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" disabled/><br>
+											<label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" disabled/><br>
 											<label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" id="kontostand" placeholder="Trage den gewünschten Betrag ein" required/><br>
 											<label for="adminrechte" >Adminrechte</label><br>
 														<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
@@ -194,11 +195,13 @@
 	var nachname=$(this).attr('nachname');
 	var email=$(this).attr('email');
 	var kontostand=$(this).attr('kontostand');
+	var identity=$(this).attr('benutzer_ID');
 //set what we got to our form
   $('#vorname').val(vorname);
 	$('#nachname').val(nachname);
 	$('#email').val(email);
 	$('#kontostand').val(kontostand);
+	$('#benutzer_ID').val(identity);
 });
 </script>
 </html>

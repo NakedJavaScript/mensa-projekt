@@ -42,7 +42,7 @@ body {
 
 .alert {
   position: relative;
-  z-index: 999999;
+  z-index: 1039;
   left: 0;
   right: 0;
   margin-left: auto;
