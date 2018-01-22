@@ -9,13 +9,12 @@
 				}
 					else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 						$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
-					}
-					else if(empty($_POST['allergene'])) {
-						$Alert= dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'Keine Allergene'.");
-					}
-
+																			}
+              else if(empty($_POST['allergene'])) {
+                $Alert = dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'keine Allergene'. ");
+              }
 			else {
-					$all_inh = implode(", ", $_POST['allergene']); //implode teilt array auf. wird mit komma zeichen getrennt.
+					$all_inh = implode(", ", $_POST['allergene']);
 					$preis = doubleval($_POST['preis']); //wandelt preis in double um.
 					$check = $conn->query("SELECT * FROM speise WHERE name = '$name'"); //sql befehl zum prüfen ob es die Speise bereits gibt
 							if($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
