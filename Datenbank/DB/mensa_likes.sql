@@ -16,33 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `buchungen`
+-- Table structure for table `likes`
 --
 
-DROP TABLE IF EXISTS `buchungen`;
+DROP TABLE IF EXISTS `likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `buchungen` (
-  `buchungsnummer` int(11) NOT NULL AUTO_INCREMENT,
-  `schueler_ID` int(11) NOT NULL,
-  `tagesangebot_ID` int(11) NOT NULL,
-  `buchungsdatum` datetime NOT NULL,
-  `menge` int(2) NOT NULL,
-  PRIMARY KEY (`buchungsnummer`),
-  KEY `schueler_ID_idx` (`schueler_ID`),
-  KEY `tagesangebot_ID_idx` (`tagesangebot_ID`),
-  CONSTRAINT `schueler_ID` FOREIGN KEY (`schueler_ID`) REFERENCES `benutzer` (`benutzer_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `tagesangebot_ID` FOREIGN KEY (`tagesangebot_ID`) REFERENCES `tagesangebot` (`tagesangebot_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='hier sind die Buchungen der Schüler';
+CREATE TABLE `likes` (
+  `like_ID` int(11) NOT NULL DEFAULT '0',
+  `benutzer_ID` int(11) DEFAULT '0',
+  `speise_ID` int(11) DEFAULT '0',
+  PRIMARY KEY (`like_ID`),
+  UNIQUE KEY `like_ID_UNIQUE` (`like_ID`),
+  KEY `benutzer_id_idx` (`benutzer_ID`),
+  KEY `speise_id_idx` (`speise_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `buchungen`
+-- Dumping data for table `likes`
 --
 
-LOCK TABLES `buchungen` WRITE;
-/*!40000 ALTER TABLE `buchungen` DISABLE KEYS */;
-/*!40000 ALTER TABLE `buchungen` ENABLE KEYS */;
+LOCK TABLES `likes` WRITE;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+INSERT INTO `likes` VALUES (0,3,1);
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
