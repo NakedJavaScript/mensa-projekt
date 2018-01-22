@@ -163,7 +163,7 @@
 									<div class="modal-body">
 										<form role="form" method="POST" action="#UserEdited">
 										<div class="form-group" id="editform">
-											<label for="benutzer_ID">Benutzer ID</label><input type="text" name="benutzer_ID" class="form-control" id="benutzer_ID"  placeholder="123" readonly/> <br>
+											<input type="hidden" name="benutzer_ID" class="form-control" id="benutzer_ID"  placeholder="123" readonly/> <br> <!--Dieses Feld ist für den Nutzer unsichtbar. -->
 											<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
 											<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>
 											<label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="max.mustermann@musterdomäne.de" required/><br>

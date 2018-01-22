@@ -104,7 +104,7 @@
 				if ($conn->query($delete) === TRUE) {
 					$Alert = successMessage("Speise wurde erfolgreich entfernt");
 				}
-				else if ($conn->errno == 1451) {
+				else if ($conn->errno == 1451) { //1451 entspricht dem Error code wenn ein Wert als Foreign Key verwendet wird.
 						$Alert = dangerMessage("Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.");
 					}
 					else {

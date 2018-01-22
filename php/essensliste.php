@@ -244,7 +244,7 @@
 																		<div class="modal-body">
 																			<form role="form" method="POST" action="#FoodEdited">
 																			<div class="form-group">
-																				<label for="speise_ID">ID der Speise</label><input type="text" name="speise_ID" id="speise_ID" class="form-control"  placeholder="123" readonly/><br>
+																				<input type="hidden" name="speise_ID" id="speise_ID" class="form-control"  placeholder="123" readonly/><br>
 																				<label for="name">Name der Speise</label><input type="text" name="name" class="form-control" id="name" placeholder="Schnitzel, Pommes, Gurke..." required/><br>
 																				<fieldset>
 																				<p>Allergene/Inhaltsstoffe:</p>
