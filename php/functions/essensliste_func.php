@@ -2,17 +2,20 @@
 	//Code um eine Speise hinzuzufügen
 		if (isset($_POST['Essen_hinzufügen'])) {
 			$name = strtoupper(trim($_POST['name']));
-			$all_inh = implode($_POST['allergene']);
 			$sonst = strtoupper(trim($_POST['sonstiges']));
-			$preis = $_POST['preis'];
 
-				if (!is_numeric($preis)) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
+				if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 					$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
 				}
 					else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 						$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
-																			}
+					}
+					else if(empty($_POST['allergene'])) {
+						$Alert= dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'Keine Allergene'.");
+					}
+
 			else {
+					$all_inh = implode(", ", $_POST['allergene']); //implode teilt array auf. wird mit komma zeichen getrennt.
 					$preis = doubleval($_POST['preis']); //wandelt preis in double um.
 					$check = $conn->query("SELECT * FROM speise WHERE name = '$name'"); //sql befehl zum prüfen ob es die Speise bereits gibt
 							if($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
@@ -37,17 +40,19 @@
 				if (isset($_POST['Essen_bearbeiten'])) {
 					$speiseID = $_POST['speise_ID'];
 					$name = strtoupper(trim($_POST['name']));
-					$all_inh = implode($_POST['allergene']);
 					$sonst = strtoupper(trim($_POST['sonstiges']));
-					$preis = $_POST['preis'];
 
-						if (!is_numeric($preis)) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
+						if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 							$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
 						}
 							else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 								$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
-																					}
+							}
+								else if(empty($_POST['allergene'])) {
+									$Alert= dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'Keine Allergene'.");
+								}
 					else {
+							$all_inh = implode(", ", $_POST['allergene']); //implode teilt array auf. wird mit komma zeichen getrennt.
 							$preis = doubleval($_POST['preis']); //wandelt preis in double um.
 							$mysqlItem = $conn->query("SELECT name FROM mensa.speise WHERE speise_ID = $speiseID");
 							$mysqlItem = $mysqlItem->fetch_assoc();
