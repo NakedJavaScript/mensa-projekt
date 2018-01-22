@@ -85,7 +85,7 @@
 										WHERE speise_ID = $speiseID";
 
 							if ($conn->query($update) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
-									$Alert = successMessage("Speise Wurde erfolgreich bearbeitet");
+									$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
 							}
 									else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
 										$Alert = dangerMessage("Error: " . $sql . "<br>" . $conn->errno . ": " . $conn->error);
