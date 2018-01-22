@@ -531,7 +531,7 @@ list-group-item .btn-danger .btn-success {
 }
 
 .like-btn {
-    color: #007bff;
+    color: #007bff !important;
 }
 
 .unlike-btn {

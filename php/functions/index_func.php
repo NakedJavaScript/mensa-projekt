@@ -12,4 +12,14 @@
 				$Alert = dangerMessage("Tagesangebot konnte nicht hinzugefügt werden");
 			}
 		}
+	
+		// Code um Speisen zu liken
+		if (isset($_POST['Speisen_liken'])) {
+			$user_ID = $_SESSION['id'];
+			$food_ID =$_POST['food_ID'];
+			$insert = "INSERT INTO likes (benutzer_ID, speise_ID)
+			VALUES ('$user_ID', '$food_ID')";
+			
+			$conn->query($insert);
+		}
 ?>
