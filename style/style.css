@@ -88,6 +88,11 @@ body {
   color: #000;
 }
 
+.form-check-input {
+    position: absolute;
+    margin-top: .25rem;
+}
+
 .active-link {
   color: #e05120 !important;
   font-weight:600;
@@ -126,6 +131,14 @@ body {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.daymealTable {
+    table-layout: fixed;
+}
+
+.foodDetailList {
+    list-style-type: none;
 }
 
 table, tbody, td, th {

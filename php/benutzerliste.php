@@ -124,7 +124,7 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="benutzerliste.php?newUser">
+									  <form role="form" method="POST" action="#UserAdded">
 										<div class="form-group">
 										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max" required/> <br>
 										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/><br>

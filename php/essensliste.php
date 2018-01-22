@@ -22,7 +22,7 @@
 
 	<body>
 		<?php include 'header.php';
-			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
+			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { //Verweigert Unbefugten den Zugriff auf diese Seite
 				include'footer.php';
 				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.'); } //Verweigert Unbefugten den Zugriff auf diese Seite
 		?>
@@ -72,7 +72,7 @@
 									}
 							}
 								else {
-									echo "<strong>0 Ergebnisse</strong>";
+									echo "<tr><td><strong>0 Ergebnisse</strong></td></tr>";
 								}
 						?>
 				</tbody>
@@ -112,28 +112,10 @@
 								<!--Page Navigation END -->
 								</div>
 
-		<!--Confirm Delet Modal -->
-		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-							<div class="modal-header">
-									<strong>Willst du diesen Eintrag wirklich Löschen?</strong>
-							</div>
-            		<div class="modal-body">
-                		Man kann die Löschung <strong>NICHT</strong> rückgängig machen.
-            		</div>
-            			<div class="modal-footer">
-                		<button type="button" class="btn btn-default" data-dismiss="modal">Abbrechen</button>
-                			<a class="btn btn-danger btn-ok">Löschen</a>
-            			</div>
-        </div>
-    </div>
-	</div>
-		<!--Confirm Delet Modal END -->
-
 		<?PHP
 			confModal('Wollen Sie diese Speise wirklich löschen?');
 		?>
+
 
 
 		<!--New Food Modal-->
@@ -148,10 +130,88 @@
 									</div>
 									<!-- body -->
 									<div class="modal-body">
-									  <form role="form" method="POST" action="essensliste.php?FoodAdded">
+									  <form role="form" method="POST" action="#FoodAdded">
 										<div class="form-group">
 										  <label for="name">Name der Speise</label><input type="text" name="name" class="form-control"  placeholder="Schnitzel, Pommes, Gurke..." required/><br>
-										  <label for="allergene">Allergene/Inhaltsstoffe:</label><input type="text" name="allergene" class="form-control"  placeholder="Gluten, Schwefeldioxid..." required/><br>
+											<fieldset>
+											<p>Allergene/Inhaltsstoffe:</p>
+														<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="ka" value="- Keine Allergene -">
+															<label class="form-check-label" for="ka">Keine Allergene</label>
+
+														</div>
+
+											<div class="form-check">
+												<input class="form-check-input" name="allergene[]" type="checkbox" id="gg" value="GG">
+												<label class="form-check-label" for="gg">Glutenhaltiges Getreide</label>
+
+											</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="kre" value="Kre">
+															<label class="form-check-label" for="kre">Krebstiere</label>
+													</div>
+
+											<div class="form-check">
+													<input class="form-check-input" name="allergene[]" type="checkbox" id="ei" value="Ei">
+													<label class="form-check-label" for="ei">Eier und daraus hergestellte Erzeugnisse</label>
+											</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="f" value="F">
+															<label class="form-check-label" for="f">Fisch und daraus hergestellte Erzeugnisse</label>
+													</div>
+
+										<div class="form-check">
+												<input class="form-check-input" name="allergene[]" type="checkbox" id="erd" value="Erd">
+												<label class="form-check-label" for="erd">Erdnüsse</label>
+										</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="soj" value="Soj">
+															<label class="form-check-label" for="soj">Soja und daraus hergestellte Erzeugnisse</label>
+													</div>
+
+									<div class="form-check">
+											<input class="form-check-input" name="allergene[]" type="checkbox" id="mil" value="Mil">
+											<label class="form-check-label" for="mil">Milch und daraus hergestellte Erzeugnisse(Laktose)</label>
+									</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="nus" value="Nus">
+															<label class="form-check-label" for="nus">Schalenfrüchte(Nüsse)</label>
+													</div>
+
+									<div class="form-check">
+											<input class="form-check-input" name="allergene[]" type="checkbox" id="sel" value="Sel">
+											<label class="form-check-label" for="sel">Sellerie und daraus hergestellte Schalenfrüchte</label>
+									</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="sen" value="Sen">
+															<label class="form-check-label" for="sen">Senf und daraus hergestellte Erzeugnisse</label>
+													</div>
+
+									<div class="form-check">
+											<input class="form-check-input" name="allergene[]" type="checkbox" id="ses" value="Ses">
+											<label class="form-check-label" for="ses">Sesamsamen und daraus hergestellte Erzeugnisse</label>
+									</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="sch" value="Sch">
+															<label class="form-check-label" for="sch">Schwefeldioxid und Sulfite</label>
+													</div>
+
+									<div class="form-check">
+											<input class="form-check-input" name="allergene[]" type="checkbox" id="lup" value="Lup">
+											<label class="form-check-label" for="lup">Lupinen und daraus hergestellte Erzeugnisse</label>
+									</div>
+
+													<div class="form-check">
+															<input class="form-check-input" name="allergene[]" type="checkbox" id="wei" value="Wei">
+															<label class="form-check-label" for="wei">Weichtiere und daraus hergestellte Erzeugnisse</label>
+													</div>
+						</fieldset><br>
 										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" /><br>
 										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€" aria-labelledby="preisHelp"  required/>
 											<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
@@ -170,11 +230,13 @@
 		<!--New Food Modal End-->
 
 		<?php include 'footer.php'; ?>
+		<!--Script disables and unchecks all other checkboxes if 'Keine Allergene' is checked -->
+		<script>
+		$("#ka").change(function() {
+			$(":checkbox").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
+		  $(":checkbox").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
+		});
+	</script>
 
-		<script language="JavaScript" type="text/javascript">
-		$('#confirm-delete').on('show.bs.modal', function(e) {
-    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
-});
-</script>
 	</body>
 </html>

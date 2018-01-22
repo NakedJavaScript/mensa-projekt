@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title></title>
+		<title>Dein Profil</title>
 		<?php
 			echo $head_dependencies;
 
