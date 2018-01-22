@@ -47,7 +47,7 @@
 			<div class="row">
 				<div class="col-sm-1">
 				 <?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); if($week == $ThreeWeeksAgo) { echo "class= 'disable'"; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
 					<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
 						<i class='fas fa-chevron-circle-left'> </i>
 					</button></a> <!--Button um eine Woche zurück zu springen -->
