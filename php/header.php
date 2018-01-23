@@ -39,8 +39,8 @@
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='profil.php?profile'>Profil</a>
-	 					<a class='dropdown-item' href='profil.php?orders'>Bestellungen</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-profile'>Profil</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-order'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>
  					</div>
