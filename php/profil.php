@@ -66,6 +66,7 @@
 								<th>Speise:</th>
 								<th>Allergene:</th>
 								<th>Sonstiges:</th>
+								<th>Preis:</th>
 								<th>Buchungsdatum</th>
 								<th>Löschen/Bearbeiten</th>
 							</thead>
@@ -75,12 +76,15 @@
 								if ($result->num_rows > 0) {
 								// ausgabe der Daten aus jeder Zeile der Tabelle.
 								while($row = $result->fetch_assoc()) {
+										$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
+										$buchungsdateFormat = strtotime($row['buchungsdatum']);
 										echo  "<tr><td><strong> ". $row['buchungsnummer'] . "</strong></td>";
-										echo 	"<td>".$row['tagesangebotsdatum']."</td>";
-										echo	"<td>".$row['preis']."€</td>";
+										echo 	"<td>".date('d.m.Y', $dateFormat)."</td>";
+										echo	"<td>".$row['name']."€</td>";
 										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
 										echo	"<td>".$row['sonstiges']."</td>";
-										echo	"<td>".date($row['buchungsdatum'])."</td>";
+										echo	"<td>".$row['preis']."€</td>";
+										echo	"<td>".date('d.m-Y', $buchungsdateFormat)."</td>";
 										echo	"<td><button type='button' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button>
 																<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
