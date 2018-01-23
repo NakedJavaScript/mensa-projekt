@@ -17,23 +17,41 @@
 				$week = 52;
 			}
 
-			function likeButtons($foodID, $foodLikes){
-				if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
-					return '<form role="form" method="POST" action="#AddedTagesangebot">
-								<input type="hidden" name="food_ID" value="'.$foodID.'">
-								<button type="submit" name="Speisen_liken" class="btn heart-btn like-btn">
-									<i class="fas fa-heart like-heart"></i><p>+'.$foodLikes.'</p>
-								</button>
-					</form>';
-				} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] = 2)) {
-					return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
-					  <i class="fas fa-heart like-heart-disabled"></i>
-				  </button>';
+			function likeButtons($foodID, $foodLikes, $has_liked){
+
+				if (isset($_SESSION['email'])) {
+					if ($_SESSION['adminrechte'] == 2 ) {
+						return '<div class="like-container"><button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
+						  <i class="fas fa-heart like-heart-disabled"></i></button><p class="like-count">+'.$foodLikes.'</p></div>';
+
+					} else if ($has_liked) {
+						return '<form role="form" method="POST" action="#AddedTagesangebot">
+									<input type="hidden" name="food_ID" value="'.$foodID.'">
+									<div class="like-container"><button type="submit" name="Speisen_unliken" class="btn heart-btn like-btn unlike">
+										<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
+									</form>';
+					} else {
+						return '<form role="form" method="POST" action="#AddedTagesangebot">
+									<input type="hidden" name="food_ID" value="'.$foodID.'">
+									<div class="like-container"><button type="submit" name="Speisen_liken" class="btn heart-btn like-btn like">
+										<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
+									</form>';
+					}
+
+				} else {
+					return '<div class="like-container"><button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Einloggen um selbst zu liken!">
+					  <i class="fas fa-heart like-heart-disabled"></i></button><p class="like-count">+'.$foodLikes.'</p></div>';
+				}
+
+
+
+				if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] == 3) && !$has_liked ) {
+
+				} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] == 2)) {
+
 				}
 				else {
-				  return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Einloggen um selbst zu liken!">
-					  <i class="fas fa-heart like-heart-disabled"></i>
-				  </button>';
+
 				}
 			}
 		?>
@@ -90,8 +108,14 @@
 										}
 									}
 									if($daymeal_exists) { // Display attributes of the asocciated meal
-										$insert = "SELECT COUNT(*) AS fickdick FROM likes WHERE speise_ID =" .$entry['speise_ID'];
-										$foodLikes = $conn->query($insert)->fetch_assoc()['fickdick']; 
+										$insert = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'];
+										$foodLikes = $conn->query($insert)->fetch_assoc()['userlike'];
+										if (isset($_SESSION["id"])) {
+											$insert = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"];
+											$has_liked = $conn->query($insert)->fetch_assoc()['userlike'];
+										} else {
+											$has_liked = 1;
+										}
 										$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 										$meal = $conn->query($sql)->fetch_assoc();
 										$output = $output . "<ul class='foodDetailList'>
@@ -99,7 +123,7 @@
 										<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
 										<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
 										<li><b>Preis:</b><br>".$meal['preis']."€</li>
-										<li>" . likeButtons($entry["speise_ID"], $foodLikes) . "</li>
+										<li>" . likeButtons($entry["speise_ID"], $foodLikes, $has_liked) . "</li>
 										</ul>";
 									} else { // Display a button for the adding of a meal
 										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
@@ -153,7 +177,7 @@
 							</div>
 							<!-- footer -->
 							<div class="modal-footer">
-								
+
 								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
 						</form>
