@@ -65,15 +65,16 @@
 																			$vorname = $_POST['vorname'];
 																			$nachname = $_POST['nachname'];
 																			$email = $_POST['email'];
-																			$passwort = $_POST['passwort'];
 																			$kontostand = $_POST['kontostand'];
 																			$adminrechte = $_POST['adminrechte'];
 																			$pepper = 'mensa_pfeffer';
 
+																			if(isset($_POST['passwort'])) { //falls der Admin ein neues Passwort setzt wird die variable $passwort gesetzt
+																			$passwort = $_POST['passwort'];
 																			//passwort wird gehasht
 																			$options = array("cost"=>12);
 																			$hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
-
+																		}
 																			//aktuelle email des zu bearbeitenden Users wird ausgewählt.
 																			$mysqlItem = $conn->query("SELECT email FROM mensa.benutzer WHERE benutzer_ID = $nutzerID");
 																			$mysqlItem = $mysqlItem->fetch_assoc();
@@ -85,10 +86,13 @@
 																												$update = "UPDATE mensa.benutzer SET vorname= '$vorname'
 																																														, nachname = '$nachname'
 																																														, email = '$email'
-																																														,passwort = '$hashPassword'
 																																														, kontostand = '$kontostand'
-																																														, admin_rechte = $adminrechte
-																																	WHERE benutzer_ID = $nutzerID";
+																																														, admin_rechte = $adminrechte";
+																																		if(isset($_POST['passwort'])) {
+																																			$update = $update . " , passwort = 'abc'";
+																																		}
+
+																																	$update = $update . " WHERE benutzer_ID = $nutzerID";
 
 																													$result = $conn->query($update);
 																														if($result === true) {
@@ -108,8 +112,12 @@
 																																									, nachname = '$nachname'
 																																									, email = '$email'
 																																									, kontostand = '$kontostand'
-																																									, admin_rechte = $adminrechte
-																												WHERE benutzer_ID = $nutzerID";
+																																									, admin_rechte = $adminrechte";
+																																			if(isset($_POST['passwort'])) {
+																																				$update = $update . " , passwort = '$hashPassword'";
+																																			} else {}
+
+																																$update = $update . " WHERE benutzer_ID = $nutzerID";
 
 																								$result = $conn->query($update);
 																									if($result === true) {

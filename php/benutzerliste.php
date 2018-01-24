@@ -167,7 +167,7 @@
 																<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
 																<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>
 																<label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="max.mustermann@musterdomäne.de" required/><br>
-																<label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/><br>
+																<label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Bitte nur ändern wenn notwendig" /><br>
 																<label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" id="kontostand" placeholder="Tragen Sie den gewünschten Betrag ein" required/><br>
 																<label for="adminrechte" >Adminrechte</label><br>
 																			<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
