@@ -65,9 +65,16 @@
 																			$vorname = $_POST['vorname'];
 																			$nachname = $_POST['nachname'];
 																			$email = $_POST['email'];
+																			$passwort = $_POST['passwort'];
 																			$kontostand = $_POST['kontostand'];
 																			$adminrechte = $_POST['adminrechte'];
 																			$pepper = 'mensa_pfeffer';
+
+																			//passwort wird gehasht
+																			$options = array("cost"=>12);
+																			$hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
+
+																			//aktuelle email des zu bearbeitenden Users wird ausgewählt.
 																			$mysqlItem = $conn->query("SELECT email FROM mensa.benutzer WHERE benutzer_ID = $nutzerID");
 																			$mysqlItem = $mysqlItem->fetch_assoc();
 
@@ -78,6 +85,7 @@
 																												$update = "UPDATE mensa.benutzer SET vorname= '$vorname'
 																																														, nachname = '$nachname'
 																																														, email = '$email'
+																																														,passwort = '$hashPassword'
 																																														, kontostand = '$kontostand'
 																																														, admin_rechte = $adminrechte
 																																	WHERE benutzer_ID = $nutzerID";

@@ -42,7 +42,7 @@ body {
 
 .alert {
   position: relative;
-  z-index: 1039;
+  z-index: 999999;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -69,7 +69,7 @@ body {
 }
 
 .navbar {
-	margin-bottom: 40px;
+	margin-bottom: 20px;
 }
 
 .pageContentWrapper {
@@ -136,7 +136,7 @@ body {
     list-style-type: none;
 }
 
-table, tbody, td, th {
+table, thead, tbody, td, th {
   text-align: center;
 }
 
@@ -172,6 +172,15 @@ list-group-item .btn-danger .btn-success {
   border-radius: 3px;
   background: #fff;
   margin-bottom: 25px;
+}
+
+#topright {
+    position: relative;
+}
+#topright img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 .text-box {
@@ -520,19 +529,30 @@ list-group-item .btn-danger .btn-success {
 
 /* Like Button */
 
-.like-box {
+.like-container {
     display: flex;
     justify-content: center;
-}
-
-.like-numbers {
-    margin: 0px;
+    align-items: center;
 }
 
 .heart-btn {
-  background-color: transparent !important;
-  border: none !important;
-  padding: 0px 5px 0px 0px;
+    border: 1px solid #e2dede;
+}
+
+.like-btn {
+    color: #007bff;
+}
+
+.fa-heart {
+}
+
+.like-count {
+    margin: 16px 0 16px;
+    padding-left: 10px;
+}
+
+.unlike-btn {
+  color: #28a745;
 }
 
 .heart-btn:active {
@@ -543,13 +563,10 @@ list-group-item .btn-danger .btn-success {
   box-shadow: none !important;
 }
 
-.like-heart, .like-heart-disabled {
-  color: #007BFF;
+.like {
+    color: green;
 }
 
-.like-heart:hover {
-  background-color: transparent !important;
-  font-size: 1.2em;
-  transition: font-size 0.35s ease;
-  color: #218838;
+.unlike {
+    color: red;
 }

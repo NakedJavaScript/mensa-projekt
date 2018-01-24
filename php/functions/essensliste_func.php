@@ -66,13 +66,13 @@
 																WHERE speise_ID = $speiseID";
 
 													if ($conn->query($update) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
-															$Alert = successMessage("Speise Wurde erfolgreich bearbeitet");
+															$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
 													}
 															else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
 																$Alert = dangerMessage("Error: " . $sql . "<br>" . $conn->errno . ": " . $conn->error);
 															}
 												}
-										else {
+										else { //Falls eine andere Speise bereits den Namen der neu vergebenen Speise hat.
 											$Alert = dangerMessage("Es gibt bereits ein Produkt mit diesem Namen.");
 										}
 
