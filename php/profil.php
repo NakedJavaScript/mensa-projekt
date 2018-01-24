@@ -84,7 +84,7 @@
 										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
 										echo	"<td>".$row['sonstiges']."</td>";
 										echo	"<td>".$row['preis']."€</td>";
-										echo	"<td>".date('d.m-Y', $buchungsdateFormat)."</td>";
+										echo	"<td>".date('d.m.Y', $buchungsdateFormat)."</td>";
 										echo	"<td><button type='button' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button>
 																<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
