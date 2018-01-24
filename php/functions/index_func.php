@@ -12,7 +12,7 @@
 				$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
 			}
 		}
-		
+
 		//Funktion zum erstellen eines Like-Buttons
 		function likeButtons($foodID, $foodLikes, $has_liked){
 
@@ -25,7 +25,7 @@
 								else if ($has_liked) {
 									return '<form role="form" method="POST" action="">
 												<input type="hidden" name="food_ID" value="'.$foodID.'">
-												<div class="like-container"><button type="submit" name="Speisen_unliken" class="btn heart-btn like-btn unlike" data-toggle="tooltip" data-placement="bottom" title="Diese Speise nicht mehr favorisieren">
+												<div class="like-container"><button type="submit" name="Speisen_unliken" class="btn heart-btn like-btn unlike" data-toggle="tooltip" data-placement="bottom" title="Diese Speise nicht mehr liken">
 													<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
 												</form>';
 								}

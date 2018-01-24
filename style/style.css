@@ -28,6 +28,15 @@ body {
   padding: 20px;   /* Height of the footer */
 }
 
+.footer-links {
+    color: #28a745;
+}
+
+.footer-links:hover {
+    color: #28a745;
+    text-decoration: none;
+}
+
 .close {
   color: #000 !important;
 }
@@ -118,8 +127,8 @@ body {
 }
 
 .dropdown-item {
-	padding: 0;
-	margin-right: 15px;
+	padding: 0 5px 0 5px !important;
+    margin: 0px !important;
 }
 
 .index-btns {
@@ -537,6 +546,7 @@ list-group-item .btn-danger .btn-success {
 
 .heart-btn {
     border: 1px solid #e2dede;
+    background-color: transparent !important;
 }
 
 .like-btn {
