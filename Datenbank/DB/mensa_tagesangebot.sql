@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
@@ -29,7 +29,7 @@ CREATE TABLE `tagesangebot` (
   PRIMARY KEY (`tagesangebot_ID`),
   KEY `_speise_ID_idx` (`speise_ID`),
   CONSTRAINT `_speise_ID` FOREIGN KEY (`speise_ID`) REFERENCES `speise` (`speise_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `tagesangebot` (
 
 LOCK TABLES `tagesangebot` WRITE;
 /*!40000 ALTER TABLE `tagesangebot` DISABLE KEYS */;
+INSERT INTO `tagesangebot` VALUES (1,1,'2018-01-15'),(2,2,'2018-01-16'),(3,14,'2018-01-17'),(4,1,'2018-01-22'),(5,2,'2018-01-23'),(6,3,'2018-01-24'),(7,4,'2018-01-25'),(8,5,'2018-01-26');
 /*!40000 ALTER TABLE `tagesangebot` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-17  8:44:45
+-- Dump completed on 2018-01-24  9:14:43
