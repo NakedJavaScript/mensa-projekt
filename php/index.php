@@ -5,7 +5,7 @@
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
 			echo $head_dependencies;
-			setlocale(LC_TIME, 'de_DE', 'deu_deu', 'de');
+			setlocale(LC_TIME, 'de_DE', 'deu_deu');
 			$dt = new DateTime;
     		if (isset($_GET['year']) && isset($_GET['week'])) {
         		$dt->setISODate($_GET['year'], $_GET['week']);
@@ -13,8 +13,8 @@
 					else {
         		$dt->setISODate($dt->format('o'), $dt->format('W'));
     			}
-    				$year = $dt->format('o');
-    				$week = $dt->format('W');
+    		$year = $dt->format('o');
+    		$week = $dt->format('W');
 		?>
 	</head>
 
@@ -35,15 +35,16 @@
         <thead class="thead-light">
           <tr>
             <?php
-							setlocale(LC_TIME, 'de_DE', 'deu_deu');
-						  if($week < 10) {
+				setlocale(LC_TIME, 'de_DE', 'deu_deu');
+				if($week < 10) {
 					$week = '0'. $week;
 				}
+
 				for($day=1;$day<=5;$day++){
-    			echo "<th>" . $dt->format('l') . "<br>" . $dt->format('F d') . "</th>\n";
-    			$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
-        }
-				?>
+    				echo "<th>" . strftime("%A", $dt->getTimestamp()) . "<br>" . strftime('%d, %b', $dt->getTimestamp()) . "</th>\n";
+    				$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
+        		}
+			?>
           </tr>
         </thead>
         <tbody>
