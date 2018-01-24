@@ -23,14 +23,14 @@ DROP TABLE IF EXISTS `likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `likes` (
-  `like_ID` int(11) NOT NULL DEFAULT '0',
+  `like_ID` int(11) NOT NULL AUTO_INCREMENT,
   `benutzer_ID` int(11) DEFAULT '0',
   `speise_ID` int(11) DEFAULT '0',
   PRIMARY KEY (`like_ID`),
   UNIQUE KEY `like_ID_UNIQUE` (`like_ID`),
   KEY `benutzer_id_idx` (`benutzer_ID`),
   KEY `speise_id_idx` (`speise_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (0,3,1);
+INSERT INTO `likes` VALUES (20,2,3),(26,2,4),(27,2,5),(28,2,1),(35,3,4),(36,3,5),(38,2,2),(50,3,1),(51,3,2),(53,3,3);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-22 13:03:14
+-- Dump completed on 2018-01-24  9:14:43
