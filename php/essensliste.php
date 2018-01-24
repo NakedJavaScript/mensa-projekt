@@ -137,79 +137,79 @@
 											<fieldset>
 											<p>Allergene/Inhaltsstoffe:</p>
 														<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="ka" value="- Keine Allergene -">
+															<input class="form-check-input ka" name="allergene[]" type="checkbox" id="ka" value="- Keine Allergene -">
 															<label class="form-check-label" for="ka">Keine Allergene</label>
 
 														</div>
 
 											<div class="form-check">
-												<input class="form-check-input" name="allergene[]" type="checkbox" id="gg" value="GG">
+												<input class="form-check-input cb" name="allergene[]" type="checkbox" id="gg" value="GG">
 												<label class="form-check-label" for="gg">Glutenhaltiges Getreide</label>
 
 											</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="kre" value="Kre">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="kre" value="Kre">
 															<label class="form-check-label" for="kre">Krebstiere</label>
 													</div>
 
 											<div class="form-check">
-													<input class="form-check-input" name="allergene[]" type="checkbox" id="ei" value="Ei">
+													<input class="form-check-input cb" name="allergene[]" type="checkbox" id="ei" value="Ei">
 													<label class="form-check-label" for="ei">Eier und daraus hergestellte Erzeugnisse</label>
 											</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="f" value="F">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="f" value="F">
 															<label class="form-check-label" for="f">Fisch und daraus hergestellte Erzeugnisse</label>
 													</div>
 
 										<div class="form-check">
-												<input class="form-check-input" name="allergene[]" type="checkbox" id="erd" value="Erd">
+												<input class="form-check-input cb" name="allergene[]" type="checkbox" id="erd" value="Erd">
 												<label class="form-check-label" for="erd">Erdnüsse</label>
 										</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="soj" value="Soj">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="soj" value="Soj">
 															<label class="form-check-label" for="soj">Soja und daraus hergestellte Erzeugnisse</label>
 													</div>
 
 									<div class="form-check">
-											<input class="form-check-input" name="allergene[]" type="checkbox" id="mil" value="Mil">
+											<input class="form-check-input cb" name="allergene[]" type="checkbox" id="mil" value="Mil">
 											<label class="form-check-label" for="mil">Milch und daraus hergestellte Erzeugnisse(Laktose)</label>
 									</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="nus" value="Nus">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="nus" value="Nus">
 															<label class="form-check-label" for="nus">Schalenfrüchte(Nüsse)</label>
 													</div>
 
 									<div class="form-check">
-											<input class="form-check-input" name="allergene[]" type="checkbox" id="sel" value="Sel">
+											<input class="form-check-input cb" name="allergene[]" type="checkbox" id="sel" value="Sel">
 											<label class="form-check-label" for="sel">Sellerie und daraus hergestellte Schalenfrüchte</label>
 									</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="sen" value="Sen">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="sen" value="Sen">
 															<label class="form-check-label" for="sen">Senf und daraus hergestellte Erzeugnisse</label>
 													</div>
 
 									<div class="form-check">
-											<input class="form-check-input" name="allergene[]" type="checkbox" id="ses" value="Ses">
+											<input class="form-check-input cb" name="allergene[]" type="checkbox" id="ses" value="Ses">
 											<label class="form-check-label" for="ses">Sesamsamen und daraus hergestellte Erzeugnisse</label>
 									</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="sch" value="Sch">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="sch" value="Sch">
 															<label class="form-check-label" for="sch">Schwefeldioxid und Sulfite</label>
 													</div>
 
 									<div class="form-check">
-											<input class="form-check-input" name="allergene[]" type="checkbox" id="lup" value="Lup">
+											<input class="form-check-input cb" name="allergene[]" type="checkbox" id="lup" value="Lup">
 											<label class="form-check-label" for="lup">Lupinen und daraus hergestellte Erzeugnisse</label>
 									</div>
 
 													<div class="form-check">
-															<input class="form-check-input" name="allergene[]" type="checkbox" id="wei" value="Wei">
+															<input class="form-check-input cb" name="allergene[]" type="checkbox" id="wei" value="Wei">
 															<label class="form-check-label" for="wei">Weichtiere und daraus hergestellte Erzeugnisse</label>
 													</div>
 						</fieldset><br>
@@ -249,79 +249,79 @@
 																				<fieldset>
 																				<p>Allergene/Inhaltsstoffe:</p>
 																							<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="ka" value="- Keine Allergene -">
+																								<input class="form-check-input ka" name="allergene[]" type="checkbox" id="ka" value="- Keine Allergene -">
 																								<label class="form-check-label" for="ka">Keine Allergene</label>
 
 																							</div>
 
 																				<div class="form-check">
-																					<input class="form-check-input" name="allergene[]" type="checkbox" id="gg" value="GG">
+																					<input class="form-check-input cb" name="allergene[]" type="checkbox" id="gg" value="GG">
 																					<label class="form-check-label" for="gg">Glutenhaltiges Getreide</label>
 
 																				</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="kre" value="Kre">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="kre" value="Kre">
 																								<label class="form-check-label" for="kre">Krebstiere</label>
 																						</div>
 
 																				<div class="form-check">
-																						<input class="form-check-input" name="allergene[]" type="checkbox" id="ei" value="Ei">
+																						<input class="form-check-input cb" name="allergene[]" type="checkbox" id="ei" value="Ei">
 																						<label class="form-check-label" for="ei">Eier und daraus hergestellte Erzeugnisse</label>
 																				</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="f" value="F">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="f" value="F">
 																								<label class="form-check-label" for="f">Fisch und daraus hergestellte Erzeugnisse</label>
 																						</div>
 
 																			<div class="form-check">
-																					<input class="form-check-input" name="allergene[]" type="checkbox" id="erd" value="Erd">
+																					<input class="form-check-input cb" name="allergene[]" type="checkbox" id="erd" value="Erd">
 																					<label class="form-check-label" for="erd">Erdnüsse</label>
 																			</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="soj" value="Soj">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="soj" value="Soj">
 																								<label class="form-check-label" for="soj">Soja und daraus hergestellte Erzeugnisse</label>
 																						</div>
 
 																		<div class="form-check">
-																				<input class="form-check-input" name="allergene[]" type="checkbox" id="mil" value="Mil">
+																				<input class="form-check-input cb" name="allergene[]" type="checkbox" id="mil" value="Mil">
 																				<label class="form-check-label" for="mil">Milch und daraus hergestellte Erzeugnisse(Laktose)</label>
 																		</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="nus" value="Nus">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="nus" value="Nus">
 																								<label class="form-check-label" for="nus">Schalenfrüchte(Nüsse)</label>
 																						</div>
 
 																		<div class="form-check">
-																				<input class="form-check-input" name="allergene[]" type="checkbox" id="sel" value="Sel">
+																				<input class="form-check-input cb" name="allergene[]" type="checkbox" id="sel" value="Sel">
 																				<label class="form-check-label" for="sel">Sellerie und daraus hergestellte Schalenfrüchte</label>
 																		</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="sen" value="Sen">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="sen" value="Sen">
 																								<label class="form-check-label" for="sen">Senf und daraus hergestellte Erzeugnisse</label>
 																						</div>
 
 																		<div class="form-check">
-																				<input class="form-check-input" name="allergene[]" type="checkbox" id="ses" value="Ses">
+																				<input class="form-check-input cb" name="allergene[]" type="checkbox" id="ses" value="Ses">
 																				<label class="form-check-label" for="ses">Sesamsamen und daraus hergestellte Erzeugnisse</label>
 																		</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="sch" value="Sch">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="sch" value="Sch">
 																								<label class="form-check-label" for="sch">Schwefeldioxid und Sulfite</label>
 																						</div>
 
 																		<div class="form-check">
-																				<input class="form-check-input" name="allergene[]" type="checkbox" id="lup" value="Lup">
+																				<input class="form-check-input cb" name="allergene[]" type="checkbox" id="lup" value="Lup">
 																				<label class="form-check-label" for="lup">Lupinen und daraus hergestellte Erzeugnisse</label>
 																		</div>
 
 																						<div class="form-check">
-																								<input class="form-check-input" name="allergene[]" type="checkbox" id="wei" value="Wei">
+																								<input class="form-check-input cb" name="allergene[]" type="checkbox" id="wei" value="Wei">
 																								<label class="form-check-label" for="wei">Weichtiere und daraus hergestellte Erzeugnisse</label>
 																						</div>
 															</fieldset><br>
@@ -345,9 +345,9 @@
 		<?php include 'footer.php'; ?>
 		<!--Script disables and unchecks all other checkboxes if 'Keine Allergene' is checked -->
 		<script>
-		$("#ka").change(function() {
-			$(":checkbox").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
-		  $(":checkbox").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
+		$(".ka").change(function() {
+			$(".cb").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
+		  $(".cb").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
 		});
 	</script>
 
