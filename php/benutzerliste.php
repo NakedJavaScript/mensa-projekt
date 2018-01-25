@@ -65,7 +65,7 @@
 														<td><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
-													<button type='button' method='POST'id='edit_button' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' data-href='#?edit?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
+													<button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button></td>
 												</tr>";
 									}
@@ -170,8 +170,8 @@
 																<label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" /><br>
 																<label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" id="kontostand" placeholder="Tragen Sie den gewünschten Betrag ein" required/><br>
 																<label for="adminrechte" >Adminrechte</label><br>
-																			<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
-																			<input type="radio" name="adminrechte" class="radio-inline" value="2">Ja
+																			<input type="radio" name="adminrechte" class="radio-inline" value="3"><span name="adminrechte">Nein &nbsp</span>
+																			<input type="radio" name="adminrechte" class="radio-inline" value="2"><span name="adminrechte">Ja</span>
 															</div>
 
 														</div>
@@ -190,18 +190,27 @@
 	<?php include 'footer.php'; ?>
 	<script>
 	//zum Bearbeiten der Nutzer
-	$(document).on("click",'#edit_button' , function (e) {
+	$(document).on("click",'#edit_user' , function (e) {
   var vorname= $(this).attr('vorname');
 	var nachname=$(this).attr('nachname');
 	var email=$(this).attr('email');
 	var kontostand=$(this).attr('kontostand');
 	var identity=$(this).attr('benutzer_ID');
+	var adminrechte=$(this).attr('adminrechte');
+	var sessID = <?php echo json_encode($_SESSION['id']) ?>; //muss aufgrund diesen PHP parts hier stehen und kann nicht ins script.js
 //set what we got to our form
   $('#vorname').val(vorname);
 	$('#nachname').val(nachname);
 	$('#email').val(email);
 	$('#kontostand').val(kontostand);
 	$('#benutzer_ID').val(identity);
+	$("input[name=adminrechte][value=" + adminrechte + "]").prop('checked', true); //je nachdem ob der Nutzer adminrechte oder nicht wird der richtige radiobutton gewählt
+	if(identity == sessID) { //falls man sich selbst bearbeitet, kann man seine Zugriffsrechte nicht bearbeiten
+		$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").hide(); //felder werden gehidet
+		//$("label[for=adminrechte]").hide();
+	} else {
+		$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").show(); //sonst werden sie gezeigt
+	}
 });
 </script>
 </html>

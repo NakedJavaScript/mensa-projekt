@@ -1,38 +1,37 @@
 function AddDateToModal(date) {
     date_field = document.getElementById("date_field");
     date_field.value = date;
-}
+};
 
-//zum Bearbeiten der Nutzer
-    $(document).on("click",'#edit_button' , function (e) {
-      var vorname= $(this).attr('vorname');
-      var nachname=$(this).attr('nachname');
-      var email=$(this).attr('email');
-      var kontostand=$(this).attr('kontostand');
-        //setzen der Werte
-          $('#vorname').val(vorname);
-          $('#nachname').val(nachname);
-          $('#email').val(email);
-          $('#kontostand').val(kontostand);
-    });
+//Scripts for essensliste.php
 
-/*Skript für abfrage bevor gelöscht wird. */
-		$(document).ready(function(){
-		$("a.delete").click(function(e){
-        if(!confirm('Wollen Sie diesen Eintrag wirklich löschen?')){
-            e.preventDefault();
-            return false;
-        }
-        return true;
-		});
-	});
+//zum bearbeiten von essen
+$(document).on("click",'#edit_food' , function (e) {
+var identity= $(this).attr('speise_ID'); //Werte aus den Attributen werden variablen zugeordnet
+var name=$(this).attr('speise_name');
+var allergene=$(this).attr('allergene')
+var allergenArr = allergene.split(', ')//aus allergene wird ein Array erstellt
+var sonstiges=$(this).attr('sonstiges');
+var preis=$(this).attr('preis');
+//set what we got to our form
+$('#speise_ID').val(identity);
+$('#name').val(name);
+$('#sonstiges').val(sonstiges);
+$('#preis').val(preis);
+for (i=0; i!=allergenArr.length;i++) { //Jeder checkbox dessen Wert mit einem Element der aus der Array übereinstimmt wird das Attribut "checked" gegeben.
+      var checkbox = $("input[type='checkbox'][value='"+allergenArr[i]+"']");
+      checkbox.attr("checked","checked");
+  }
+});
+        /*Wenn "keine Allaergene" gecheckt wird, dann werden alle anderen checkboxen unchecked und disabled */
+        $(".ka").change(function() {
+        	$(".cb").not(this).prop("checked", false);//entfernt das "checked" attribut
+        	$(".cb").not(this).prop("disabled", this.checked);//disabled alle checkboxen, außer die soeben gecheckte
+        });
 
-  //Skript für Check buttons im NewFood Modal
-  $("#ka").change(function() {
-    $(":checkbox").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
-    $(":checkbox").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
-  });
-
+          	$(document).on("click",'#close_modal' , function () { //wenn das modal geschlossen wird, wird von allen checkboxen das "checked" attribut entfernt
+          			$('input:checkbox').removeAttr('checked');
+          		});
 
 //Damit man in der Nav-Bar sieht bei welchen Link man sich gerade befindet
 $(function(){

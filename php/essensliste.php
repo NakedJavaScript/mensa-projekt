@@ -66,7 +66,7 @@
 											echo		"<td><button type='button' method='POST' data-href='?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
-														<button type='button' class='btn btn-success' speise_ID='".$row['speise_ID']."' speise_name='".$row['name']."' sonstiges='".$row['sonstiges']."' preis='".$row['preis']."' data-toggle='modal' data-target='#EditFood' method='POST' id='edit_button'  >
+														<button type='button' class='btn btn-success' speise_ID='".$row['speise_ID']."' speise_name='".$row['name']."' sonstiges='".$row['sonstiges']."' allergene='".$row['allergene_inhaltsstoffe']."' preis='".$row['preis']."' data-toggle='modal' data-target='#EditFood' method='POST' id='edit_food'  >
 														<i class='fas fa-pencil-alt'> </i></button>
 														</td>
 												</tr>";
@@ -237,7 +237,7 @@
 																		<!-- header -->
 																		<div class="modal-header">
 																		<h3 class="modal-title">Speise Bearbeiten</h3>
-																			<button type="button" class="close" data-dismiss="modal">&times;</button>
+																			<button type="button" class="close" id="close_modal" data-dismiss="modal">&times;</button>
 
 																		</div>
 																		<!-- body -->
@@ -343,28 +343,5 @@
 											<!--Edit Food Modal End-->
 
 		<?php include 'footer.php'; ?>
-		<!--Script disables and unchecks all other checkboxes if 'Keine Allergene' is checked -->
-		<script>
-		$(".ka").change(function() {
-			$(".cb").not(this).prop("checked", false);//sets the state of 'checked' to false at every other checkbox
-		  $(".cb").not(this).prop("disabled", this.checked);//disables all checkboxes, but the checked one
-		});
-	</script>
-
-	<script>
-	//zum Bearbeiten der Nutzer
-	$(document).on("click",'#edit_button' , function (e) {
-	var identity= $(this).attr('speise_ID');
-	var name=$(this).attr('speise_name');
-	var sonstiges=$(this).attr('sonstiges');
-	var preis=$(this).attr('preis');
-//set what we got to our form
-	$('#speise_ID').val(identity);
-	$('#name').val(name);
-	$('#sonstiges').val(sonstiges);
-	$('#preis').val(preis);
-});
-</script>
-
 	</body>
 </html>
