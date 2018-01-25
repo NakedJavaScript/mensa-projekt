@@ -24,55 +24,56 @@
 	<body>
 		<?php include 'header.php';	?>
 
-		<div class="container">
+		<div class="container col-sm-12">
       <div class="row">
         <div class="col-sm-1">
-		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
-          <button class="btn btn-success index-btns">
-            <i class='fas fa-chevron-circle-left'> </i>
-          </button></a> <!--Button um eine Woche zurück zu springen -->
+					<?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
+								<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
+								<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
+									<i class='fas fa-chevron-circle-left'> </i>
+								</button></a> <!--Button um eine Woche zurück zu springen -->
         </div>
         <div class="col-sm-10">
             <h1>Wochenansicht</h1>
 
-           <table class="table table-bordered">
+           <table class="table table-bordered daymealTable">
         <thead class="thead-light">
           <tr>
             <?php
-				setlocale(LC_TIME, 'de_DE', 'deu_deu');
-				if($week < 10) {
-					$week = '0'. $week;
-				}
+								setlocale(LC_TIME, 'de_DE', 'deu_deu');
+								if($week < 10) {
+									$week = '0'. $week;
+								}
 
-				for($day=1;$day<=5;$day++){
-    				echo "<th>" . strftime("%A", $dt->getTimestamp()) . "<br>" . strftime('%d, %b', $dt->getTimestamp()) . "</th>\n";
-    				$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
-        		}
-			?>
+								for($day=1;$day<=5;$day++){
+				    				echo "<th>" . strftime("%A", $dt->getTimestamp()) . "<br>" . strftime('%d, %b', $dt->getTimestamp()) . "</th>\n";
+				    				$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
+				        		}
+					?>
           </tr>
         </thead>
         <tbody>
 					<?php
-					$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
-					$result = $conn->query($sql);
-					$entrys =[];
-					while($entry = $result->fetch_assoc()) {
-						$entrys[] = $entry;
-					}
-					for ($i=1 ;$i <=5; $i++) {
-						$output=  "<td>";
-						$daymeal_exists = false;
-						$gendate = new DateTime();
-						$gendate->setISODate($year,$week,$i);
-						$date = $gendate->format('Y-m-d');
-						foreach ($entrys as $entry){
-							if ($entry['datum'] == $date) {
-								$daymeal_exists = true;
-								break;
-							}
-						}
-						if($daymeal_exists) {
-							$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; //zählt wie viele likes eine Speise hat.
+								$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
+								$result = $conn->query($sql);
+								$entries =[]; //array $entries wird erstellt
+								while($entry = $result->fetch_assoc()) { //alle werte werden in $entries gespeichert
+									$entries[] = $entry; //
+								}
+								for ($i=1 ;$i <=5; $i++) {
+									$output=  "<td>";
+									$daymeal_exists = false;
+									$gendate = new DateTime();
+									$gendate->setISODate($year,$week,$i);
+									$date = $gendate->format('Y-m-d');
+									foreach ($entries as $entry){
+										if ($entry['datum'] == $date) {
+											$daymeal_exists = true;
+											break;
+										}
+									}
+									if($daymeal_exists) { // Display attributes of the asocciated meal
+										$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; //zählt wie viele likes eine Speise hat.
 										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; //Die Anzahl der likes wird in der Variable $foodLikes gespeichert.
 												if (isset($_SESSION["id"])) {
 													$checkLiked = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"]; //Zählt wie viele zeilen mit genau dieser user Id und der speise ID vorkommen (normalerweise darf es maximal ein mal vorkommen)
@@ -112,8 +113,8 @@
       </div>
 			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
 		</div>
-  
-  
+
+
 		<!--AddDayMeal Modal-->
 		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
