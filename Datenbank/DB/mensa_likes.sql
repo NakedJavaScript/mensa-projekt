@@ -16,30 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tagesangebot`
+-- Table structure for table `likes`
 --
 
-DROP TABLE IF EXISTS `tagesangebot`;
+DROP TABLE IF EXISTS `likes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tagesangebot` (
-  `tagesangebot_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `speise_ID` int(11) NOT NULL,
-  `datum` date NOT NULL,
-  PRIMARY KEY (`tagesangebot_ID`),
-  KEY `_speise_ID_idx` (`speise_ID`),
-  CONSTRAINT `_speise_ID` FOREIGN KEY (`speise_ID`) REFERENCES `speise` (`speise_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf-8;
+CREATE TABLE `likes` (
+  `like_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `benutzer_ID` int(11) DEFAULT '0',
+  `speise_ID` int(11) DEFAULT '0',
+  PRIMARY KEY (`like_ID`),
+  UNIQUE KEY `like_ID_UNIQUE` (`like_ID`),
+  KEY `benutzer_id_idx` (`benutzer_ID`),
+  KEY `speise_id_idx` (`speise_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tagesangebot`
+-- Dumping data for table `likes`
 --
 
-LOCK TABLES `tagesangebot` WRITE;
-/*!40000 ALTER TABLE `tagesangebot` DISABLE KEYS */;
-INSERT INTO `tagesangebot` VALUES (1,1,'2018-01-15'),(2,2,'2018-01-16'),(3,14,'2018-01-17'),(4,1,'2018-01-22'),(5,2,'2018-01-23'),(6,3,'2018-01-24'),(7,4,'2018-01-25'),(8,5,'2018-01-26');
-/*!40000 ALTER TABLE `tagesangebot` ENABLE KEYS */;
+LOCK TABLES `likes` WRITE;
+/*!40000 ALTER TABLE `likes` DISABLE KEYS */;
+INSERT INTO `likes` VALUES (20,2,3),(26,2,4),(27,2,5),(28,2,1),(35,3,4),(36,3,5),(38,2,2),(50,3,1),(51,3,2),(53,3,3);
+/*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,3 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-01-24  9:14:43
-

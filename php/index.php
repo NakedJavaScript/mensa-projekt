@@ -1,4 +1,6 @@
-<?php include_once 'dependencies.php'; ?>
+<?php include_once 'dependencies.php';
+	  include_once 'functions/index_func.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -15,11 +17,13 @@
     			}
     		$year = $dt->format('o');
     		$week = $dt->format('W');
+
 		?>
 	</head>
 
 	<body>
 		<?php include 'header.php';	?>
+
 		<div class="container">
       <div class="row">
         <div class="col-sm-1">
@@ -68,18 +72,34 @@
 							}
 						}
 						if($daymeal_exists) {
-							$output = $output . "Hier ist laut dem Code Essen.";
-						}
-						else {
-							if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
-								 $output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
-							}
-						}
-
-						$output = $output . "</td>";
-						echo $output;
-					}
-					?>
+							$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; //zählt wie viele likes eine Speise hat.
+										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; //Die Anzahl der likes wird in der Variable $foodLikes gespeichert.
+												if (isset($_SESSION["id"])) {
+													$checkLiked = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"]; //Zählt wie viele zeilen mit genau dieser user Id und der speise ID vorkommen (normalerweise darf es maximal ein mal vorkommen)
+													$has_liked = $conn->query($checkLiked)->fetch_assoc()['userlike'];//der gezählt Wert wird in der Variable $has_liked gespeichert (also 1[true] oder 0[false])
+												}
+												 		else {
+																$has_liked = 1; //anonsten hat $has_liked immer den Wert 1[true]
+														}
+															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
+															$meal = $conn->query($sql)->fetch_assoc();
+															$output = $output . "<ul class='foodDetailList'>
+															<li><b>Name:</b><br>".$meal['name']."</li>
+															<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
+															<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
+															<li><b>Preis:</b><br>".$meal['preis']."€</li>
+															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
+															</ul>";
+									}
+											else { // Display a button for the adding of a meal
+													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
+														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+													}
+											}
+												$output = $output . "</td>";
+												echo $output;
+							}//end of for loop
+							?>
         </tbody>
       </table>
         </div>
@@ -92,46 +112,46 @@
       </div>
 			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
 		</div>
-
-		<!--New Food Modal-->
+  
+  
+		<!--AddDayMeal Modal-->
 		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 				<!-- header -->
-				<div class="modal-header">
-					<h3 class="modal-title">Ein neues Tagesangebot erstellen</h3>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-
-				</div>
+					<div class="modal-header">
+						<h3 class="modal-title">Ein neues Tagesangebot erstellen</h3>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
 				<!-- body -->
-				<div class="modal-body">
-					<form role="form" method="POST" action="index.php">
-							<div class="form-group">
-								<input type="hidden" id="date_field" name="date" value="">
-								<label for="foodlist">Speisen</label>
-								<select name="foodlist" id="foodlist">
-									<?php
-										$sql = "SELECT * FROM speise";
-										$result = $conn->query($sql);
-										$food_options ="";
-										while($food = $result->fetch_assoc()) {
-											$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>";
-										}
-										echo $food_options;
-									?>
-								</select>
+					<div class="modal-body">
+						<form role="form" method="POST" action="#AddedTagesangebot">
+								<div class="form-group">
+									<input type="hidden" id="date_field" name="date" value="">
+									<label for="foodlist">Speisen</label>
+									<select name="foodlist" id="foodlist">
+										<?php
+											$getFood = "SELECT * FROM speise";
+											$result = $conn->query($getFood);
+											$food_options ="";
+											while($food = $result->fetch_assoc()) {
+												$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>";//Alle speisen werden als dropdownoption gespeichert.
+											}
+											echo $food_options;
+										?>
+									</select>
+								</div>
 							</div>
-						</div>
-						<!-- footer -->
-						<div class="modal-footer">
-							<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
-						</div>
-					</form>
+							<!-- footer -->
+							<div class="modal-footer">
+
+								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
+							</div>
+						</form>
 				</div>
 			</div>
 		</div>
-		<!--New Food Modal End-->
-
+		<!--AddDayMeal Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
 </html>

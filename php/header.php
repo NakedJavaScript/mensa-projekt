@@ -1,37 +1,4 @@
-<?PHP
-if(isset($_POST['submit'])){
-	$email = trim($_POST['email']);
-	$passwort = trim($_POST['passwort']);
-	$pepper = 'mensa_pfeffer';
-
-	$sql = "select * from benutzer where email = '$email'";
-	$rs = $conn->query($sql);
-
-	if($rs -> num_rows  == 1){
-
-		$row = $rs->fetch_assoc();
-		if(password_verify($passwort . $pepper,$row['passwort'])){
-			$_SESSION['email'] = $email;
-			$_SESSION['vorname'] = $row['vorname'];
-			$_SESSION['nachname'] = $row['nachname'];
-			$_SESSION['kontostand'] = $row['kontostand'];
-			$_SESSION['id'] = $row['benutzer_ID'];
-			$_SESSION['adminrechte'] = $row['admin_rechte'];
-			$Output= "<div class='alert alert-success alert-dismissable'>
-					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Login erfolgreich</div>";
-		}
-		else{
-					$Output ="<div class='alert alert-danger alert-dismissable'>
-					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Wrong password</div>";
-		}
-	}
-	else{
-		$Output ="<div class='alert alert-danger alert-dismissable'>
-					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>No User found</div>";
-	}
-}
-?>
-
+<?PHP include_once 'functions/login.php'; ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-custom" id="cd-top-link">
   <a class="navbar-brand" href="index.php"><img src='../images/logo.png' width="120px"/></a>
@@ -72,8 +39,8 @@ if(isset($_POST['submit'])){
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='profil.php?profile'>Profil</a>
-	 					<a class='dropdown-item' href='profil.php?orders'>Bestellungen</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-profile'>Profil</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-order'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>
  					</div>
@@ -86,8 +53,8 @@ if(isset($_POST['submit'])){
 	</ul>
 </nav>
 
-<div class="container">
-<?PHP echo $Output; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
+<div class="container alert-container">
+<?PHP echo $Alert; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
 </div>
 
 
@@ -105,8 +72,8 @@ if(isset($_POST['submit'])){
 	<div class="modal-body">
 		<form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
 		<div class="form-group">
-			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/><br>
-			<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
+			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email" required/><br>
+			<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/>
 		</div>
 
 	</div>
