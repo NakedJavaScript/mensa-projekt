@@ -6,7 +6,11 @@
 		<?php
 			echo $head_dependencies;
 
-			$sql = "SELECT * FROM speise";
+			$sql = "SELECT buchungsnummer, datum as tagesangebotsdatum, sp.name, sp.preis, sp.allergene_inhaltsstoffe, sp.sonstiges, buchungsdatum
+							FROM mensa.buchungen as b
+							INNER JOIN mensa.tagesangebot as t ON b.tagesangebot_ID = t.tagesangebot_ID
+							INNER JOIN mensa.speise sp ON t.speise_ID = sp.speise_ID
+							WHERE schueler_ID =" . $_SESSION['id'];
 			$result = $conn->query($sql);
 		?>
 	</head>
@@ -17,7 +21,7 @@
 			die('Du musst eingeloggt sein um dein Profil zu sehen.'); }//Nutzer die nicht eingeloggt sind können nicht auf diese Seite zugreifen.?>
 		<div class="container">
 		<div class="row">
-				<div class="nav flex-column nav-pills col-sm-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+				<div class="nav flex-column nav-pills nav-tabs-sticky col-sm-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				  <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profil</a>
 				  <a class="nav-link" id="v-pills-order-tab" data-toggle="pill" href="#v-pills-order" role="tab" aria-controls="v-pills-order" aria-selected="false">Bestellungen</a>
 				</div>
@@ -56,25 +60,41 @@
 						<h1>Deine Bestellungen</h1>
 						<br>
 						<table class="table table-bordered">
+							<thead>
+								<th>Buchungsnummer</th>
+								<th>Tagesangebot am:</th>
+								<th>Speise:</th>
+								<th>Allergene:</th>
+								<th>Sonstiges:</th>
+								<th>Preis:</th>
+								<th>Buchungsdatum</th>
+								<th>Löschen/Bearbeiten</th>
+							</thead>
 						<tbody>
-							<tr>
+
 							<?php
-								$count = 1;
 								if ($result->num_rows > 0) {
 								// ausgabe der Daten aus jeder Zeile der Tabelle.
 								while($row = $result->fetch_assoc()) {
-										echo "<th scope='row'>Bestellung " . $count++ . "</th>";
-										echo 	"<td>".$row['name']."</td>";
-										echo		"<td>".$row['preis']."€</td>";
-										echo		"<td><button type='button' class='btn btn-success'>
-													<i class='fas fa-pencil-alt'> </i></button>
-													<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+										$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
+										$buchungsdateFormat = strtotime($row['buchungsdatum']);
+										echo  "<tr><td><strong> ". $row['buchungsnummer'] . "</strong></td>";
+										echo 	"<td>".date('d.m.Y', $dateFormat)."</td>";
+										echo	"<td>".$row['name']."€</td>";
+										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
+										echo	"<td>".$row['sonstiges']."</td>";
+										echo	"<td>".$row['preis']."€</td>";
+										echo	"<td>".date('d.m.Y', $buchungsdateFormat)."</td>";
+										echo	"<td><button type='button' class='btn btn-success'>
+														<i class='fas fa-pencil-alt'> </i></button>
+																<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
+
 																<i class='fas fa-trash'> </i></button>
 													</td>
 											</tr>";
 								}
 								} else {
-									echo "0 results";
+									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
 								}
 								$conn->close();
 							?>
@@ -87,5 +107,8 @@
 			</div>
 		</div>
 		<?php include 'footer.php'; ?>
-	</body>
+		<script>
+			$('.nav-tabs-sticky').stickyTabs();
+		</script>
+			</body>
 </html>

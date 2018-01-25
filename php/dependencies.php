@@ -5,6 +5,7 @@
 	$password = "";
 	$dbname = "mensa";
 
+
 	// Create connection
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	// Check connection
@@ -12,13 +13,16 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-		$conn->query("SET NAMES 'utf8'");//Für korrekte Ausgabe der Umlaute;
+		$conn->query("SET CHARSET 'utf8'");//Für korrekte Ausgabe der Umlaute;
+		$expireDate = date("Y-m-d", strtotime("-21 day"));
+		$deleteOldTagesangebote = "DELETE FROM mensa.tagesangebot WHERE datum <= '$expireDate'";
 
+		$conn->query($deleteOldTagesangebote); //Löscht alle Einträge,die Älter als 3 Wochen sind(21 tage)
 
 	$head_dependencies = '
 		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
-		<script defer src="../vendor/fontawesome/js/fontawesome-all.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">
@@ -26,6 +30,7 @@
 ';
 	$footer_dependencies = '<!-- Javascript -->
 		<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+		<script src="../vendor/jquery/sticky_nav.js"></script>
 		<script src="../js/script.js"></script>
 		<script src="../vendor/bootstrap/js/popper.min.js"></script>
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>

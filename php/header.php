@@ -39,8 +39,8 @@
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='profil.php?profile'>Profil</a>
-	 					<a class='dropdown-item' href='profil.php?orders'>Bestellungen</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-profile'>Profil</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-order'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>
  					</div>
@@ -72,8 +72,8 @@
 	<div class="modal-body">
 		<form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
 		<div class="form-group">
-			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email"/><br>
-			<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" />
+			<label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email" required/><br>
+			<label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/>
 		</div>
 
 	</div>

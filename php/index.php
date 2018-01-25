@@ -16,23 +16,6 @@
 				$year--;
 				$week = 52;
 			}
-
-			function likeButtons(){
-				if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] != 2)) {
-					return '<button type="button" class="btn heart-btn">
-						<i class="fas fa-heart like-heart"></i>
-					</button>';
-				} else if (((isset($_SESSION['email'])) && $_SESSION['adminrechte'] = 2)) {
-					return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
-					  <i class="fas fa-heart like-heart-disabled"></i>
-				  </button>';
-				}
-				else {
-				  return '<button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Einloggen um selbst zu liken!">
-					  <i class="fas fa-heart like-heart-disabled"></i>
-				  </button>';
-				}
-			}
 		?>
 	</head>
 
@@ -41,11 +24,11 @@
 		<div class="container col-sm-12">
 			<div class="row">
 				<div class="col-sm-1">
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year); ?>">
-						<button class="btn btn-success index-btns">
-							<i class='fas fa-chevron-circle-left'> </i>
-						</button>
-					</a> <!--Button um eine Woche zurück zu springen -->
+				 <?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
+					<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
+						<i class='fas fa-chevron-circle-left'> </i>
+					</button></a> <!--Button um eine Woche zurück zu springen -->
 				</div>
 				<div class="col-sm-10">
 					<h1>Wochenansicht</h1>
@@ -70,9 +53,9 @@
 							<?php
 								$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
 								$result = $conn->query($sql);
-								$entrys =[];
-								while($entry = $result->fetch_assoc()) {
-									$entrys[] = $entry;
+								$entries =[]; //array $entries wird erstellt
+								while($entry = $result->fetch_assoc()) { //alle werte werden in $entries gespeichert
+									$entries[] = $entry; //
 								}
 								for ($i=1 ;$i <=5; $i++) {
 									$output=  "<td>";
@@ -80,36 +63,46 @@
 									$gendate = new DateTime();
 									$gendate->setISODate($year,$week,$i);
 									$date = $gendate->format('Y-m-d');
-									foreach ($entrys as $entry){
+									foreach ($entries as $entry){
 										if ($entry['datum'] == $date) {
 											$daymeal_exists = true;
 											break;
 										}
 									}
 									if($daymeal_exists) { // Display attributes of the asocciated meal
-										$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
-										$meal = $conn->query($sql)->fetch_assoc();
-										$output = $output . "<ul class='foodDetailList'>
-										<li><b>Name:</b><br>".$meal['name']."</li>
-										<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
-										<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
-										<li><b>Preis:</b><br>".$meal['preis']."€</li>
-										<li>" . likeButtons() . "<p class='like-numbers'>+2</p></li>
-										</ul>";
-									} else { // Display a button for the adding of a meal
-										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
-											$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
-										}
+										$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; //zählt wie viele likes eine Speise hat.
+										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; //Die Anzahl der likes wird in der Variable $foodLikes gespeichert.
+												if (isset($_SESSION["id"])) {
+													$checkLiked = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"]; //Zählt wie viele zeilen mit genau dieser user Id und der speise ID vorkommen (normalerweise darf es maximal ein mal vorkommen)
+													$has_liked = $conn->query($checkLiked)->fetch_assoc()['userlike'];//der gezählt Wert wird in der Variable $has_liked gespeichert (also 1[true] oder 0[false])
+												}
+												 		else {
+																$has_liked = 1; //anonsten hat $has_liked immer den Wert 1[true]
+														}
+															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
+															$meal = $conn->query($sql)->fetch_assoc();
+															$output = $output . "<ul class='foodDetailList'>
+															<li><b>Name:</b><br>".$meal['name']."</li>
+															<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
+															<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
+															<li><b>Preis:</b><br>".$meal['preis']."€</li>
+															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
+															</ul>";
 									}
-									$output = $output . "</td>";
-									echo $output;
-								}
+											else { // Display a button for the adding of a meal
+													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
+														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+													}
+											}
+												$output = $output . "</td>";
+												echo $output;
+							}//end of for loop
 							?>
         				</tbody>
       				</table>
 					<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
         		</div>
-				<div class="col-sm-1 test1">
+				<div class="col-sm-1">
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
 						<button class="btn btn-success index-btns">
 							<i class='fas fa-chevron-circle-right'> </i>
@@ -117,9 +110,8 @@
 					</a> <!--Button um eine Woche vor zu springen -->
 				</div>
       		</div>
-
 		</div>
-		<!--New Food Modal-->
+		<!--AddDayMeal Modal-->
 		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -136,11 +128,11 @@
 									<label for="foodlist">Speisen</label>
 									<select name="foodlist" id="foodlist">
 										<?php
-											$sql = "SELECT * FROM speise";
-											$result = $conn->query($sql);
+											$getFood = "SELECT * FROM speise";
+											$result = $conn->query($getFood);
 											$food_options ="";
 											while($food = $result->fetch_assoc()) {
-												$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>";
+												$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>";//Alle speisen werden als dropdownoption gespeichert.
 											}
 											echo $food_options;
 										?>
@@ -149,13 +141,14 @@
 							</div>
 							<!-- footer -->
 							<div class="modal-footer">
+
 								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
 						</form>
 				</div>
 			</div>
 		</div>
-		<!--New Food Modal End-->
+		<!--AddDayMeal Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
 </html>
