@@ -44,11 +44,25 @@
                     // Passwort wird verändert, token wird wieder auf empty gesetzt
                     $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='' WHERE email='$email'");
 
-                    header("Location: index.php");
-                    exit();
+                    $Alert = 'Dein Passwort wurde erfolgreich geändert!';
+
+                    echo "<div class='alert alert-success alert-dismissable fade show' style='width:500px;'>
+                                    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$Alert."</div>
+
+                  <script>setTimeout(function () {
+                     window.location.href= 'index.php';
+
+                 },3000);</script>";
                 }
             } else {
-                echo "Der aufgerufene Link ist abgelaufen oder falsch!";
+                $Alert = "Der aufgerufene Link ist abgelaufen oder falsch!";
+                echo "<div class='alert alert-danger alert-dismissable fade show''>
+              <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$Alert."</div>
+
+              <script>setTimeout(function () {
+                 window.location.href= 'index.php';
+
+             },2000);</script>";
             }
 
         } else {
