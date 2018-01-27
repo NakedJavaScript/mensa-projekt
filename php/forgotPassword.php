@@ -38,18 +38,33 @@
                         // Passwort wird verändert
                         $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
 
-                        echo "Sie haben von uns eine E-Mail erhalten.";
+                        $Alert = 'Sie haben eine E-Mail von uns erhalten.';
+
+                        echo "<div class='alert alert-success alert-dismissable fade show' style='width:500px;'>
+                    					<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$Alert."</div>";
                     } else {
-                        echo "Bitte überprüfen Sie Ihre Eingabe!";
+                        $Alert = "Diese E-Mail existiert nicht!";
+                        echo "<div class='alert alert-danger alert-dismissable fade show' style='width:500px;'>
+                      <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$Alert."</div>";
                     }
                 }
             ?>
 
-            <div class="container">
-                <form action="forgotPassword.php" method="post">
-                    <input type="text" name="email" placeholder="Ihre E-Mail"><br>
-                    <input type="submit" name="forgotPass" value="Passwort zurücksetzen">
-                </form>
+            <div class="container flat-form">
+                <div id="reset" class="form-action">
+                    <h1>Passwort zurücksetzen</h1>
+                    <small>Um Ihr Passwort zurückzusetzen geben Sie bitte Ihre E-Mail Adresse im untenstehenden Feld ein. Sofern Ihre Adresse in unserem System registriert ist, erhalten Sie eine E-Mail mit einem Link um ein neues Passwort zu setzen.</small>
+                    <form action="forgotPassword.php" method="post" class="forgotPasswordForm">
+                        <ul>
+                            <li>
+                                <input type="email" name="email" placeholder="Ihre E-Mail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required>
+                            </li>
+                            <li>
+                                <input type="submit" class="btn btn-success" name="forgotPass" value="Passwort zurücksetzen">
+                            </li>
+                        </ul>
+                    </form>
+                </div>
             </div>
     </body>
     <?php include 'footer.php'; ?>

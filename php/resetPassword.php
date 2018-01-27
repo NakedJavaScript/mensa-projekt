@@ -20,12 +20,22 @@
             if ($data->num_rows > 0) {
                 $pepper = 'mensa_pfeffer';
                 $options = array("cost"=>12);
-                echo "<form role='form' method='POST'>
-                        <div class='form-group'>
-                            <label for='neuesPasswort'>Neues Passwort</label><input type='password' name='neuesPasswort' class='form-control' required/> <br>
-                            <input type='submit' name='submitNewPassword' class='btn btn-primary'>
-                       </div>
-                      </form>";
+                echo "<div class='container flat-form'>
+                        <div id='reset' class='form-action'>
+                            <h1>Neues Passwort setzen</h1>
+                            <small>Geben Sie hier bitte Ihr neues Passwort ein.</small>
+                            <form role='form' method='POST' class='resetPasswordForm'>
+                                <ul>
+                                    <li>
+                                        <input type='password' name='neuesPasswort' class='form-control' required/>
+                                    </li>
+                                    <li>
+                                        <input type='submit' name='submitNewPassword' class='btn btn-success'>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                     </div>";
 
                 if ( isset( $_POST['submitNewPassword'] ) ) {
                     $newPassword = $_POST['neuesPasswort'];

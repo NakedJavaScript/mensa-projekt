@@ -583,9 +583,73 @@ list-group-item .btn-danger .btn-success {
 }
 
 .like {
-    color: green;
+    color: #28a745;
 }
 
 .unlike {
-    color: red;
+    color: #e05120;
+}
+
+/* Forgot Password CSS */
+
+.forgotPasswordForm {
+    margin-top: 50px;
+}
+
+.resetPasswordForm {
+    margin-top: 20px;
+}
+
+.flat-form {
+  border: 2px solid #28a745;
+  border-radius: 5px;
+  margin: 25px auto;
+  width: 500px;
+  padding: 50px 0;
+  position: relative;
+}
+
+.flat-form .form-action {
+  padding: 0 20px;
+  position: relative;
+}
+
+.flat-form h1 {
+  font-size: 42px;
+  margin: 0;
+}
+
+.flat-form ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.flat-form form {
+  padding-right: 20px !important;
+}
+
+.flat-form form input[type=email], .flat-form form input[type=password] {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  color: #28a745;
+  outline: none;
+}
+
+.flat-form form input::-webkit-input-placeholder {
+  color: #28a745;
+}
+
+.flat-form form input:-moz-placeholder {
+  color: #28a745;
+}
+
+.flat-form form input::-moz-placeholder {
+  color: #28a745;
+}
+
+.flat-form form input:-ms-input-placeholder {
+  color: #28a745;
 }
