@@ -73,4 +73,27 @@ function confModal($headerText) {
 </div> ";
 }
 
+	// php mailer setup
+
+	require 'phpmailer/PHPMailerAutoload.php';
+	// Neue Instanz von PhpMailer
+	$mail = new PHPMailer();
+	// Php Mailer Host
+	$mail->Host = "smtp.gmail.com";
+	// Erlaube SMTP
+	$mail->isSMTP();
+	// setzt SMTP Authentifikation auf TRUE
+	$mail->SMTPAuth = true;
+	// Login details für den Gmail Account
+	$mail->Username = "foodmengroup@gmail.com";
+	$mail->Password = "!tsSchuleF00Dmengrp";
+	// Schutzprotokoll für SMTP
+	$mail->SMTPSecure = "ssl";
+	// Port
+	$mail->Port = 465;
+	// Erlaubt es uns HTML Emails zu schicken
+	$mail->isHTML(true);
+
+
+
 ?>

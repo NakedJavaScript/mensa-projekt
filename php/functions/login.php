@@ -18,6 +18,7 @@ if(isset($_POST['submit'])){
 			$_SESSION['id'] = $row['benutzer_ID'];
 			$_SESSION['adminrechte'] = $row['admin_rechte'];
 			$Alert= successMessage('Login erfolgreich');
+			header( 'Location: index.php' ); //Nach dem Login wird der Nutzer zum Index Redirected
 		}
 		else{
 					$Alert =dangerMessage('Falsches Passwort');

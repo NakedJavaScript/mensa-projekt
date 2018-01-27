@@ -6,12 +6,12 @@
 		$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
 			if ($conn->query($delete) === TRUE) {
 				$Alert = successMessage('Nutzer wurde erfolgreich entfernt');
-			} 
+			}
 				else {
 					$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
 				}
 	}
-	
+
 
 	//Code um einen Nutzer anzulegen
 
@@ -26,6 +26,7 @@
 					$vorname = $_POST['vorname'];
 					$nachname = $_POST['nachname'];
 					$email = $_POST['email'];
+					$email = strtolower($email);
 					$passwort = $_POST['passwort'];
 					$kontostand = $_POST['kontostand'];
 					$adminrechte = $_POST['adminrechte'];
@@ -52,5 +53,5 @@
 
 				}//ende von else
 	}//ende von if isset
-											
+
 ?>
