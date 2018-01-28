@@ -91,7 +91,7 @@
 																																														, kontostand = '$kontostand'
 																																														, admin_rechte = $adminrechte";
 																																		if(isset($_POST['passwort'])) {
-																																			$update = $update . " , passwort = 'abc'";
+																																			$update = $update . " , passwort = $hashPassword";
 																																		}
 
 																																	$update = $update . " WHERE benutzer_ID = $nutzerID";
