@@ -1,4 +1,7 @@
-<?php include 'dependencies.php'; ?>
+<?php
+	include 'dependencies.php';
+	include_once 'functions/profile_func.php';
+ ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
