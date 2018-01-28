@@ -32,7 +32,7 @@
 					<div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 						<h1>Dein Profil</h1>
 						<br>
-						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast.</p>
+						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast. Info: Ihre E-mail Adresse muss mit @its.de enden.</p>
 						<br>
 						<table class="table table-bordered">
 						  <tbody>

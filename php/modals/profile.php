@@ -15,8 +15,8 @@
                                     <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="<?php echo $_SESSION['vorname'] ?>"/> <br>
                                     <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="<?php echo $_SESSION['nachname'] ?>"/><br>
                                     <label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="<?php echo $_SESSION['email'] ?>"/><br>
-                                    <label for="passwort" >Passwort</label><input type="new_password" name="passwort" class="form-control"/><br>
-                                    <label for="passwort" >Passwort Bestätigen</label><input type="confirm_password" name="passwort" class="form-control"/><br>
+                                    <label for="passwort" >Passwort</label><input type="password" name="new_password" class="form-control"/><br>
+                                    <label for="passwort" >Passwort Bestätigen</label><input type="password" name="confirm_password" class="form-control"/><br>
                                 </div>
 
                             </div>

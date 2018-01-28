@@ -14,6 +14,8 @@
         if (!$is_empty) {
             $pepper = 'mensa_pfeffer';
             $update = "UPDATE mensa.benutzer SET";
+            $email_invalid = false;
+            $password_invalid = false;
 
             if(!empty($_POST['vorname'])) {
                 $update = $update . " vorname ='".$_POST['vorname']."' ,";
@@ -24,6 +26,8 @@
             if(!empty($_POST['email'])) {
                 if (endsWith($_POST['email'], '@its.de')) {
                     $update = $update . " email = '".$_POST['email']."' ,";
+                }  else {
+                    $email_invalid = true;
                 }
             }
             if(!empty($_POST['new_password'])) {
@@ -34,7 +38,7 @@
                     $hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
                     $update = $update . " passwort = '$hashPassword' ,";
                 } else {
-                    $Alert = dangerMessage("Fehler: Passwort eingaben stimmen nicht überein.");
+                    $password_invalid = true;
                 }
             }
             if (endsWith($update,',')) {
@@ -43,13 +47,19 @@
                 $result = $conn->query($update);
                 if($result === true) {
                     $query = "SELECT * from mensa.benutzer WHERE benutzer_ID = ".$_SESSION['id'];
-                    $user = $conn->query($update);
+                    $user = $conn->query($query)->fetch_assoc();
                     $_SESSION['email'] = $user['email'];
-        			$_SESSION['vorname'] = $user['vorname'];
-        			$_SESSION['nachname'] = $user['nachname'];
-                    $Alert = successMessage("Änderungen erfolgreich gespeichert.");
+                    $_SESSION['vorname'] = $user['vorname'];
+                    $_SESSION['nachname'] = $user['nachname'];
+                    $Alert = successMessage("Profil erfolgreich bearbeitet.");
                 } else {
                     $Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+                }
+            } else {
+                if($email_invalid) {
+                    $Alert = dangerMessage("Fehler: Eingegebene E-mail Adresse ist invalide: Ihre email muss mit @its-de enden.");
+                } else {
+                    $Alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
                 }
             }
         } else {
