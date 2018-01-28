@@ -26,6 +26,7 @@
 					$vorname = $_POST['vorname'];
 					$nachname = $_POST['nachname'];
 					$email = $_POST['email'];
+					$email = strtolower($email);
 					$passwort = $_POST['passwort'];
 					$kontostand = $_POST['kontostand'];
 					$adminrechte = $_POST['adminrechte'];
@@ -65,6 +66,7 @@
 																			$vorname = $_POST['vorname'];
 																			$nachname = $_POST['nachname'];
 																			$email = $_POST['email'];
+																			$email = strtolower($email);
 																			$kontostand = $_POST['kontostand'];
 																			$adminrechte = $_POST['adminrechte'];
 																			$pepper = 'mensa_pfeffer';
