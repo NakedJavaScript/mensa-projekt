@@ -51,8 +51,8 @@
 							</tr>
 						  </tbody>
 						</table>
-						<button type='button' class='btn btn-success'>
-							Bearbeiten <i class='fas fa-pencil-alt'> </i>
+						<button type='button' method='POST'  benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#edit-profile' class='btn btn-success'>
+							Bearbeiten<i class='fas fa-pencil-alt'> </i></button>
 						</button>
 					</div>
 
@@ -106,6 +106,7 @@
 				</div>
 			</div>
 		</div>
+		<?php include 'modals/profile.php'; ?>
 		<?php include 'footer.php'; ?>
 		<script>
 			$('.nav-tabs-sticky').stickyTabs();
