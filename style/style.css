@@ -148,6 +148,16 @@ body {
 
 .foodDetailList {
     list-style-type: none;
+    text-align: center;
+    padding: 0;
+    font-size: 1vw;
+    display: block;
+}
+
+.today {
+  background-color: #28a745 !important;
+  font-weight: bold !important;
+  color: white !important;
 }
 
 table, thead, tbody, td, th {
@@ -556,6 +566,7 @@ list-group-item .btn-danger .btn-success {
 .heart-btn {
     border: 1px solid #e2dede;
     background-color: transparent !important;
+
 }
 
 .like-btn {
