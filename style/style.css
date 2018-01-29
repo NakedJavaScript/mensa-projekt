@@ -18,6 +18,11 @@ body {
   padding: .5rem .75rem;
 }
 
+#login-btn, #login-btn:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
 .footer {
   position: absolute;
   bottom: 0;

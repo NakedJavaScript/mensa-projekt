@@ -34,9 +34,9 @@
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<button type='button' class='btn btn-primary'>" . $_SESSION['vorname'] . "</button>
+ 		 		<button type='button' class='btn btn-primary'><a href='profil.php' id='login-btn'>" . $_SESSION['vorname'] . "</a></button>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
+	 			           <span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
 	 					<a class='dropdown-item' href='profil.php#v-pills-profile'>Profil</a>
