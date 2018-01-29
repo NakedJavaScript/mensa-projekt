@@ -55,7 +55,7 @@
 						  </tbody>
 						</table>
 						<button type='button' method='POST'  benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#edit-profile' class='btn btn-success'>
-							Bearbeiten<i class='fas fa-pencil-alt'> </i></button>
+							Bearbeiten <i class='fas fa-pencil-alt'></i></button>
 						</button>
 					</div>
 

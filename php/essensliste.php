@@ -214,7 +214,7 @@
 						</fieldset><br>
 										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" /><br>
 										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€" aria-labelledby="preisHelp"  required/>
-											<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
+											<small id="preisHelp" class="form-text text-muted">Bitte verwenden Sie bei Dezimalzahlen einen punkt, anstelle eines Kommas.</small>
 										</div>
 
 									</div>

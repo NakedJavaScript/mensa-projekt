@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.17, for macos10.12 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
@@ -30,7 +30,7 @@ CREATE TABLE `likes` (
   UNIQUE KEY `like_ID_UNIQUE` (`like_ID`),
   KEY `benutzer_id_idx` (`benutzer_ID`),
   KEY `speise_id_idx` (`speise_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `likes` (
 
 LOCK TABLES `likes` WRITE;
 /*!40000 ALTER TABLE `likes` DISABLE KEYS */;
-INSERT INTO `likes` VALUES (20,2,3),(26,2,4),(27,2,5),(28,2,1),(35,3,4),(36,3,5),(38,2,2),(50,3,1),(51,3,2),(53,3,3);
+INSERT INTO `likes` VALUES (26,2,4),(27,2,5),(28,2,1),(35,3,4),(36,3,5),(38,2,2),(50,3,1),(51,3,2),(53,3,3),(55,2,3);
 /*!40000 ALTER TABLE `likes` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-24  9:14:43
+-- Dump completed on 2018-01-29  9:11:23

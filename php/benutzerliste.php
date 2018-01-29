@@ -130,7 +130,8 @@
 										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/><br>
 										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="max.mustermann@musterdomäne.de" required/><br>
 										  <label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="1Muster2Pass3Wort" required/><br>
-										  <label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" placeholder="Trage den gewünschten Betrag ein" required/><br>
+										  <label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" placeholder="Trage den gewünschten Betrag ein" aria-labelledby="kontostandHelp" required/>
+											<small id="kontostandHelp" class="form-text text-muted">Bitte verwenden Sie bei Dezimalzahlen einen punkt, anstelle eines Kommas.</small><br/>
 											<label for="adminrechte" >Adminrechte</label><br>
 														<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
 														<input type="radio" name="adminrechte" class="radio-inline" value="2">Ja

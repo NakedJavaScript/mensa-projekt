@@ -24,7 +24,7 @@
                 $update = $update . " nachname ='".$_POST['nachname']."' ,";
             }
             if(!empty($_POST['email'])) {
-                if (endsWith($_POST['email'], '@its.de')) {
+                if (endsWith($_POST['email'], '@its-stuttgart.de')) {
                     $update = $update . " email = '".$_POST['email']."' ,";
                 }  else {
                     $email_invalid = true;
