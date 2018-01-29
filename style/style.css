@@ -154,6 +154,12 @@ body {
     display: block;
 }
 
+.today {
+  background-color: #f7f185 !important;
+  font-weight: bold !important;
+  color: black !important;
+}
+
 table, thead, tbody, td, th {
   text-align: center;
 }

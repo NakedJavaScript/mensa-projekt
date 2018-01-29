@@ -44,9 +44,15 @@
 								if($week < 10) {
 									$week = '0'. $week;
 								}
-
+								$today = new DateTime(); //Creating DateTime object of right now
 								for($day=1;$day<=5;$day++){
-				    				echo "<th>" . strftime("%A", $dt->getTimestamp()) . "<br>" . strftime('%d, %b', $dt->getTimestamp()) . "</th>\n";
+				    				if ($dt->getTimestamp() == $today->getTimestamp()) { //sets 'today' if $dt is todays date, that way todays date gets highlighted
+													echo "<th class='today'>";
+										}
+											else {
+											echo "<th>";
+											}
+											echo strftime("%A", $dt->getTimestamp()) . "<br>" . strftime('%d, %b', $dt->getTimestamp()) . "</th>\n";
 				    				$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
 				        		}
 					?>
