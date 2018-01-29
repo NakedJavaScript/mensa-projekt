@@ -29,7 +29,7 @@ CREATE TABLE `tagesangebot` (
   PRIMARY KEY (`tagesangebot_ID`),
   KEY `_speise_ID_idx` (`speise_ID`),
   CONSTRAINT `_speise_ID` FOREIGN KEY (`speise_ID`) REFERENCES `speise` (`speise_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf-8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,3 +52,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-01-24  9:14:43
+
