@@ -28,7 +28,7 @@
             <input type="name" class="form-control" name="Name" id="name" placeholder="Nachname Vorname" required>
             <br>
             <label for="email">Email Adresse:</label>
-            <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailHelp" placeholder="name@domain.de" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+            <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailHelp" placeholder="name@domain.de" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required />
             <small id="emailHelp" class="form-text text-muted">Wir werden Ihre Email Adresse NIEMALS veröffentlichen oder teilen</small>
           </div>
           <div class="form-group">
