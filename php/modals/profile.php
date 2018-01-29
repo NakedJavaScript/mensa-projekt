@@ -14,8 +14,15 @@
                                 <div class="form-group" id="editform">
                                     <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="<?php echo $_SESSION['vorname'] ?>"/> <br>
                                     <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="<?php echo $_SESSION['nachname'] ?>"/><br>
-                                    <label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="<?php echo $_SESSION['email'] ?>" aria-labelledby="emailHelp" />
-                                    <small id="emailHelp" class="form-text text-muted">Bitte bedenke, dass lediglich '@its-stuttgart' Domänen erlaubt sind.</small><br/>
+                                    <label for="email">Email</label>
+                                    <div class="input-group mb-3">
+                                      <input type="text" class="form-control" name="email" placeholder="<?php echo strstr($_SESSION['email'], '@', true); ?>" aria-label="Recipient's username" aria-labelledby="emailHelp" aria-describedby="emailDomain" required>
+                                        <div class="input-group-append">
+                                          <span class="input-group-text" id="emailDomain">@its-stuttgart.de</span>
+                                        </div>
+                                        <small id="emailHelp" class="form-text text-muted">Bitte bedenke, dass lediglich '@its-stuttgart' Domänen erlaubt sind.</small><br/>
+                                    </div>
+
                                     <label for="passwort" >Passwort</label><input type="password" name="new_password" class="form-control"/><br>
                                     <label for="passwort" >Passwort Bestätigen</label><input type="password" name="confirm_password" class="form-control"/><br>
                                 </div>
