@@ -155,9 +155,9 @@ body {
 }
 
 .today {
-  background-color: #f7f185 !important;
+  background-color: #28a745 !important;
   font-weight: bold !important;
-  color: black !important;
+  color: white !important;
 }
 
 table, thead, tbody, td, th {
