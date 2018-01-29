@@ -22,11 +22,14 @@
 			else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 					$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
 			}
+			else if(strpos($_POST['email'], '@') !== true) { //Falls die Eingabe ein @ Zeichen enthält erhält der Nutzer unten stehende Nachricht
+				$Alert = dangerMessage("Im Feld Email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
+			}
 				else {
-					$vorname = $_POST['vorname'];
-					$nachname = $_POST['nachname'];
-					$email = $_POST['email'];
-					$email = strtolower($email);
+					$vorname = trim($_POST['vorname']);
+					$nachname = trim($_POST['nachname']);
+					$email = trim($_POST['email']);
+					$email = strtolower($email)."@its-stuttgart.de";
 					$passwort = $_POST['passwort'];
 					$kontostand = $_POST['kontostand'];
 					$adminrechte = $_POST['adminrechte'];
@@ -61,12 +64,15 @@
 															else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 																	$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
 															}
+																else if(strpos($_POST['email'], '@') == false) {
+																	$Alert = dangerMessage("Im Feld email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
+																}
 																		else {
 																			$nutzerID = $_POST['benutzer_ID'];
-																			$vorname = $_POST['vorname'];
-																			$nachname = $_POST['nachname'];
-																			$email = $_POST['email'];
-																			$email = strtolower($email);
+																			$vorname = trim($_POST['vorname']);//trim entfernt white space.
+																			$nachname = trim($_POST['nachname']);
+																			$email = trim($_POST['email']);
+																			$email = strtolower($email)."@its-stuttgart.de";
 																			$kontostand = $_POST['kontostand'];
 																			$adminrechte = $_POST['adminrechte'];
 																			$pepper = 'mensa_pfeffer';

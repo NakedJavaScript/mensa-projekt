@@ -62,10 +62,10 @@
 														<td>".$row['nachname']."</td>
 														<td>".$row['email']."</td>
 														<td>".$row['kontostand']."€</td>
-														<td><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+														<td><button type='button' method='POST' data-href='?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
-													<button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
+													<button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".strstr($row['email'], '@', true)."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button></td>
 												</tr>";
 									}
@@ -128,13 +128,30 @@
 									  <form role="form" method="POST" action="">
 										<div class="form-group">
 										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max" required/> <br>
-										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/><br>
-										  <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="max.mustermann@musterdomäne.de" required/><br>
+										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/><br/>
+											<label for="email">Email</label>
+											<div class="input-group mb-3">
+   											<input type="text" class="form-control" name="email" placeholder="max.mustermann" aria-label="Recipient's username" aria-describedby="emailDomain" required>
+   												<div class="input-group-append">
+     												<span class="input-group-text" id="emailDomain">@its-stuttgart.de</span>
+   												</div>
+ 											</div>
 										  <label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/><br>
-										  <label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" placeholder="Tragen Sie den gewünschten Betrag ein" required/><br>
+										  <label for="kontostand" >Kontostand</label>
+											<div class="input-group mb-3">
+   											<input type="text" class="form-control" name="kontostand" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
+   												<div class="input-group-append">
+     												<span class="input-group-text" id="unit">€</span>
+   												</div>
+ 											</div>
+											<small id="kontostandHelp" class="form-text text-muted">Bitte verwenden Sie anstelle eines Kommas einen Punkt: '.'</small><br>
 											<label for="adminrechte" >Adminrechte</label><br>
-														<input type="radio" name="adminrechte" class="radio-inline" value="3" checked>Nein &nbsp
-														<input type="radio" name="adminrechte" class="radio-inline" value="2">Ja
+											<div class="form-check form-check-inline">
+														<input type="radio" name="adminrechte" id="keineAdminrechte" class="form-check-input" value="3" checked><label class="form-check-label" for="keineAdminrechte">Nein</label>
+											</div>
+											<div class="form-check form-check-inline">
+														<input type="radio" name="adminrechte" id="adminrechte" class="form-check-input" value="2"><label class="form-check-label" for="adminrechte">Ja</label>
+											</div>
 										</div>
 
 									</div>
@@ -166,12 +183,28 @@
 																<input type="hidden" name="benutzer_ID" class="form-control" id="benutzer_ID"  placeholder="123" readonly/> <br> <!--Dieses Feld ist für den Nutzer unsichtbar. -->
 																<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
 																<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>
-																<label for="email">Email</label><input type="email" name="email" class="form-control" id="email"  placeholder="max.mustermann@musterdomäne.de" required/><br>
+																<label for="email">Email</label>
+																<div class="input-group mb-3">
+					   											<input type="text" class="form-control" name="email" placeholder="max.mustermann" id="email" aria-label="Recipient's username" aria-describedby="emailDomain" required>
+					   												<div class="input-group-append">
+					     												<span class="input-group-text" id="emailDomain">@its-stuttgart.de</span>
+					   												</div>
+					 											</div>
 																<label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" /><br>
-																<label for="kontostand" >Kontostand</label><input type="text" name="kontostand" class="form-control" id="kontostand" placeholder="Tragen Sie den gewünschten Betrag ein" required/><br>
+																<label for="kontostand" >Kontostand</label>
+																<div class="input-group mb-3">
+					   											<input type="text" class="form-control" name="kontostand"id="kontostand" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
+					   												<div class="input-group-append">
+					     												<span class="input-group-text" id="unit">€</span>
+					   												</div>
+					 											</div>
 																<label for="adminrechte" >Adminrechte</label><br>
-																			<input type="radio" name="adminrechte" class="radio-inline" value="3"><span name="adminrechte">Nein &nbsp</span>
-																			<input type="radio" name="adminrechte" class="radio-inline" value="2"><span name="adminrechte">Ja</span>
+																<div class="form-check form-check-inline">
+																			<input type="radio" name="adminrechte" id="keineAdminrechte" class="form-check-input" value="3" checked><label class="form-check-label" for="adminrechte">Nein</label>
+																</div>
+																<div class="form-check form-check-inline">
+																			<input type="radio" name="adminrechte" id="adminrechte" class="form-check-input" value="2"><label class="form-check-label" for="adminrechte">Ja</label>
+																</div>
 															</div>
 
 														</div>
