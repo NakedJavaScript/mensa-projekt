@@ -653,3 +653,8 @@ list-group-item .btn-danger .btn-success {
 .flat-form form input:-ms-input-placeholder {
   color: #28a745;
 }
+
+#error-img-wrapper {
+    display:flex;
+    justify-content: center;
+}
