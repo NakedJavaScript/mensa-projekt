@@ -61,7 +61,7 @@
 		else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 			$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
 		}
-		else if(strpos($_POST['email'], '@') == false) {
+		else if(strpos($_POST['email'], '@') !== true) {
 			$Alert = dangerMessage("Im Feld email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
 		}
 		else {
