@@ -88,6 +88,12 @@
 															<li><b>Preis:</b><br>".$meal['preis']."€</li>
 															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
 															</ul>";
+															if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
+																$output = $output . "<button type='button' method='POST' data-href='?delete?speise_ID=".$entry["speise_ID"]."&date=".$date."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+																					Löschen</button>
+																					<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddDateToModal('".$date."')>
+																					Ändern</button>";
+															}
 									}
 											else { // Display a button for the adding of a meal
 													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
@@ -150,5 +156,9 @@
 		</div>
 		<!--AddDayMeal Modal End-->
 	</body>
-	<?php include 'footer.php'; ?>
+	<?php
+	confModal('Wollen Sie dieses Tagesangebot wirklich löschen?');
+	include 'footer.php';
+
+	 ?>
 </html>

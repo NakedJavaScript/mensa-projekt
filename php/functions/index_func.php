@@ -63,4 +63,36 @@
 
 				$conn->query($delete);
 			}
+
+
+			//Code zum löschen eines Tagesangebots
+			if (isset($_GET['delete?speise_ID'])) {
+				$speise_ID = $_GET['delete?speise_ID'];
+				$date = strtotime($_GET['date']);
+				$formated= date('Y-m-d',$date);
+				$delete = "DELETE FROM tagesangebot WHERE speise_ID = $speise_ID AND datum = '$formated'";
+				echo $delete;
+					if ($conn->query($delete) === TRUE) {
+						$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+					}
+						else {
+							$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+						}
+			}
+
+			//Code zum Ändern eines Tagesangebots
+			if (isset($_POST['Tagesangebot_erstellen'])) {
+				$s_ID =$_POST['foodlist'];
+				$datum =strtotime($_POST['date']);
+				$formated= date('Y-m-d',$datum);
+				$insert = "INSERT INTO tagesangebot (speise_ID,datum)
+						VALUES ('$s_ID','$formated')";
+				if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
+					$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
+				} else { //Fall es nicht klappt wird der Nutzer mit einem Errorcode und einer Errornummer konfrontiert
+					$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+				}
+			}
+
+
 ?>
