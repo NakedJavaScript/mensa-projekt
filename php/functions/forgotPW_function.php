@@ -27,10 +27,10 @@
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
 
             $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
-            echo $Alert;
+            
         } else {
             $Alert = dangerMessage("Diese E-Mail existiert nicht!");
-            echo $Alert;
+
         }
     }
 ?>
