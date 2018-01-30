@@ -83,22 +83,29 @@
 										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; //Die Anzahl der likes wird in der Variable $foodLikes gespeichert.
 												if (isset($_SESSION["id"])) {
 													$checkLiked = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"]; //Zählt wie viele zeilen mit genau dieser user Id und der speise ID vorkommen (normalerweise darf es maximal ein mal vorkommen)
-													$has_liked = $conn->query($checkLiked)->fetch_assoc()['userlike'];//der gezählt Wert wird in der Variable $has_liked gespeichert (also 1[true] oder 0[false])
+													$has_liked = $conn->query($checkLiked)->fetch_assoc()['userlike'];//der gezählte Wert wird in der Variable $has_liked gespeichert (also 1[true] oder 0[false])
 												}
 												 		else {
 																$has_liked = 1; //anonsten hat $has_liked immer den Wert 1[true]
 														}
 															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 															$meal = $conn->query($sql)->fetch_assoc();
-															$output = $output . "<ul class='foodDetailList'>
-															<li><b>Name:</b><br>".$meal['name']."</li>
-															<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
-															<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
-															<li><b>Preis:</b><br>".$meal['preis']."€</li>
-															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
-															</ul>";
+																if($entry['datum'] < date("Y-m-d")) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt, dann wird die checkbox als "disabled" angezeigt
+																	$output = $output . "<div class='form-check'>
+																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' disabled></div>";
+																}
+																	else { //sonst kann man das es ganz normal aussuchen und Buchen.
+																	$output = $output . "<div class='form-check'>
+																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."'></div>";
+																	}
+																			$output = $output . "<ul class='foodDetailList'>
+																				<li><b>Name:</b><br>".$meal['name']."</li>
+																				<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
+																				<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
+																				<li><b>Preis:</b><br>".$meal['preis']."€</li>
+																			</ul>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "";
 									}
-											else { // Display a button for the adding of a meal
+											else { // Button zum erstellen eines Tagesangebots wird gezeigt.
 													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
 														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
 													}
@@ -109,16 +116,23 @@
 							?>
         </tbody>
       </table>
-        </div>
-        <div class="col-sm-1 test1">
-		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
-          <button class="btn btn-success index-btns">
-            <i class='fas fa-chevron-circle-right'> </i>
-          </button></a> <!--Button um eine Woche vor zu springen -->
-        </div>
-      </div>
+		        </div>
+		        <div class="col-sm-1 test1">
+				<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
+		          <button class="btn btn-success index-btns">
+		            <i class='fas fa-chevron-circle-right'> </i>
+		          </button></a> <!--Button um eine Woche vor zu springen -->
+		        </div>
+		      </div>
+
 			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
+
+</div>/end of div container
+		<div class="bestellBtn">
+				<input type="submit" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" disabled>
+			</form>
 		</div>
+
 
 
 		<!--AddDayMeal Modal-->
@@ -161,4 +175,12 @@
 		<!--AddDayMeal Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
+	<script>
+	var boxes = $('.indexCB');
+
+boxes.on('change', function () {
+    $('#bestellBtn').prop('disabled', !boxes.filter(':checked').length);
+}).trigger('change');
+
+	</script>
 </html>

@@ -1,5 +1,5 @@
 <?PHP
-	//Code um eine Speise hinzuzufügen
+	//Code um ein Tagesangebot zu erstellen
 		if (isset($_POST['Tagesangebot_erstellen'])) {
 			$s_ID =$_POST['foodlist'];
 			$datum =strtotime($_POST['date']);
@@ -12,6 +12,21 @@
 				$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
 			}
 		}
+
+				if(isset($_POST['bestellen'])) {
+					$Bestellungen = $_POST['bestellungen'];
+					$nutzerID = $_SESSION['id'];
+					$buchungsdatum = date("Y-m-d");
+					foreach ($Bestellungen as $key => $value) {
+						$insertBuchungen = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ($nutzerID, $value, $buchungsdatum)";
+						if($conn->query($insertBuchungen) == true) {
+							$Alert = successMessage("Ihre Bestellung war erfolgreich!");
+						}
+							else {
+								$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+							}
+						}
+				}
 
 		//Funktion zum erstellen eines Like-Buttons
 		function likeButtons($foodID, $foodLikes, $has_liked){

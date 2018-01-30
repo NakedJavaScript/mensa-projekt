@@ -18,6 +18,21 @@ body {
   padding: .5rem .75rem;
 }
 
+.indexCB {
+  width: 15px;
+  height: 15px;
+  top: 0px;
+  left: 20px;
+  display: block;
+  position: relative;
+  padding: 0px;
+}
+
+.bestellBtn {
+  float: right;
+  margin-right: 60px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -147,11 +162,12 @@ body {
 }
 
 .foodDetailList {
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-    font-size: 1vw;
-    display: block;
+    list-style-type: none !important;
+    text-align: center !important;
+    padding: 0 !important;
+    margin: 0;
+    font-size: 1vw !important;
+    display: block !important;
 }
 
 .today {
