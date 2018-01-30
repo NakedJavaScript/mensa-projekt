@@ -59,6 +59,7 @@
           </tr>
         </thead>
         <tbody>
+					<form role="form" method="POST" action="">
 					<?php
 								$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
 								$result = $conn->query($sql);
@@ -90,9 +91,10 @@
 														}
 															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 															$meal = $conn->query($sql)->fetch_assoc();
-																if($entry['datum'] < date("Y-m-d")) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt, dann wird die checkbox als "disabled" angezeigt
+															$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '".$_SESSION['id']."'AND tagesangebot_ID = '".$entry['tagesangebot_ID']."'");
+																if($entry['datum'] < date("Y-m-d") || $checkIfBooked->num_rows >= 1 ) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt oder der Nutzer bereits gebucht hat, dann wird die checkbox als "disabled" angezeigt
 																	$output = $output . "<div class='form-check'>
-																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' disabled></div>";
+																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' data-toggle='tooltip' data-placement='right' data-original-title='Entweder haben sie diese Angebot bereits bestellt oder die Bestellfrist ist abgelaufen' disabled></div>";
 																}
 																	else { //sonst kann man das es ganz normal aussuchen und Buchen.
 																	$output = $output . "<div class='form-check'>
@@ -116,6 +118,10 @@
 							?>
         </tbody>
       </table>
+			<div class="bestellBtn">
+					<input type="submit" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" disabled>
+				</form>
+			</div>
 		        </div>
 		        <div class="col-sm-1 test1">
 				<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
@@ -127,11 +133,8 @@
 
 			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
 
-</div>/end of div container
-		<div class="bestellBtn">
-				<input type="submit" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" disabled>
-			</form>
-		</div>
+</div><!--end of div container -->
+
 
 
 

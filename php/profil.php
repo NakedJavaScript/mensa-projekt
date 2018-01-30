@@ -80,7 +80,7 @@
 										$buchungsdateFormat = strtotime($row['buchungsdatum']);
 										echo  "<tr><td><strong> ". $row['buchungsnummer'] . "</strong></td>";
 										echo 	"<td>".date('d.m.Y', $dateFormat)."</td>";
-										echo	"<td>".$row['name']."€</td>";
+										echo	"<td>".$row['name']."</td>";
 										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
 										echo	"<td>".$row['sonstiges']."</td>";
 										echo	"<td>".$row['preis']."€</td>";
