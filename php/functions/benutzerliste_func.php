@@ -3,7 +3,7 @@
 	if (isset($_GET['delete?userID'])) {
 		$userID = $_GET['delete?userID'];
 		$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
-		if ($conn->query($delete) === TRUE) {
+		if ($conn->query($delete) == TRUE) {
 			$Alert = successMessage('Nutzer wurde erfolgreich entfernt');
 
 		}
@@ -20,7 +20,7 @@
 							else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 								$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
 							}
-							else if(strpos($_POST['email'], '@') !== true) { //Falls die Eingabe ein @ Zeichen enthält erhält der Nutzer unten stehende Nachricht
+							else if(strpos($_POST['email'], '@') == true) { //Falls die Eingabe ein @ Zeichen enthält erhält der Nutzer unten stehende Nachricht
 								$Alert = dangerMessage("Im Feld Email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
 							}
 							else {
@@ -62,7 +62,7 @@
 																									else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 																										$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
 																									}
-																										else if(strpos($_POST['email'], '@') !== true) {
+																										else if(strpos($_POST['email'], '@') == true) {
 																											$Alert = dangerMessage("Im Feld email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
 																										}
 																								else {
@@ -75,12 +75,12 @@
 																											$adminrechte = $_POST['adminrechte'];
 																											$pepper = 'mensa_pfeffer';
 
-																											if(isset($_POST['passwort'])) { //falls der Admin ein neues Passwort setzt wird die variable $passwort gesetzt
+																											if( !empty($_POST['passwort']) ) { //falls der Admin ein neues Passwort setzt wird die variable $passwort gesetzt
 																												$passwort = $_POST['passwort'];
 																												//passwort wird gehasht
 																												$options = array("cost"=>12);
 																												$hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
-																											}
+																											} else { }
 																									//aktuelle email des zu bearbeitenden Users wird ausgewählt.
 																									$mysqlItem = $conn->query("SELECT email FROM mensa.benutzer WHERE benutzer_ID = $nutzerID");
 																									$mysqlItem = $mysqlItem->fetch_assoc();
@@ -94,15 +94,15 @@
 																																						email = '$email',
 																																						kontostand = '$kontostand',
 																																						admin_rechte = $adminrechte";
-																														if(isset($_POST['passwort'])) {
+																														if ( !empty($_POST['passwort']) ) {
 																															$update = $update . " , passwort = $hashPassword";
-																														}
+																														} else { }
 
 																														$update = $update . " WHERE benutzer_ID = $nutzerID";
 
 																														$result = $conn->query($update);
-																																if($result === true) {
-																																	$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
+																																if ($result == true) {
+																																	$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet '. $update);
 																																}
 																																		else {
 																																			$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
@@ -119,14 +119,14 @@
 																															, email = '$email'
 																															, kontostand = '$kontostand'
 																															, admin_rechte = $adminrechte";
-																															if(isset($_POST['passwort'])) {
+																															if(!empty($_POST['passwort'])) {
 																																$update = $update . " , passwort = '$hashPassword'";
 																															}
 
 																															$update = $update . " WHERE benutzer_ID = $nutzerID";
 																															$result = $conn->query($update);
-																															if($result === true) {
-																																$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
+																															if($result == true) {
+																																$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet ' . $update);
 																															}
 																															else {
 																																$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);

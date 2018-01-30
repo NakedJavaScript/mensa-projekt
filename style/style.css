@@ -211,7 +211,7 @@ list-group-item .btn-danger .btn-success {
   padding-bottom: 25px;
 }
 
-.modal-footer {
+.login-modal-footer {
     flex-direction: column;
 }
 

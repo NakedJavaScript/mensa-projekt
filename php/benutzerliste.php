@@ -37,7 +37,7 @@
         <button class="btn btn-default search-btn" id="search-btn" type="submit"><i class="fas fa-search"></i></button>
       </div>
 	  </div>
-      
+
 				<br/>
 				<br/>
 
@@ -135,7 +135,7 @@
      												<span class="input-group-text" id="emailDomain">@its-stuttgart.de</span>
    												</div>
  											</div>
-										  <label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/><br>
+										  <label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" value="" placeholder="Passwort" required/><br>
 										  <label for="kontostand" >Kontostand</label>
 											<div class="input-group mb-3">
    											<input type="text" class="form-control" name="kontostand" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
