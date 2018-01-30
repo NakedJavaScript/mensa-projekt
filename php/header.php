@@ -78,7 +78,7 @@
 
 	</div>
 	<!-- footer -->
-	<div class="modal-footer">
+	<div class="modal-footer login-footer ">
 		<input type="submit" name="submit" class="btn btn-primary btn-block" value="Einloggen">
         <a href="forgotPassword.php">Passwort vergessen?</a>
 	</div>
