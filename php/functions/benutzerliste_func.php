@@ -73,7 +73,7 @@
 																						$adminrechte = $_POST['adminrechte'];
 																						$pepper = 'mensa_pfeffer';
 
-																						if(isset($_POST['passwort'])) { //falls der Admin ein neues Passwort setzt wird die variable $passwort gesetzt
+																						if(!empty($_POST['passwort'])) { //falls der Admin ein neues Passwort setzt wird die variable $passwort gesetzt
 																							$passwort = $_POST['passwort'];
 																							//passwort wird gehasht
 																							$options = array("cost"=>12);
@@ -92,7 +92,7 @@
 																													, email = '$email'
 																													, kontostand = '$kontostand'
 																													, admin_rechte = $adminrechte";
-																													if(isset($_POST['passwort'])) {
+																													if(!empty($_POST['passwort'])) {
 																														$update = $update . " , passwort = '$hashPassword'";
 																													}
 
@@ -116,7 +116,7 @@
 																																			email = '$email',
 																																			kontostand = '$kontostand',
 																																			admin_rechte = $adminrechte";
-																									if(isset($_POST['passwort'])) {
+																									if(!empty($_POST['passwort'])) {
 																										$update = $update . " , passwort = '$hashPassword'";
 																									}
 
