@@ -1,6 +1,9 @@
+<?php
+    include 'dependencies.php';
+    include 'functions/contactSend_function.php';
+?>
 <!DOCTYPE HTML>
 <html>
-    <?php include_once 'dependencies.php'; ?>
     <head>
     <title>Kontaktformular</title>
         <?php
@@ -9,13 +12,7 @@
     </head>
 
     <body>
-        <?php
-
-            include 'header.php';
-            include 'functions/contactSend_function.php';
-
-        ?>
-
+        <?php include 'header.php'; ?>
         <div class="container">
             <div>
                 <h1>Kontaktformular <i class="fas fa-envelope"></i></h1>
@@ -24,7 +21,7 @@
                 <br>
             </div>
             <div class="contact-box">
-                <form class="" role="form" action="functions/contactSend_function.php" method="post">
+                <form class="" role="form" action="" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="name" class="form-control" name="Name" id="name" placeholder="Nachname Vorname" required>
@@ -41,7 +38,7 @@
                         <label for="nachricht">Nachricht:</label>
                         <textarea class="form-control" name="Nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success" name="submit">Nachricht senden</button>
+                    <button type="submit" class="btn btn-success" name="contactFormSubmit">Nachricht senden</button>
                 </form>
             </div>
         </div>

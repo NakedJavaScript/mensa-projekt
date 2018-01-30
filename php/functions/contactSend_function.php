@@ -1,17 +1,22 @@
 <?php
+    if (isset($_POST['contactFormSubmit'])) {
+        function sendMail($to, $from, $fromName, $subject, $body) {
+            // PHP Mailer Konfiguration für das Kontaktformular
+            $ContactMail = new PHPMailer();
+            $ContactMail->Host = "smtp.gmail.com";
+            $ContactMail->isSMTP();
+            $ContactMail->SMTPAuth = true;
+            $ContactMail->SMTPSecure = "ssl";
+            $ContactMail->Port = 465;
+            $ContactMail->Username = "foodmengroup@gmail.com";
+            $ContactMail->Password = "!tsSchuleF00Dmengrp";
+            $ContactMail ->setFrom($from, $fromName);
+            $ContactMail ->addAddress($to);
+            $ContactMail ->subject = $subject;
+            $ContactMail ->Body = $body;
+            $ContactMail ->isHTML(true);
 
-    if (isset($_POST['submit'])) {
-        require '../phpmailer/PHPMailerAutoload.php';
-
-        function sendMail($to, $from, $fromName, $body, $subject) {
-            $mail = new PHPMailer();
-            $mail ->setFrom($from, $fromName);
-            $mail ->addAddress($to);
-            $mail ->subject = $subject;
-            $mail ->Body = $body;
-            $mail ->isHTML(true);
-
-            return $mail->send();
+            return $ContactMail->send();
 
         }
 
@@ -19,13 +24,12 @@
         $email = $_POST['Email'];
         $subject = $_POST['Betreff'];
         $body = $_POST['Nachricht'];
+        $to = 'foodmengroup@gmail.com';
 
-        if (sendMail($to = 'foodmengroup@gmail.com', $email, $name, $subject, $body)) {
+        if (sendMail($to, $email, $name, $subject, $body)) {
             $Alert = successMessage('Vielen dank für Ihre E-Mail!');
         } else {
-            $Alert = successMessage('Es tut uns leid aber irgendetwas ist schief gelaufen! Bitte versuchen Sie es erneut.');
+            $Alert = dangerMessage('Es tut uns leid aber irgendetwas ist schief gelaufen! Bitte versuchen Sie es erneut.');
         }
-
     }
-
 ?>
