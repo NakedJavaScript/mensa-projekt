@@ -5,6 +5,7 @@
 		$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
 		if ($conn->query($delete) === TRUE) {
 			$Alert = successMessage('Nutzer wurde erfolgreich entfernt');
+
 		}
 		else {
 			$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");

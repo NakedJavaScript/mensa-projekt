@@ -7,50 +7,59 @@
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
 			echo $head_dependencies;
-			$year = (isset($_GET['year'])) ? $_GET['year'] : date("Y");
-			$week = (isset($_GET['week'])) ? $_GET['week'] : date('W');
-			if($week > 52) {
-				$year++;
-				$week = 1;
-			} elseif($week < 1) {
-				$year--;
-				$week = 52;
-			}
+			setlocale(LC_TIME, 'de_DE', 'deu_deu');
+			$dt = new DateTime;
+    		if (isset($_GET['year']) && isset($_GET['week'])) {
+        		$dt->setISODate($_GET['year'], $_GET['week']);
+    		}
+					else {
+        		$dt->setISODate($dt->format('o'), $dt->format('W'));
+    			}
+    		$year = $dt->format('o');
+    		$week = $dt->format('W');
+
 		?>
 	</head>
 
 	<body>
 		<?php include 'header.php';	?>
-		<div class="container col-sm-12">
-			<div class="row">
-				<div class="col-sm-1">
-				 <?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
-					<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
-						<i class='fas fa-chevron-circle-left'> </i>
-					</button></a> <!--Button um eine Woche zurück zu springen -->
-				</div>
-				<div class="col-sm-10">
-					<h1>Wochenansicht</h1>
-           			<table class="table table-bordered daymealTable">
-        				<thead class="thead-light">
-          					<tr>
-            					<?php
-									setlocale(LC_TIME, 'de_DE', 'deu_deu');
-						  			if($week < 10) {
-										$week = '0'. $week;
-									}
-									for($day= 1; $day <= 5; $day++) {
-										$d = strtotime($year ."W". $week . $day);
-										echo "<th>". strftime('%A', $d) ."<br>". strftime('%d, %b', $d) ."</th>";
 
-										//die ersten 5 tage der aktuellen woche werden ausgegeben.
-					        		}
-								?>
-          					</tr>
-        				</thead>
-        				<tbody>
-							<?php
+		<div class="container col-sm-12">
+      <div class="row">
+        <div class="col-sm-1">
+					<?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
+								<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
+								<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
+									<i class='fas fa-chevron-circle-left'> </i>
+								</button></a> <!--Button um eine Woche zurück zu springen -->
+        </div>
+        <div class="col-sm-10">
+            <h1>Wochenansicht</h1>
+
+           <table class="table table-bordered daymealTable">
+        <thead class="thead-light">
+          <tr>
+            <?php
+								setlocale(LC_TIME, 'de_DE', 'deu_deu');
+								if($week < 10) {
+									$week = '0'. $week;
+								}
+								$today = new DateTime(); //Creating DateTime object of right now
+								for($day=1;$day<=5;$day++){
+				    				if ($dt->getTimestamp() == $today->getTimestamp()) { //sets 'today' if $dt is todays date, that way todays date gets highlighted
+													echo "<th class='today'>";
+										}
+											else {
+											echo "<th>";
+											}
+											echo strftime("%A", $dt->getTimestamp()) . "<br>" . strftime('%d, %b', $dt->getTimestamp()) . "</th>\n";
+				    				$dt->modify('+1 day'); //die ersten 5 tage der aktuellen woche werden ausgegeben.
+				        		}
+					?>
+          </tr>
+        </thead>
+        <tbody>
+					<?php
 								$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
 								$result = $conn->query($sql);
 								$entries =[]; //array $entries wird erstellt
@@ -98,19 +107,20 @@
 												echo $output;
 							}//end of for loop
 							?>
-        				</tbody>
-      				</table>
-					<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
-        		</div>
-				<div class="col-sm-1">
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
-						<button class="btn btn-success index-btns">
-							<i class='fas fa-chevron-circle-right'> </i>
-						</button>
-					</a> <!--Button um eine Woche vor zu springen -->
-				</div>
-      		</div>
+        </tbody>
+      </table>
+        </div>
+        <div class="col-sm-1 test1">
+		<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
+          <button class="btn btn-success index-btns">
+            <i class='fas fa-chevron-circle-right'> </i>
+          </button></a> <!--Button um eine Woche vor zu springen -->
+        </div>
+      </div>
+			<p>Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
 		</div>
+
+
 		<!--AddDayMeal Modal-->
 		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">

@@ -17,10 +17,11 @@ if(isset($_POST['submit'])){
 			$_SESSION['kontostand'] = $row['kontostand'];
 			$_SESSION['id'] = $row['benutzer_ID'];
 			$_SESSION['adminrechte'] = $row['admin_rechte'];
-			$Alert= successMessage('Login erfolgreich');
+			$Alert = successMessage('Login erfolgreich');
+			header( 'Location: index.php' ); //Nach dem Login wird der Nutzer zum Index Redirected
 		}
 		else{
-					$Alert =dangerMessage('Falsches Passwort');
+			$Alert = dangerMessage('Falsches Passwort');
 		}
 	}
 	else{
