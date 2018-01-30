@@ -1,5 +1,6 @@
 <?php include_once 'dependencies.php';
 	  include_once 'functions/index_func.php';
+	  include_once 'models/index.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -91,13 +92,13 @@
 															if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
 																$output = $output . "<button type='button' method='POST' data-href='?delete?speise_ID=".$entry["speise_ID"]."&date=".$date."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 																					Löschen</button>
-																					<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddDateToModal('".$date."')>
+																					<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddValuesToModal('".$date."','".$entry["speise_ID"]."')>
 																					Ändern</button>";
 															}
 									}
 											else { // Display a button for the adding of a meal
 													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
-														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
 													}
 											}
 												$output = $output . "</td>";

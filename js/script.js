@@ -1,6 +1,13 @@
-function AddDateToModal(date) {
-    date_field = document.getElementById("date_field");
-    date_field.value = date;
+function AddValuesToModal(date, addFood='') {
+    if (addFood) {
+        date_field = document.getElementById("edit_date_field");
+        date_field.value = date;
+        food_field = document.getElementById("edit_food_field");
+        food_field.value = addFood;
+    } else {
+        date_field = document.getElementById("date_field");
+        date_field.value = date;
+    }
 };
 
 //Scripts for essensliste.php
@@ -92,4 +99,3 @@ $(".heart-btn").click(function(e) {
         $(this).mouseenter();
     }
 });
-
