@@ -184,6 +184,10 @@ list-group-item .btn-danger .btn-success {
 
 /* ----- CONTACT-FORM ----- */
 
+.fa-envelope {
+    color: #007bff !important;
+}
+
 .contact-box {
   background-color: #f7f7f9;
   padding: 20px;
