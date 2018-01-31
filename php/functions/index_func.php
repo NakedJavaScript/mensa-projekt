@@ -67,26 +67,24 @@
 
 			//Code zum löschen eines Tagesangebots
 			if (isset($_GET['delete?speise_ID'])) {
-				$speise_ID = $_GET['delete?speise_ID'];
+				$food_ID = $_GET['delete?speise_ID'];
 				$date = strtotime($_GET['date']);
-				$formated= date('Y-m-d',$date);
-				$delete = "DELETE FROM tagesangebot WHERE speise_ID = $speise_ID AND datum = '$formated'";
-				echo $delete;
-					if ($conn->query($delete) === TRUE) {
-						$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
-					}
-						else {
-							$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
-						}
+				$formated_date = date('Y-m-d',$date);
+				$delete = "DELETE FROM tagesangebot WHERE speise_ID = $food_ID AND datum = '$formated_date'";
+				if ($conn->query($delete) === TRUE) {
+					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+				} else {
+					$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+				}
 			}
 
 			//Code zum Ändern eines Tagesangebots
 			if (isset($_POST['EditDaymeal'])) {
-				$old_food_ID =$_POST['food'];
-				$new_food_ID =$_POST['foodlist'];
-				$date =strtotime($_POST['date']);
-				$formated= date('Y-m-d',$date);
-				$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated'";
+				$old_food_ID = $_POST['food'];
+				$new_food_ID = $_POST['foodlist'];
+				$date = strtotime($_POST['date']);
+				$formated_date= date('Y-m-d',$date);
+				$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated_date'";
 				if ($conn->query($insert) === TRUE) {
 					$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
 				} else {

@@ -1,4 +1,4 @@
-<!--AddDayMeal Modal-->
+<!--EditDaymeal Modal-->
 <div class="modal fade" id="EditDaymeal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -37,8 +37,4 @@
         </div>
     </div>
 </div>
-<!--AddDayMeal Modal End-->
-
-<?php
-    confModal('Wollen Sie dieses Tagesangebot wirklich löschen?');
-?>
+<!--EditDaymeal Modal End-->
