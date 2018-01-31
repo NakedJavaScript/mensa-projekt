@@ -18,7 +18,7 @@
 					$nutzerID = $_SESSION['id'];
 					$buchungsdatum = date("Y-m-d");
 					foreach ($Bestellungen as $key => $value) {
-						$insertBuchungen = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ($nutzerID, $value, $buchungsdatum)";
+						$insertBuchungen = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ('$nutzerID', '$value', '$buchungsdatum')";
 						$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '$nutzerID' AND tagesangebot_ID = '$value'");
 						if($checkIfBooked->num_rows >= 1){
 							$Alert = dangerMessage("Sie haben das bereits bestellt!");

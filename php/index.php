@@ -97,7 +97,7 @@
 															}
 																	else {
 																		$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '".$_SESSION['id']."'AND tagesangebot_ID = '".$entry['tagesangebot_ID']."'");
-																	if($entry['datum'] < date("Y-m-d") || $checkIfBooked->num_rows >= 1) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt oder der Nutzer bereits gebucht hat, dann wird die checkbox als "disabled" angezeigt
+																	if($entry['datum'] <= date("Y-m-d") || $checkIfBooked->num_rows >= 1) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt oder der Nutzer bereits gebucht hat, dann wird die checkbox als "disabled" angezeigt
 																		$output = $output . "<div class='form-check'>
 																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' data-toggle='tooltip' data-placement='right' data-original-title='Entweder haben sie diese Angebot bereits bestellt oder die Bestellfrist ist abgelaufen' disabled></div>";
 																}

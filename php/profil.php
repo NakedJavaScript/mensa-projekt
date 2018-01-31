@@ -1,4 +1,5 @@
-<?php include 'dependencies.php'; ?>
+<?php include 'dependencies.php';
+ 			include 'functions/profile_func.php'?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -59,6 +60,9 @@
 				  <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
 						<h1>Deine Bestellungen</h1>
 						<br>
+						<p>Das sind deine Bestellungen. Hier kannst du deine Bestellungen ansehen und stornieren.
+							 <strong>Bitte bedenke dass man seine Bestellungen nur bis zum Tag BEVOR das Tagesangebot gültig ist stornieren kann</strong></p>
+						<br>
 						<table class="table table-bordered">
 							<thead>
 								<th>Buchungsnummer</th>
@@ -68,7 +72,7 @@
 								<th>Sonstiges:</th>
 								<th>Preis:</th>
 								<th>Buchungsdatum</th>
-								<th>Löschen/Bearbeiten</th>
+								<th>Stornieren</th>
 							</thead>
 						<tbody>
 
@@ -85,13 +89,19 @@
 										echo	"<td>".$row['sonstiges']."</td>";
 										echo	"<td>".$row['preis']."€</td>";
 										echo	"<td>".date('d.m.Y', $buchungsdateFormat)."</td>";
-										echo	"<td><button type='button' class='btn btn-success'>
-														<i class='fas fa-pencil-alt'> </i></button>
-																<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-
-																<i class='fas fa-trash'> </i></button>
-													</td>
-											</tr>";
+											if ($row['tagesangebotsdatum'] > date('Y-m-d')) { //Wenn das Tagesangebot nach dem heutigen Tag ist, dann ist der Button disabled
+											echo	"<td>
+																	<button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger '>
+																	<i class='fas fa-trash'> </i></button>
+														</td>";
+												}
+													else { //Sonst ist das Angebot immerzu stonierbar
+														echo "<td>
+																				<button type='button' method='POST'   class='btn btn-danger disabled'>
+																				<i class='fas fa-trash'> </i></button>
+																	</td>";
+													}
+											echo "</tr>";
 								}
 								} else {
 									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
@@ -106,7 +116,10 @@
 				</div>
 			</div>
 		</div>
-		<?php include 'footer.php'; ?>
+		<?php
+		confModal("Wollen Sie diese Bestellung wirklich stornieren?");
+		include 'footer.php';
+		 ?>
 		<script>
 			$('.nav-tabs-sticky').stickyTabs();
 		</script>
