@@ -91,21 +91,27 @@
 														}
 															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 															$meal = $conn->query($sql)->fetch_assoc();
-															$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '".$_SESSION['id']."'AND tagesangebot_ID = '".$entry['tagesangebot_ID']."'");
-																if($entry['datum'] < date("Y-m-d") || $checkIfBooked->num_rows >= 1 ) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt oder der Nutzer bereits gebucht hat, dann wird die checkbox als "disabled" angezeigt
-																	$output = $output . "<div class='form-check'>
+															if (!isset($_SESSION['email'])) { //Wenn nutzer nicht eingeloggt ist, sind alle Checkboxen disabled
+																$output = $output . "<div class='form-check'>
+																	<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' data-toggle='tooltip' data-placement='right' data-original-title='Sie müssen eingeloggt sein um bestellen zu können.' disabled></div>";
+															}
+																	else {
+																		$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '".$_SESSION['id']."'AND tagesangebot_ID = '".$entry['tagesangebot_ID']."'");
+																	if($entry['datum'] < date("Y-m-d") || $checkIfBooked->num_rows >= 1) { //Wenn das Datum des Tagesangebots hinter dem heutigen Tag liegt oder der Nutzer bereits gebucht hat, dann wird die checkbox als "disabled" angezeigt
+																		$output = $output . "<div class='form-check'>
 																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' data-toggle='tooltip' data-placement='right' data-original-title='Entweder haben sie diese Angebot bereits bestellt oder die Bestellfrist ist abgelaufen' disabled></div>";
 																}
-																	else { //sonst kann man das es ganz normal aussuchen und Buchen.
-																	$output = $output . "<div class='form-check'>
-																		<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."'></div>";
-																	}
-																			$output = $output . "<ul class='foodDetailList'>
-																				<li><b>Name:</b><br>".$meal['name']."</li>
-																				<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
-																				<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
-																				<li><b>Preis:</b><br>".$meal['preis']."€</li>
-																			</ul>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "";
+																			else { //sonst kann man das es ganz normal aussuchen und Buchen.
+																			$output = $output . "<div class='form-check'>
+																				<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."'></div>";
+																			}
+																		}
+																					$output = $output . "<ul class='foodDetailList'>
+																						<li><b>Name:</b><br>".$meal['name']."</li>
+																						<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
+																						<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
+																						<li><b>Preis:</b><br>".$meal['preis']."€</li>
+																					</ul>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "";
 									}
 											else { // Button zum erstellen eines Tagesangebots wird gezeigt.
 													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
@@ -119,7 +125,10 @@
         </tbody>
       </table>
 			<div class="bestellBtn">
-					<input type="submit" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" disabled>
+					<input type="button" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" data-toggle='modal' data-target='#confirm-delete' disabled>
+					<!-- Confirm Modal -->
+					<?PHP confBestellung(); ?>
+					<!-- Confirm Modal -->
 				</form>
 			</div>
 		        </div>
@@ -178,12 +187,14 @@
 		<!--AddDayMeal Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
+		<!-- Modal zur Bestätigung des Kaufs-->
+
+
 	<script>
 	var boxes = $('.indexCB');
 
 boxes.on('change', function () {
     $('#bestellBtn').prop('disabled', !boxes.filter(':checked').length);
 }).trigger('change');
-
 	</script>
 </html>

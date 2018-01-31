@@ -13,7 +13,7 @@
 			}
 		}
 
-				if(isset($_POST['bestellen'])) {
+				if(isset($_POST['bestellenBestätigen'])) {
 					$Bestellungen = $_POST['bestellungen'];
 					$nutzerID = $_SESSION['id'];
 					$buchungsdatum = date("Y-m-d");
@@ -82,5 +82,25 @@
 				$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
 
 				$conn->query($delete);
+			}
+
+			//funktion zur erstellung des bestellBestätigungs modal.
+			function confBestellung() {
+				echo "<div class='modal fade' id='confirm-delete' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+						<div class='modal-dialog'>
+							<div class='modal-content'>
+								<div class='modal-header'>
+									<strong>Wollen Sie diese Bestellung wirklich tätigen?</strong>
+								</div>
+									<div class='modal-body'>
+											Der Betrag wird von ihrem Konto sofort abgebucht!
+									</div>
+									<div class='modal-footer'>
+											<button type='button' class='btn btn-default' data-dismiss='modal'>Abbrechen</button>
+											<input type='submit' name='bestellenBestätigen' class='btn btn-success bestellBtn' value='Kostenpflichtig Bestellen' >
+									</div>
+							</div>
+					</div>
+				</div> ";
 			}
 ?>
