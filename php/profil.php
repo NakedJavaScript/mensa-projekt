@@ -35,19 +35,19 @@
 						  <tbody>
 							<tr>
 							  <th scope="row">ID</th>
-							  <td><?PHP echo  $_SESSION['id'] ?></td>
+							  <td class='align-middle'><?PHP echo  $_SESSION['id'] ?></td>
 							</tr>
 							<tr>
 							  <th scope="row">Name</th>
-							  <td><?PHP echo  $_SESSION['vorname'] . " " .  $_SESSION['nachname']?></td>
+							  <td class='align-middle'><?PHP echo  $_SESSION['vorname'] . " " .  $_SESSION['nachname']?></td>
 							</tr>
 							<tr>
 							  <th scope="row">E-Mail</th>
-							  <td><?PHP echo $_SESSION['email']?></td>
+							  <td class='align-middle'><?PHP echo $_SESSION['email']?></td>
 							</tr>
 							<tr>
 							  <th scope="row">Kontostand</th>
-							  <td><?PHP echo $_SESSION['kontostand'] . "€"?></td>
+							  <td class='align-middle'><?PHP echo $_SESSION['kontostand'] . "€"?></td>
 							</tr>
 						  </tbody>
 						</table>
@@ -59,10 +59,10 @@
 				  <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
 						<h1>Deine Bestellungen</h1>
 						<br>
-						<table class="table table-bordered">
+						<table class="tabelsorterTable table table-hover tablesorter">
 							<thead>
 								<th>Buchungsnummer</th>
-								<th>Tagesangebot am:</th>
+								<th>Tagesangebot:</th>
 								<th>Speise:</th>
 								<th>Allergene:</th>
 								<th>Sonstiges:</th>
@@ -78,14 +78,14 @@
 								while($row = $result->fetch_assoc()) {
 										$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
 										$buchungsdateFormat = strtotime($row['buchungsdatum']);
-										echo  "<tr><td><strong> ". $row['buchungsnummer'] . "</strong></td>";
-										echo 	"<td>".date('d.m.Y', $dateFormat)."</td>";
-										echo	"<td>".$row['name']."€</td>";
-										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
-										echo	"<td>".$row['sonstiges']."</td>";
-										echo	"<td>".$row['preis']."€</td>";
-										echo	"<td>".date('d.m.Y', $buchungsdateFormat)."</td>";
-										echo	"<td><button type='button' class='btn btn-success'>
+										echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
+										echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
+										echo	"<td class='align-middle'>".$row['name']."€</td>";
+										echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
+										echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
+										echo	"<td class='align-middle'>".$row['preis']."€</td>";
+										echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
+										echo	"<td class='align-middle'><button type='button' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button>
 																<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
 
@@ -94,7 +94,7 @@
 											</tr>";
 								}
 								} else {
-									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
+									echo "<td class='align-middle'>Sie haben noch keine Buchungen getätigt</td>";
 								}
 								$conn->close();
 							?>

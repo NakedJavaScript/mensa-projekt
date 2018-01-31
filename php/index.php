@@ -67,7 +67,7 @@
 									$entries[] = $entry; //
 								}
 								for ($i=1 ;$i <=5; $i++) {
-									$output=  "<td>";
+									$output=  "<td class='align-middle'>";
 									$daymeal_exists = false;
 									$gendate = new DateTime();
 									$gendate->setISODate($year,$week,$i);
