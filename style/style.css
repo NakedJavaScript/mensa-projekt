@@ -153,7 +153,8 @@ body {
 
 .index-btns {
   position: relative;
-  top: 50%;
+  top: 100px;
+  bottom: 400px;
   transform: translateY(-50%);
 }
 
