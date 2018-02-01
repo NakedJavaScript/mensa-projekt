@@ -28,6 +28,8 @@
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">
 		<link rel="icon" href="../images/icon.ico">
+		<script src="../vendor/Chart.js/Chart.min.js"></script>
+
 ';
 	$footer_dependencies = '
 		<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
