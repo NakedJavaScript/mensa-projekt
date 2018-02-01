@@ -66,11 +66,9 @@
 
 
 			//Code zum löschen eines Tagesangebots
-			if (isset($_GET['delete?speise_ID'])) {
-				$food_ID = $_GET['delete?speise_ID'];
-				$date = strtotime($_GET['date']);
-				$formated_date = date('Y-m-d',$date);
-				$delete = "DELETE FROM tagesangebot WHERE speise_ID = $food_ID AND datum = '$formated_date'";
+			if (isset($_GET['delete?daymeal_ID'])) {
+				$daymeal_ID = $_GET['delete?daymeal_ID'];
+				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
 				if ($conn->query($delete) === TRUE) {
 					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
 				} else {

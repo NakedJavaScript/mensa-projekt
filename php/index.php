@@ -90,7 +90,7 @@
 															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
 															</ul>";
 															if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
-																$output = $output . "<button type='button' method='POST' data-href='?delete?speise_ID=".$entry["speise_ID"]."&date=".$date."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+																$output = $output . "<button type='button' method='POST' data-href='?delete?daymeal_ID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 																					Löschen</button>
 																					<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddValuesToModal('".$date."','".$entry["speise_ID"]."')>
 																					Ändern</button>";
