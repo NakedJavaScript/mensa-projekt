@@ -10,6 +10,7 @@ if (isset($_GET['stornieren?buchungsnummer'])) {
     $preis = $getPreis->preis;
     $newKontostand = $_SESSION['kontostand'] + $preis;
     $_SESSION['kontostand'] = $newKontostand;
+    $conn->query("UPDATE mensa.benutzer SET kontostand = $newKontostand  WHERE  benutzer_ID = ".$_SESSION['id']); //neuer Kontostand wird in der Datenbank gesetzt
     $Alert = successMessage("Sie haben ihre Bestellung erfolgreich storniert! <br/> <strong>Ihr neuer Kontostand: $newKontostand €</strong>");
   }
   else {

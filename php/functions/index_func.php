@@ -26,7 +26,7 @@
 									$Alert = dangerMessage("Sie haben das bereits bestellt!");
 								}
 									else if ($_SESSION['kontostand'] < $getPreis->preis) { //Wenn der Nutzer nicht genug Geld auf seinem Konto hat
-										$Alert = dangerMessage("Leider haben sie nicht genug Geld auf ihrem Konto! Bitte laden sie ihr Konto beim Caterer auf um Bestellungen zu tätigen");
+										$Alert = dangerMessage("<strong>Leider haben sie nicht genug Geld auf ihrem Konto!</strong> Sie können ihr Konto beim Caterer aufladen.");
 									}
 									else {
 												if($conn->query($insertBuchungen) == true) { //Wenn buchung erfolgreich
