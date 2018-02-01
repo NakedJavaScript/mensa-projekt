@@ -102,10 +102,10 @@
 
 																														$result = $conn->query($update);
 																																if ($result == true) {
-																																	$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet '. $update);
+																																	$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
 																																}
 																																		else {
-																																			$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+																																			$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error . " <br/><strong>Bitte kontaktieren Sie den System Provider</strong>");
 																																		}
 																											}
 																												else { //Ausgabe wenn es diesen Nutzer bereits gibt
@@ -126,10 +126,10 @@
 																															$update = $update . " WHERE benutzer_ID = $nutzerID";
 																															$result = $conn->query($update);
 																															if($result == true) {
-																																$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet ' . $update);
+																																$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
 																															}
 																															else {
-																																$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+																																$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error . " <br/><strong>Bitte kontaktieren Sie den System Provider</strong>");
 																															}
 																														}
 																								}//ende von else
