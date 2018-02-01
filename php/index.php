@@ -91,7 +91,7 @@
 														}
 															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 															$meal = $conn->query($sql)->fetch_assoc();
-															if (!isset($_SESSION['email'])) { //Wenn nutzer nicht eingeloggt ist, sind alle Checkboxen disabled
+															if (!isset($_SESSION['id'])) { //Wenn nutzer nicht eingeloggt ist, sind alle Checkboxen disabled
 																$output = $output . "<div class='form-check'>
 																	<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' data-toggle='tooltip' data-placement='right' data-original-title='Sie müssen eingeloggt sein um bestellen zu können.' disabled></div>";
 															}
@@ -125,7 +125,7 @@
         </tbody>
       </table>
 			<div class="bestellBtn">
-					<input type="button" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" data-toggle='modal' data-target='#confirm-delete' disabled>
+					<input type="button" name="bestellen" class="btn btn-success bestellBtn" id="bestellBtn" value="Kostenpflichtig Bestellen" data-toggle='modal' data-target='#confirm-submit' disabled>
 					<!-- Confirm Modal -->
 					<?PHP confBestellung(); ?>
 					<!-- Confirm Modal -->

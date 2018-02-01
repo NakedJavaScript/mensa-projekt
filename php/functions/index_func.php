@@ -17,21 +17,31 @@
 					$Bestellungen = $_POST['bestellungen'];
 					$nutzerID = $_SESSION['id'];
 					$buchungsdatum = date("Y-m-d");
-					foreach ($Bestellungen as $key => $value) {
-						$insertBuchungen = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ('$nutzerID', '$value', '$buchungsdatum')";
-						$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '$nutzerID' AND tagesangebot_ID = '$value'");
-						if($checkIfBooked->num_rows >= 1){
-							$Alert = dangerMessage("Sie haben das bereits bestellt!");
-						} else {
-						if($conn->query($insertBuchungen) == true) {
-							$Alert = successMessage("Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an");
-						}
-							else {
-								$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
-							}
-						}
-						}
-				}
+						foreach ($Bestellungen as $key => $value) {
+							$insertBuchungen = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ('$nutzerID', '$value', '$buchungsdatum')";
+							$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '$nutzerID' AND tagesangebot_ID = '$value'"); //Prüfen ob Nutzer nicht doch schon gebucht hat
+							$getPreis = $conn->query("SELECT sp.preis FROM mensa.tagesangebot as t INNER JOIN mensa.speise as sp ON sp.speise_ID = t.speise_ID WHERE tagesangebot_ID = '$value' LIMIT 1");//Selektieren den Preis der Speise
+							$getPreis = $getPreis->fetch_object();//Selektierung wird gefetcht
+								if($checkIfBooked->num_rows >= 1){ //überprüfung ob user nicht doch schon gebucht hat.
+									$Alert = dangerMessage("Sie haben das bereits bestellt!");
+								}
+									else if ($_SESSION['kontostand'] < $getPreis->preis) { //Wenn der Nutzer nicht genug Geld auf seinem Konto hat
+										$Alert = dangerMessage("Leider haben sie nicht genug Geld auf ihrem Konto! Bitte laden sie ihr Konto beim Caterer auf um Bestellungen zu tätigen");
+									}
+									else {
+												if($conn->query($insertBuchungen) == true) { //Wenn buchung erfolgreich
+													$preis = $getPreis->preis;
+													$newKontostand = $_SESSION['kontostand'] - $preis; //Preis wird vom aktuellen kontostand abgezogen
+													$_SESSION['kontostand'] = $newKontostand; //neuer Kontostand wird auch in der session aktualisiert
+													$conn->query("UPDATE mensa.benutzer SET kontostand = $newKontostand  WHERE  benutzer_ID = $nutzerID "); //neuer Kontostand wird in der Datenbank gesetzt
+													$Alert = successMessage("Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an <br/> <strong>Ihr neuer Kontostand: $newKontostand €</strong>" );
+												}
+													else {
+														$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+													}
+								}
+						}//Ende foreach
+					}
 
 		//Funktion zum erstellen eines Like-Buttons
 		function likeButtons($foodID, $foodLikes, $has_liked){
@@ -86,7 +96,7 @@
 
 			//funktion zur erstellung des bestellBestätigungs modal.
 			function confBestellung() {
-				echo "<div class='modal fade' id='confirm-delete' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+				echo "<div class='modal fade' id='confirm-submit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
 						<div class='modal-dialog'>
 							<div class='modal-content'>
 								<div class='modal-header'>
@@ -97,7 +107,7 @@
 									</div>
 									<div class='modal-footer'>
 											<button type='button' class='btn btn-default' data-dismiss='modal'>Abbrechen</button>
-											<input type='submit' name='bestellenBestätigen' class='btn btn-success bestellBtn' value='Kostenpflichtig Bestellen' >
+											<input type='submit' name='bestellenBestätigen' class='btn btn-success bestellBtn' value='Kostenpflichtig Bestellen'>
 									</div>
 							</div>
 					</div>
