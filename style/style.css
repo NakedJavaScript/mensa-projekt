@@ -211,10 +211,6 @@ list-group-item .btn-danger .btn-success {
   padding-bottom: 25px;
 }
 
-.modal-footer {
-    flex-direction: column;
-}
-
 .modalbox.success {
   margin-top: 10%;
   text-align: center;
@@ -602,6 +598,11 @@ list-group-item .btn-danger .btn-success {
 }
 
 /* Forgot Password CSS */
+
+
+.login-footer {
+    flex-direction: column !important;
+}
 
 .forgotPasswordForm {
     margin-top: 50px;
