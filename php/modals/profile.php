@@ -16,7 +16,7 @@
                                     <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="<?php echo $_SESSION['nachname'] ?>"/><br>
                                     <label for="email">Email</label>
                                     <div class="input-group mb-3">
-                                      <input type="text" class="form-control" name="email" placeholder="<?php echo strstr($_SESSION['email'], '@', true); ?>" aria-label="Recipient's username" aria-labelledby="emailHelp" aria-describedby="emailDomain" required>
+                                      <input type="text" class="form-control" name="email" placeholder="<?php echo strstr($_SESSION['email'], '@', true); ?>" aria-label="Recipient's username" aria-labelledby="emailHelp" aria-describedby="emailDomain" >
                                         <div class="input-group-append">
                                           <span class="input-group-text" id="emailDomain">@its-stuttgart.de</span>
                                         </div>

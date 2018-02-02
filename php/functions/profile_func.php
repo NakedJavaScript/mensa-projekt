@@ -24,8 +24,8 @@
                 $update = $update . " nachname ='".$_POST['nachname']."' ,";
             }
             if(!empty($_POST['email'])) {
-                if (endsWith($_POST['email'], '@its-stuttgart.de')) {
-                    $update = $update . " email = '".$_POST['email']."' ,";
+                if (strpos($_POST['email'], '@') == false) {
+                    $update = $update . " email = '".$_POST['email']."@its-stuttgart.de' ,";
                 }  else {
                     $email_invalid = true;
                 }
@@ -57,7 +57,7 @@
                 }
             } else {
                 if($email_invalid) {
-                    $Alert = dangerMessage("Fehler: Eingegebene E-mail Adresse ist invalide: Ihre email muss mit @its-de enden.");
+                    $Alert = dangerMessage("Im Feld 'email' dürfen keine Domänen angegeben werden, bitte entfernen Sie das <strong>'@'</strong> zeichen und die <strong>Domäne</strong>");
                 } else {
                     $Alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
                 }
