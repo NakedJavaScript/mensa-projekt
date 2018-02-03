@@ -217,6 +217,10 @@ list-group-item .btn-danger .btn-success {
   padding-bottom: 25px;
 }
 
+.login-modal-footer {
+    flex-direction: column;
+}
+
 .modalbox.success {
   margin-top: 10%;
   text-align: center;

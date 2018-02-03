@@ -25,7 +25,7 @@
 										$Alert = successMessage("Speise wurde erfolgreich hinzugefügt");
 								}
 										else {
-											$Alert = dangerMessage("Error: " . $sql . "<br>" . $conn->error . "");
+											$Alert = dangerMessage("Die Speise konnte nicht angelegt werden, bitte versuchen Sie es erneut.");
 										}
 							}
 					else {
@@ -69,7 +69,7 @@
 															$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
 													}
 															else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
-																$Alert = dangerMessage("Error: " . $sql . "<br>" . $conn->errno . ": " . $conn->error);
+																$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 															}
 												}
 										else { //Falls eine andere Speise bereits den Namen der neu vergebenen Speise hat.
@@ -88,7 +88,7 @@
 									$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
 							}
 									else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
-										$Alert = dangerMessage("Error: " . $sql . "<br>" . $conn->errno . ": " . $conn->error);
+										$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 									}
 
 						}
@@ -105,9 +105,8 @@
 				}
 				else if ($conn->errno == 1451) { //1451 entspricht dem Error code wenn ein Wert als Foreign Key verwendet wird.
 						$Alert = dangerMessage("Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.");
-					}
-					else {
-						$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br><strong>[" . $conn->errno . "]</strong>" . $conn->error  ."");
+					} else {
+						$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 					}
 		}
 ?>
