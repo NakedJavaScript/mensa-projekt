@@ -8,7 +8,7 @@
 
 		}
 		else {
-			$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");
 		}
 	}
 
@@ -45,7 +45,7 @@
 										$Alert = successMessage('Nutzer wurde erfolgreich angelegt');
 									}
 									else {
-										$Alert = dangerMessage("<strong>Error:</strong> " . $insert . "<br>" . $conn->error . "");
+										$Alert = dangerMessage("Der Nutzer konnte nicht angelegt werden, bitte versuchen Sie es erneut.");
 									}
 								}
 								else { //Ausgabe wenn es diesen Nutzer bereits gibt
@@ -103,10 +103,9 @@
 																														$result = $conn->query($update);
 																																if ($result == true) {
 																																	$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
+																																} else {
+																																	$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 																																}
-																																		else {
-																																			$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error . " <br/><strong>Bitte kontaktieren Sie den System Provider</strong>");
-																																		}
 																											}
 																												else { //Ausgabe wenn es diesen Nutzer bereits gibt
 																													$Alert = dangerMessage("Es gibt bereits einen Nutzer mit dieser Email.");
@@ -129,7 +128,7 @@
 																																$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
 																															}
 																															else {
-																																$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error . " <br/><strong>Bitte kontaktieren Sie den System Provider</strong>");
+																																$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 																															}
 																														}
 																								}//ende von else

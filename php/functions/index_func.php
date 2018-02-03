@@ -8,8 +8,8 @@
 					VALUES ('$s_ID','$formated')";
 			if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
 				$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
-			} else { //Fall es nicht klappt wird der Nutzer mit einem Errorcode und einer Errornummer konfrontiert
-				$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+			} else {
+				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 			}
 		}
 
