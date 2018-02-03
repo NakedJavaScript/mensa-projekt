@@ -674,6 +674,7 @@ list-group-item .btn-danger .btn-success {
     justify-content: center;
 }
 
+.tablesorter thead .disabled {display: none}
 
 /* pager wrapper, div */
 .tablesorter-pager {

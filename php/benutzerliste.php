@@ -42,7 +42,7 @@
 		        <th>Email</th>
 		        <th>Kontostand</th>
 				<th>Admin?</th>
-				<th>Löschen/Bearbeiten</th>
+				<th class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
 		      </tr>
 		    </thead>
 				    <tbody>

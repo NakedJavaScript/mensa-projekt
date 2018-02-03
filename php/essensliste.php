@@ -39,7 +39,7 @@
         		<th>Allergene/Inhaltsstoffe</th>
         		<th>Sonstiges</th>
         		<th>Preis</th>
-						<th>Löschen/Bearbeiten</th>
+				<th  class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
       	</tr>
     	</thead>
 		    <tbody>

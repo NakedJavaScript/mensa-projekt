@@ -68,7 +68,7 @@
 								<th>Sonstiges:</th>
 								<th>Preis:</th>
 								<th>Buchungsdatum</th>
-								<th>Löschen/Bearbeiten</th>
+								<th  class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
 							</thead>
 						<tbody>
 
