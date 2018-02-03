@@ -189,8 +189,14 @@
 													</div>
 						</fieldset><br>
 										  <label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" /><br>
-										  <label for="preis" >Preis:</label><input type="text" name="preis" class="form-control" placeholder="123€" aria-labelledby="preisHelp"  required/>
-											<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
+										  <label for="preis" >Preis:</label>
+											<div class="input-group mb-3">
+												<input type="text" class="form-control" name="preis" placeholder="123" aria-label="Tragen Sie den gewünschten Betrag ein." aria-labelledby="preisHelp" aria-describedby="unit" required>
+													<div class="input-group-append">
+														<span class="input-group-text" id="unit">€</span>
+													</div>
+											</div>
+											<small id="preisHelp" class="form-text text-muted">Bitte verwenden Sie anstelle eines Kommas einen Punkt: '.'</small>
 										</div>
 
 									</div>
@@ -301,7 +307,13 @@
 																						</div>
 															</fieldset><br>
 																				<label for="sonstiges" >Sonstiges:</label><input type="text" name="sonstiges" id="sonstiges" class="form-control" placeholder="Pommes + kleine Cola" /><br>
-																				<label for="preis" >Preis:</label><input type="text" name="preis" id="preis" class="form-control" placeholder="123€" aria-labelledby="preisHelp"  required/>
+																				<label for="preis" >Preis:</label>
+																				<div class="input-group mb-3">
+																					<input type="text" class="form-control" name="preis" id="preis" placeholder="123" aria-label="Tragen Sie den gewünschten Betrag ein." aria-labelledby="preisHelp" aria-describedby="unit" required>
+																						<div class="input-group-append">
+																							<span class="input-group-text" id="unit">€</span>
+																						</div>
+																				</div>
 																				<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
 																			</div>
 

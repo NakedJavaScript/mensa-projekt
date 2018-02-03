@@ -34,7 +34,7 @@
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<button type='button' class='btn btn-primary'>" . $_SESSION['vorname'] . "</button>
+ 		 		<a role='button' href='profil.php' class='btn btn-primary'>" . $_SESSION['vorname'] . "</a>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
@@ -78,7 +78,7 @@
 
 	</div>
 	<!-- footer -->
-	<div class="modal-footer">
+	<div class="modal-footer login-modal-footer">
 		<input type="submit" name="submit" class="btn btn-primary btn-block" value="Einloggen">
         <a href="forgotPassword.php">Passwort vergessen?</a>
 	</div>

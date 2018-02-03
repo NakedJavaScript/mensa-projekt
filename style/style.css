@@ -22,6 +22,11 @@ body {
   padding: .5rem .75rem;
 }
 
+#login-btn, #login-btn:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -142,7 +147,8 @@ body {
 
 .index-btns {
   position: relative;
-  top: 50%;
+  top: 100px;
+  bottom: 400px;
   transform: translateY(-50%);
 }
 
@@ -188,6 +194,10 @@ list-group-item .btn-danger .btn-success {
 
 /* ----- CONTACT-FORM ----- */
 
+.fa-envelope {
+    color: #007bff !important;
+}
+
 .contact-box {
   background-color: #f7f7f9;
   padding: 20px;
@@ -215,7 +225,7 @@ list-group-item .btn-danger .btn-success {
   padding-bottom: 25px;
 }
 
-.modal-footer {
+.login-modal-footer {
     flex-direction: column;
 }
 
@@ -606,6 +616,11 @@ list-group-item .btn-danger .btn-success {
 }
 
 /* Forgot Password CSS */
+
+
+.login-footer {
+    flex-direction: column !important;
+}
 
 .forgotPasswordForm {
     margin-top: 50px;

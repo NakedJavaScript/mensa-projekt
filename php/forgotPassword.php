@@ -1,5 +1,7 @@
-<?php include_once 'dependencies.php';
-      include 'functions\forgotPW_function.php';?>
+<?php
+    include_once 'dependencies.php';
+    include 'functions\forgotPW_function.php';
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
