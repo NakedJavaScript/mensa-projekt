@@ -7,14 +7,7 @@
 	<head>
 		<?php
 			echo $head_dependencies;
-			if (isset($_GET["page"])) { //Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite. $page = aktuelle Seite.
-				 $page  = $_GET["page"];
-			 }
-			 else {
-				 $page=1;
-			 };
-					$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind, 10 entspricht den Limit pro Seite.
-					$sql = "SELECT * FROM speise ORDER BY speise_ID ASC LIMIT $start_from ,10"; //nimmt das Ergebnis aus $start_from und nimmt dann die darauf folgenden 10 Ergebnisse.
+					$sql = "SELECT * FROM speise";
 					$result = $conn->query($sql);
 		?>
 					<title>Essensliste</title>
@@ -35,23 +28,18 @@
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">
 				Hinzufügen <i class='fas fa-plus'> </i>
 			</button>
-			<div class="input-group add-on" style="float:right; width:400px;">
-				<input class="form-control search-box" placeholder="Suche" name="srch-term" id="srch-term" type="text">
-				<div class="input-group-btn">
-					<button class="btn btn-default" id="search-btn" type="submit"><i class="fas fa-search"></i></button>
-				</div>
-			</div>
+
 			<br/>
 			<br/>
 
-			<table class="table table-hover">
+			<table class="tabelsorterTable table table-hover tablesorter">
     		<thead>
 		      <tr>
         		<th>Name der Speise</th>
         		<th>Allergene/Inhaltsstoffe</th>
         		<th>Sonstiges</th>
         		<th>Preis</th>
-						<th>Löschen/Bearbeiten</th>
+				<th  class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
       	</tr>
     	</thead>
 		    <tbody>
@@ -59,11 +47,11 @@
 							if ($result->num_rows > 0) {
 							// ausgabe der Daten aus jeder Zeile der Tabelle.
 									while($row = $result->fetch_assoc()) {
-											echo 	"<tr><td>".$row['name']."</td>";
-											echo		"<td>".$row['allergene_inhaltsstoffe']."</td>";
-											echo		"<td>".$row['sonstiges']."</td>";
-											echo		"<td>".$row['preis']."€</td>";
-											echo		"<td><button type='button' method='POST' data-href='?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+											echo 	"<tr><td class='align-middle'>".$row['name']."</td>";
+											echo		"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
+											echo		"<td class='align-middle'>".$row['sonstiges']."</td>";
+											echo		"<td class='align-middle'>".$row['preis']."€</td>";
+											echo		"<td class='align-middle'><button type='button' method='POST' data-href='?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
 														<button type='button' class='btn btn-success' speise_ID='".$row['speise_ID']."' speise_name='".$row['name']."' sonstiges='".$row['sonstiges']."' allergene='".$row['allergene_inhaltsstoffe']."' preis='".$row['preis']."' data-toggle='modal' data-target='#EditFood' method='POST' id='edit_food'  >
@@ -73,44 +61,31 @@
 									}
 							}
 								else {
-									echo "<tr><td><strong>0 Ergebnisse</strong></td></tr>";
+									echo "<tr><td class='align-middle'><strong>0 Ergebnisse</strong></td></tr>";
 								}
 						?>
 				</tbody>
 			</table>
 
-									<!-- Page Navigation-->
-										<nav class="page_nav">
-											<ul class='pagination justify-content-center'>
-												<?php
-													$count = "SELECT COUNT(speise_ID) AS total FROM mensa.speise";
-													$result = $conn->query($count);
-													$row = $result->fetch_assoc();
-													$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen, 10 = anzahl der Ergebnisse pro Seite
+			<!-- pager -->
+<div id="pager" class="pager">
+  <form>
+    <i class="fas fa-angle-double-left first"/></i>
+    <i class="fas fa-angle-left prev"/></i>
+    <!-- the "pagedisplay" can be any element, including an input -->
+    <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+    <i class="fas fa-angle-right next"/></i>
+    <i class="fas fa-angle-double-right last"/></i>
+    <select class="pagesize">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="all">Alle Nutzer</option>
+    </select>
+  </form>
+</div>
 
-														echo "<li class='page-item";//Previous Button
-															if($page == 1) {
-																echo " disabled";
-															}
-																echo "'><a class='page-link' href='essensliste.php?page=". ($page-1)."'><i class='fas fa-arrow-left'></i></a></li>";
-																	for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
-																		echo "<li class='page-item";
-																			if ($i==$page) {
-																				echo " active'";
-																			}
-																			echo "'><a class='page-link' href='essensliste.php?page=".$i."'";
-
-																				echo ">".$i."</a></li>";
-																	};
-																		echo "<li class='page-item";//Next Button
-																			if($page == $total_pages) {
-																				echo " disabled";
-																			}
-																				echo "'><a class='page-link' href='essensliste.php?page=". ($page+1) ."'><i class='fas fa-arrow-right'></i></a></li>";
-														$conn->close();
-												?>
-								</nav>
-								<!--Page Navigation END -->
 								</div>
 
 		<?PHP

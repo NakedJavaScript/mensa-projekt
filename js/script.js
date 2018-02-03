@@ -137,3 +137,56 @@ $(".heart-btn").click(function(e) {
         $(this).mouseenter();
     }
 });
+
+// script für das jquery tablesorter plugin
+$(function() {
+
+    // Einstellungen des Pagers
+    var pagerOptions = {
+      container: $(".pager"),
+      output: '{startRow:input} – {endRow} / {totalRows} Einträge',
+      updateArrows: true,
+      page: 0,
+      size: 10,
+      savePages : true,
+      storageKey:'tablesorter-pager',
+      pageReset: 0,
+      fixedHeight: false,
+      removeRows: false,
+      countChildRows: false,
+
+      // css klassennamen der Seiten-Pfeile
+      cssNext: '.next', // nächste
+      cssPrev: '.prev', // vorherige
+      cssFirst: '.first', // erste
+      cssLast: '.last', // letzte
+      cssGoto: '.gotoPage', // Dropdown zur Auswahl der Anzahl an angezeigten Nutzern
+      cssPageDisplay: '.pagedisplay', // wo das Output angezeigt werden soll
+      cssPageSize: '.pagesize', // Dropdown für die Anzeige der Auswahl
+      cssDisabled: 'disabled'
+    };
+
+    // Einstellungen des Tablesorters
+  var $table = $('.tabelsorterTable').tablesorter({
+    theme: 'jui',
+    widgets: ["filter"],
+    sortList: [[0,0],[2,0]],
+    widgetOptions : {
+      filter_columnFilters: true,
+      filter_placeholder: { search : 'suchen...' }
+    }
+  })
+
+  // bind to pager events
+  // *********************
+  .bind('pagerChange pagerComplete pagerInitialized pageMoved', function(e, c){
+    var msg = '"</span> event triggered, ' + (e.type === 'pagerChange' ? 'going to' : 'now on') +
+      ' page <span class="typ">' + (c.page + 1) + '/' + c.totalPages + '</span>';
+    $('#display')
+      .append('<li><span class="str">"' + e.type + msg + '</li>')
+      .find('li:first').remove();
+  })
+
+  // Pager wird initialisiert
+  .tablesorterPager(pagerOptions);
+});

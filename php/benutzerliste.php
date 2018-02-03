@@ -6,9 +6,7 @@
 	<head>
 		<?php
 			echo $head_dependencies;
-			if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page=1; };//Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite.
-			$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind
-			$sql = "SELECT * FROM benutzer ORDER BY benutzer_ID ASC LIMIT $start_from ,10";
+			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
 		<title>Benutzerliste</title>
@@ -41,7 +39,7 @@
 				<br/>
 				<br/>
 
-			<table class="table table-hover">
+			<table class="tabelsorterTable table table-hover tablesorter">
 
 		    <thead>
 		      <tr>
@@ -49,7 +47,8 @@
 		        <th>Nachname</th>
 		        <th>Email</th>
 		        <th>Kontostand</th>
-						<th>Löschen/Bearbeiten</th>
+				<th>Admin?</th>
+				<th class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
 		      </tr>
 		    </thead>
 				    <tbody>
@@ -57,11 +56,19 @@
 									if ($result->num_rows > 0) {
 									// ausgabe der Daten aus jeder Zeile der Tabelle.
 									while($row = $result->fetch_assoc()) {
-											 echo	"<tr><td>".$row['vorname']."</td>
-														<td>".$row['nachname']."</td>
-														<td>".$row['email']."</td>
-														<td>".$row['kontostand']."€</td>
-														<td><button type='button' method='POST' data-href='?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+										if ($row['admin_rechte'] == 2) {
+											$adminRecht = "Ja";
+											echo "<tr class='admin-highlight'>";
+										} else {
+											$adminRecht = "Nein";
+											echo "<tr>";
+										}
+											 echo	"<td class='align-middle'>".$row['vorname']."</td>
+														<td class='align-middle'>".$row['nachname']."</td>
+														<td class='align-middle'>".$row['email']."</td>
+														<td class='align-middle'>".$row['kontostand']."€</td>
+														<td class='align-middle'>".$adminRecht."</td>
+														<td class='align-middle'><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
 													<button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".strstr($row['email'], '@', true)."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
@@ -76,36 +83,24 @@
 								<tbody>
 			</table>
 
-			<nav class="page_nav">
-					<ul class='pagination justify-content-center'>
-						<?php
-							$count = "SELECT COUNT(benutzer_ID) AS total FROM mensa.benutzer";
-							$result = $conn->query($count);
-							$row = $result->fetch_assoc();
-							$total_pages = ceil($row["total"] / 10); // Berechnung der insgesamten Seiten mit Ergebnissen
-
-								echo "<li class='page-item";//Previous Button
-									if($page == 1) {
-										echo " disabled";
-									}
-										echo "'><a class='page-link' href='benutzerliste.php?page=". ($page-1)."'><i class='fas fa-arrow-left'></i></a></li>";
-											for ($i=1; $i<=$total_pages; $i++) {  // ausgabe aller seiten mithilfe von Links
-												echo "<li class='page-item";
-													if ($i==$page) {
-														echo " active'";
-													}
-													echo "'><a class='page-link' href='benutzerliste.php?page=".$i."'";
-
-														echo ">".$i."</a></li>";
-											};
-												echo "<li class='page-item";//Next Button
-													if($page == $total_pages) {
-														echo " disabled";
-													}
-														echo "'><a class='page-link' href='benutzerliste.php?page=". ($page+1) ."'><i class='fas fa-arrow-right'></i></a></li>";
-								$conn->close();
-						?>
-		</nav>
+			<!-- pager -->
+<div id="pager" class="pager">
+  <form>
+    <i class="fas fa-angle-double-left first"/></i>
+    <i class="fas fa-angle-left prev"/></i>
+    <!-- the "pagedisplay" can be any element, including an input -->
+    <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+    <i class="fas fa-angle-right next"/></i>
+    <i class="fas fa-angle-double-right last"/></i>
+    <select class="pagesize">
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="all">Alle Nutzer</option>
+    </select>
+  </form>
+</div>
 		</div>
 
 		<?PHP
