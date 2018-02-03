@@ -12,7 +12,7 @@
             $ContactMail->Password = "!tsSchuleF00Dmengrp";
             $ContactMail ->setFrom($from, $fromName);
             $ContactMail ->addAddress($to);
-            $ContactMail ->subject = $subject;
+            $ContactMail ->Subject = $subject;
             $ContactMail ->Body = $body;
             $ContactMail ->isHTML(true);
 
@@ -22,7 +22,7 @@
 
         $name = $_POST['Name'];
         $email = $_POST['Email'];
-        $subject = $_POST['Betreff'];
+        $subject = $_POST['Betreff'] . " <Von " . $email . " >";
         $body = $_POST['Nachricht'];
         $to = 'foodmengroup@gmail.com';
 
