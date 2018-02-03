@@ -18,6 +18,11 @@ body {
   padding: .5rem .75rem;
 }
 
+#login-btn, #login-btn:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -138,7 +143,8 @@ body {
 
 .index-btns {
   position: relative;
-  top: 50%;
+  top: 100px;
+  bottom: 400px;
   transform: translateY(-50%);
 }
 
@@ -602,6 +608,11 @@ list-group-item .btn-danger .btn-success {
 }
 
 /* Forgot Password CSS */
+
+
+.login-footer {
+    flex-direction: column !important;
+}
 
 .forgotPasswordForm {
     margin-top: 50px;

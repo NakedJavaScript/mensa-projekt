@@ -27,6 +27,8 @@
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">
 		<link rel="icon" href="../images/icon.ico">
+		<script src="../vendor/Chart.js/Chart.min.js"></script>
+
 ';
 	$footer_dependencies = '<!-- Javascript -->
 		<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -35,8 +37,6 @@
 		<script src="../vendor/bootstrap/js/popper.min.js"></script>
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="../vendor/tether/js/tether.min.js"></script>
-
-
 ';
 
 
