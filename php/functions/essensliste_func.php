@@ -6,12 +6,15 @@
 
 				if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 					$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
+					header('refresh:1.5 ; url= essensliste.php');
 				}
 					else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 						$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
+						header('refresh:1.5 ; url= essensliste.php');
 																			}
               else if(empty($_POST['allergene'])) {
                 $Alert = dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'keine Allergene'. ");
+				header('refresh:1.5 ; url= essensliste.php');
               }
 			else {
 					$all_inh = implode(", ", $_POST['allergene']);
@@ -23,13 +26,16 @@
 
 								if ($conn->query($insert) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
 										$Alert = successMessage("Speise wurde erfolgreich hinzugefügt");
+										header('refresh:1.5 ; url= essensliste.php');
 								}
 										else {
 											$Alert = dangerMessage("Die Speise konnte nicht angelegt werden, bitte versuchen Sie es erneut.");
+											header('refresh:1.5 ; url= essensliste.php');
 										}
 							}
 					else {
 						$Alert = dangerMessage("Es gibt bereits ein Produkt mit diesem Namen.");
+						header('refresh:1.5 ; url= essensliste.php');
 					}
 
 				}
@@ -43,12 +49,15 @@
 
 						if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 							$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
+							header('refresh:1.5 ; url= essensliste.php');
 						}
 							else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
 								$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
+								header('refresh:1.5 ; url= essensliste.php');
 							}
 								else if(empty($_POST['allergene'])) {
 									$Alert= dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'Keine Allergene'.");
+									header('refresh:1.5 ; url= essensliste.php');
 								}
 					else {
 							$all_inh = implode(", ", $_POST['allergene']); //implode teilt array auf. wird mit komma zeichen getrennt.
@@ -67,13 +76,16 @@
 
 													if ($conn->query($update) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
 															$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
+															header('refresh:1.5 ; url= essensliste.php');
 													}
 															else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
 																$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+																header('refresh:1.5 ; url= essensliste.php');
 															}
 												}
 										else { //Falls eine andere Speise bereits den Namen der neu vergebenen Speise hat.
 											$Alert = dangerMessage("Es gibt bereits ein Produkt mit diesem Namen.");
+											header('refresh:1.5 ; url= essensliste.php');
 										}
 
 						}
@@ -86,9 +98,11 @@
 
 							if ($conn->query($update) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
 									$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
+									header('refresh:1.5 ; url= essensliste.php');
 							}
 									else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
 										$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+										header('refresh:1.5 ; url= essensliste.php');
 									}
 
 						}
@@ -102,11 +116,14 @@
 			$delete = "DELETE FROM speise WHERE speise_ID = $speiseID";
 				if ($conn->query($delete) === TRUE) {
 					$Alert = successMessage("Speise wurde erfolgreich entfernt");
+					header('refresh:1.5 ; url= essensliste.php');
 				}
 				else if ($conn->errno == 1451) { //1451 entspricht dem Error code wenn ein Wert als Foreign Key verwendet wird.
 						$Alert = dangerMessage("Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.");
+						header('refresh:1.5 ; url= essensliste.php');
 					} else {
 						$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+						header('refresh:1.5 ; url= essensliste.php');
 					}
 		}
 ?>

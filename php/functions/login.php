@@ -22,10 +22,12 @@ if(isset($_POST['submit'])){
 		}
 		else{
 			$Alert = dangerMessage('Falsches Passwort');
+			header('refresh:1.5 ; url= index.php');
 		}
 	}
 	else{
 		$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
+		header('refresh:1.5 ; url= index.php');
 	}
 }
 ?>

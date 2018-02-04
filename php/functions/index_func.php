@@ -8,8 +8,10 @@
 					VALUES ('$s_ID','$formated')";
 			if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
 				$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
+				header('refresh:1.5 ; url= index.php');
 			} else {
 				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+				header('refresh:1.5 ; url= index.php');
 			}
 		}
 
@@ -52,6 +54,7 @@
 			VALUES (".$user_ID."," .$food_ID.")";
 
 			$conn->query($insert);
+			header('refresh:0.1 ; url= index.php');
 		}
 
 
@@ -62,6 +65,7 @@
 				$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
 
 				$conn->query($delete);
+				header('refresh:0.1 ; url= index.php');
 			}
 
 
@@ -71,8 +75,10 @@
 				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
 				if ($conn->query($delete) === TRUE) {
 					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+					header('refresh:1.5 ; url= index.php');
 				} else {
-					$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					header('refresh:1.5 ; url= index.php');
 				}
 			}
 
@@ -85,8 +91,10 @@
 				$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated_date'";
 				if ($conn->query($insert) === TRUE) {
 					$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
+					header('refresh:1.5 ; url= index.php');
 				} else {
-					$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					header('refresh:1.5 ; url= index.php');
 				}
 			}
 
