@@ -14,27 +14,26 @@ body {
   padding-bottom: 6em;
 }
 
+/* Additional Table CSS */
+
 .admin-highlight {
     background-color: rgba(40, 167, 69, 0.2);
 }
 
-#search-btn {
-  padding: .5rem .75rem;
+/* Success Page CSS */
+
+.success-icn {
+    color: #28a745;
 }
 
-#login-btn, #login-btn:hover {
-    text-decoration: none;
-    color: #fff;
-}
+/* Footer CSS */
 
 .footer {
-  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #1b1e21;
-  text-align: center;
-  padding: 20px;   /* Height of the footer */
+  color: #fff;
 }
 
 .footer-links {
@@ -46,16 +45,11 @@ body {
     text-decoration: none;
 }
 
-.close {
-  color: #000 !important;
-}
+/* Alert CSS */
 
 .alert-container {
-  position: absolute;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .alert {
@@ -72,89 +66,56 @@ body {
   border-radius: 4px;
 }
 
-.user-table {
-  margin-top: 50px;
-}
+/* Page Content Wrapper CSS */
 
-.profile-btns {
-  margin-left: 5px;
-  float:right;
-  text-align:center;
-}
-
-.index-btns:hover {
-  cursor: pointer;
-}
-
-.navbar {
-	margin-bottom: 20px;
-}
-
-.pageContentWrapper {
+.page-content-wrapper {
   margin-top: 80px;
 }
+
+/* Additional Navbar CSS */
 
 .mr-auto .nav-link:hover {
   color: #e05120 !important;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  background-color: #28a745;
-}
-
-.nav-pills .nav-link {
-  color: #000;
-}
-
-.form-check-input {
-    position: absolute;
-    margin-top: .25rem;
-}
-
-.active-link {
+.active-nav-links {
   color: #e05120 !important;
   font-weight:600;
 }
 
-.bg-custom {
+.custom-nav-bg {
   background-color: #eee!important;
 }
+
+    /* Navbar Dropdown CSS */
+
+    .dropdown-menu {
+    	min-width: 0;
+    	max-width: 100%;
+    }
+
+/* Additional Profile Tabs CSS */
+
+.nav-pills .nav-link.active, .nav-pills .show >.nav-link { /* changes background color of the profile tabs */
+  background-color: #28a745;
+}
+
+.nav-pills .nav-link { /* And the link */
+  color: #000;
+}
+
+/* Index Date Table CSS */
 
 .disable {
   pointer-events: none;
   cursor: default;
 }
 
-.dropdown {
-	margin-right: 15px;
-}
-
-.search-box {
-	padding: .5rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.dropdown-menu {
-	min-width: 0;
-	max-width: 100%;
-}
-
-.dropdown-item {
-	padding: 0 5px 0 5px !important;
-    margin: 0px !important;
-}
-
-.index-btns {
-  position: relative;
-  top: 100px;
-  bottom: 400px;
-  transform: translateY(-50%);
-}
-
-.daymealTable {
+.day-meal-table {
     table-layout: fixed;
 }
+
+/* HERE */
 
 .foodDetailList {
     list-style-type: none;

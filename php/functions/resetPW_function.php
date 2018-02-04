@@ -1,11 +1,8 @@
 <?php
-
-if(isset($_GET["email"]) && isset($_GET["token"])) {
-    $email = $conn->real_escape_string($_GET["email"]);
-    $token = $conn->real_escape_string($_GET["token"]);
-    $data = $conn->query("SELECT benutzer_ID FROM mensa.benutzer WHERE email='$email' AND token='$token'");
-
-
+    if(isset($_GET["email"]) && isset($_GET["token"])) {
+        $email = $conn->real_escape_string($_GET["email"]);
+        $token = $conn->real_escape_string($_GET["token"]);
+        $data = $conn->query("SELECT benutzer_ID FROM mensa.benutzer WHERE email='$email' AND token='$token'");
         $pepper = 'mensa_pfeffer';
         $options = array("cost"=>12);
 
@@ -19,14 +16,12 @@ if(isset($_GET["email"]) && isset($_GET["token"])) {
             $Alert = successMessage("Dein Passwort wurde erfolgreich geändert!");
 
             echo $Alert . "
-            <script>setTimeout(function () {
+                <script>setTimeout(function () {
                 window.location.href= 'index.php';
-            },3000);</script>";
+                },3000);</script>";
         }
-
-} else {
-    header("Location: index.php");
-    exit();
-}
-
+    } else {
+        header("refresh: 1.5 ; url = index.php");
+        exit();
+    }
 ?>

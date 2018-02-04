@@ -25,12 +25,9 @@
             $hashedPassword = password_hash($str . $pepper, PASSWORD_BCRYPT, $options);
             // Passwort wird verändert
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
-
             $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
-            
         } else {
             $Alert = dangerMessage("Diese E-Mail existiert nicht!");
-
         }
     }
 ?>

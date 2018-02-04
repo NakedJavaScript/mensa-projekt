@@ -1,5 +1,4 @@
-<?php include_once 'dependencies.php';
-?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -41,5 +40,5 @@
             }
         ?>
     </body>
-<?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?>
 </html>

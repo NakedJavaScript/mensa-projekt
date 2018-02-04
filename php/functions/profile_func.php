@@ -2,15 +2,18 @@
     function endsWith($haystack, $needle) {
         return $needle === '' || substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }
+
     if (isset($_POST['edit_profile'])) {
         $required = array('vorname','nachname','email','new_password');
         $is_empty = TRUE;
+
         foreach($required as $field) {
-          if (!empty($_POST[$field])) {
-              $is_empty = false;
-              break;
-          }
+            if (!empty($_POST[$field])) {
+                $is_empty = false;
+                break;
+            }
         }
+
         if (!$is_empty) {
             $pepper = 'mensa_pfeffer';
             $update = "UPDATE mensa.benutzer SET";
@@ -20,16 +23,19 @@
             if(!empty($_POST['vorname'])) {
                 $update = $update . " vorname ='".$_POST['vorname']."' ,";
             }
+
             if(!empty($_POST['nachname'])) {
                 $update = $update . " nachname ='".$_POST['nachname']."' ,";
             }
+
             if(!empty($_POST['email'])) {
                 if (strpos($_POST['email'], '@') == false) {
                     $update = $update . " email = '".$_POST['email']."@its-stuttgart.de' ,";
-                }  else {
+                } else {
                     $email_invalid = true;
                 }
             }
+
             if(!empty($_POST['new_password'])) {
                 if(!empty($_POST['confirm_password']) && $_POST['new_password'] == $_POST['confirm_password']) {
                     $passwort = $_POST['new_password'];
@@ -41,10 +47,12 @@
                     $password_invalid = true;
                 }
             }
+
             if (endsWith($update,',')) {
                 $update = substr($update, 0, -1);
                 $update = $update . " WHERE benutzer_ID = ".$_SESSION['id'];
                 $result = $conn->query($update);
+
                 if($result === true) {
                     $query = "SELECT * from mensa.benutzer WHERE benutzer_ID = ".$_SESSION['id'];
                     $user = $conn->query($query)->fetch_assoc();

@@ -17,7 +17,6 @@
             $ContactMail ->isHTML(true);
 
             return $ContactMail->send();
-
         }
 
         $name = $_POST['Name'];
