@@ -18,7 +18,7 @@
 			        <a class='nav-link' href='essensliste.php'>Essensliste</a>
 			      </li>
                   <li class='nav-item'>
-                    <a class='nav-link' href='orders.php'>Bestellugen</a>
+                    <a class='nav-link' href='orders.php'>Bestellungen</a>
                   </li>
 			      <li class='nav-item'>
 			        <a class='nav-link' href='umsatz.php'>Umsatz</a>
