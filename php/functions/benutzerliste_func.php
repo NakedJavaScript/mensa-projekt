@@ -2,7 +2,7 @@
 	include_once 'misc.php';
 
 	//Code zum löschen eines Nutzers
-	if (isset($_GET['delete?userID'])) {
+	if (isset($_GET['delete?userID']) ) {
 		$userID = $_GET['delete?userID'];
 		$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
 		if ($conn->query($delete) == TRUE) {
