@@ -11,8 +11,8 @@
 	<body>
 		<?php include 'header.php' ?>
 		<div class="container">
-			<div id="topright">
-    			<img src="../images/foodmengroup.png" class="ribbon"/>
+			<div class="position-relative">
+    			<img src="../images/foodmengroup.png" class="foodmen-logo position-absolute"/>
 			</div>
 			<h1>Impressum</h1>Angaben gemäß § 5 TMG<br/><br/>
 			Foodmen Group<br/>

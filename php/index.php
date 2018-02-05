@@ -98,13 +98,13 @@
 
 										$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 										$meal = $conn->query($sql)->fetch_assoc();
-										$output = $output . "<ul class='foodDetailList'>
-										<li><b>Name:</b><br>".$meal['name']."</li>
-										<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
-										<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
-										<li><b>Preis:</b><br>".$meal['preis']."€</li>
-										<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
-										</ul>";
+										$output = $output . "<div class='d-flex flex-column'>
+										<div class='p-2'><b>Name:</b><div>".$meal['name']."</div></div>
+										<div class='p-2'><b>Allergene/Inhaltsstoffe:</b><div>".$meal['allergene_inhaltsstoffe']."</div></div>
+										<div class='p-2'><b>Sonstiges:</b><div>".$meal['sonstiges']."</div></div>
+										<div class='p-2'><b>Preis:</b><div>".$meal['preis']."€</div></div>
+										<div class='p-2'>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</div>
+										</div>";
 
 										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
 											$output = $output . "<button type='button' method='POST' data-href='?delete?daymeal_ID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>

@@ -14,10 +14,21 @@ body {
   padding-bottom: 6em;
 }
 
+/* General Additional CSS */
+
+list-group-item .btn-danger .btn-success {
+  float:right;
+  text-align:right;
+}
+
 /* Additional Table CSS */
 
 .admin-highlight {
     background-color: rgba(40, 167, 69, 0.2);
+}
+
+table, thead, tbody, td, th {
+  text-align: center;
 }
 
 /* Success Page CSS */
@@ -115,34 +126,10 @@ body {
     table-layout: fixed;
 }
 
-/* HERE */
-
-.foodDetailList {
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-    font-size: 1vw;
-    display: block;
-}
-
 .today {
   background-color: #28a745 !important;
   font-weight: bold !important;
   color: white !important;
-}
-
-table, thead, tbody, td, th {
-  text-align: center;
-}
-
-list-group-item .btn-danger .btn-success {
-  float:right;
-  text-align:right;
-}
-
-.page_nav{
-	color: black;
-	text-align: center;
 }
 
 /* Additional Cookie-CSS */
@@ -153,7 +140,7 @@ list-group-item .btn-danger .btn-success {
 }
 
 
-/* ----- CONTACT-FORM ----- */
+/* Additional Contactform CSS */
 
 .fa-envelope {
     color: #007bff !important;
@@ -161,33 +148,14 @@ list-group-item .btn-danger .btn-success {
 
 .contact-box {
   background-color: #f7f7f9;
-  padding: 20px;
-  border-radius: 5px;
   border: 1px solid #d8d8d8;
 }
 
+/* Additional Success Site CSS */
+
 .redo {
   border: 1px solid #28a745;
-  border-radius: 3px;
   background: #fff;
-  margin-bottom: 25px;
-}
-
-#topright {
-    position: relative;
-}
-#topright img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-
-.text-box {
-  padding-bottom: 25px;
-}
-
-.login-modal-footer {
-    flex-direction: column;
 }
 
 .modalbox.success {
@@ -227,13 +195,7 @@ list-group-item .btn-danger .btn-success {
   border-color: transparent;
 }
 
-.center {
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.center .change {
+.change {
   clearn: both;
   display: block;
   font-size: 10px;
@@ -479,7 +441,14 @@ list-group-item .btn-danger .btn-success {
   }
 }
 
-/* Back to top button */
+/* Additional Imprint CSS */
+
+.foodmen-logo {
+    top: 0px;
+    right: 0px;
+}
+
+/* Back to top button CSS */
 
 .cd-top {
   color: #fff;
@@ -530,7 +499,7 @@ list-group-item .btn-danger .btn-success {
   }
 }
 
-/* Like Button */
+/* Additional like Button CSS */
 
 .like-container {
     display: flex;

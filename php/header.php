@@ -71,7 +71,7 @@
                         <label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/>
                     </div>
                     <!-- footer -->
-                    <div class="modal-footer login-modal-footer">
+                    <div class="modal-footer flex-column">
                         <input type="submit" name="submit" class="btn btn-primary btn-block" value="Einloggen">
                         <a href="forgotPassword.php">Passwort vergessen?</a>
                     </div>
