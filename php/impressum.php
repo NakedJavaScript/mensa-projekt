@@ -26,7 +26,7 @@
 			<h2>Kontakt</h2>
 			Telefon: 040 524739160<br/>
 			E-Mail: <a href="mailto:info@foodmengroup.com">info@foodmengroup.com</a><br/>
-			Internetadresse: <a href="http://www.foodmengroup.com" target="_blank">foodmengroup.com</a><br/>
+			Internetadresse: <a href="../foodmengroup/foodmengroup.php" target="_blank">foodmengroup.com</a><br/>
 			<h2>Registereintrag</h2>
 			Eintragung im  Handelsregister<br/>
 			Registernummer: 8764564<br/>
