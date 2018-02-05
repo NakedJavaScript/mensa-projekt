@@ -49,7 +49,7 @@
 	}
 
 	function dangerMessage($text) {
-		return "<div class='alert alert-danger alert-dismissable fade show'>
+		return "<div class='alert alert-danger alert-dismissable fade show mt-4'>
 		<a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 	}
 
