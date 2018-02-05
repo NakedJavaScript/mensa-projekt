@@ -53,7 +53,7 @@
 		} else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 			$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
 		} else if(strpos($_POST['email'], '@') !== false) {
-			$Alert = dangerMessage("Im Feld email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
+			$Alert = dangerMessage("Im Feld Email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
 		} else {
 			$nutzerID = $_POST['benutzer_ID'];
 			$vorname = trim($_POST['vorname']);//trim entfernt white space.
@@ -79,12 +79,13 @@
 				$check = $conn->query("SELECT * FROM benutzer WHERE email = '$email'"); //sql befehl zum prüfen ob es den User bereits gibt
 
 				if($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
-					$update = "UPDATE mensa.benutzer SET 	vorname= '$vorname',
+					$update = "UPDATE mensa.benutzer SET
+					vorname= '$vorname',
 					nachname = '$nachname',
 					email = '$email',
 					kontostand = '$kontostand',
 					admin_rechte = $adminrechte";
-					if ( !empty($_POST['passwort']) ) {
+					if ( !isset($_POST['passwort']) ) {
 						$update = $update . " , passwort = $hashPassword";
 					}
 
