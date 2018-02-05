@@ -18,11 +18,12 @@ if(isset($_GET["email"]) && isset($_GET["token"])) {
 
             $Alert = successMessage("Dein Passwort wurde erfolgreich geändert!");
 
-            header('refresh:1.5 ; url= index.php');
+            header('refresh: 1.5 ; url = index.php');
+            die();
         }
 
 } else {
-    header('refresh:1.5 ; url= index.php');
+    header('refresh: 1.5 ; url = index.php');
     exit();
 }
 
