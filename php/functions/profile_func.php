@@ -1,4 +1,6 @@
 <?php
+    include_once 'misc.php';
+    
     function endsWith($haystack, $needle) {
         return $needle === '' || substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }

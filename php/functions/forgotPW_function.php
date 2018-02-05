@@ -1,4 +1,6 @@
 <?php
+    include_once 'misc.php';
+    
     if(isset($_SESSION['email'])) {
         include'footer.php';
         die('Sieht so aus als wären Sie eingeloggt, da können Sie ihr Passwort doch nicht vergessen haben!');
@@ -27,7 +29,7 @@
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
 
             $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
-            
+
         } else {
             $Alert = dangerMessage("Diese E-Mail existiert nicht!");
 

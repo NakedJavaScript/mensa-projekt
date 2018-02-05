@@ -1,4 +1,5 @@
 <?php
+include_once 'misc.php';
 
 if(isset($_GET["email"]) && isset($_GET["token"])) {
     $email = $conn->real_escape_string($_GET["email"]);

@@ -1,4 +1,6 @@
 <?PHP
+include_once 'misc.php';
+
 if(isset($_POST['submit'])){
 	$email = trim($_POST['email']);
 	$passwort = trim($_POST['passwort']);

@@ -1,4 +1,6 @@
 <?PHP
+	include_once 'misc.php';
+	
 	//Code um eine Speise hinzuzufügen
 		if (isset($_POST['Essen_hinzufügen'])) {
 			$name = strtoupper(trim($_POST['name']));

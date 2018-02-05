@@ -1,4 +1,6 @@
 <?PHP
+	include_once 'misc.php';
+	
 	//Code um eine Speise hinzuzufügen
 		if (isset($_POST['Tagesangebot_erstellen'])) {
 			$s_ID =$_POST['foodlist'];

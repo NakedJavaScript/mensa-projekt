@@ -1,4 +1,6 @@
 <?PHP
+	include_once 'misc.php';
+
 	//Code zum löschen eines Nutzers
 	if (isset($_GET['delete?userID'])) {
 		$userID = $_GET['delete?userID'];
