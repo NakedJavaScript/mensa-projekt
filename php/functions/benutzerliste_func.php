@@ -3,8 +3,6 @@
 
 	//Code zum löschen eines Nutzers
 	if (isset($_GET['delete?userID']) ) {
-		$_GET = sanitize_form($_GET);
-		if ($_GET) {
 			$userID = $_GET['delete?userID'];
 			$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
 			if ($conn->query($delete) == TRUE) {
@@ -14,9 +12,6 @@
 			else {
 				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");
 			}
-		} else {
-			$Alert = dangerMessage('Fehler: Invalide Eingabe.');
-		}
 	}
 
 						//Code um einen Nutzer anzulegen

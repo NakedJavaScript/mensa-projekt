@@ -1,6 +1,7 @@
 <?php
     if (isset($_POST['contactFormSubmit'])) {
         $_POST = sanitize_form($_POST);
+        echo $_POST;
         if ($_POST) {
             function sendMail($to, $from, $fromName, $subject, $body) {
                 // PHP Mailer Konfiguration für das Kontaktformular

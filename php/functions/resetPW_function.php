@@ -4,11 +4,9 @@ include_once 'misc.php';
 if(isset($_GET["email"]) && isset($_GET["token"])) {
     $_GET = sanitize_form($_GET);
     if ($_GET) {
-    $email = $conn->real_escape_string($_GET["email"]);
-    $token = $conn->real_escape_string($_GET["token"]);
-    $data = $conn->query("SELECT benutzer_ID FROM mensa.benutzer WHERE email='$email' AND token='$token'");
-
-
+        $email = $conn->real_escape_string($_GET["email"]);
+        $token = $conn->real_escape_string($_GET["token"]);
+        $data = $conn->query("SELECT benutzer_ID FROM mensa.benutzer WHERE email='$email' AND token='$token'");
         $pepper = 'mensa_pfeffer';
         $options = array("cost"=>12);
 
@@ -27,6 +25,7 @@ if(isset($_GET["email"]) && isset($_GET["token"])) {
             },3000);</script>";
         }
     } else {
+        $$Alert = successMessage("Fehler: Invalide Eingabe");
         header("Location: index.php");
         exit();
     }

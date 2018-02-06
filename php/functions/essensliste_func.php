@@ -110,8 +110,8 @@
 
 	//Code zum löschen einer Speise
 		if (isset($_GET['delete?speiseID'])) {
-			$_POST = sanitize_form($_POST);
-			if ($_POST) {
+			$_GET = sanitize_form($_GET);
+			if ($_GET) {
 				$speiseID = $_GET['delete?speiseID'];
 				$delete = "DELETE FROM speise WHERE speise_ID = $speiseID";
 					if ($conn->query($delete) === TRUE) {
