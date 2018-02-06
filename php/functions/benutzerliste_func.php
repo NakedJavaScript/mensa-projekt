@@ -3,19 +3,26 @@
 
 	//Code zum löschen eines Nutzers
 	if (isset($_GET['delete?userID']) ) {
-		$userID = $_GET['delete?userID'];
-		$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
-		if ($conn->query($delete) == TRUE) {
-			$Alert = successMessage('Nutzer wurde erfolgreich entfernt');
+		$_GET = sanitize_form($_GET);
+		if ($_GET) {
+			$userID = $_GET['delete?userID'];
+			$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
+			if ($conn->query($delete) == TRUE) {
+				$Alert = successMessage('Nutzer wurde erfolgreich entfernt');
 
-		}
-		else {
-			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");
+			}
+			else {
+				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");
+			}
+		} else {
+			$Alert = dangerMessage('Fehler: Invalide Eingabe.');
 		}
 	}
 
 						//Code um einen Nutzer anzulegen
 						if (isset($_POST['neuer_nutzer'])) {
+							$_POST = sanitize_form($_POST);
+							if ($_POST) {
 							if (!is_numeric($_POST['kontostand'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 								$Alert = dangerMessage("Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.");
 							}
@@ -55,9 +62,14 @@
 								}
 
 							}//ende von else
+							} else {
+								$Alert = dangerMessage('Fehler: Invalide Eingabe.');
+							}
 						}//ende von if isset
 
 																							if (isset($_POST['bearbeiten_nutzer'])) {
+																								$_POST = sanitize_form($_POST);
+																								if ($_POST) {
 																								if (!is_numeric($_POST['kontostand'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 																									$Alert = dangerMessage("Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.");
 																								}
@@ -133,6 +145,9 @@
 																																$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 																															}
 																														}
-																								}//ende von else
+																													}//ende von else
+																								} else {
+																									$Alert = dangerMessage('Fehler: Invalide Eingabe.');
+																								}
 																							}//ende von if isset
 ?>

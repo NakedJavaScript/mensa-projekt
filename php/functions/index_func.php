@@ -3,15 +3,20 @@
 
 	//Code um eine Speise hinzuzufügen
 		if (isset($_POST['Tagesangebot_erstellen'])) {
-			$s_ID =$_POST['foodlist'];
-			$datum =strtotime($_POST['date']);
-			$formated= date('Y-m-d',$datum);
-			$insert = "INSERT INTO tagesangebot (speise_ID,datum)
-					VALUES ('$s_ID','$formated')";
-			if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
-				$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
+			$_POST = sanitize_form($_POST);
+			if ($_POST) {
+				$s_ID =$_POST['foodlist'];
+				$datum =strtotime($_POST['date']);
+				$formated= date('Y-m-d',$datum);
+				$insert = "INSERT INTO tagesangebot (speise_ID,datum)
+						VALUES ('$s_ID','$formated')";
+				if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
+					$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
+				} else {
+					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+				}
 			} else {
-				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+				$Alert = dangerMessage('Fehler: Invalide Eingabe.');
 			}
 		}
 
@@ -48,47 +53,67 @@
 
 		// Code um Speisen zu liken
 		if (isset($_POST['Speisen_liken'])) {
-			$user_ID = $_SESSION['id'];
-			$food_ID =$_POST['food_ID'];
-			$insert = "INSERT INTO likes (benutzer_ID, speise_ID)
-			VALUES (".$user_ID."," .$food_ID.")";
+			$_POST = sanitize_form($_POST);
+			if ($_POST) {
+				$user_ID = $_SESSION['id'];
+				$food_ID =$_POST['food_ID'];
+				$insert = "INSERT INTO likes (benutzer_ID, speise_ID)
+				VALUES (".$user_ID."," .$food_ID.")";
 
-			$conn->query($insert);
+				$conn->query($insert);
+			} else {
+				$Alert = dangerMessage('Fehler: Invalide Eingabe.');
+			}
 		}
 
 
 		//Code zum unliken
 			if (isset($_POST['Speisen_unliken'])) {
-				$food_ID =$_POST['food_ID'];
-				$user_ID = $_SESSION['id'];
-				$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
+				$_POST = sanitize_form($_POST);
+				if ($_POST) {
+					$food_ID =$_POST['food_ID'];
+					$user_ID = $_SESSION['id'];
+					$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
 
-				$conn->query($delete);
+					$conn->query($delete);
+				} else {
+					$Alert = dangerMessage('Fehler: Invalide Eingabe.');
+				}
 			}
 
 
 			//Code zum löschen eines Tagesangebots
 			if (isset($_GET['delete?daymeal_ID'])) {
-				$daymeal_ID = $_GET['delete?daymeal_ID'];
-				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
-				if ($conn->query($delete) === TRUE) {
-					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+				$_GET = sanitize_form($_GET);
+				if ($_GET) {
+					$daymeal_ID = $_GET['delete?daymeal_ID'];
+					$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
+					if ($conn->query($delete) === TRUE) {
+						$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+					} else {
+						$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+					}
 				} else {
-					$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+					$Alert = dangerMessage('Fehler: Invalide Eingabe.');
 				}
 			}
 
 			//Code zum Ändern eines Tagesangebots
 			if (isset($_POST['EditDaymeal'])) {
-				$old_food_ID = $_POST['food'];
-				$new_food_ID = $_POST['foodlist'];
-				$date = strtotime($_POST['date']);
-				$formated_date= date('Y-m-d',$date);
-				$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated_date'";
-				if ($conn->query($insert) === TRUE) {
-					$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
+				$_POST = sanitize_form($_POST);
+				if ($_POST) {
+					$old_food_ID = $_POST['food'];
+					$new_food_ID = $_POST['foodlist'];
+					$date = strtotime($_POST['date']);
+					$formated_date= date('Y-m-d',$date);
+					$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated_date'";
+					if ($conn->query($insert) === TRUE) {
+						$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
+					} else {
+						$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+					}
 				} else {
-					$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+					$Alert = dangerMessage('Fehler: Invalide Eingabe.');
 				}
 			}
 
