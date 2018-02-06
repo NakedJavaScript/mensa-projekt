@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
 		$rs = $conn->query($sql);
 
 		if($rs -> num_rows  == 1){
-
+      
 			$row = $rs->fetch_assoc();
 			if(password_verify($passwort . $pepper,$row['passwort'])){
 				$_SESSION['email'] = $email;
@@ -26,13 +26,19 @@ if(isset($_POST['submit'])){
 			}
 			else{
 				$Alert = dangerMessage('Falsches Passwort');
+        header('refresh: 0.1 ; url = index.php');
+			  die();
 			}
 		}
 		else{
 			$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
+      header('refresh: 0.1 ; url = index.php');
+			die();
 		}
 	} else {
 		$Alert = dangerMessage('Fehler: Invalide Eingabe.');
+    header('refresh: 0.1 ; url = index.php');
+    die();
 	}
 }
 ?>

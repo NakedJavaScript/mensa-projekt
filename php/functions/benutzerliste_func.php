@@ -7,10 +7,13 @@
 			$delete = "DELETE FROM benutzer WHERE benutzer_ID = $userID";
 			if ($conn->query($delete) == TRUE) {
 				$Alert = successMessage('Nutzer wurde erfolgreich entfernt');
-
+        header('refresh: 1.5 ; url = benutzerliste.ph');
+			  die();
 			}
 			else {
 				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");
+        header('refresh: 1.5 ; url = benutzerliste.ph');
+			  die();
 			}
 	}
 
@@ -20,12 +23,18 @@
 							if ($_POST) {
 							if (!is_numeric($_POST['kontostand'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 								$Alert = dangerMessage("Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.");
+								header('refresh:1.5 ; url = benutzerliste.ph');
+								die();
 							}
 							else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 								$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
+								header('refresh: 1.5 ; url = benutzerliste.ph');
+								die();
 							}
 							else if(strpos($_POST['email'], '@') !== false) { //Falls die Eingabe ein @ Zeichen enthält erhält der Nutzer unten stehende Nachricht
 								$Alert = dangerMessage("Im Feld Email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
+								header('refresh: 1.5 ; url = benutzerliste.ph');
+								die();
 							}
 							else {
 								$vorname = trim($_POST['vorname']);
@@ -47,13 +56,19 @@
 									$result = $conn->query($insert);
 									if($result === true) {
 										$Alert = successMessage('Nutzer wurde erfolgreich angelegt');
+										header('refresh: 1.5 ; url = benutzerliste.ph');
+										die();
 									}
 									else {
 										$Alert = dangerMessage("Der Nutzer konnte nicht angelegt werden, bitte versuchen Sie es erneut.");
+										header('refresh: 1.5 ; url = benutzerliste.ph');
+										die();
 									}
 								}
 								else { //Ausgabe wenn es diesen Nutzer bereits gibt
 									$Alert = dangerMessage("Es gibt bereits einen Nutzer mit dieser Email.");
+									header('refresh: 1.5 ; url = benutzerliste.ph');
+									die();
 								}
 
 							}//ende von else
@@ -67,12 +82,18 @@
 																								if ($_POST) {
 																								if (!is_numeric($_POST['kontostand'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 																									$Alert = dangerMessage("Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.");
+																									header('refresh: 1.5 ; url = benutzerliste.ph');
+																									die();
 																								}
 																									else if ($_POST['kontostand'] < 0) {//prüft ob es keine negative Zahl ist
 																										$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
+																										header('refresh: 1.5 ; url = benutzerliste.ph');
+																										die();
 																									}
 																										else if(strpos($_POST['email'], '@') !== false) {
 																											$Alert = dangerMessage("Im Feld email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
+																											header('refresh: 1.5 ; url = benutzerliste.ph');
+																											die();
 																										}
 																								else {
 																											$nutzerID = $_POST['benutzer_ID'];
@@ -112,12 +133,18 @@
 																														$result = $conn->query($update);
 																																if ($result == true) {
 																																	$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
+																																	header('refresh: 1.5 ; url = benutzerliste.ph');
+																																	die();
 																																} else {
 																																	$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+																																	header('refresh: 1.5 ; url = benutzerliste.ph');
+																																	die();
 																																}
 																											}
 																												else { //Ausgabe wenn es diesen Nutzer bereits gibt
 																													$Alert = dangerMessage("Es gibt bereits einen Nutzer mit dieser Email.");
+																													header('refresh: 1.5 ; url = benutzerliste.ph');
+																													die();
 																												}
 																									}
 
@@ -135,9 +162,14 @@
 																															$result = $conn->query($update);
 																															if($result == true) {
 																																$Alert = successMessage($vorname . " " . $nachname . ' wurde erfolgreich bearbeitet');
+																																header('refresh: 1.5 ; url = benutzerliste.ph');
+																																die();
 																															}
 																															else {
 																																$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+																																header('refresh: 1.5 ; url = benutzerliste.ph');
+																																die();
+
 																															}
 																														}
 																													}//ende von else

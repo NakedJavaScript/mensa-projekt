@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_destroy();
-header("refresh:3;index.php");
+header("refresh: 3 ; url = index.php");
 include 'dependencies.php';
 ?>
 <!DOCTYPE HTML>
@@ -27,6 +27,5 @@ include 'dependencies.php';
           <span class="change">Klicken Sie entweder auf den Button um zurück zur Startseite zu gelangen oder warten Sie einen moment bevor Sie automatisch zurückgeleitet werden.</span>
         </div>
       </div>
-
   </body>
   </html>

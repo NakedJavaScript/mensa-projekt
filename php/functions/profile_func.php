@@ -58,12 +58,18 @@
                         $Alert = successMessage("Profil erfolgreich bearbeitet.");
                     } else {
                         $Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+                        header('refresh: 0.1 ; url = index.php');
+			                  die();
                     }
                 } else {
                     if($email_invalid) {
                         $Alert = dangerMessage("Im Feld 'email' dürfen keine Domänen angegeben werden, bitte entfernen Sie das <strong>'@'</strong> zeichen und die <strong>Domäne</strong>");
+                        header('refresh: 0.1 ; url = index.php');
+			                  die();
                     } else {
                         $Alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
+                        header('refresh: 0.1 ; url = index.php');
+			                  die();
                     }
                 }
             } else {
@@ -71,6 +77,8 @@
             }
         } else {
             $Alert = dangerMessage("Fehler: Invalide Eingabe.");
+            header('refresh: 0.1 ; url = index.php');
+			      die();
         }
     }
 ?>

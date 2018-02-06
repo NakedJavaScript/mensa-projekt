@@ -31,11 +31,17 @@
 
             if (sendMail($to, $email, $name, $subject, $body)) {
                 $Alert = successMessage('Vielen dank für Ihre E-Mail!');
+                header('refresh: 1.5 ; url = kontakt.php');
+                die();
             } else {
                 $Alert = dangerMessage('Es tut uns leid aber irgendetwas ist schief gelaufen! Bitte versuchen Sie es erneut.');
+                header('refresh: 1.5 ; url = kontakt.php');
+                die();
             }
         } else {
             $Alert = dangerMessage('Fehler: Invalide Eingabe.');
+            header('refresh: 1.5 ; url = kontakt.php');
+            die();
         }
     }
 ?>
