@@ -6,10 +6,16 @@
 
 		if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 			$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		} else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
-			$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
-		} else if(empty($_POST['allergene'])) {
+			$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine negativen Zahlen erlaubt.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
+		} else if (empty($_POST['allergene'])) {
 			$Alert = dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'keine Allergene'. ");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		} else {
 			$all_inh = implode(", ", $_POST['allergene']);
 			$preis = doubleval($_POST['preis']); //wandelt preis in double um.
@@ -21,11 +27,17 @@
 
 				if ($conn->query($insert) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
 					$Alert = successMessage("Speise wurde erfolgreich hinzugefügt");
+					header('refresh: 1.5 ; url = essensliste.php');
+					die();
 				} else {
 					$Alert = dangerMessage("Die Speise konnte nicht angelegt werden, bitte versuchen Sie es erneut.");
+					header('refresh: 1.5 ; url = essensliste.php');
+					die();
 				}
 			} else {
 				$Alert = dangerMessage("Es gibt bereits ein Produkt mit diesem Namen.");
+				header('refresh: 1.5 ; url = essensliste.php');
+				die();
 			}
 		}
 	}
@@ -38,10 +50,16 @@
 
 		if (!is_numeric($_POST['preis'])) { //prüft ob im Textfeld nur Zahlen eingegeben wurden.
 			$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		} else if ($_POST['preis'] < 0) {//prüft ob es keine negative Zahl ist
-			$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine Negativen Zahlen erlaubt.");
-		} else if(empty($_POST['allergene'])) {
-			$Alert= dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'Keine Allergene'.");
+			$Alert= dangerMessage("Im Feld <strong>'Preis'</strong> sind keine negativen Zahlen erlaubt.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
+		} else if (empty($_POST['allergene'])) {
+			$Alert= dangerMessage("Bitte wählen Sie mindestens ein Allergen oder wählen Sie 'keine Allergene'.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		} else {
 			$all_inh = implode(", ", $_POST['allergene']); //implode teilt array auf. wird mit komma zeichen getrennt.
 			$preis = doubleval($_POST['preis']); //wandelt preis in double um.
@@ -61,11 +79,17 @@
 
 					if ($conn->query($update) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
 						$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
+						header('refresh: 1.5 ; url = essensliste.php');
+						die();
 					} else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
 						$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+						header('refresh: 1.5 ; url = essensliste.php');
+						die()
 					}
 				} else { //Falls eine andere Speise bereits den Namen der neu vergebenen Speise hat.
 					$Alert = dangerMessage("Es gibt bereits ein Produkt mit diesem Namen.");
+					header('refresh: 1.5 ; url = essensliste.php');
+					die();
 				}
 			} else { //Wenn das Produkt den selben Namen hat, dann wird das Update sofort durchgeführt.
 				$update = "UPDATE mensa.speise SET
@@ -77,8 +101,12 @@
 
 				if ($conn->query($update) === TRUE) { //Wenn erfolgreich eingefügt, dann wird erfolgsmessage angezeigt
 					$Alert = successMessage("Speise wurde erfolgreich bearbeitet");
+					header('refresh: 1.5 ; url = essensliste.php');
+					die();
 				} else { //Falls irgendein Fehler auftaucht wird diese hier angezeigt
 					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					header('refresh: 1.5 ; url = essensliste.php');
+					die();
 				}
 			}
 		}
@@ -91,10 +119,16 @@
 
 		if ($conn->query($delete) === TRUE) {
 			$Alert = successMessage("Speise wurde erfolgreich entfernt");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		} else if ($conn->errno == 1451) { //1451 entspricht dem Error code wenn ein Wert als Foreign Key verwendet wird.
 			$Alert = dangerMessage("Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		} else {
 			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+			header('refresh: 1.5 ; url = essensliste.php');
+			die();
 		}
 	}
 ?>

@@ -1,15 +1,19 @@
 <?PHP
 	//Code um eine Speise hinzuzufügen
 	if (isset($_POST['Tagesangebot_erstellen'])) {
-		$s_ID =$_POST['foodlist'];
-		$datum =strtotime($_POST['date']);
-		$formated= date('Y-m-d',$datum);
-		$insert = "INSERT INTO tagesangebot (speise_ID,datum) VALUES ('$s_ID','$formated')";
+		$s_ID = $_POST['foodlist'];
+		$datum = strtotime($_POST['date']);
+		$formated = date('Y-m-d', $datum);
+		$insert = "INSERT INTO tagesangebot (speise_ID, datum) VALUES ('$s_ID','$formated')";
 
 		if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
 			$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		} else {
 			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		}
 	}
 
@@ -41,10 +45,13 @@
 	// Code um Speisen zu liken
 	if (isset($_POST['Speisen_liken'])) {
 		$user_ID = $_SESSION['id'];
-		$food_ID =$_POST['food_ID'];
+		$food_ID = $_POST['food_ID'];
 		$insert = "INSERT INTO likes (benutzer_ID, speise_ID)
 		VALUES (".$user_ID."," .$food_ID.")";
+
 		$conn->query($insert);
+		header('refresh: 0.1 ; url = index.php');
+		die();
 	}
 
 	//Code zum unliken
@@ -52,7 +59,10 @@
 		$food_ID =$_POST['food_ID'];
 		$user_ID = $_SESSION['id'];
 		$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
+
 		$conn->query($delete);
+		header('refresh: 0.1 ; url = index.php');
+		die();
 	}
 
 	//Code zum löschen eines Tagesangebots
@@ -61,8 +71,12 @@
 		$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
 		if ($conn->query($delete) === TRUE) {
 			$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		} else {
-			$Alert = dangerMessage("<strong>Error:</strong> " . $delete . "<br>" . $conn->error ."");
+			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		}
 	}
 
@@ -76,8 +90,12 @@
 
 		if ($conn->query($insert) === TRUE) {
 			$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		} else {
-			$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		}
 	}
 ?>

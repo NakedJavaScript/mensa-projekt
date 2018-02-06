@@ -107,10 +107,14 @@
 										</div>";
 
 										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
+											$sql = "SELECT COUNT(*) AS orders FROM buchungen WHERE tagesangebot_ID = ".$entry['tagesangebot_ID'];
+											$orders = $conn->query($sql)->fetch_assoc();
 											$output = $output . "<button type='button' method='POST' data-href='?delete?daymeal_ID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
-											Löschen</button>
-											<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddValuesToModal('".$date."','".$entry["speise_ID"]."')>
-											Ändern</button>";
+																Löschen</button>
+																<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddValuesToModal('".$date."','".$entry["speise_ID"]."')>
+																Ändern</button>
+																<div>
+																<p><b>Bestellungen: </b>".$orders['orders']."</p></div>";
 										}
 									} else { // Display a button for the adding of a meal
 										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.

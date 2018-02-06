@@ -59,8 +59,13 @@
 								<td class='align-middle'>".$row['nachname']."</td>
 								<td class='align-middle'>".$row['email']."</td>
 								<td class='align-middle'>".$row['kontostand']."€</td>
-								<td class='align-middle'>".$adminRecht."</td>
-								<td class='align-middle'><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+								<td class='align-middle'>".$adminRecht."</td>";
+								if ($row['benutzer_ID'] == $_SESSION['id']) {
+									$disabled = 'disabled';
+								} else {
+									$disabled = '';
+								}
+								echo "<td class='align-middle'><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'". $disabled .">
 								<i class='fas fa-trash'> </i></button>
 
 								<button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".strstr($row['email'], '@', true)."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>

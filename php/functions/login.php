@@ -9,7 +9,7 @@
 		if($rs -> num_rows == 1) {
 			$row = $rs->fetch_assoc();
 
-			if(password_verify($passwort . $pepper,$row['passwort'])){
+			if(password_verify($passwort . $pepper, $row['passwort'])){
 				$_SESSION['email'] = $email;
 				$_SESSION['vorname'] = $row['vorname'];
 				$_SESSION['nachname'] = $row['nachname'];
@@ -18,11 +18,16 @@
 				$_SESSION['adminrechte'] = $row['admin_rechte'];
 				$Alert = successMessage('Login erfolgreich');
 				header( 'refresh: 1.5 ; url = index.php' ); //Nach dem Login wird der Nutzer zum Index Redirected
-			} else{
+				die();
+			} else {
 				$Alert = dangerMessage('Falsches Passwort');
+				header('refresh: 1.5 ; url = index.php');
+				die();
 			}
-		} else{
+		} else {
 			$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
+			header('refresh: 1.5 ; url = index.php');
+			die();
 		}
 	}
 ?>
