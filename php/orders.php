@@ -49,7 +49,7 @@
                                 echo "<td class='align-middle'>".$user['nachname']."</td>";
                                 echo "<td class='align-middle'>".$row['name']."</td>";
                                 echo "<td class='align-middle'>".$row['preis']."€</td>";
-                                echo "<td class='align-middle'><input class='form-check-input' type='checkbox'></td>"; // a checkbox only as a reminder for the staff
+                                echo "<td class='align-middle'><input class='form-check-input position-relative' type='checkbox'></td>"; // a checkbox only as a reminder for the staff
                                 echo "</tr>";
                             }
                         } else {
