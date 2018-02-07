@@ -7,7 +7,7 @@
 	<head>
 		<title>Dein Profil</title>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 
 			$sql = "SELECT buchungsnummer, datum as tagesangebotsdatum, sp.name, sp.preis, sp.allergene_inhaltsstoffe, sp.sonstiges, buchungsdatum
 							FROM mensa.buchungen as b
@@ -54,7 +54,7 @@
 							</tr>
 						  </tbody>
 						</table>
-						<button type='button' method='POST'  benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#edit-profile' class='btn btn-success'>
+						<button type='button' method='POST'  benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#editProfile' class='btn btn-success'>
 							Bearbeiten <i class='fas fa-pencil-alt'></i></button>
 						</button>
 					</div>
@@ -80,14 +80,14 @@
 								// ausgabe der Daten aus jeder Zeile der Tabelle.
 								while($row = $result->fetch_assoc()) {
 										$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
-										$buchungsdateFormat = strtotime($row['buchungsdatum']);
+										$orderDateFormat = strtotime($row['buchungsdatum']);
 										echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
 										echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
 										echo	"<td class='align-middle'>".$row['name']."€</td>";
 										echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
 										echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
 										echo	"<td class='align-middle'>".$row['preis']."€</td>";
-										echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
+										echo	"<td class='align-middle'>".date('d.m.Y', $orderDateFormat)."</td>";
 										echo	"<td class='align-middle'><button type='button' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button>
 																<button type='button' method='POST' name='delete_food' class='btn btn-danger'>

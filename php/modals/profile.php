@@ -1,5 +1,5 @@
 <!--Edit User Modal-->
-<div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <!-- header -->
@@ -11,7 +11,7 @@
                             <!-- body -->
                             <div class="modal-body">
                                 <form role="form" method="POST" action="">
-                                <div class="form-group" id="editform">
+                                <div class="form-group" id="editForm">
                                     <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="<?php echo $_SESSION['vorname'] ?>"/> <br>
                                     <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="<?php echo $_SESSION['nachname'] ?>"/><br>
                                     <label for="email">Email</label>
@@ -30,7 +30,7 @@
                             </div>
                             <!-- footer -->
                             <div class="modal-footer">
-                                <input type="submit" name="edit_profile" class="btn btn-primary btn-block" value="Änderungen Speichern">
+                                <input type="submit" name="editProfile" class="btn btn-primary btn-block" value="Änderungen Speichern">
                             </div>
                             </form>
 

@@ -4,7 +4,7 @@
 <html>
     <head>
         <?php
-            echo $head_dependencies;
+            echo $headDependencies;
             $sql = "SELECT buchungsnummer, datum as tagesangebotsdatum, sp.name, sp.preis, sp.allergene_inhaltsstoffe, sp.sonstiges, buchungsdatum, schueler_ID
                 FROM mensa.buchungen as b
                 INNER JOIN mensa.tagesangebot as t ON b.tagesangebot_ID = t.tagesangebot_ID

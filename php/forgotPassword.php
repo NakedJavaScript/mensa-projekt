@@ -6,7 +6,7 @@
 <html>
     <head>
         <?php
-            echo $head_dependencies;
+            echo $headDependencies;
         ?>
         <title>Passwort vergessen?</title>
     </head>

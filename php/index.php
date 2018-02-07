@@ -7,7 +7,7 @@
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 			setlocale(LC_TIME, 'de_DE', 'deu_deu');
 			$dt = new DateTime;
     		if (isset($_GET['year']) && isset($_GET['week'])) {

@@ -7,7 +7,7 @@
     <head>
     <title>Kontaktformular</title>
         <?php
-            echo $head_dependencies;
+            echo $headDependencies;
         ?>
     </head>
 

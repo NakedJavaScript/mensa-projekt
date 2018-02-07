@@ -4,7 +4,7 @@
 <html>
     <head>
         <?php
-            echo $head_dependencies;
+            echo $headDependencies;
         ?>
         <title>Passwort Zurücksetzen</title>
     </head>

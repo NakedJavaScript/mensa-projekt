@@ -19,7 +19,7 @@
 
 		$conn->query($deleteOldTagesangebote); //Löscht alle Einträge,die Älter als 3 Wochen sind(21 tage)
 
-	$head_dependencies = '
+	$headDependencies = '
 		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/fontawesome-all.min.css">

@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
@@ -177,7 +177,7 @@
 														<!-- body -->
 														<div class="modal-body">
 															<form role="form" method="POST" action="">
-															<div class="form-group" id="editform">
+															<div class="form-group" id="editForm">
 																<input type="hidden" name="benutzer_ID" class="form-control" id="benutzer_ID"  placeholder="123" readonly/> <br> <!--Dieses Feld ist für den Nutzer unsichtbar. -->
 																<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
 																<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>

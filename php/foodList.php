@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 					$sql = "SELECT * FROM speise";
 					$result = $conn->query($sql);
 		?>
