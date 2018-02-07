@@ -28,9 +28,9 @@
 		<div class="container col-sm-12">
       <div class="row">
         <div class="col-sm-1">
-					<?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
-								<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
-								<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
+					<?PHP  $threeWeeksAgo = date("W", strtotime("- 3 week")); //Current week -3 ?>
+								<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $threeWeeksAgo) { echo " class='disable' "; } //if we reach the week 3 weeks ago, than the link is disabled ?>">
+								<button class="btn btn-success index-btns" <?PHP if($week == $threeWeeksAgo) { echo "disabled"; } //if we reach the week 3 weeks ago, than the button is disabled ?> >
 									<i class='fas fa-chevron-circle-left'> </i>
 								</button></a> <!--Button um eine Woche zurück zu springen -->
         </div>
@@ -69,25 +69,25 @@
 								}
 								for ($i=1 ;$i <=5; $i++) {
 									$output=  "<td class='align-middle'>";
-									$daymeal_exists = false;
+									$daymealExists = false;
 									$gendate = new DateTime();
 									$gendate->setISODate($year,$week,$i);
 									$date = $gendate->format('Y-m-d');
 									foreach ($entries as $entry){
 										if ($entry['datum'] == $date) {
-											$daymeal_exists = true;
+											$daymealExists = true;
 											break;
 										}
 									}
-									if($daymeal_exists) { // Display attributes of the asocciated meal
+									if($daymealExists) { // Display attributes of the asocciated meal
 										$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; //zählt wie viele likes eine Speise hat.
 										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; //Die Anzahl der likes wird in der Variable $foodLikes gespeichert.
 												if (isset($_SESSION["id"])) {
 													$checkLiked = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"]; //Zählt wie viele zeilen mit genau dieser user Id und der speise ID vorkommen (normalerweise darf es maximal ein mal vorkommen)
-													$has_liked = $conn->query($checkLiked)->fetch_assoc()['userlike'];//der gezählt Wert wird in der Variable $has_liked gespeichert (also 1[true] oder 0[false])
+													$hasLiked = $conn->query($checkLiked)->fetch_assoc()['userlike'];//der gezählt Wert wird in der Variable $hasLiked gespeichert (also 1[true] oder 0[false])
 												}
 												 		else {
-																$has_liked = 1; //anonsten hat $has_liked immer den Wert 1[true]
+																$hasLiked = 1; //anonsten hat $hasLiked immer den Wert 1[true]
 														}
 															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 															$meal = $conn->query($sql)->fetch_assoc();
@@ -96,14 +96,14 @@
 															<li><b>Allergene/Inhaltsstoffe:</b><br>".$meal['allergene_inhaltsstoffe']."</li>
 															<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
 															<li><b>Preis:</b><br>".$meal['preis']."€</li>
-															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</li>
+															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $hasLiked) . "</li>
 															</ul>";
 															if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
 																$sql = "SELECT COUNT(*) AS orders FROM buchungen WHERE tagesangebot_ID = ".$entry['tagesangebot_ID'];
 																$orders = $conn->query($sql)->fetch_assoc();
-																$output = $output . "<button type='button' method='POST' data-href='?delete?daymeal_ID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+																$output = $output . "<button type='button' method='POST' data-href='?delete?daymealID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 																					Löschen</button>
-																					<button type='button' class='btn btn-success' data-toggle='modal' data-target='#EditDaymeal' onclick=AddValuesToModal('".$date."','".$entry["speise_ID"]."')>
+																					<button type='button' class='btn btn-success' data-toggle='modal' data-target='#editDaymeal' onclick=AddValuesToModal('".$date."','".$entry["speise_ID"]."')>
 																					Ändern</button>
 																					<div>
 																					<p><b>Bestellungen: </b>".$orders['orders']."</p></div>"
@@ -113,7 +113,7 @@
 									}
 											else { // Display a button for the adding of a meal
 													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
-														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
+														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDaymeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
 													}
 											}
 												$output = $output . "</td>";
@@ -134,8 +134,8 @@
 		</div>
 
 
-		<!--AddDayMeal Modal-->
-		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
+		<!--AddDaymeal Modal-->
+		<div class="modal fade" id="AddDaymeal" tabindex="-1" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 				<!-- header -->
@@ -145,11 +145,11 @@
 					</div>
 				<!-- body -->
 					<div class="modal-body">
-						<form role="form" method="POST" action="#AddedTagesangebot">
+						<form role="form" method="POST" action="#AddDaymeal">
 								<div class="form-group">
-									<input type="hidden" id="date_field" name="date" value="">
-									<label for="foodlist">Speisen</label>
-									<select name="foodlist" id="foodlist">
+									<input type="hidden" id="dateField" name="date" value="">
+									<label for="foodList">Speisen</label>
+									<select name="foodList" id="foodList">
 										<?php
 											$getFood = "SELECT * FROM speise";
 											$result = $conn->query($getFood);
@@ -165,13 +165,13 @@
 							<!-- footer -->
 							<div class="modal-footer">
 
-								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
+								<input type="submit" name="AddDaymeal" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
 						</form>
 				</div>
 			</div>
 		</div>
-		<!--AddDayMeal Modal End-->
+		<!--AddDaymeal Modal End-->
 	</body>
 	<?php
 	confModal('Wollen Sie dieses Tagesangebot wirklich löschen?');

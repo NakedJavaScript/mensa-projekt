@@ -1,5 +1,5 @@
-<!--EditDaymeal Modal-->
-<div class="modal fade" id="EditDaymeal" tabindex="-1" role="dialog">
+<!--editDaymeal Modal-->
+<div class="modal fade" id="editDaymeal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
         <!-- header -->
@@ -9,12 +9,12 @@
             </div>
         <!-- body -->
             <div class="modal-body">
-                <form role="form" method="POST" action="#EditDaymeal">
+                <form role="form" method="POST" action="#editDaymeal">
                         <div class="form-group">
-                            <input type="hidden" id="edit_date_field" name="date" value="">
-                            <input type="hidden" id="edit_food_field" name="food" value="">
+                            <input type="hidden" id="editDateField" name="date" value="">
+                            <input type="hidden" id="editFoodField" name="food" value="">
                             <label for="foodlist">Speisen</label>
-                            <select name="foodlist" id="edit_foodlist">
+                            <select name="foodList" id="editFoodList">
                                 <?php
                                     $getFood = "SELECT * FROM speise";
                                     $result = $conn->query($getFood);
@@ -31,10 +31,10 @@
                     </div>
                     <!-- footer -->
                     <div class="modal-footer">
-                        <input type="submit" name="EditDaymeal" class="btn btn-primary btn-block" value="Tagesangebot bearbeiten">
+                        <input type="submit" name="editDaymeal" class="btn btn-primary btn-block" value="Tagesangebot bearbeiten">
                     </div>
                 </form>
         </div>
     </div>
 </div>
-<!--EditDaymeal Modal End-->
+<!--editDaymeal Modal End-->

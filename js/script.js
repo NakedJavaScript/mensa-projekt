@@ -1,12 +1,12 @@
 function AddValuesToModal(date, addFood='') {
     if (addFood) {
-        date_field = document.getElementById("edit_date_field");
-        date_field.value = date;
-        food_field = document.getElementById("edit_food_field");
-        food_field.value = addFood;
+        dateField = document.getElementById("editDateField");
+        dateField.value = date;
+        foodField = document.getElementById("editFoodField");
+        foodField.value = addFood;
     } else {
-        date_field = document.getElementById("date_field");
-        date_field.value = date;
+        dateField = document.getElementById("dateField");
+        dateField.value = date;
     }
 };
 

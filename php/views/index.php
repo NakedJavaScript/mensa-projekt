@@ -1,7 +1,7 @@
 <?PHP
 	//Code um eine Speise hinzuzufügen
-		if (isset($_POST['Tagesangebot_erstellen'])) {
-			$s_ID =$_POST['foodlist'];
+		if (isset($_POST['AddDaymeal'])) {
+			$s_ID =$_POST['foodList'];
 			$datum =strtotime($_POST['date']);
 			$formated= date('Y-m-d',$datum);
 			$insert = "INSERT INTO tagesangebot (speise_ID,datum)
@@ -17,7 +17,7 @@
 		}
 
 		//Funktion zum erstellen eines Like-Buttons
-		function likeButtons($foodID, $foodLikes, $has_liked){
+		function likeButtons($foodID, $foodLikes, $hasLiked){
 
 			if (isset($_SESSION['email'])) {
 						if ($_SESSION['adminrechte'] == 2 ) { //Falls ein Admin eingeloggt ist, kann dieser den Like-Button nicht anklicken.
@@ -25,17 +25,17 @@
 								<i class="fas fa-heart like-heart-disabled"></i></button><p class="like-count">+'.$foodLikes.'</p></div>';
 
 						}
-								else if ($has_liked) {
+								else if ($hasLiked) {
 									return '<form role="form" method="POST" action="">
-												<input type="hidden" name="food_ID" value="'.$foodID.'">
-												<div class="like-container"><button type="submit" name="Speisen_unliken" class="btn heart-btn like-btn unlike" data-toggle="tooltip" data-placement="bottom" title="Diese Speise nicht mehr liken">
+												<input type="hidden" name="foodID" value="'.$foodID.'">
+												<div class="like-container"><button type="submit" name="unlikingFood" class="btn heart-btn like-btn unlike" data-toggle="tooltip" data-placement="bottom" title="Diese Speise nicht mehr liken">
 													<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
 												</form>';
 								}
 										else {
 											return '<form role="form" method="POST" action="">
-														<input type="hidden" name="food_ID" value="'.$foodID.'">
-														<div class="like-container"><button type="submit" name="Speisen_liken" class="btn heart-btn like-btn like"data-toggle="tooltip" data-placement="bottom" title="Diese Speise liken.">
+														<input type="hidden" name="foodID" value="'.$foodID.'">
+														<div class="like-container"><button type="submit" name="LikingFood" class="btn heart-btn like-btn like"data-toggle="tooltip" data-placement="bottom" title="Diese Speise liken.">
 															<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
 														</form>';
 										}
@@ -48,11 +48,11 @@
 			}
 
 		// Code um Speisen zu liken
-		if (isset($_POST['Speisen_liken'])) {
-			$user_ID = $_SESSION['id'];
-			$food_ID =$_POST['food_ID'];
+		if (isset($_POST['LikingFood'])) {
+			$userID = $_SESSION['id'];
+			$foodID =$_POST['foodID'];
 			$insert = "INSERT INTO likes (benutzer_ID, speise_ID)
-			VALUES (".$user_ID."," .$food_ID.")";
+			VALUES (".$userID."," .$foodID.")";
 
 			$conn->query($insert);
 			header('refresh: 0.1 ; url = index.php');
@@ -61,10 +61,10 @@
 
 
 		//Code zum unliken
-			if (isset($_POST['Speisen_unliken'])) {
-				$food_ID =$_POST['food_ID'];
-				$user_ID = $_SESSION['id'];
-				$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
+			if (isset($_POST['unlikingFood'])) {
+				$foodID =$_POST['foodID'];
+				$userID = $_SESSION['id'];
+				$delete = "DELETE FROM likes WHERE speise_ID = $foodID AND benutzer_ID = $userID";
 
 				$conn->query($delete);
 				header('refresh: 0.1 ; url = index.php');
@@ -73,9 +73,9 @@
 
 
 			//Code zum löschen eines Tagesangebots
-			if (isset($_GET['delete?daymeal_ID'])) {
-				$daymeal_ID = $_GET['delete?daymeal_ID'];
-				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
+			if (isset($_GET['delete?daymealID'])) {
+				$daymealID = $_GET['delete?daymealID'];
+				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymealID ";
 				if ($conn->query($delete) === TRUE) {
 					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
 					header('refresh: 1.5 ; url = index.php');
@@ -88,12 +88,12 @@
 			}
 
 			//Code zum Ändern eines Tagesangebots
-			if (isset($_POST['EditDaymeal'])) {
-				$old_food_ID = $_POST['food'];
-				$new_food_ID = $_POST['foodlist'];
+			if (isset($_POST['editDaymeal'])) {
+				$oldFoodID = $_POST['food'];
+				$newFoodID = $_POST['foodList'];
 				$date = strtotime($_POST['date']);
-				$formated_date= date('Y-m-d',$date);
-				$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated_date'";
+				$formatedDate= date('Y-m-d',$date);
+				$insert = "UPDATE tagesangebot SET  speise_ID = $newFoodID WHERE speise_ID = $oldFoodID AND datum = '$formatedDate'";
 				if ($conn->query($insert) === TRUE) {
 					$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
 					header('refresh: 1.5 ; url = index.php');
