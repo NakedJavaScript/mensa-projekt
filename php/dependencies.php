@@ -44,7 +44,7 @@
 ';
 
 
-$Alert = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zum Beispiel ob eine Mail erfolgreich versendet wurde.
+$alert = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zum Beispiel ob eine Mail erfolgreich versendet wurde.
 
 /*Funktionen für Alert boxen */
 function successMessage($text) {

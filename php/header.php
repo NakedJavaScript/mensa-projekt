@@ -57,7 +57,7 @@
 </nav>
 
 <div class="container alert-container">
-<?PHP echo $Alert; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
+<?PHP echo $alert; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
 </div>
 
 
