@@ -18,14 +18,12 @@ if(isset($_GET["email"]) && isset($_GET["token"])) {
 
             $Alert = successMessage("Dein Passwort wurde erfolgreich geändert!");
 
-            echo $Alert . "
-            <script>setTimeout(function () {
-                window.location.href= 'index.php';
-            },3000);</script>";
+            header('refresh: 1.5 ; url = index.php');
+            die();
         }
 
 } else {
-    header("Location: index.php");
+    header('refresh: 1.5 ; url = index.php');
     exit();
 }
 

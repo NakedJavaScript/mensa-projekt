@@ -1,5 +1,6 @@
 <?php include_once 'dependencies.php';
 	  include_once 'functions/index_func.php';
+	  include_once 'models/index.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -67,7 +68,7 @@
 									$entries[] = $entry; //
 								}
 								for ($i=1 ;$i <=5; $i++) {
-									$output=  "<td>";
+									$output=  "<td class='align-middle'>";
 									$daymeal_exists = false;
 									$gendate = new DateTime();
 									$gendate->setISODate($year,$week,$i);
@@ -90,6 +91,7 @@
 														}
 															$sql = "SELECT * FROM speise where speise_ID =".$entry["speise_ID"];
 															$meal = $conn->query($sql)->fetch_assoc();
+
 															if (!isset($_SESSION['id'])) { //Wenn nutzer nicht eingeloggt ist, sind alle Checkboxen disabled
 																$output = $output . "<div class='form-check'>
 																	<input class='form-check-input indexCB' name='bestellungen[]' type='checkbox'  value='".$entry['tagesangebot_ID']."' data-toggle='tooltip' data-placement='right' data-original-title='Sie müssen eingeloggt sein um bestellen zu können.' disabled></div>";
@@ -111,10 +113,11 @@
 																						<li><b>Sonstiges:</b><br>".$meal['sonstiges']."</li>
 																						<li><b>Preis:</b><br>".$meal['preis']."€</li>
 																					</ul>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "";
+
 									}
 											else { // Button zum erstellen eines Tagesangebots wird gezeigt.
 													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
-														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddDateToModal('".$date."')>Hinzufügen</button>";
+														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
 													}
 											}
 												$output = $output . "</td>";
@@ -184,9 +187,11 @@
 		</div>
 		<!--AddDayMeal Modal End-->
 	</body>
-	<?php include 'footer.php'; ?>
-		<!-- Modal zur Bestätigung des Kaufs-->
 
+	<?php 
+    confModal('Wollen Sie dieses Tagesangebot wirklich löschen?');                              
+    include 'footer.php'; 
+   ?>
 
 	<script>
 	function submit() {
@@ -214,4 +219,5 @@ boxes.on('change', function () {
     $('#bestellBtn').prop('disabled', !boxes.filter(':checked').length);
 }).trigger('change');
 	</script>
+
 </html>

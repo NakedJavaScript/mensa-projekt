@@ -8,8 +8,11 @@
 					VALUES ('$s_ID','$formated')";
 			if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
 				$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
-			} else { //Fall es nicht klappt wird der Nutzer mit einem Errorcode und einer Errornummer konfrontiert
-				$Alert = dangerMessage("<strong>Error:</strong>".$conn->errno.": ".$conn->error);
+				header('refresh: 1.5 ; url = index.php');
+				die();
+			} else {
+				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+				header('refresh: 1.5 ; url = index.php');
 			}
 		}
 
@@ -82,6 +85,8 @@
 			VALUES (".$user_ID."," .$food_ID.")";
 
 			$conn->query($insert);
+			header('refresh: 0.1 ; url = index.php');
+			die();
 		}
 
 
@@ -92,7 +97,10 @@
 				$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
 
 				$conn->query($delete);
+				header('refresh: 0.1 ; url = index.php');
+				die();
 			}
+
 
 			//funktion zur erstellung des bestellBestätigungs modal.
 			function confBestellung() {
@@ -113,4 +121,39 @@
 					</div>
 				</div> ";
 			}
+
+
+			//Code zum löschen eines Tagesangebots
+			if (isset($_GET['delete?daymeal_ID'])) {
+				$daymeal_ID = $_GET['delete?daymeal_ID'];
+				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymeal_ID ";
+				if ($conn->query($delete) === TRUE) {
+					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+					header('refresh: 1.5 ; url = index.php');
+					die();
+				} else {
+					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					header('refresh: 1.5 ; url = index.php');
+					die();
+				}
+			}
+
+			//Code zum Ändern eines Tagesangebots
+			if (isset($_POST['EditDaymeal'])) {
+				$old_food_ID = $_POST['food'];
+				$new_food_ID = $_POST['foodlist'];
+				$date = strtotime($_POST['date']);
+				$formated_date= date('Y-m-d',$date);
+				$insert = "UPDATE tagesangebot SET  speise_ID = $new_food_ID WHERE speise_ID = $old_food_ID AND datum = '$formated_date'";
+				if ($conn->query($insert) === TRUE) {
+					$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
+					header('refresh: 1.5 ; url = index.php');
+					die();
+				} else {
+					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					header('refresh: 1.5 ; url = index.php');
+					die();
+				}
+			}
+
 ?>
