@@ -12,18 +12,18 @@
 					if (isset($_SESSION['adminrechte'])) {
 					if($_SESSION['adminrechte'] == 2) { //nur Admin sieht diese Seiten
 			      echo "<li class='nav-item'>
-			        <a class='nav-link' href='userlist.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
+			        <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
 			      </li>
 			      <li class='nav-item'>
-			        <a class='nav-link' href='foodlist.php'>Essensliste</a>
+			        <a class='nav-link' href='essensliste.php'>Essensliste</a>
 			      </li>
 			      <li class='nav-item'>
-			        <a class='nav-link' href='sales.php'>Umsatz</a>
+			        <a class='nav-link' href='umsatz.php'>Umsatz</a>
 			      </li>";
 					 }
 					else if($_SESSION['adminrechte'] == 3) { //normale user sehen das.
 						echo "<li class='nav-item'>
-							<a class='nav-link' href='profile.php'>Profil</a>
+							<a class='nav-link' href='profil.php'>Profil</a>
 						</li>";
 					}
 					else {
@@ -34,13 +34,13 @@
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<a role='button' href='profile.php' class='btn btn-primary'>" . $_SESSION['vorname'] . "</a>
+ 		 		<a role='button' href='profil.php' class='btn btn-primary'>" . $_SESSION['vorname'] . "</a>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='profile.php#v-pills-profile'>Profil</a>
-	 					<a class='dropdown-item' href='profile.php#v-pills-order'>Bestellungen</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-profile'>Profil</a>
+	 					<a class='dropdown-item' href='profil.php#v-pills-order'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>
  					</div>
@@ -56,7 +56,7 @@
 <div class="container alert-container">
 <?PHP echo $Alert; //Wird verwendet um Nachrichten auszugeben("Nutzer erfolgreich angelegt", "falsches passwort" usw.)?>
 <div class='alert alert-success alert-dismissable fade' id='successOrder'>
-<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profile.php#v-pills-order'>hier</a> Ihre Bestellungen an</div>
+<a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an</div>
 <div class='alert alert-danger alert-dismissable fade' id='errorOrder'>
 <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Es ist ein Fehler aufgetreten!</strong>Leider konnt ihre Bestellung nicht entgegen genommen werden</div>
 </div>

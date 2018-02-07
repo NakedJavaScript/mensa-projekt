@@ -203,11 +203,7 @@
 			   $('#successOrder').addClass('show');
 			   $('.indexCB:checked').prop('disabled', true);
 			   $('.indexCB:checked').prop('checked', false);
-		   },
-		   error: function(data) {
-			   $("#confirm-submit").modal('hide');
-			   $('#successOrder').addClass('show');
-		   }
+			  }
 		});
 	}
 </script>
