@@ -7,11 +7,11 @@
 			$insert = "INSERT INTO tagesangebot (speise_ID,datum)
 					VALUES ('$s_ID','$formated')";
 			if ($conn->query($insert) === TRUE) { //Wenn Tagesangebot hinzugefügt wurde.
-				$Alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
+				$alert = successMessage("Tagesangebot wurde erfolgreich hinzugefügt");
 				header('refresh: 1.5 ; url = index.php');
 				die();
 			} else {
-				$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+				$alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 				header('refresh: 1.5 ; url = index.php');
 			}
 		}
@@ -77,11 +77,11 @@
 				$daymealID = $_GET['delete?daymealID'];
 				$delete = "DELETE FROM tagesangebot WHERE tagesangebot_ID = $daymealID ";
 				if ($conn->query($delete) === TRUE) {
-					$Alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
+					$alert = successMessage('Tagesangebot wurde erfolgreich entfernt');
 					header('refresh: 1.5 ; url = index.php');
 					die();
 				} else {
-					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					$alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 					header('refresh: 1.5 ; url = index.php');
 					die();
 				}
@@ -95,11 +95,11 @@
 				$formatedDate= date('Y-m-d',$date);
 				$insert = "UPDATE tagesangebot SET  speise_ID = $newFoodID WHERE speise_ID = $oldFoodID AND datum = '$formatedDate'";
 				if ($conn->query($insert) === TRUE) {
-					$Alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
+					$alert = successMessage("Tagesangebot wurde erfolgreich bearbeitet");
 					header('refresh: 1.5 ; url = index.php');
 					die();
 				} else {
-					$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+					$alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 					header('refresh: 1.5 ; url = index.php');
 					die();
 				}

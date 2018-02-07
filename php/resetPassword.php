@@ -32,9 +32,9 @@
                     </div>
                  </div>";
             } else {
-                $Alert = dangerMessage("Der aufgerufene Link ist abgelaufen oder falsch!");
+                $alert = dangerMessage("Der aufgerufene Link ist abgelaufen oder falsch!");
 
-                echo $Alert . " <div class='container' id='error-img-wrapper'><img src='../images/taco-error.png'></div>
+                echo $alert . " <div class='container' id='error-img-wrapper'><img src='../images/taco-error.png'></div>
                 <script>setTimeout(function () {
                     window.location.href= 'index.php';
                 },3000);</script>";

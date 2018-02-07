@@ -54,7 +54,7 @@
 							</tr>
 						  </tbody>
 						</table>
-						<button type='button' method='POST'  benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#editProfile' class='btn btn-success'>
+						<button type='button' method='POST'  userID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#editProfile' class='btn btn-success'>
 							Bearbeiten <i class='fas fa-pencil-alt'></i></button>
 						</button>
 					</div>

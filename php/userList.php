@@ -73,9 +73,9 @@
 														} else {
 															$disabled = '';
 														}
-											 echo "<td class='align-middle'><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'". $disabled .">
+											 echo "<td class='align-middle'><button type='button' method='POST' data-href='?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'". $disabled .">
 														<i class='fas fa-trash'> </i></button>
-													  <button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".strstr($row['email'], '@', true)."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
+													  <button type='button' method='POST' id='editUser' userID='".$row['benutzer_ID']."' firstName='".$row['vorname']."' lastName='".$row['nachname']."' email='".strstr($row['email'], '@', true)."' balance='".$row['kontostand']."' adminRights='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>
 														<i class='fas fa-pencil-alt'> </i></button></td>
 												</tr>";
 									}
@@ -125,8 +125,8 @@
 									<div class="modal-body">
 									  <form role="form" method="POST" action="">
 										<div class="form-group">
-										  <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control"  placeholder="Max" required/> <br>
-										  <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control"  placeholder="Mustermann" required/><br/>
+										  <label for="firstName">Vorname</label><input type="text" name="firstName" class="form-control"  placeholder="Max" required/> <br>
+										  <label for="lastName">Nachname</label><input type="text" name="lastName" class="form-control"  placeholder="Mustermann" required/><br/>
 											<label for="email">Email</label>
 											<div class="input-group mb-3">
    											<input type="text" class="form-control" name="email" placeholder="max.mustermann" aria-label="Recipient's username" aria-describedby="emailDomain" required>
@@ -134,28 +134,28 @@
      												<span class="input-group-text" id="emailDomain">@its-stuttgart.de</span>
    												</div>
  											</div>
-										  <label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" value="" placeholder="Passwort" required/><br>
-										  <label for="kontostand" >Kontostand</label>
+										  <label for="passwort" >Passwort</label><input type="password" name="password" class="form-control" value="" placeholder="Passwort" required/><br>
+										  <label for="balance" >Kontostand</label>
 											<div class="input-group mb-3">
-   											<input type="text" class="form-control" name="kontostand" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
+   											<input type="text" class="form-control" name="balance" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
    												<div class="input-group-append">
      												<span class="input-group-text" id="unit">€</span>
    												</div>
  											</div>
 											<small id="kontostandHelp" class="form-text text-muted">Bitte verwenden Sie anstelle eines Kommas einen Punkt: '.'</small><br>
-											<label for="adminrechte" >Adminrechte</label><br>
+											<label for="adminRights" >Adminrechte</label><br>
 											<div class="form-check form-check-inline">
-														<input type="radio" name="adminrechte" id="keineAdminrechte" class="form-check-input" value="3" checked><label class="form-check-label" for="keineAdminrechte">Nein</label>
+														<input type="radio" name="adminRights" id="keineAdminrechte" class="form-check-input" value="3" checked><label class="form-check-label" for="keineAdminrechte">Nein</label>
 											</div>
 											<div class="form-check form-check-inline">
-														<input type="radio" name="adminrechte" id="adminrechte" class="form-check-input" value="2"><label class="form-check-label" for="adminrechte">Ja</label>
+														<input type="radio" name="adminRights" id="adminRights" class="form-check-input" value="2"><label class="form-check-label" for="adminRights">Ja</label>
 											</div>
 										</div>
 
 									</div>
 									<!-- footer -->
 									<div class="modal-footer">
-									  <input type="submit" name="neuer_nutzer" class="btn btn-primary btn-block" value="Neuen Nutzer anlegen">
+									  <input type="submit" name="newUser" class="btn btn-primary btn-block" value="Neuen Nutzer anlegen">
 									</div>
 									</form>
 
@@ -178,9 +178,9 @@
 														<div class="modal-body">
 															<form role="form" method="POST" action="">
 															<div class="form-group" id="editForm">
-																<input type="hidden" name="benutzer_ID" class="form-control" id="benutzer_ID"  placeholder="123" readonly/> <br> <!--Dieses Feld ist für den Nutzer unsichtbar. -->
-																<label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="Max" required/> <br>
-																<label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="Mustermann" required/><br>
+																<input type="hidden" name="userID" class="form-control" id="userID"  placeholder="123" readonly/> <br> <!--Dieses Feld ist für den Nutzer unsichtbar. -->
+																<label for="firstName">Vorname</label><input type="text" name="firstName" class="form-control" id="firstName"  placeholder="Max" required/> <br>
+																<label for="lastName">Nachname</label><input type="text" name="lastName" class="form-control" id="lastName"  placeholder="Mustermann" required/><br>
 																<label for="email">Email</label>
 																<div class="input-group mb-3">
 					   											<input type="text" class="form-control" name="email" placeholder="max.mustermann" id="email" aria-label="Recipient's username" aria-describedby="emailDomain" required>
@@ -189,19 +189,19 @@
 					   												</div>
 					 											</div>
 																<label for="passwort" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" /><br>
-																<label for="kontostand" >Kontostand</label>
+																<label for="balance" >Kontostand</label>
 																<div class="input-group mb-3">
-					   											<input type="text" class="form-control" name="kontostand"id="kontostand" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
+					   											<input type="text" class="form-control" name="balance"id="balance" placeholder="123" aria-label="Tragen sie den gewünschten Betrag ein." aria-labelledby="kontostandHelp" aria-describedby="unit" required>
 					   												<div class="input-group-append">
 					     												<span class="input-group-text" id="unit">€</span>
 					   												</div>
 					 											</div>
-																<label for="adminrechte" >Adminrechte</label><br>
+																<label for="adminRights" >Adminrechte</label><br>
 																<div class="form-check form-check-inline">
-																			<input type="radio" name="adminrechte" id="keineAdminrechte" class="form-check-input" value="3" checked><label class="form-check-label" for="adminrechte">Nein</label>
+																			<input type="radio" name="adminRights" id="keineAdminrechte" class="form-check-input" value="3" checked><label class="form-check-label" for="adminRights">Nein</label>
 																</div>
 																<div class="form-check form-check-inline">
-																			<input type="radio" name="adminrechte" id="adminrechte" class="form-check-input" value="2"><label class="form-check-label" for="adminrechte">Ja</label>
+																			<input type="radio" name="adminRights" id="adminRights" class="form-check-input" value="2"><label class="form-check-label" for="adminRights">Ja</label>
 																</div>
 															</div>
 
@@ -221,25 +221,25 @@
 	<?php include 'footer.php'; ?>
 	<script>
 	//zum Bearbeiten der Nutzer
-	$(document).on("click",'#edit_user' , function (e) {
-  var vorname= $(this).attr('vorname');
-	var nachname=$(this).attr('nachname');
+	$(document).on("click",'#editUser' , function (e) {
+  var firstName= $(this).attr('firstName');
+	var lastName=$(this).attr('lastName');
 	var email=$(this).attr('email');
-	var kontostand=$(this).attr('kontostand');
-	var identity=$(this).attr('benutzer_ID');
-	var adminrechte=$(this).attr('adminrechte');
+	var balance=$(this).attr('balance');
+	var identity=$(this).attr('userID');
+	var adminRights=$(this).attr('adminRights');
 	var sessID = <?php echo json_encode($_SESSION['id']) ?>; //muss aufgrund diesen PHP parts hier stehen und kann nicht ins script.js
 //set what we got to our form
-  $('#vorname').val(vorname);
-	$('#nachname').val(nachname);
+  $('#firstName').val(firstName);
+	$('#lastName').val(lastName);
 	$('#email').val(email);
-	$('#kontostand').val(kontostand);
-	$('#benutzer_ID').val(identity);
-	$("input[name=adminrechte][value=" + adminrechte + "]").prop('checked', true); //je nachdem ob der Nutzer adminrechte oder nicht wird der richtige radiobutton gewählt
+	$('#balance').val(balance);
+	$('#userID').val(identity);
+	$("input[name=adminRights][value=" + adminRights + "]").prop('checked', true); //je nachdem ob der Nutzer adminRights oder nicht wird der richtige radiobutton gewählt
 	if(identity == sessID) { //falls man sich selbst bearbeitet, kann man seine Zugriffsrechte nicht bearbeiten
-		$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").hide(); //felder werden gehidet
+		$("input[name=adminRights], label[for=adminRights], span[name=adminRights]").hide(); //felder werden gehidet
 	} else {
-		$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").show(); //sonst werden sie gezeigt
+		$("input[name=adminRights], label[for=adminRights], span[name=adminRights]").show(); //sonst werden sie gezeigt
 	}
 });
 </script>
