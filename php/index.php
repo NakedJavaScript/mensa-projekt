@@ -200,9 +200,9 @@
 			 data: ({bestellungen}),
 			 success: function(data) {
 			   $("#confirm-submit").modal('hide');
-			   $('#succesyOrder').addClass('show');
+			   $('#successOrder').addClass('show');
 			   $('.indexCB:checked').prop('disabled', true);
-			   $('.indexCB:checked').prop('checked', false);			   
+			   $('.indexCB:checked').prop('checked', false);
 			  }
 		});
 	}
