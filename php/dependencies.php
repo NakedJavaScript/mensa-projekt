@@ -1,13 +1,13 @@
 <?php
 	session_start();
-	$servername = "localhost";
-	$username = "root";
+	$serverName = "localhost";
+	$userName = "root";
 	$password = "";
-	$dbname = "mensa";
+	$dbName = "mensa";
 
 
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = new mysqli($serverName, $userName, $password, $dbName);
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
