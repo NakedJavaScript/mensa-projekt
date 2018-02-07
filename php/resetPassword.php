@@ -6,13 +6,13 @@
         <?php
             echo $head_dependencies;
         ?>
-        <title>Passwort Reset</title>
+        <title>Passwort Zurücksetzen</title>
     </head>
 
     <body>
         <?php
             include 'header.php';
-            include 'functions/resetPW_function.php';
+            include 'views/resetPassword.php';
 
             if ($data->num_rows > 0) {
                 echo "<div class='container flat-form'>

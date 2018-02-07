@@ -1,4 +1,4 @@
-<?PHP include_once 'functions/login.php'; ?>
+<?PHP include_once 'views/login.php'; ?>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-custom" id="cd-top-link">
   <a class="navbar-brand" href="index.php"><img src='../images/logo.png' width="120px"/></a>
@@ -26,7 +26,7 @@
 					 }
 					else if($_SESSION['adminrechte'] == 3) { //normale user sehen das.
 						echo "<li class='nav-item'>
-							<a class='nav-link' href='profil.php'>Profil</a>
+							<a class='nav-link' href='profile.php'>profile</a>
 						</li>";
 					}
 					else {
@@ -37,13 +37,13 @@
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<a role='button' href='profil.php' class='btn btn-primary'>" . $_SESSION['vorname'] . "</a>
+ 		 		<a role='button' href='profile.php' class='btn btn-primary'>" . $_SESSION['vorname'] . "</a>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='profil.php#v-pills-profile'>Profil</a>
-	 					<a class='dropdown-item' href='profil.php#v-pills-order'>Bestellungen</a>
+	 					<a class='dropdown-item' href='profile.php#v-pills-profile'>profile</a>
+	 					<a class='dropdown-item' href='profile.php#v-pills-order'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>
  					</div>

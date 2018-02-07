@@ -1,5 +1,5 @@
 <?php include_once 'dependencies.php';
-	  include_once 'functions/index_func.php';
+	  include_once 'views/index.php';
 	  include_once 'modals/index.php';
 ?>
 <!DOCTYPE HTML>

@@ -1,5 +1,5 @@
 <?php include_once 'dependencies.php';
-	  include_once 'functions/benutzerliste_func.php';
+	  include_once 'views/benutzerliste.php';
  ?>
 <!DOCTYPE HTML>
 <html>

@@ -1,6 +1,6 @@
 <?php
 	include 'dependencies.php';
-	include_once 'functions/profile_func.php';
+	include_once 'views/profile.php';
  ?>
 <!DOCTYPE HTML>
 <html>

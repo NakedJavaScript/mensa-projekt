@@ -1,6 +1,6 @@
 <?php
     include 'dependencies.php';
-    include 'functions/contactSend_function.php';
+    include 'views/contactSend.php';
 ?>
 <!DOCTYPE HTML>
 <html>
