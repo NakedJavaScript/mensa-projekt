@@ -4,7 +4,7 @@
         die('Sieht so aus als wären Sie eingeloggt, da können Sie ihr Passwort doch nicht vergessen haben!');
     } //Verweigert nicht Admins den Zugriff auf diese Seite
 
-    if (isset($_POST["forgotPass"])) {
+    if (isset($_POST["forgotPassword"])) {
         $email = $conn->real_escape_string($_POST["email"]);
         $data = $conn->query("SELECT benutzer_ID FROM benutzer WHERE email='$email'");
 

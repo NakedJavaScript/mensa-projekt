@@ -27,7 +27,7 @@
                             <input type="email" name="email" placeholder="Ihre E-Mail" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required>
                         </li>
                         <li>
-                            <input type="submit" class="btn btn-success" name="forgotPass" value="Passwort zurücksetzen">
+                            <input type="submit" class="btn btn-success" name="forgotPassword" value="Passwort zurücksetzen">
                         </li>
                     </ul>
                 </form>
