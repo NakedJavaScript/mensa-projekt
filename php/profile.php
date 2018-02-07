@@ -1,6 +1,7 @@
-<?php include 'dependencies.php';
- 			include 'functions/profile_func.php'
-            include 'modals/profile_modals.php'
+<?php
+    include_once 'dependencies.php';
+ 	include_once 'functions/profile_func.php';
+    include_once 'modals/profile_modals.php';
             ?>
 <!DOCTYPE HTML>
 <html>
