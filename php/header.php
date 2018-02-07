@@ -12,7 +12,7 @@
 					if (isset($_SESSION['adminrechte'])) {
 					if($_SESSION['adminrechte'] == 2) { //nur Admin sieht diese Seiten
 			      echo "<li class='nav-item'>
-			        <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
+			        <a class='nav-link' href='userList.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
 			      </li>
 			      <li class='nav-item'>
 			        <a class='nav-link' href='foodList.php'>Essensliste</a>
