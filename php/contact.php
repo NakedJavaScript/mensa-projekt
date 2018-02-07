@@ -24,19 +24,19 @@
                 <form class="" role="form" action="" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="name" class="form-control" name="Name" id="name" placeholder="Nachname Vorname" required>
+                        <input type="name" class="form-control" name="name" id="name" placeholder="Nachname Vorname" required>
                         <br>
                         <label for="email">Email Adresse:</label>
-                        <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailInfo" placeholder="name@domain.de" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required />
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailInfo" placeholder="name@domain.de" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required />
                         <small id="emailInfo" class="form-text text-muted">Wir werden Ihre Email Adresse NIEMALS veröffentlichen oder teilen</small>
                     </div>
                     <div class="form-group">
                         <label for="betreff">Betreff:</label>
-                        <input type="text" class="form-control" name="Betreff" id="betreff" placeholder="Betreffzeile" required>
+                        <input type="text" class="form-control" name="betreff" id="betreff" placeholder="Betreffzeile" required>
                     </div>
                     <div class="form-group">
                         <label for="nachricht">Nachricht:</label>
-                        <textarea class="form-control" name="Nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
+                        <textarea class="form-control" name="nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success" name="contactFormSubmit">Nachricht senden</button>
                 </form>

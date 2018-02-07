@@ -20,10 +20,10 @@
 
         }
 
-        $name = $_POST['Name'];
-        $email = $_POST['Email'];
-        $subject = $_POST['Betreff'] . " <Von " . $email . " >";
-        $body = $_POST['Nachricht'];
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $subject = $_POST['betreff'] . " <Von " . $email . " >";
+        $body = $_POST['nachricht'];
         $to = 'foodmengroup@gmail.com';
 
         if (sendMail($to, $email, $name, $subject, $body)) {
