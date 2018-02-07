@@ -54,17 +54,17 @@ function drawGraph() {
 $(document).on("click",'#edit_food' , function (e) {
 var identity= $(this).attr('speise_ID'); //Werte aus den Attributen werden variablen zugeordnet
 var name=$(this).attr('speise_name');
-var allergene=$(this).attr('allergene')
-var allergenArr = allergene.split(', ')//aus allergene wird ein Array erstellt
-var sonstiges=$(this).attr('sonstiges');
-var preis=$(this).attr('preis');
+var allergenic=$(this).attr('allergene')
+var allergenicArray = allergene.split(', ')//aus allergene wird ein Array erstellt
+var others=$(this).attr('others');
+var price=$(this).attr('price');
 //set what we got to our form
 $('#speise_ID').val(identity);
 $('#name').val(name);
-$('#sonstiges').val(sonstiges);
-$('#preis').val(preis);
-for (i=0; i!=allergenArr.length;i++) { //Jeder checkbox dessen Wert mit einem Element der aus der Array übereinstimmt wird das Attribut "checked" gegeben.
-      var checkbox = $("input[type='checkbox'][value='"+allergenArr[i]+"']");
+$('#others').val(others);
+$('#price').val(price);
+for (i=0; i!=allergenicArray.length;i++) { //Jeder checkbox dessen Wert mit einem Element der aus der Array übereinstimmt wird das Attribut "checked" gegeben.
+      var checkbox = $("input[type='checkbox'][value='"+allergenicArray[i]+"']");
       checkbox.attr("checked","checked");
   }
 });
