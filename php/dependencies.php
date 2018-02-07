@@ -55,7 +55,7 @@ function successMessage($text) {
 
 function dangerMessage($text) {
 	return "<div class='alert alert-danger alert-dismissable fade show'>
-  <a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
+  <a href='foodList.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 }
 
 

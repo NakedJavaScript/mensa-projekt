@@ -1,5 +1,5 @@
 <?php include_once 'dependencies.php';
-	  include_once 'views/essensliste.php';
+	  include_once 'views/foodList.php';
 ?>
 
 <!DOCTYPE HTML>

@@ -15,7 +15,7 @@
 			        <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
 			      </li>
 			      <li class='nav-item'>
-			        <a class='nav-link' href='essensliste.php'>Essensliste</a>
+			        <a class='nav-link' href='foodList.php'>Essensliste</a>
 			      </li>
                   <li class='nav-item'>
                     <a class='nav-link' href='orders.php'>Bestellungen</a>
