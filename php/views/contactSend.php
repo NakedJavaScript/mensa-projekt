@@ -2,21 +2,21 @@
     if (isset($_POST['contactFormSubmit'])) {
         function sendMail($to, $from, $fromName, $subject, $body) {
             // PHP Mailer Konfiguration für das Kontaktformular
-            $ContactMail = new PHPMailer();
-            $ContactMail->Host = "smtp.gmail.com";
-            $ContactMail->isSMTP();
-            $ContactMail->SMTPAuth = true;
-            $ContactMail->SMTPSecure = "ssl";
-            $ContactMail->Port = 465;
-            $ContactMail->Username = "foodmengroup@gmail.com";
-            $ContactMail->Password = "!tsSchuleF00Dmengrp";
-            $ContactMail ->setFrom($from, $fromName);
-            $ContactMail ->addAddress($to);
-            $ContactMail ->Subject = $subject;
-            $ContactMail ->Body = $body;
-            $ContactMail ->isHTML(true);
+            $contactMail = new PHPMailer();
+            $contactMail->Host = "smtp.gmail.com";
+            $contactMail->isSMTP();
+            $contactMail->SMTPAuth = true;
+            $contactMail->SMTPSecure = "ssl";
+            $contactMail->Port = 465;
+            $contactMail->Username = "foodmengroup@gmail.com";
+            $contactMail->Password = "!tsSchuleF00Dmengrp";
+            $contactMail ->setFrom($from, $fromName);
+            $contactMail ->addAddress($to);
+            $contactMail ->Subject = $subject;
+            $contactMail ->Body = $body;
+            $contactMail ->isHTML(true);
 
-            return $ContactMail->send();
+            return $contactMail->send();
 
         }
 
