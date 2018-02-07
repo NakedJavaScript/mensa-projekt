@@ -212,10 +212,10 @@ list-group-item .btn-danger .btn-success {
   margin-bottom: 25px;
 }
 
-#topright {
+#topRight {
     position: relative;
 }
-#topright img {
+#topRight img {
     position: absolute;
     top: 0px;
     right: 0px;

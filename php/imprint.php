@@ -11,7 +11,7 @@
 	<body>
 		<?php include 'header.php' ?>
 		<div class="container">
-			<div id="topright">
+			<div id="topRight">
     	<img src="../images/foodmengroup.png" class="ribbon"/>
 			</div>
 			<h1>Impressum</h1>Angaben gemäß § 5 TMG<br/><br/>
