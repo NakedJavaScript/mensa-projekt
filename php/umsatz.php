@@ -17,7 +17,7 @@
 		?>
 		<div class="container">
 			<div class="row">
-				<h3>Umsatz anzeigen für</h3> &nbsp&nbsp
+				<h3 class="pr-2">Umsatz anzeigen für</h3>
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown button</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

@@ -16,10 +16,10 @@
 
 	<body>
 		<?php include 'header.php';
-			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { //Verweigert Unbefugten den Zugriff auf diese Seite
+			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // Checks if the user has Admin rights
 				include'footer.php';
-				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.');
-			} //Verweigert Unbefugten den Zugriff auf diese Seite
+				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.'); // If not the user wont be able to access the site
+			}
 		?>
 
 		<div class="container">
@@ -45,7 +45,7 @@
 				<tbody>
 					<?php
 						if ($result->num_rows > 0) {
-							// ausgabe der Daten aus jeder Zeile der Tabelle.
+							// Returns the data in a table
 							while($row = $result->fetch_assoc()) {
 								echo "<tr><td class='align-middle'>".$row['name']."</td>";
 								echo "<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
@@ -60,18 +60,17 @@
 							}
 						}
 						else {
-							echo "<tr><td class='align-middle'><strong>0 Ergebnisse</strong></td></tr>";
+							echo "<tr><td class='align-middle'><strong>Keine Ergebnisse</strong></td></tr>";
 						}
 					?>
 				</tbody>
 			</table>
 
-			<!-- pager -->
+			<!-- jQuery Tablesorter Pager -->
 			<div id="pager" class="pager">
 				<form>
 					<i class="fas fa-angle-double-left first"/></i>
 					<i class="fas fa-angle-left prev"/></i>
-					<!-- the "pagedisplay" can be any element, including an input -->
 					<span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
 					<i class="fas fa-angle-right next"/></i>
 					<i class="fas fa-angle-double-right last"/></i>
@@ -86,7 +85,7 @@
 			</div>
 		</div>
 
-		<?PHP
+		<?PHP // Opens the modal to delete a meal
 			confModal('Wollen Sie diese Speise wirklich löschen?');
 		?>
 
@@ -94,12 +93,10 @@
 		<div class="modal fade" id="NewFood" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<!-- header -->
 					<div class="modal-header">
 						<h3 class="modal-title">Neues Essen hinzufügen</h3>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-						<!-- body -->
 						<div class="modal-body">
 							<form role="form" method="POST" action="#FoodAdded">
 								<div class="form-group">
@@ -192,7 +189,6 @@
 									</div>
 									<small id="preisHelp" class="form-text text-muted">Bitte verwenden Sie anstelle eines Kommas einen Punkt: '.'</small>
 								</div>
-								<!-- footer -->
 								<div class="modal-footer">
 									<input type="submit" name="Essen_hinzufügen" class="btn btn-primary btn-block" value="Essen hinzufügen">
 								</div>
@@ -201,18 +197,15 @@
 				</div>
 			</div>
 		</div>
-		<!--New Food Modal End-->
 
 		<!--Edit Food Modal-->
 		<div class="modal fade" id="EditFood" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<!-- header -->
 					<div class="modal-header">
 						<h3 class="modal-title">Speise Bearbeiten</h3>
 						<button type="button" class="close" id="close_modal" data-dismiss="modal">&times;</button>
 					</div>
-					<!-- body -->
 					<div class="modal-body">
 						<form role="form" method="POST" action="#FoodEdited">
 							<div class="form-group">
@@ -306,7 +299,6 @@
 								</div>
 								<small id="preisHelp" class="form-text text-muted">Bitte verwende bei Kommazahlen ein punkt: '.'</small>
 							</div>
-							<!-- footer -->
 							<div class="modal-footer">
 								<input type="submit" name="Essen_bearbeiten" class="btn btn-primary btn-block" value="Änderungen Speichern">
 							</div>
@@ -315,7 +307,6 @@
 				</div>
 			</div>
 		</div>
-		<!--Edit Food Modal End-->
 		<?php include 'footer.php'; ?>
 	</body>
 </html>

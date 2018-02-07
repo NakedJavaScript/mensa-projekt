@@ -1,4 +1,5 @@
 <?php
+	// Initial session start and connection settings for the mysql database
 	session_start();
 	$servername = "localhost";
 	$username = "root";
@@ -11,11 +12,12 @@
 		die("Connection failed: " . $conn->connect_error);
 	}
 
-	$conn->query("SET CHARSET 'utf8'");//Für korrekte Ausgabe der Umlaute;
-	$expireDate = date("Y-m-d", strtotime("-21 day"));
+	$conn->query("SET CHARSET 'utf8'"); // Allows umlauts
+	$expireDate = date("Y-m-d", strtotime("-21 day")); // Deletes daily meals who are older than 3 weeks
 	$deleteOldTagesangebote = "DELETE FROM mensa.tagesangebot WHERE datum <= '$expireDate'";
-	$conn->query($deleteOldTagesangebote); //Löscht alle Einträge,die Älter als 3 Wochen sind(21 tage)
+	$conn->query($deleteOldTagesangebote);
 
+	// Set the links, scripts and meta data in the header
 	$head_dependencies = '
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
@@ -28,6 +30,7 @@
 		<script src="../vendor/Chart.js/Chart.min.js"></script>
 	';
 
+	// Set the scripts in the footer
 	$footer_dependencies = '
 		<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 		<script src="../vendor/jquery/sticky_nav.js"></script>
@@ -40,9 +43,9 @@
 		<script src="../js/script.js"></script>
 	';
 
-	$Alert = ''; //Diese Variable wird verwendet um den Nutzer zu benachrichtigen. Zum Beispiel ob eine Mail erfolgreich versendet wurde.
+	$Alert = ''; // We use this variable to show our success and danger messages
 
-	/*Funktionen für Alert boxen */
+	// Functions for the alert boxes
 	function successMessage($text) {
 		return "<div class='alert alert-success alert-dismissable fade show mt-4'>
 		<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
@@ -50,7 +53,7 @@
 
 	function dangerMessage($text) {
 		return "<div class='alert alert-danger alert-dismissable fade show mt-4'>
-		<a href='essensliste.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
+		<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 	}
 
 	function confModal($headerText) {
@@ -73,23 +76,15 @@
 		</div> ";
 	}
 
-	// php mailer setup
+	// php mailer plugin setup
 	require 'phpmailer/PHPMailerAutoload.php';
-	// Neue Instanz von PhpMailer
-	$mail = new PHPMailer();
-	// Php Mailer Host
-	$mail->Host = "smtp.gmail.com";
-	// Erlaube SMTP
-	$mail->isSMTP();
-	// setzt SMTP Authentifikation auf TRUE
-	$mail->SMTPAuth = true;
-	// Login details für den Gmail Account
-	$mail->Username = "foodmengroup@gmail.com";
+	$mail = new PHPMailer(); // Creates a new instance of PHPMailer
+	$mail->Host = "smtp.gmail.com"; // Set the send hosts
+	$mail->isSMTP(); // Allow SMTP
+	$mail->SMTPAuth = true; // Allow SMTP Authentification
+	$mail->Username = "foodmengroup@gmail.com"; // Account details of the sender
 	$mail->Password = "!tsSchuleF00Dmengrp";
-	// Schutzprotokoll für SMTP
-	$mail->SMTPSecure = "ssl";
-	// Port
-	$mail->Port = 465;
-	// Erlaubt es uns HTML Emails zu schicken
-	$mail->isHTML(true);
+	$mail->SMTPSecure = "ssl"; // Secure protocol for the SMTP
+	$mail->Port = 465; // Which port to use
+	$mail->isHTML(true); // Allows HTML E-Mails
 ?>

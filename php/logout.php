@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	session_destroy();
+	session_destroy(); // Ends the session
 	header("refresh: 1.5 ; url = index.php");
 	include 'dependencies.php';
 ?>

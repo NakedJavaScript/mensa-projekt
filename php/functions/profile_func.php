@@ -1,9 +1,9 @@
 <?php
-    function endsWith($haystack, $needle) {
+    function endsWith($haystack, $needle) { // Checks if a string ends with a string
         return $needle === '' || substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }
 
-    if (isset($_POST['edit_profile'])) {
+    if (isset($_POST['edit_profile'])) { // Code to edit the profile
         $required = array('vorname','nachname','email','new_password');
         $is_empty = TRUE;
 
@@ -14,7 +14,7 @@
             }
         }
 
-        if (!$is_empty) {
+        if (!$is_empty) { // Updates the user
             $pepper = 'mensa_pfeffer';
             $update = "UPDATE mensa.benutzer SET";
             $email_invalid = false;
@@ -36,12 +36,11 @@
                 }
             }
 
-            if(!empty($_POST['new_password'])) {
+            if(!empty($_POST['new_password'])) { // If you set a new password
                 if(!empty($_POST['confirm_password']) && $_POST['new_password'] == $_POST['confirm_password']) {
                     $passwort = $_POST['new_password'];
-                    //passwort wird gehasht
                     $options = array("cost"=>12);
-                    $hashPassword = password_hash($passwort . $pepper,PASSWORD_BCRYPT,$options);
+                    $hashPassword = password_hash($passwort . $pepper, PASSWORD_BCRYPT, $options);
                     $update = $update . " passwort = '$hashPassword' ,";
                 } else {
                     $password_invalid = true;
@@ -61,27 +60,22 @@
                     $_SESSION['nachname'] = $user['nachname'];
                     $Alert = successMessage("Profil erfolgreich bearbeitet.");
     				header('refresh: 1.5 ; url = profil.php');
-                    die();
                 } else {
                     $Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
     				header('refresh: 1.5 ; url = profil.php');
-                    die();
                 }
             } else {
                 if($email_invalid) {
                     $Alert = dangerMessage("Im Feld 'email' dürfen keine Domänen angegeben werden, bitte entfernen Sie das <strong>'@'</strong> zeichen und die <strong>Domäne</strong>");
                     header('refresh: 1.5 ; url = profil.php');
-                    die();
                 } else {
                     $Alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
                     header('refresh: 1.5 ; url = profil.php');
-                    die();
                 }
             }
         } else {
             $Alert = dangerMessage("Fehler: Keine Änderungen erkannt.");
             header('refresh: 1.5 ; url = profil.php');
-            die();
         }
     }
 ?>

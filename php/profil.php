@@ -23,7 +23,7 @@
 			if(!isset($_SESSION['email'])) {
 				include'footer.php';
 				die('Du musst eingeloggt sein um dein Profil zu sehen.');
-			}//Nutzer die nicht eingeloggt sind können nicht auf diese Seite zugreifen.
+			} // If you're not logged in you won't see this site
 		?>
 		<div class="container">
 			<div class="row">
@@ -76,9 +76,9 @@
 							<tbody>
 							<?php
 								if ($result->num_rows > 0) {
-								// ausgabe der Daten aus jeder Zeile der Tabelle.
+								// creates the table to show the data
 								while($row = $result->fetch_assoc()) {
-									$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
+									$dateFormat = strtotime($row['tagesangebotsdatum']); // formats the date to Day-Month-Year
 									$buchungsdateFormat = strtotime($row['buchungsdatum']);
 									echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
 									echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
@@ -90,7 +90,6 @@
 									echo	"<td class='align-middle'><button type='button' class='btn btn-success'>
 									<i class='fas fa-pencil-alt'> </i></button>
 									<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-
 									<i class='fas fa-trash'> </i></button>
 									</td>
 									</tr>";

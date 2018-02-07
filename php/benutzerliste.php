@@ -16,10 +16,10 @@
 
 	<body>
 		<?php include 'header.php';
-			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
-				include'footer.php';
-				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als Administrator ein.');
-			} //Verweigert nicht Admins den Zugriff auf diese Seite
+			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // Checks if the user has Admin rights
+				include 'footer.php';
+				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als Administrator ein.'); // If not the user wont be able to access the site
+			}
 		?>
 
 		<div class="container">
@@ -46,9 +46,9 @@
 				<tbody>
 					<?php
 						if ($result->num_rows > 0) {
-							// ausgabe der Daten aus jeder Zeile der Tabelle.
+							// Returns the data in a table
 							while($row = $result->fetch_assoc()) {
-								if ($row['admin_rechte'] == 2) {
+								if ($row['admin_rechte'] == 2) { // Sets the admin rights for the user
 									$adminRecht = "Ja";
 									echo "<tr class='admin-highlight'>";
 								} else {
@@ -60,7 +60,7 @@
 								<td class='align-middle'>".$row['email']."</td>
 								<td class='align-middle'>".$row['kontostand']."€</td>
 								<td class='align-middle'>".$adminRecht."</td>";
-								if ($row['benutzer_ID'] == $_SESSION['id']) {
+								if ($row['benutzer_ID'] == $_SESSION['id']) { // If you're logged in you can't delete yourself
 									$disabled = 'disabled';
 								} else {
 									$disabled = '';
@@ -79,12 +79,11 @@
 				<tbody>
 			</table>
 
-			<!-- pager -->
+			<!-- jQuery Tablesorter Pager -->
 			<div id="pager" class="pager">
 				<form>
 					<i class="fas fa-angle-double-left first"/></i>
 					<i class="fas fa-angle-left prev"/></i>
-					<!-- the "pagedisplay" can be any element, including an input -->
 					<span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
 					<i class="fas fa-angle-right next"/></i>
 					<i class="fas fa-angle-double-right last"/></i>
@@ -99,7 +98,7 @@
 			</div>
 		</div>
 
-		<?PHP
+		<?PHP // Opens the modal to delete a user
 			confModal('Wollen Sie diesen Nutzer wirklich löschen?');
 		?>
 
@@ -107,12 +106,10 @@
 		<div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<!-- header -->
 					<div class="modal-header">
 						<h3 class="modal-title">Neuer Nutzer</h3>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-					<!-- body -->
 					<div class="modal-body">
 						<form role="form" method="POST" action="">
 							<div class="form-group">
@@ -142,7 +139,6 @@
 									<input type="radio" name="adminrechte" id="adminrechte" class="form-check-input" value="2"><label class="form-check-label" for="adminrechte">Ja</label>
 								</div>
 							</div>
-							<!-- footer -->
 							<div class="modal-footer">
 								<input type="submit" name="neuer_nutzer" class="btn btn-primary btn-block" value="Neuen Nutzer anlegen">
 							</div>
@@ -151,18 +147,15 @@
 				</div>
 			</div>
 		</div>
-		<!--New User Modal End-->
 
 		<!--Edit User Modal-->
 		<div class="modal fade" id="edit-user" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<!-- header -->
 					<div class="modal-header">
 						<h3 class="modal-title">Nutzer bearbeiten</h3>
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
-					<!-- body -->
 					<div class="modal-body">
 						<form role="form" method="POST" action="">
 							<div class="form-group" id="editform">
@@ -192,7 +185,6 @@
 									<input type="radio" name="adminrechte" id="adminrechte" class="form-check-input" value="2"><label class="form-check-label" for="adminrechte">Ja</label>
 								</div>
 							</div>
-							<!-- footer -->
 							<div class="modal-footer">
 								<input type="submit" name="bearbeiten_nutzer" class="btn btn-primary btn-block" value="Änderungen Speichern">
 							</div>
@@ -201,11 +193,10 @@
 				</div>
 			</div>
 		</div>
-		<!--Edit User Modal End-->
 	</body>
 	<?php include 'footer.php'; ?>
 	<script>
-		//zum Bearbeiten der Nutzer
+		// Additional Javascript code for editing users
 		$(document).on("click",'#edit_user' , function (e) {
 			var vorname= $(this).attr('vorname');
 			var nachname=$(this).attr('nachname');
@@ -213,18 +204,18 @@
 			var kontostand=$(this).attr('kontostand');
 			var identity=$(this).attr('benutzer_ID');
 			var adminrechte=$(this).attr('adminrechte');
-			var sessID = <?php echo json_encode($_SESSION['id']) ?>; //muss aufgrund diesen PHP parts hier stehen und kann nicht ins script.js
-			//set what we got to our form
+			var sessID = <?php echo json_encode($_SESSION['id']) ?>; // This script part has to be in this file due to the PHP part in it
+			// set what we got to our form
 			$('#vorname').val(vorname);
 			$('#nachname').val(nachname);
 			$('#email').val(email);
 			$('#kontostand').val(kontostand);
 			$('#benutzer_ID').val(identity);
-			$("input[name=adminrechte][value=" + adminrechte + "]").prop('checked', true); //je nachdem ob der Nutzer adminrechte oder nicht wird der richtige radiobutton gewählt
-			if(identity == sessID) { //falls man sich selbst bearbeitet, kann man seine Zugriffsrechte nicht bearbeiten
-				$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").hide(); //felder werden gehidet
+			$("input[name=adminrechte][value=" + adminrechte + "]").prop('checked', true); // Depending wether the user is admin or not the correct radiobutton will show up
+			if(identity == sessID) { // If you want to edit yourself (as admin), you can't change your rights
+				$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").hide(); // Hide the fields
 			} else {
-				$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").show(); //sonst werden sie gezeigt
+				$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").show(); // Else if your not editing yourself, show them
 			}
 		});
 	</script>

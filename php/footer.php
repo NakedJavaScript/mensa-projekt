@@ -11,7 +11,7 @@
 
 <?php echo $footer_dependencies; ?>
 
-<!-- Start Cookie Plugin -->
+<!-- Code for the cookie plugin -->
 <script type="text/javascript">
 	window.cookieconsent_options = {
 		message: 'Diese Website nutzt Cookies, um bestmögliche Funktionalität bieten zu können.',
@@ -22,13 +22,12 @@
 	};
 </script>
 <script type="text/javascript" src="../vendor/cookies/script.js"></script>
-<!-- Ende Cookie Plugin -->
 
-<!--Script für Confirmation Modal -->
+<!--Script for the Confirmation Modal -->
 <script language="JavaScript" type="text/javascript">
 	$('#confirm-delete').on('show.bs.modal', function(e) {
 		$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 	});
 </script>
 
-</div> <!--Ende vom page-content-wrapper(siehe Header)-->
+</div> <!--End of the page-content-wrapper(see Header)-->

@@ -1,13 +1,11 @@
-<!--EditDaymeal Modal-->
+<!-- Modal for editing daily meals -->
 <div class="modal fade" id="EditDaymeal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!-- header -->
             <div class="modal-header">
                 <h3 class="modal-title">Ein neues Tagesangebot erstellen</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <!-- body -->
             <div class="modal-body">
                 <form role="form" method="POST" action="#EditDaymeal">
                     <div class="form-group">
@@ -22,14 +20,13 @@
 
                                 while($food = $result->fetch_assoc()) {
                                     $selected = '';
-                                    $food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>";//Alle speisen werden als dropdownoption gespeichert.
+                                    $food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>"; // Every meal is saved as a dropdown option
                                 }
 
                                 echo $food_options;
                             ?>
                         </select>
                     </div>
-                    <!-- footer -->
                     <div class="modal-footer">
                         <input type="submit" name="EditDaymeal" class="btn btn-primary btn-block" value="Tagesangebot bearbeiten">
                     </div>
@@ -38,4 +35,3 @@
         </div>
     </div>
 </div>
-<!--EditDaymeal Modal End-->

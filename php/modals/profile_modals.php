@@ -1,13 +1,11 @@
-<!--Edit User Modal-->
+<!-- Modal for editing the profile -->
 <div class="modal fade" id="edit-profile" tabindex="-1" role="dialog" aria-labelledby="New User" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!-- header -->
             <div class="modal-header">
                 <h3 class="modal-title">Nutzer bearbeiten</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <!-- body -->
             <div class="modal-body">
                 <form role="form" method="POST" action="">
                     <div class="form-group" id="editform">
@@ -24,7 +22,6 @@
                         <label for="passwort" >Passwort</label><input type="password" name="new_password" class="form-control"/><br>
                         <label for="passwort" >Passwort Bestätigen</label><input type="password" name="confirm_password" class="form-control"/><br>
                     </div>
-                    <!-- footer -->
                     <div class="modal-footer">
                         <input type="submit" name="edit_profile" class="btn btn-primary btn-block" value="Änderungen Speichern">
                     </div>
@@ -33,4 +30,3 @@
         </div>
     </div>
 </div>
-<!--Edit User Modal End-->
