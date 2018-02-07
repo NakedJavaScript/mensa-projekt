@@ -14,27 +14,37 @@ body {
   padding-bottom: 6em;
 }
 
+/* General Additional CSS */
+
+list-group-item .btn-danger .btn-success {
+  float:right;
+  text-align:right;
+}
+
+/* Additional Table CSS */
+
 .admin-highlight {
     background-color: rgba(40, 167, 69, 0.2);
 }
 
-#search-btn {
-  padding: .5rem .75rem;
+table, thead, tbody, td, th {
+  text-align: center;
 }
 
-#login-btn, #login-btn:hover {
-    text-decoration: none;
-    color: #fff;
+/* Success Page CSS */
+
+.success-icn {
+    color: #28a745;
 }
+
+/* Footer CSS */
 
 .footer {
-  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: #1b1e21;
-  text-align: center;
-  padding: 20px;   /* Height of the footer */
+  color: #fff;
 }
 
 .footer-links {
@@ -46,16 +56,11 @@ body {
     text-decoration: none;
 }
 
-.close {
-  color: #000 !important;
-}
+/* Alert CSS */
 
 .alert-container {
-  position: absolute;
   left: 0;
   right: 0;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .alert {
@@ -72,116 +77,59 @@ body {
   border-radius: 4px;
 }
 
-.user-table {
-  margin-top: 50px;
-}
+/* Page Content Wrapper CSS */
 
-.profile-btns {
-  margin-left: 5px;
-  float:right;
-  text-align:center;
-}
-
-.index-btns:hover {
-  cursor: pointer;
-}
-
-.navbar {
-	margin-bottom: 20px;
-}
-
-.pageContentWrapper {
+.page-content-wrapper {
   margin-top: 80px;
 }
+
+/* Additional Navbar CSS */
 
 .mr-auto .nav-link:hover {
   color: #e05120 !important;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  background-color: #28a745;
-}
-
-.nav-pills .nav-link {
-  color: #000;
-}
-
-.form-check-input {
-    position: absolute;
-    margin-top: .25rem;
-}
-
-.active-link {
+.active-nav-links {
   color: #e05120 !important;
   font-weight:600;
 }
 
-.bg-custom {
+.custom-nav-bg {
   background-color: #eee!important;
 }
+
+    /* Navbar Dropdown CSS */
+
+    .dropdown-menu {
+    	min-width: 0;
+    	max-width: 100%;
+    }
+
+/* Additional Profile Tabs CSS */
+
+.nav-pills .nav-link.active, .nav-pills .show >.nav-link { /* changes background color of the profile tabs */
+  background-color: #28a745;
+}
+
+.nav-pills .nav-link { /* And the link */
+  color: #000;
+}
+
+/* Index Date Table CSS */
 
 .disable {
   pointer-events: none;
   cursor: default;
 }
 
-.dropdown {
-	margin-right: 15px;
-}
-
-.search-box {
-	padding: .5rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.dropdown-menu {
-	min-width: 0;
-	max-width: 100%;
-}
-
-.dropdown-item {
-	padding: 0 5px 0 5px !important;
-    margin: 0px !important;
-}
-
-.index-btns {
-  position: relative;
-  top: 100px;
-  bottom: 400px;
-  transform: translateY(-50%);
-}
-
-.daymealTable {
+.day-meal-table {
     table-layout: fixed;
-}
-
-.foodDetailList {
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-    font-size: 1vw;
-    display: block;
 }
 
 .today {
   background-color: #28a745 !important;
   font-weight: bold !important;
   color: white !important;
-}
-
-table, thead, tbody, td, th {
-  text-align: center;
-}
-
-list-group-item .btn-danger .btn-success {
-  float:right;
-  text-align:right;
-}
-
-.page_nav{
-	color: black;
-	text-align: center;
 }
 
 /* Additional Cookie-CSS */
@@ -192,7 +140,7 @@ list-group-item .btn-danger .btn-success {
 }
 
 
-/* ----- CONTACT-FORM ----- */
+/* Additional Contactform CSS */
 
 .fa-envelope {
     color: #007bff !important;
@@ -200,33 +148,14 @@ list-group-item .btn-danger .btn-success {
 
 .contact-box {
   background-color: #f7f7f9;
-  padding: 20px;
-  border-radius: 5px;
   border: 1px solid #d8d8d8;
 }
 
+/* Additional Success Site CSS */
+
 .redo {
   border: 1px solid #28a745;
-  border-radius: 3px;
   background: #fff;
-  margin-bottom: 25px;
-}
-
-#topright {
-    position: relative;
-}
-#topright img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-
-.text-box {
-  padding-bottom: 25px;
-}
-
-.login-modal-footer {
-    flex-direction: column;
 }
 
 .modalbox.success {
@@ -266,13 +195,7 @@ list-group-item .btn-danger .btn-success {
   border-color: transparent;
 }
 
-.center {
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.center .change {
+.change {
   clearn: both;
   display: block;
   font-size: 10px;
@@ -518,7 +441,14 @@ list-group-item .btn-danger .btn-success {
   }
 }
 
-/* Back to top button */
+/* Additional Imprint CSS */
+
+.foodmen-logo {
+    top: 0px;
+    right: 0px;
+}
+
+/* Back to top button CSS */
 
 .cd-top {
   color: #fff;
@@ -569,13 +499,7 @@ list-group-item .btn-danger .btn-success {
   }
 }
 
-/* Like Button */
-
-.like-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Additional like Button CSS */
 
 .heart-btn {
     border: 1px solid #e2dede;
@@ -585,9 +509,6 @@ list-group-item .btn-danger .btn-success {
 
 .like-btn {
     color: #007bff;
-}
-
-.fa-heart {
 }
 
 .like-count {
@@ -615,20 +536,7 @@ list-group-item .btn-danger .btn-success {
     color: #e05120;
 }
 
-/* Forgot Password CSS */
-
-
-.login-footer {
-    flex-direction: column !important;
-}
-
-.forgotPasswordForm {
-    margin-top: 50px;
-}
-
-.resetPasswordForm {
-    margin-top: 20px;
-}
+/* Additional Forgot Password Site CSS */
 
 .flat-form {
   border: 2px solid #28a745;
@@ -684,51 +592,52 @@ list-group-item .btn-danger .btn-success {
   color: #28a745;
 }
 
-#error-img-wrapper {
-    display:flex;
-    justify-content: center;
+/* Tablesorter Additional CSS */
+
+.tablesorter thead .disabled {
+    display: none
 }
 
-.tablesorter thead .disabled {display: none}
+    /* Tablesorter Pager CSS */
 
-/* pager wrapper, div */
-.tablesorter-pager {
-  padding: 5px;
-}
-/* pager wrapper, in thead/tfoot */
-td.tablesorter-pager {
-  background-color: #e6eeee;
-  margin: 0; /* needed for bootstrap .pager gets a 18px bottom margin */
-}
-/* pager navigation arrows */
-.tablesorter-pager img {
-  vertical-align: middle;
-  margin-right: 2px;
-  cursor: pointer;
-}
+    .tablesorter-pager {
+      padding: 5px;
+    }
 
-/* pager output text */
-.tablesorter-pager .pagedisplay {
-  padding: 0 5px 0 5px;
-  width: 50px;
-  text-align: center;
-}
+    td.tablesorter-pager {
+      background-color: #e6eeee;
+      margin: 0; /* needed for bootstrap .pager gets a 18px bottom margin */
+    }
 
-/* pager element reset (needed for bootstrap) */
-.tablesorter-pager select {
-  margin: 0;
-  padding: 0;
-}
+    /* pager navigation arrows */
+    .tablesorter-pager img {
+      vertical-align: middle;
+      margin-right: 2px;
+      cursor: pointer;
+    }
 
-/*** css used when "updateArrows" option is true ***/
-/* the pager itself gets a disabled class when the number of rows is less than the size */
-.tablesorter-pager.disabled {
-  display: none;
-}
-/* hide or fade out pager arrows when the first or last row is visible */
-.tablesorter-pager .disabled {
-  /* visibility: hidden */
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  cursor: default;
-}
+    /* pager output text */
+    .tablesorter-pager .pagedisplay {
+      padding: 0 5px 0 5px;
+      width: 50px;
+      text-align: center;
+    }
+
+    /* pager element reset (needed for bootstrap) */
+    .tablesorter-pager select {
+      margin: 0;
+      padding: 0;
+    }
+
+    /*** css used when "updateArrows" option is true ***/
+    /* the pager itself gets a disabled class when the number of rows is less than the size */
+    .tablesorter-pager.disabled {
+      display: none;
+    }
+    /* hide or fade out pager arrows when the first or last row is visible */
+    .tablesorter-pager .disabled {
+      /* visibility: hidden */
+      opacity: 0.5;
+      filter: alpha(opacity=50);
+      cursor: default;
+    }
