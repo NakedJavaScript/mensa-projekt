@@ -27,6 +27,7 @@ CREATE TABLE `buchungen` (
   `schueler_ID` int(11) NOT NULL,
   `tagesangebot_ID` int(11) NOT NULL,
   `buchungsdatum` datetime NOT NULL,
+  `menge` int(2) NOT NULL,
   PRIMARY KEY (`buchungsnummer`),
   KEY `schueler_ID_idx` (`schueler_ID`),
   KEY `tagesangebot_ID_idx` (`tagesangebot_ID`),
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-01  8:38:01
+-- Dump completed on 2018-01-27 22:05:51

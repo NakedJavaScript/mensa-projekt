@@ -19,18 +19,13 @@ if(isset($_POST['submit'])){
 			$_SESSION['adminrechte'] = $row['admin_rechte'];
 			$Alert = successMessage('Login erfolgreich');
 			header( 'Location: index.php' ); //Nach dem Login wird der Nutzer zum Index Redirected
-			die();
 		}
 		else{
 			$Alert = dangerMessage('Falsches Passwort');
-			header('refresh: 1.5 ; url = index.php');
-			die();
 		}
 	}
 	else{
 		$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
-		header('refresh: 1.5 ; url = index.php');
-		die();
 	}
 }
 ?>

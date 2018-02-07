@@ -1,8 +1,5 @@
-<?php
-	include_once 'dependencies.php';
-	include_once 'functions/profile_func.php';
- ?>
-
+<?php include 'dependencies.php';
+ 			include 'functions/profile_func.php'?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -33,52 +30,49 @@
 					<div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 						<h1>Dein Profil</h1>
 						<br>
-						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast. Info: Ihre E-mail Adresse muss mit @its.de enden.</p>
+						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast.</p>
 						<br>
 						<table class="table table-bordered">
 						  <tbody>
 							<tr>
 							  <th scope="row">ID</th>
-							  <td class='align-middle'><?PHP echo  $_SESSION['id'] ?></td>
+							  <td><?PHP echo  $_SESSION['id'] ?></td>
 							</tr>
 							<tr>
 							  <th scope="row">Name</th>
-							  <td class='align-middle'><?PHP echo  $_SESSION['vorname'] . " " .  $_SESSION['nachname']?></td>
+							  <td><?PHP echo  $_SESSION['vorname'] . " " .  $_SESSION['nachname']?></td>
 							</tr>
 							<tr>
 							  <th scope="row">E-Mail</th>
-							  <td class='align-middle'><?PHP echo $_SESSION['email']?></td>
+							  <td><?PHP echo $_SESSION['email']?></td>
 							</tr>
 							<tr>
 							  <th scope="row">Kontostand</th>
-							  <td class='align-middle'><?PHP echo $_SESSION['kontostand'] . "€"?></td>
+							  <td><?PHP echo $_SESSION['kontostand'] . "€"?></td>
 							</tr>
 						  </tbody>
 						</table>
-						<button type='button' method='POST'  benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#edit-profile' class='btn btn-success'>
-							Bearbeiten <i class='fas fa-pencil-alt'></i></button>
+						<button type='button' class='btn btn-success'>
+							Bearbeiten <i class='fas fa-pencil-alt'> </i>
 						</button>
 					</div>
 
 				  <div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
 						<h1>Deine Bestellungen</h1>
 						<br>
-
 						<p>Das sind deine Bestellungen. Hier kannst du deine Bestellungen ansehen und stornieren.
 							 <strong>Bitte bedenke dass man seine Bestellungen nur bis zum Tag BEVOR das Tagesangebot gültig ist stornieren kann</strong></p>
 						<br>
-	
-						<table class="tabelsorterTable table table-hover tablesorter">
-
+						<table class="table table-bordered">
 							<thead>
 								<th>Buchungsnummer</th>
-								<th>Tagesangebot:</th>
+								<th>Tagesangebot am:</th>
 								<th>Speise:</th>
 								<th>Allergene:</th>
 								<th>Sonstiges:</th>
 								<th>Preis:</th>
 								<th>Buchungsdatum</th>
-								<th  class="filter-false" data-sorter="false">Stornieren</th>
+								<th>Stornieren</th>
 							</thead>
 						<tbody>
 
@@ -88,21 +82,21 @@
 								while($row = $result->fetch_assoc()) {
 										$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
 										$buchungsdateFormat = strtotime($row['buchungsdatum']);
-										echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
-										echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
-										echo	"<td class='align-middle'>".$row['name']."€</td>";
-										echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
-										echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
-										echo	"<td class='align-middle'>".$row['preis']."€</td>";
-										echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
-										if ($row['tagesangebotsdatum'] > date('Y-m-d')) { //Wenn das Tagesangebot nach dem heutigen Tag ist, dann ist der Button disabled
-											echo	"<td class='align-middle'>
+										echo  "<tr><td><strong> ". $row['buchungsnummer'] . "</strong></td>";
+										echo 	"<td>".date('d.m.Y', $dateFormat)."</td>";
+										echo	"<td>".$row['name']."</td>";
+										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
+										echo	"<td>".$row['sonstiges']."</td>";
+										echo	"<td>".$row['preis']."€</td>";
+										echo	"<td>".date('d.m.Y', $buchungsdateFormat)."</td>";
+											if ($row['tagesangebotsdatum'] > date('Y-m-d')) { //Wenn das Tagesangebot nach dem heutigen Tag ist, dann ist der Button disabled
+											echo	"<td>
 																	<button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger '>
 																	<i class='fas fa-trash'> </i></button>
 														</td>";
 												}
 													else { //Sonst ist das Angebot immerzu stonierbar
-														echo "<td class='align-middle'>
+														echo "<td>
 																				<button type='button' method='POST'   class='btn btn-danger disabled'>
 																				<i class='fas fa-trash'> </i></button>
 																	</td>";
@@ -110,7 +104,7 @@
 											echo "</tr>";
 								}
 								} else {
-									echo "<td class='align-middle'>Sie haben noch keine Buchungen getätigt</td>";
+									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
 								}
 								$conn->close();
 							?>
@@ -122,11 +116,10 @@
 				</div>
 			</div>
 		</div>
-
-		<?php confModal("Wollen Sie diese Bestellung wirklich stornieren?");
-          include 'modals/profile.php';
-		      include 'footer.php'; 
-    ?>
+		<?php
+		confModal("Wollen Sie diese Bestellung wirklich stornieren?");
+		include 'footer.php';
+		 ?>
 		<script>
 			$('.nav-tabs-sticky').stickyTabs();
 		</script>

@@ -21,14 +21,13 @@
 				    Dropdown button
 				  </button>
 				  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				    <a class="dropdown-item" href="#" onclick=drawGraph()>Action</a>
-				    <a class="dropdown-item" href="#" onclick=drawGraph()>Another action</a>
-				    <a class="dropdown-item" href="#" onclick=drawGraph()>Something else here</a>
+				    <a class="dropdown-item" href="#">Action</a>
+				    <a class="dropdown-item" href="#">Another action</a>
+				    <a class="dropdown-item" href="#">Something else here</a>
 				  </div>
 				</div>
 			</div>
 			<div class="row">
-				<canvas id="myChart" width="400" height="400"></canvas>
 			</div>
 		</div>
 		<?php include 'footer.php'; ?>
