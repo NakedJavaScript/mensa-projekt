@@ -1,5 +1,7 @@
 <?php include 'dependencies.php';
- 			include 'functions/profile_func.php'?>
+ 			include 'functions/profile_func.php'
+            include 'modals/profile_modals.php'
+            ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -83,17 +85,17 @@
 										$dateFormat = strtotime($row['tagesangebotsdatum']);//Formatierung zu Tag-Monat-Jahr
 										$buchungsdateFormat = strtotime($row['buchungsdatum']);
 										echo  "<tr><td><strong> ". $row['buchungsnummer'] . "</strong></td>";
-										echo 	"<td>".date('d.m.Y', $dateFormat)."</td>";
-										echo	"<td>".$row['name']."</td>";
-										echo	"<td>".$row['allergene_inhaltsstoffe']."</td>";
-										echo	"<td>".$row['sonstiges']."</td>";
-										echo	"<td>".$row['preis']."€</td>";
-										echo	"<td>".date('d.m.Y', $buchungsdateFormat)."</td>";
+										echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
+										echo	"<td class='align-middle'>".$row['name']."</td>";
+										echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
+										echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
+										echo	"<td class='align-middle'>".$row['preis']."€</td>";
+										echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
 											if ($row['tagesangebotsdatum'] > date('Y-m-d')) { //Wenn das Tagesangebot nach dem heutigen Tag ist, dann ist der Button disabled
-											echo	"<td>
+											echo	"<td class='align-middle'>
 																	<button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger '>
 																	<i class='fas fa-trash'> </i></button>
-														</td>";
+														</td class='align-middle'>";
 												}
 													else { //Sonst ist das Angebot immerzu stonierbar
 														echo "<td>
@@ -117,7 +119,6 @@
 			</div>
 		</div>
 		<?php
-		confModal("Wollen Sie diese Bestellung wirklich stornieren?");
 		include 'footer.php';
 		 ?>
 		<script>
