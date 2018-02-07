@@ -28,16 +28,15 @@
 			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
 			<br>
 			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewUser">
-
 				Hinzufügen <i class='fa fa-plus'> </i>
 			</button>
 			<div class="input-group add-on" style="float:right; width:400px;">
-      <input class="form-control search-box" placeholder="Suche" name="srch-term" id="srch-term" type="text">
-      <div class="input-group-btn">
-        <button class="btn btn-default search-btn" id="search-btn" type="submit"><i class="fas fa-search"></i></button>
-      </div>
-	  </div>
-      
+		      <input class="form-control search-box" placeholder="Suche" name="srch-term" id="srch-term" type="text">
+		      	<div class="input-group-btn">
+        			<button class="btn btn-default search-btn" id="search-btn" type="submit"><i class="fas fa-search"></i></button>
+      			</div>
+	  		</div>
+
 				<br/>
 				<br/>
 
@@ -61,7 +60,7 @@
 														<td>".$row['nachname']."</td>
 														<td>".$row['email']."</td>
 														<td>".$row['kontostand']."€</td>
-														<td><button type='button' method='POST' data-href='#?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
+														<td><button type='button' method='POST' data-href='?delete?userID=".$row['benutzer_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 														<i class='fas fa-trash'> </i></button>
 
 													<button type='button' method='POST'id='edit_user' benutzer_ID='".$row['benutzer_ID']."' vorname='".$row['vorname']."' nachname='".$row['nachname']."' email='".$row['email']."' kontostand='".$row['kontostand']."' adminrechte='".$row['admin_rechte']."' data-href='' data-toggle='modal' data-target='#edit-user' class='btn btn-success'>

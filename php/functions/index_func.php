@@ -13,7 +13,7 @@
 			}
 		}
 
-				if(isset($_POST['bestellenBestätigen'])) {
+				if(isset($_POST['bestellungen'])) {
 					$Bestellungen = $_POST['bestellungen'];
 					$nutzerID = $_SESSION['id'];
 					$buchungsdatum = date("Y-m-d");
@@ -107,7 +107,7 @@
 									</div>
 									<div class='modal-footer'>
 											<button type='button' class='btn btn-default' data-dismiss='modal'>Abbrechen</button>
-											<input type='submit' name='bestellenBestätigen' class='btn btn-success bestellBtn' value='Kostenpflichtig Bestellen'>
+											<input type='button' onclick='submit()' name='bestellenBestätigen' class='btn btn-success bestellBtn' value='Kostenpflichtig Bestellen'>
 									</div>
 							</div>
 					</div>

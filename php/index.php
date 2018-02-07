@@ -59,7 +59,6 @@
           </tr>
         </thead>
         <tbody>
-					<form role="form" method="POST" action="">
 					<?php
 								$sql = "SELECT * FROM tagesangebot"; // This is not optimized, need only daymeals of one week
 								$result = $conn->query($sql);
@@ -129,7 +128,6 @@
 					<!-- Confirm Modal -->
 					<?PHP confBestellung(); ?>
 					<!-- Confirm Modal -->
-				</form>
 			</div>
 		        </div>
 		        <div class="col-sm-1 test1">
@@ -178,7 +176,7 @@
 							<!-- footer -->
 							<div class="modal-footer">
 
-								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
+								<input type="submit"  name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
 						</form>
 				</div>
@@ -191,6 +189,25 @@
 
 
 	<script>
+	function submit() {
+	    var bestellungen = [];
+	    $(".indexCB:checked").each(function(){
+	        bestellungen.push($(this).val());
+	    });
+		$.ajax({
+			 type: "POST",
+			 url: 'index.php',
+			 data: ({bestellungen}),
+			 success: function(data) {
+			   $("#confirm-submit").modal('hide');
+			   $('#succesyOrder').addClass('show');
+			   $('.indexCB:checked').prop('disabled', true);
+			   $('.indexCB:checked').prop('checked', false);			   
+			  }
+		});
+	}
+</script>
+<script>
 	var boxes = $('.indexCB');
 
 boxes.on('change', function () {
