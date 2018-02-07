@@ -42,7 +42,7 @@
 							</tr>
 							<tr>
 							  <th scope="row">Name</th>
-							  <td class='align-middle'><?PHP echo  $_SESSION['vorname'] . " " .  $_SESSION['nachname']?></td>
+							  <td class='align-middle'><?PHP echo  $_SESSION['firstName'] . " " .  $_SESSION['lastName']?></td>
 							</tr>
 							<tr>
 							  <th scope="row">E-Mail</th>
@@ -50,7 +50,7 @@
 							</tr>
 							<tr>
 							  <th scope="row">Kontostand</th>
-							  <td class='align-middle'><?PHP echo $_SESSION['kontostand'] . "€"?></td>
+							  <td class='align-middle'><?PHP echo $_SESSION['balance'] . "€"?></td>
 							</tr>
 						  </tbody>
 						</table>

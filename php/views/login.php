@@ -12,11 +12,11 @@ if(isset($_POST['submit'])){
 		$row = $rs->fetch_assoc();
 		if(password_verify($passwort . $pepper,$row['passwort'])){
 			$_SESSION['email'] = $email;
-			$_SESSION['vorname'] = $row['vorname'];
-			$_SESSION['nachname'] = $row['nachname'];
-			$_SESSION['kontostand'] = $row['kontostand'];
+			$_SESSION['firstName'] = $row['vorname'];
+			$_SESSION['lastName'] = $row['nachname'];
+			$_SESSION['balance'] = $row['kontostand'];
 			$_SESSION['id'] = $row['benutzer_ID'];
-			$_SESSION['adminrechte'] = $row['admin_rechte'];
+			$_SESSION['adminRights'] = $row['admin_rechte'];
 			$alert = successMessage('Login erfolgreich');
 			header( 'Location: index.php' ); //Nach dem Login wird der Nutzer zum Index Redirected
 			die();

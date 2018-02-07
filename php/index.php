@@ -98,7 +98,7 @@
 															<li><b>Preis:</b><br>".$meal['preis']."€</li>
 															<li>" . likeButtons($meal["speise_ID"], $foodLikes, $hasLiked) . "</li>
 															</ul>";
-															if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) {
+															if(((isset($_SESSION['adminRights'])) && $_SESSION['adminRights'] == 2)) {
 																$sql = "SELECT COUNT(*) AS orders FROM buchungen WHERE tagesangebot_ID = ".$entry['tagesangebot_ID'];
 																$orders = $conn->query($sql)->fetch_assoc();
 																$output = $output . "<button type='button' method='POST' data-href='?delete?daymealID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
@@ -112,7 +112,7 @@
 															}
 									}
 											else { // Display a button for the adding of a meal
-													if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
+													if(((isset($_SESSION['adminRights'])) && $_SESSION['adminRights'] == 2)) { //falls noch kein Tagesangebot erstellt wurde und ein Admin eingeloggt ist wird der "Hinzufügen" button gezeigt.
 														$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDaymeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
 													}
 											}

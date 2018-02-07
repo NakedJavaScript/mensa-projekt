@@ -9,8 +9,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 			<?PHP
-					if (isset($_SESSION['adminrechte'])) {
-					if($_SESSION['adminrechte'] == 2) { //nur Admin sieht diese Seiten
+					if (isset($_SESSION['adminRights'])) {
+					if($_SESSION['adminRights'] == 2) { //nur Admin sieht diese Seiten
 			      echo "<li class='nav-item'>
 			        <a class='nav-link' href='userList.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
 			      </li>
@@ -24,7 +24,7 @@
 			        <a class='nav-link' href='sales.php'>Umsatz</a>
 			      </li>";
 					 }
-					else if($_SESSION['adminrechte'] == 3) { //normale user sehen das.
+					else if($_SESSION['adminRights'] == 3) { //normale user sehen das.
 						echo "<li class='nav-item'>
 							<a class='nav-link' href='profile.php'>profile</a>
 						</li>";
@@ -37,7 +37,7 @@
    <ul class="nav navbar-nav navbar-right">
 		 <?php if (isset($_SESSION['email'])) {
 			echo  "<div class='btn-group'>
- 		 		<a role='button' href='profile.php' class='btn btn-primary'>" . $_SESSION['vorname'] . "</a>
+ 		 		<a role='button' href='profile.php' class='btn btn-primary'>" . $_SESSION['firstName'] . "</a>
  				<button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>

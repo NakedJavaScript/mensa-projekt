@@ -16,7 +16,7 @@
 
     <body>
         <?php include 'header.php';
-            if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { //If a user isn't a admin, he can't see the website
+            if(((!isset($_SESSION['adminRights'])) || $_SESSION['adminRights'] != 2)) { //If a user isn't a admin, he can't see the website
                 include'footer.php';
                 die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.');
             }

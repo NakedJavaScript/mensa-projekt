@@ -49,7 +49,7 @@
 
 			//Code um eine Speise hinzuzufügen
 				if (isset($_POST['editFood'])) {
-					$speiseID = $_POST['speise_ID'];
+					$speiseID = $_POST['foodID'];
 					$name = strtoupper(trim($_POST['name']));
 					$others = strtoupper(trim($_POST['others']));
 

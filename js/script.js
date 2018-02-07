@@ -59,7 +59,7 @@ var allergenicArray = allergenic.split(', ')//aus allergene wird ein Array erste
 var others=$(this).attr('others');
 var price=$(this).attr('price');
 //set what we got to our form
-$('#speise_ID').val(identity);
+$('#foodID').val(identity);
 $('#name').val(name);
 $('#others').val(others);
 $('#price').val(price);

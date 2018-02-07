@@ -49,8 +49,8 @@
                     $query = "SELECT * from mensa.benutzer WHERE benutzer_ID = ".$_SESSION['id'];
                     $user = $conn->query($query)->fetch_assoc();
                     $_SESSION['email'] = $user['email'];
-                    $_SESSION['vorname'] = $user['vorname'];
-                    $_SESSION['nachname'] = $user['nachname'];
+                    $_SESSION['firstName'] = $user['vorname'];
+                    $_SESSION['lastName'] = $user['nachname'];
                     $alert = successMessage("Profil erfolgreich bearbeitet.");
     				header('refresh: 1.5 ; url = profil.php');
                     die();

@@ -15,7 +15,7 @@
 
 	<body>
 		<?php include 'header.php';
-			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { //Verweigert Unbefugten den Zugriff auf diese Seite
+			if(((!isset($_SESSION['adminRights'])) || $_SESSION['adminRights'] != 2)) { //Verweigert Unbefugten den Zugriff auf diese Seite
 				include'footer.php';
 				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.'); } //Verweigert Unbefugten den Zugriff auf diese Seite
 		?>
@@ -225,7 +225,7 @@
 																		<div class="modal-body">
 																			<form role="form" method="POST" action="#FoodEdited">
 																			<div class="form-group">
-																				<input type="hidden" name="speise_ID" id="speise_ID" class="form-control"  placeholder="123" readonly/><br>
+																				<input type="hidden" name="foodID" id="foodID" class="form-control"  placeholder="123" readonly/><br>
 																				<label for="name">Name der Speise</label><input type="text" name="name" class="form-control" id="name" placeholder="Schnitzel, Pommes, Gurke..." required/><br>
 																				<fieldset>
 																				<p>Allergene/Inhaltsstoffe:</p>

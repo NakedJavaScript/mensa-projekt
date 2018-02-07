@@ -12,8 +12,8 @@
                             <div class="modal-body">
                                 <form role="form" method="POST" action="">
                                 <div class="form-group" id="editForm">
-                                    <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="<?php echo $_SESSION['vorname'] ?>"/> <br>
-                                    <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="<?php echo $_SESSION['nachname'] ?>"/><br>
+                                    <label for="vorname">Vorname</label><input type="text" name="vorname" class="form-control" id="vorname"  placeholder="<?php echo $_SESSION['firstName'] ?>"/> <br>
+                                    <label for="nachname">Nachname</label><input type="text" name="nachname" class="form-control" id="nachname"  placeholder="<?php echo $_SESSION['lastName'] ?>"/><br>
                                     <label for="email">Email</label>
                                     <div class="input-group mb-3">
                                       <input type="text" class="form-control" name="email" placeholder="<?php echo strstr($_SESSION['email'], '@', true); ?>" aria-label="Recipient's username" aria-labelledby="emailHelp" aria-describedby="emailDomain" >
