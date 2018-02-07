@@ -22,8 +22,8 @@
 
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $subject = $_POST['betreff'] . " <Von " . $email . " >";
-        $body = $_POST['nachricht'];
+        $subject = $_POST['subject'] . " <Von " . $email . " >";
+        $body = $_POST['message'];
         $to = 'foodmengroup@gmail.com';
 
         if (sendMail($to, $email, $name, $subject, $body)) {

@@ -31,12 +31,12 @@
                         <small id="emailInfo" class="form-text text-muted">Wir werden Ihre Email Adresse NIEMALS veröffentlichen oder teilen</small>
                     </div>
                     <div class="form-group">
-                        <label for="betreff">Betreff:</label>
-                        <input type="text" class="form-control" name="betreff" id="betreff" placeholder="Betreffzeile" required>
+                        <label for="subject">Betreff:</label>
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreffzeile" required>
                     </div>
                     <div class="form-group">
-                        <label for="nachricht">Nachricht:</label>
-                        <textarea class="form-control" name="nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
+                        <label for="message">Nachricht:</label>
+                        <textarea class="form-control" name="message" id="message" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success" name="contactFormSubmit">Nachricht senden</button>
                 </form>
