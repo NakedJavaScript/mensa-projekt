@@ -52,10 +52,10 @@ function drawGraph() {
 
 //zum bearbeiten von essen
 $(document).on("click",'#edit_food' , function (e) {
-var identity= $(this).attr('speise_ID'); //Werte aus den Attributen werden variablen zugeordnet
-var name=$(this).attr('speise_name');
-var allergenic=$(this).attr('allergene')
-var allergenicArray = allergene.split(', ')//aus allergene wird ein Array erstellt
+var identity= $(this).attr('foodID'); //Werte aus den Attributen werden variablen zugeordnet
+var name=$(this).attr('foodName');
+var allergenic=$(this).attr('allergenic')
+var allergenicArray = allergenic.split(', ')//aus allergene wird ein Array erstellt
 var others=$(this).attr('others');
 var price=$(this).attr('price');
 //set what we got to our form
