@@ -21,7 +21,7 @@
                     <a class='nav-link' href='orders.php'>Bestellungen</a>
                   </li>
 			      <li class='nav-item'>
-			        <a class='nav-link' href='umsatz.php'>Umsatz</a>
+			        <a class='nav-link' href='sales.php'>Umsatz</a>
 			      </li>";
 					 }
 					else if($_SESSION['adminrechte'] == 3) { //normale user sehen das.

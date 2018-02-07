@@ -4,7 +4,7 @@
 
 	<footer class="footer">
       <div class="container">
-        <a class="footer-links" href='kontakt.php'>Kontakt</a> | <a class="footer-links" href='impressum.php'>Impressum</a> | <a class="footer-links" href='datenschutz.php'>Datenschutz</a>
+        <a class="footer-links" href='contact.php'>Kontakt</a> | <a class="footer-links" href='imprint.php'>Impressum</a> | <a class="footer-links" href='dataProtection.php'>Datenschutz</a>
 	  	</div>
 			<a href="#cd-top-link" class="cd-top"><i class='fas fa-angle-double-up fa-2x'> </i></a>
   </footer>
