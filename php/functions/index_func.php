@@ -14,6 +14,7 @@
 		}
 
 				if(isset($_POST['bestellungen'])) {
+					$json_array = array();
 					$Bestellungen = $_POST['bestellungen'];
 					$nutzerID = $_SESSION['id'];
 					$buchungsdatum = date("Y-m-d");
@@ -23,10 +24,12 @@
 							$getPreis = $conn->query("SELECT sp.preis FROM mensa.tagesangebot as t INNER JOIN mensa.speise as sp ON sp.speise_ID = t.speise_ID WHERE tagesangebot_ID = '$value' LIMIT 1");//Selektieren den Preis der Speise
 							$getPreis = $getPreis->fetch_object();//Selektierung wird gefetcht
 								if($checkIfBooked->num_rows >= 1){ //überprüfung ob user nicht doch schon gebucht hat.
-									$Alert = dangerMessage("Sie haben das bereits bestellt!");
+									$json_array['status'] = false;
+									$json_array['msg'] = "Sie haben das bereits bestellt!";
 								}
 									else if ($_SESSION['kontostand'] < $getPreis->preis) { //Wenn der Nutzer nicht genug Geld auf seinem Konto hat
-										$Alert = dangerMessage("<strong>Leider haben sie nicht genug Geld auf ihrem Konto!</strong> Sie können ihr Konto beim Caterer aufladen.");
+										$json_array['status'] = false;
+										$json_array['msg'] = "<strong>Leider haben sie nicht genug Geld auf ihrem Konto!</strong> Sie können ihr Konto beim Caterer aufladen.";
 									}
 									else {
 												if($conn->query($insertBuchungen) == true) { //Wenn buchung erfolgreich
@@ -34,11 +37,15 @@
 													$newKontostand = $_SESSION['kontostand'] - $preis; //Preis wird vom aktuellen kontostand abgezogen
 													$_SESSION['kontostand'] = $newKontostand; //neuer Kontostand wird auch in der session aktualisiert
 													$conn->query("UPDATE mensa.benutzer SET kontostand = $newKontostand  WHERE  benutzer_ID = $nutzerID "); //neuer Kontostand wird in der Datenbank gesetzt
-													$Alert = successMessage("Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an <br/> <strong>Ihr neuer Kontostand: $newKontostand €</strong>" );
+													$json_array['status'] = true;
+													$json_array['msg'] = "Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an <br/> <strong>Ihr neuer Kontostand: $newKontostand €</strong>";
 												}
 													else {
-														$Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
+														$json_array['status'] = false;
+														$json_array['msg'] = "<strong>Error:</strong> Es is ein Fehler aufgetreten, bitte versuchen Sie es erneut oder infomieren sie den Caterer";
 													}
+													header('Content-Type: application/json');
+													echo json_encode($json_array);die();
 								}
 						}//Ende foreach
 					}

@@ -199,11 +199,19 @@
 			 url: 'index.php',
 			 data: ({bestellungen}),
 			 success: function(data) {
+				 if(data.status==true) {
 			   $("#confirm-submit").modal('hide');
 			   $('#successOrder').addClass('show');
 			   $('.indexCB:checked').prop('disabled', true);
 			   $('.indexCB:checked').prop('checked', false);
 			  }
+			  else {
+				  $("#confirm-submit").modal('hide');
+   			   	$('#errorOrder').addClass('show');
+   			   	$('.indexCB:checked').prop('disabled', true);
+   			   	$('.indexCB:checked').prop('checked', false);
+			  }
+		  }
 		});
 	}
 </script>
