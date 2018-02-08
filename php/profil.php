@@ -35,7 +35,7 @@
 					<div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 						<h1>Dein Profil</h1>
 						<br>
-						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast. Info: Ihre E-mail Adresse muss mit @its.de enden.</p>
+						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast.</p>
 						<br>
 						<table class="table table-bordered">
 							<tbody>
@@ -62,10 +62,13 @@
 					<div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
 						<h1>Deine Bestellungen</h1>
 						<br>
-						<table class="tabelsorterTable table table-hover tablesorter">
+						<p>Das sind deine Bestellungen. Hier kannst du deine Bestellungen ansehen und stornieren.
+							 <strong>Bitte bedenke dass man seine Bestellungen nur bis zum Tag BEVOR das Tagesangebot gültig ist stornieren kann</strong></p>
+						<br>
+						<table class="table table-bordered">
 							<thead>
 								<th>Buchungsnummer</th>
-								<th>Tagesangebot:</th>
+								<th>Tagesangebot am:</th>
 								<th>Speise:</th>
 								<th>Allergene:</th>
 								<th>Sonstiges:</th>
@@ -87,15 +90,23 @@
 									echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
 									echo	"<td class='align-middle'>".$row['preis']."€</td>";
 									echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
-									echo	"<td class='align-middle'><button type='button' class='btn btn-success'>
-									<i class='fas fa-pencil-alt'> </i></button>
-									<button type='button' method='POST' name='delete_food' class='btn btn-danger'>
-									<i class='fas fa-trash'> </i></button>
-									</td>
-									</tr>";
+                                    if ($row['tagesangebotsdatum'] > date('Y-m-d')) { // If the ordered meal is One day old then this button gets disabled
+    									echo "<td class='align-middle'>
+                                                <button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger'>
+                                                    <i class='fas fa-trash'> </i>
+                                                </button>
+                                             </td>";
+                                    } else { // Otherwise the user can cancle his order
+    									echo "<td class='align-middle'>
+                                                <button type='button' method='POST' class='btn btn-danger disabled'>
+                                                    <i class='fas fa-trash'> </i>
+                                                </button>
+                                             </td>";
+                                    }
+                                    echo "</tr>";
 									}
 								} else {
-									echo "<td class='align-middle'>Sie haben noch keine Buchungen getätigt</td>";
+									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
 								}
 								$conn->close();
 							?>
@@ -106,7 +117,8 @@
 			</div>
 		</div>
 		<?php
-			include 'modals/profile_modals.php';
+            confModal("Wollen Sie diese Bestellung wirklich stornieren?");
+            include 'modals/profile_modals.php';
 			include 'footer.php';
 		?>
 		<script>

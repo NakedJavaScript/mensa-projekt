@@ -1,17 +1,17 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 body {
-  position: relative;
-  min-height: 100%;
-  padding-bottom: 6em;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 6em;
 }
 
 /* General Additional CSS */
@@ -28,7 +28,13 @@ list-group-item .btn-danger .btn-success {
 }
 
 table, thead, tbody, td, th {
-  text-align: center;
+    text-align: center;
+}
+
+/* Additional Order CSS */
+
+.order-btn {
+    float: right;
 }
 
 /* Success Page CSS */
@@ -40,11 +46,11 @@ table, thead, tbody, td, th {
 /* Footer CSS */
 
 .footer {
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #1b1e21;
-  color: #fff;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1b1e21;
+    color: #fff;
 }
 
 .footer-links {
@@ -59,43 +65,43 @@ table, thead, tbody, td, th {
 /* Alert CSS */
 
 .alert-container {
-  left: 0;
-  right: 0;
+    left: 0;
+    right: 0;
 }
 
 .alert {
-  position: relative;
-  z-index: 1039;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 8px 35px 8px 14px;
-  margin-bottom: 5px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+    position: relative;
+    z-index: 1039;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 5px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 /* Page Content Wrapper CSS */
 
 .page-content-wrapper {
-  margin-top: 80px;
+    margin-top: 80px;
 }
 
 /* Additional Navbar CSS */
 
 .mr-auto .nav-link:hover {
-  color: #e05120 !important;
+    color: #e05120 !important;
 }
 
 .active-nav-links {
-  color: #e05120 !important;
-  font-weight:600;
+    color: #e05120 !important;
+    font-weight:600;
 }
 
 .custom-nav-bg {
-  background-color: #eee!important;
+    background-color: #eee!important;
 }
 
     /* Navbar Dropdown CSS */
@@ -108,18 +114,18 @@ table, thead, tbody, td, th {
 /* Additional Profile Tabs CSS */
 
 .nav-pills .nav-link.active, .nav-pills .show >.nav-link { /* changes background color of the profile tabs */
-  background-color: #28a745;
+    background-color: #28a745;
 }
 
 .nav-pills .nav-link { /* And the link */
-  color: #000;
+    color: #000;
 }
 
 /* Index Date Table CSS */
 
 .disable {
-  pointer-events: none;
-  cursor: default;
+    pointer-events: none;
+    cursor: default;
 }
 
 .day-meal-table {
@@ -127,16 +133,16 @@ table, thead, tbody, td, th {
 }
 
 .today {
-  background-color: #28a745 !important;
-  font-weight: bold !important;
-  color: white !important;
+    background-color: #28a745 !important;
+    font-weight: bold !important;
+    color: white !important;
 }
 
 /* Additional Cookie-CSS */
 
 .cc_container .cc_btn {
-  background-color: #28A745 !important; /* Farbe des Buttons */
-  color: #fff !important; /* Textfarbe des Buttons */
+    background-color: #28A745 !important; /* Farbe des Buttons */
+    color: #fff !important; /* Textfarbe des Buttons */
 }
 
 
@@ -147,298 +153,298 @@ table, thead, tbody, td, th {
 }
 
 .contact-box {
-  background-color: #f7f7f9;
-  border: 1px solid #d8d8d8;
+    background-color: #f7f7f9;
+    border: 1px solid #d8d8d8;
 }
 
 /* Additional Success Site CSS */
 
 .redo {
-  border: 1px solid #28a745;
-  background: #fff;
+    border: 1px solid #28a745;
+    background: #fff;
 }
 
 .modalbox.success {
-  margin-top: 10%;
-  text-align: center;
+    margin-top: 10%;
+    text-align: center;
 }
 
 .modalbox.success.animate .icon {
-  -webkit-animation: fall-in 0.75s;
-  -moz-animation: fall-in 0.75s;
-  -o-animation: fall-in 0.75s;
-  animation: fall-in 0.75s;
-  padding-bottom: 25px;
+    -webkit-animation: fall-in 0.75s;
+    -moz-animation: fall-in 0.75s;
+    -o-animation: fall-in 0.75s;
+    animation: fall-in 0.75s;
+    padding-bottom: 25px;
 }
 
 .modalbox.success button,
 .modalbox.success button:active,
 .modalbox.success button:focus, {
-  -webkit-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  margin-top: 15px;
-  width: 80%;
-  background: transparent;
-  color: #4caf50;
-  border-color: #4caf50;
-  outline: none;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-top: 15px;
+    width: 80%;
+    background: transparent;
+    color: #4caf50;
+    border-color: #4caf50;
+    outline: none;
 }
 
 .modalbox.success button:hover,
 .modalbox.success button:active:hover,
 .modalbox.success button:focus:hover {
-  color: #fff;
-  background: #4caf50;
-  border-color: transparent;
+    color: #fff;
+    background: #4caf50;
+    border-color: transparent;
 }
 
 .change {
-  clearn: both;
-  display: block;
-  font-size: 10px;
-  color: #ccc;
-  margin-top: 10px;
+    clear: both;
+    display: block;
+    font-size: 10px;
+    color: #ccc;
+    margin-top: 10px;
 }
 
 @-webkit-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-moz-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-o-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-webkit-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 25%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 25%;
+    }
 }
 
 @-moz-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 25%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 25%;
+    }
 }
 
 @-o-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 25%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 25%;
+    }
 }
 
 @-moz-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-webkit-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-o-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-moz-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 @-webkit-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 @-o-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 @keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 /* Additional Imprint CSS */
@@ -451,52 +457,52 @@ table, thead, tbody, td, th {
 /* Back to top button CSS */
 
 .cd-top {
-  color: #fff;
-  display: inline-block;
-  padding: 20px 25px;
-  position: fixed;
-  bottom: 0px;
-  right: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  border-radius: 5px;
-  overflow: hidden;
-  white-space: nowrap;
-  background: #28A745 no-repeat center 50%;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
+    color: #fff;
+    display: inline-block;
+    padding: 20px 25px;
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #28A745 no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .cd-top.cd-is-visible {
-  /* the button becomes visible */
-  visibility: visible;
-  opacity: 1;
+    /* the button becomes visible */
+    visibility: visible;
+    opacity: 1;
 }
 
 .cd-top.cd-fade-out {
-  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
-  opacity: .5;
+    /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+    opacity: .5;
 }
 
 .cd-top:hover {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 @media only screen and (min-width: 768px) {
-  .cd-top {
-    right: 20px;
-    bottom: 20px;
-  }
+    .cd-top {
+        right: 20px;
+        bottom: 20px;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
-  .cd-top {
-    padding: 20px 25px;
-    right: 30px;
-    bottom: 30px;
-  }
+    .cd-top {
+        padding: 20px 25px;
+        right: 30px;
+        bottom: 30px;
+    }
 }
 
 /* Additional like Button CSS */
@@ -504,7 +510,6 @@ table, thead, tbody, td, th {
 .heart-btn {
     border: 1px solid #e2dede;
     background-color: transparent !important;
-
 }
 
 .like-btn {
@@ -517,15 +522,15 @@ table, thead, tbody, td, th {
 }
 
 .unlike-btn {
-  color: #28a745;
+    color: #28a745;
 }
 
 .heart-btn:active {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .heart-btn:focus {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .like {
@@ -539,22 +544,22 @@ table, thead, tbody, td, th {
 /* Additional Forgot Password Site CSS */
 
 .flat-form {
-  border: 2px solid #28a745;
-  border-radius: 5px;
-  margin: 25px auto;
-  width: 500px;
-  padding: 50px 0;
-  position: relative;
+    border: 2px solid #28a745;
+    border-radius: 5px;
+    margin: 25px auto;
+    width: 500px;
+    padding: 50px 0;
+    position: relative;
 }
 
 .flat-form .form-action {
-  padding: 0 20px;
-  position: relative;
+    padding: 0 20px;
+    position: relative;
 }
 
 .flat-form h1 {
-  font-size: 42px;
-  margin: 0;
+    font-size: 42px;
+    margin: 0;
 }
 
 .flat-form ul {
@@ -564,32 +569,32 @@ table, thead, tbody, td, th {
 }
 
 .flat-form form {
-  padding-right: 20px !important;
+    padding-right: 20px !important;
 }
 
 .flat-form form input[type=email], .flat-form form input[type=password] {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 10px;
-  padding-left: 15px;
-  color: #28a745;
-  outline: none;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    color: #28a745;
+    outline: none;
 }
 
 .flat-form form input::-webkit-input-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 .flat-form form input:-moz-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 .flat-form form input::-moz-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 .flat-form form input:-ms-input-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 /* Tablesorter Additional CSS */
@@ -601,43 +606,43 @@ table, thead, tbody, td, th {
     /* Tablesorter Pager CSS */
 
     .tablesorter-pager {
-      padding: 5px;
+        padding: 5px;
     }
 
     td.tablesorter-pager {
-      background-color: #e6eeee;
-      margin: 0; /* needed for bootstrap .pager gets a 18px bottom margin */
+        background-color: #e6eeee;
+        margin: 0; /* needed for bootstrap .pager gets a 18px bottom margin */
     }
 
     /* pager navigation arrows */
     .tablesorter-pager img {
-      vertical-align: middle;
-      margin-right: 2px;
-      cursor: pointer;
+        vertical-align: middle;
+        margin-right: 2px;
+        cursor: pointer;
     }
 
     /* pager output text */
     .tablesorter-pager .pagedisplay {
-      padding: 0 5px 0 5px;
-      width: 50px;
-      text-align: center;
+        padding: 0 5px 0 5px;
+        width: 50px;
+        text-align: center;
     }
 
     /* pager element reset (needed for bootstrap) */
     .tablesorter-pager select {
-      margin: 0;
-      padding: 0;
+        margin: 0;
+        padding: 0;
     }
 
     /*** css used when "updateArrows" option is true ***/
     /* the pager itself gets a disabled class when the number of rows is less than the size */
     .tablesorter-pager.disabled {
-      display: none;
+        display: none;
     }
     /* hide or fade out pager arrows when the first or last row is visible */
     .tablesorter-pager .disabled {
-      /* visibility: hidden */
-      opacity: 0.5;
-      filter: alpha(opacity=50);
-      cursor: default;
+        /* visibility: hidden */
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        cursor: default;
     }

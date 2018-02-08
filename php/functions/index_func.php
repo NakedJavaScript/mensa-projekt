@@ -1,6 +1,6 @@
 <?PHP
 	// Code to create a new daily meal
-	if (isset($_POST['Tagesangebot_erstellen'])) {
+	if (isset($_POST['create_daily_meal'])) {
 		$s_ID = $_POST['foodlist'];
 		$datum = strtotime($_POST['date']);
 		$formated = date('Y-m-d', $datum);
@@ -68,6 +68,65 @@
 			return '<div class="d-flex justify-content-center align-items-center"><button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Sie müssen eingeloggt sein um zu liken.">
 			<i class="fas fa-heart like-heart-disabled"></i></button><p class="like-count">+'.$foodLikes.'</p></div>';
 		}
+	}
+
+	// Code for ordering daily meals
+	if(isset($_POST['orders'])) {
+		$json_array = array();
+		$orders = $_POST['orders'];
+		$userID = $_SESSION['id'];
+		$orderDate = date("Y-m-d");
+
+		foreach ($orders as $key => $value) {
+			$insertOrders = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ('$userID', '$value', '$orderDate')";
+			$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '$userID' AND tagesangebot_ID = '$value'"); // Checks if the user didn't book the meal alrdy
+			$getPrice = $conn->query("SELECT sp.preis FROM mensa.tagesangebot as t INNER JOIN mensa.speise as sp ON sp.speise_ID = t.speise_ID WHERE tagesangebot_ID = '$value' LIMIT 1"); // Selects the price of the meal
+			$getPrice = $getPrice->fetch_object(); // Selection will be fetched
+
+			if($checkIfBooked->num_rows >= 1) { // Checks if the user didn't book the meal alrdy
+				$json_array['status'] = false;
+				$json_array['msg'] = "Sie haben das bereits bestellt!";
+			} else if ($_SESSION['kontostand'] < $getPrice->preis) { // If the user has not enough money
+				$json_array['status'] = false;
+				$json_array['msg'] = "<strong>Leider haben sie nicht genug Geld auf ihrem Konto!</strong> Sie können ihr Konto beim Caterer aufladen.";
+			} else {
+				if($conn->query($insertOrders) == true) { // If the order is okay
+					$price = $getPrice->preis;
+					$newBalance = $_SESSION['kontostand'] - $price; // Remove the price from the account balance
+					$_SESSION['kontostand'] = $newBalance; // new balance will be created
+					$conn->query("UPDATE mensa.benutzer SET kontostand = $newBalance  WHERE  benutzer_ID = $userID "); // new Balance is set in the database
+					$json_array['status'] = true;
+					$json_array['msg'] = "Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an. <br/> <strong>Ihr neuer Kontostand: $newBalance €</strong>";
+				} else {
+					$json_array['status'] = false;
+					$json_array['msg'] = "<strong>Error:</strong> Es is ein Fehler aufgetreten, bitte versuchen Sie es erneut oder infomieren Sie den Caterer";
+				}
+
+				header('Content-Type: application/json');
+				echo json_encode($json_array);
+				die();
+			}
+		}
+	}
+
+	// Function that creates a modal for the food order
+	function confOrders() {
+		echo "<div class='modal fade' id='confirm-submit' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+				<div class='modal-dialog'>
+					<div class='modal-content'>
+						<div class='modal-header'>
+							<strong>Wollen Sie diese Bestellung wirklich tätigen?</strong>
+						</div>
+						<div class='modal-body'>
+							Der Betrag wird von ihrem Konto sofort abgebucht!
+						</div>
+						<div class='modal-footer'>
+							<button type='button' class='btn btn-default' data-dismiss='modal'>Abbrechen</button>
+							<input type='button' onclick='submit()' name='bestellenBestätigen' class='btn btn-success order-btn' value='Kostenpflichtig bestellen'>
+						</div>
+					</div>
+				</div>
+			 </div> ";
 	}
 
 	// Code for the functionality of the like

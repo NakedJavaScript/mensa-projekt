@@ -23,7 +23,6 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../vendor/tablesorter/css/theme.jui.css">
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 		<link rel="stylesheet" type="text/css" href="../style/animate.css">
 		<link rel="icon" href="../images/icon.ico">
@@ -34,6 +33,7 @@
 	$footer_dependencies = '
 		<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 		<script src="../vendor/jquery/sticky_nav.js"></script>
+		<script src="../js/script.js"></script>
 		<script src="../vendor/bootstrap/js/popper.min.js"></script>
 		<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 		<script src="../vendor/tether/js/tether.min.js"></script>
