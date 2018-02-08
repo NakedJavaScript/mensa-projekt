@@ -16,7 +16,8 @@
 
     <body>
         <?php include 'header.php';
-            if(((!isset($_SESSION['adminRights'])) || $_SESSION['adminRights'] != 2)) { //If a user isn't a admin, he can't see the website
+            if(((!isset($_SESSION['adminRights'])) || $_SESSION['adminRights'] != 2)) { // If an user isn't an admin, he can't see the site
+
                 include'footer.php';
                 die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.');
             }
@@ -42,7 +43,7 @@
                             while($row = $result->fetch_assoc()) {
                                 $sql = "SELECT vorname, nachname FROM mensa.benutzer WHERE benutzer_ID =". $row['schueler_ID']; // fetch the user of the order
                                 $user = $conn->query($sql)->fetch_assoc();
-                                $dateFormat = strtotime($row['tagesangebotsdatum']);//format the date to day-month-year
+                                $dateFormat = strtotime($row['tagesangebotsdatum']); // format the date to day-month-year
                                 echo "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
                                 echo "<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
                                 echo "<td class='align-middle'>".$user['vorname']."</td>";
@@ -59,25 +60,23 @@
                     ?>
                 </tbody>
             </table>
-            <!-- pager -->
+            <!-- jQuery Tablesorter Pager -->
             <div id="pager" class="pager">
-            <form>
-                <i class="fas fa-angle-double-left first"/></i>
-                <i class="fas fa-angle-left prev"/></i>
-                <!-- the "pagedisplay" can be any element, including an input -->
-                <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
-                <i class="fas fa-angle-right next"/></i>
-                <i class="fas fa-angle-double-right last"/></i>
-                <select class="pagesize">
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="all">Alle Bestellungen</option>
-                </select>
-            </form>
+                <form>
+                    <i class="fas fa-angle-double-left first"/></i>
+                    <i class="fas fa-angle-left prev"/></i>
+                    <span class="pagedisplay" data-pager-output-filtered="{startRow:input} &ndash; {endRow} / {filteredRows} of {totalRows} total rows"></span>
+                    <i class="fas fa-angle-right next"/></i>
+                    <i class="fas fa-angle-double-right last"/></i>
+                    <select class="pagesize">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="all">Alle Bestellungen</option>
+                    </select>
+                </form>
             </div>
-
         </div>
 
         <?php include 'footer.php'; ?>
