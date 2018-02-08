@@ -247,7 +247,7 @@
 				    	}, 5000);
 					}
 					else {
-						$(".testr").removeClass('d-none');
+						$(".alert-cont").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
 						$('#orderInfo').addClass('alert-danger show');
 						$('#orderInfo').html("<strong>Es ist ein Fehler aufgetreten</strong> Bitte versuchen Sie es erneut oder prüfen sie ihr Guthaben");
