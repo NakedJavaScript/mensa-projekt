@@ -9,19 +9,22 @@
         <ul class="navbar-nav mr-auto">
             <?PHP
                 if (isset($_SESSION['adminrechte'])) {
-                    if($_SESSION['adminrechte'] == 2) { // Only admins can see this site
+                    if($_SESSION['adminrechte'] == 2) { // Only admins can see these sites
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
+                            <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
                         </li>
                         <li class='nav-item'>
-                        <a class='nav-link' href='essensliste.php'>Essensliste</a>
+                            <a class='nav-link' href='essensliste.php'>Essensliste</a>
                         </li>
                         <li class='nav-item'>
-                        <a class='nav-link' href='umsatz.php'>Umsatz</a>
+                            <a class='nav-link' href='orders.php'>Bestellungen</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='umsatz.php'>Umsatz</a>
                         </li>";
                     } else if($_SESSION['adminrechte'] == 3) { // Normal users will see this
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='profil.php'>Profil</a>
+                            <a class='nav-link' href='profil.php'>Profil</a>
                         </li>";
                     }
                 }
