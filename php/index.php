@@ -178,7 +178,9 @@
 					</a>
 				</div>
 			</div>
-			<p class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
+			<div class="container col-sm-10 p-0">
+				<small class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <strong><a href="allergene.php" class="footer-links">hier</a></strong>.</small>
+			</div>
 		</div>
 
 		<!-- Add new daily meal Modal-->
@@ -234,6 +236,7 @@
 				data: ({orders}),
 				success: function(data) {
 					if(data.status == true) {
+						$(".alert-cont").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
 						$('#orderInfo').addClass('alert-success show');
 						$('#orderInfo').html(data.msg);
@@ -244,6 +247,7 @@
 				    	}, 5000);
 					}
 					else {
+						$(".testr").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
 						$('#orderInfo').addClass('alert-danger show');
 						$('#orderInfo').html("<strong>Es ist ein Fehler aufgetreten</strong> Bitte versuchen Sie es erneut oder prüfen sie ihr Guthaben");

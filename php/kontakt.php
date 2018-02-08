@@ -1,12 +1,15 @@
+<?php
+    include 'dependencies.php';
+    include 'functions/contactSend_function.php';
+?>
 <!DOCTYPE HTML>
 <html>
-  <?php include_once 'dependencies.php'; ?>
-  <head>
-    <title>Kontaktformular</title>
-    <?php
-      echo $head_dependencies;
-    ?>
-  </head>
+    <head>
+        <title>Kontaktformular</title>
+        <?php
+          echo $head_dependencies;
+        ?>
+    </head>
 
     <body>
         <?php include 'header.php'; ?>
@@ -18,7 +21,7 @@
                 <br>
             </div>
             <div class="contact-box px-4 py-4 rounded">
-                <form class="" role="form" action="" method="post">
+                <form role="form" action="" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="name" class="form-control" name="Name" id="name" placeholder="Nachname Vorname" required>

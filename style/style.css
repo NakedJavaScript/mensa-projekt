@@ -86,7 +86,7 @@ table, thead, tbody, td, th {
 /* Page Content Wrapper CSS */
 
 .page-content-wrapper {
-    margin-top: 80px;
+    margin: 80px 0;
 }
 
 /* Additional Navbar CSS */

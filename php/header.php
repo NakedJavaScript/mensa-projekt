@@ -55,8 +55,10 @@
 
 <div class="container position-absolute ml-auto mr-auto alert-container">
     <?PHP echo $Alert; // This is used to show our messages which we defined in the dependencies.php ?>
-    <div class='alert alert-dismissable fade mt-4' id='orderInfo'>
-        <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+    <div class="alert-cont d-none">
+        <div class='alert alert-dismissable fade mt-4' id='orderInfo'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+        </div>
     </div>
 </div>
 
