@@ -55,12 +55,9 @@
 
 <div class="container position-absolute ml-auto mr-auto alert-container">
     <?PHP echo $Alert; // This is used to show our messages which we defined in the dependencies.php ?>
-    <div class=" testr d-none">
-        <div class='alert alert-success alert-dismissable fade mt-4' id='successOrder'>
-            <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an
-        </div>
-        <div class='alert alert-danger alert-dismissable fade mt-4' id='errorOrder'>
-            <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Es ist ein Fehler aufgetreten! </strong>Leider konnt ihre Bestellung nicht entgegen genommen werden. Haben Sie genug Geld auf ihrem Konto?
+    <div class="alert-cont d-none">
+        <div class='alert alert-dismissable fade mt-4' id='orderInfo'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
         </div>
     </div>
 </div>
