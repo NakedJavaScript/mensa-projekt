@@ -23,7 +23,7 @@ function sanitize_form($form) {
                         'between', 'join', 'inner', 'left', 'right', 'full', 'self', 'union', 'group', 'having', 'exists', 'any', 'all', 'create', 'drop', 'alter', 'unique',
                          'primary', 'foreign', 'check', 'default' ,'index' ,'increment'];
     foreach($form as $key => $value) {
-        $simple_field = strtolower(trim((string)$value));
+        $simple_field = strtolower(trim($value));
         if (validate($simple_field, $reserved_keywords)) {
             $form[$key] = $value;
         } else {

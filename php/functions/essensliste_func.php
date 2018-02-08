@@ -3,8 +3,11 @@
 
 	// Code to add a new meal
 	if (isset($_POST['Essen_hinzufügen'])) {
+		$allergenic = sanitize_form($_POST['allergene']);
+		unset($_POST['allergene']);
 		$_POST = sanitize_form($_POST);
-		if ($_POST) {
+		if ($_POST && $allergenic) {
+			$_POST['allergene'] = $allergenic;
 			$name = strtoupper(trim($_POST['name']));
 			$sonst = strtoupper(trim($_POST['sonstiges']));
 
@@ -44,7 +47,7 @@
 			}
 		} else {
 			$Alert = dangerMessage('Fehler: Invalide Eingabe.');
-			header('refresh: 1.5 ; url = essensliste.php');
+			#header('refresh: 1.5 ; url = essensliste.php');
 		}
 	}
 
@@ -128,6 +131,7 @@
 			$delete = "DELETE FROM speise WHERE speise_ID = $speiseID";
 			if ($conn->query($delete) === TRUE) {
 				$Alert = successMessage("Speise wurde erfolgreich entfernt");
+				header('refresh: 1.5 ; url = essensliste.php');
 			}
 			else if ($conn->errno == 1451) {  // If the meal is already in the daily meals this messages shows up
 				$Alert = dangerMessage("Sie haben die Speise bereits in einem Tagesangebot, bitte löschen Sie alle Tagesangebote mit dieser Speise, um sie zu löschen.");
