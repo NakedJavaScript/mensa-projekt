@@ -11,19 +11,19 @@
 
 			if(password_verify($passwort . $pepper, $row['passwort'])){ // Verifies the password
 				$_SESSION['email'] = $email;
-				$_SESSION['vorname'] = $row['vorname'];
-				$_SESSION['nachname'] = $row['nachname'];
-				$_SESSION['kontostand'] = $row['kontostand'];
+				$_SESSION['firstName'] = $row['vorname'];
+				$_SESSION['lastName'] = $row['nachname'];
+				$_SESSION['balance'] = $row['kontostand'];
 				$_SESSION['id'] = $row['benutzer_ID'];
-				$_SESSION['adminrechte'] = $row['admin_rechte'];
-				$Alert = successMessage('Login erfolgreich');
+				$_SESSION['adminRights'] = $row['admin_rechte'];
+				$alert = successMessage('Login erfolgreich');
 				header( 'refresh: 1.5 ; url = index.php' );
 			} else {
-				$Alert = dangerMessage('Falsches Passwort');
+				$alert = dangerMessage('Falsches Passwort');
 				header('refresh: 1.5 ; url = index.php');
 			}
 		} else {
-			$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
+			$alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
 			header('refresh: 1.5 ; url = index.php');
 		}
 	}

@@ -1,13 +1,13 @@
 // Adds values from the ordered food to the modal
 function AddValuesToModal(date, addFood='') {
     if (addFood) {
-        date_field = document.getElementById("edit_date_field");
-        date_field.value = date;
-        food_field = document.getElementById("edit_food_field");
-        food_field.value = addFood;
+        dateField = document.getElementById("editDateField");
+        dateField.value = date;
+        foodField = document.getElementById("editFoodField");
+        foodField.value = addFood;
     } else {
-        date_field = document.getElementById("date_field");
-        date_field.value = date;
+        dateField = document.getElementById("dateField");
+        dateField.value = date;
     }
 };
 
@@ -54,21 +54,21 @@ function drawGraph() {
 
 // Function to edit food
 $(document).on("click",'#edit_food' , function (e) {
-    var identity= $(this).attr('speise_ID'); // Values from the attributes are assigned variables
-    var name=$(this).attr('speise_name');
-    var allergene=$(this).attr('allergene')
-    var allergenArr = allergene.split(', ') // Create an array out of the allergens
-    var sonstiges=$(this).attr('sonstiges');
-    var preis=$(this).attr('preis');
-    //set what we got to our form
-    $('#speise_ID').val(identity);
-    $('#name').val(name);
-    $('#sonstiges').val(sonstiges);
-    $('#preis').val(preis);
-    for (i=0; i!=allergenArr.length;i++) { // Every checkbox whose value match with the element of the array receives the attribute "checked"
-        var checkbox = $("input[type='checkbox'][value='"+allergenArr[i]+"']");
-        checkbox.attr("checked","checked");
-    }
+var identity= $(this).attr('foodID'); // Values from the attributes are assigned variables
+var name=$(this).attr('foodName');
+var allergenic=$(this).attr('allergenic')
+var allergenicArray = allergenic.split(', ') // Create an array out of the allergens
+var others=$(this).attr('others');
+var price=$(this).attr('price');
+//set what we got to our form
+$('#foodID').val(identity);
+$('#name').val(name);
+$('#others').val(others);
+$('#price').val(price);
+for (i=0; i!=allergenicArray.length;i++) { // Every checkbox whose value match with the element of the array receives the attribute "checked"
+      var checkbox = $("input[type='checkbox'][value='"+allergenicArray[i]+"']");
+      checkbox.attr("checked","checked");
+  }
 });
 
 // When you pick "keine Allergene" every checkbox is unchecked and disabled

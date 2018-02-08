@@ -1,7 +1,6 @@
-<?php
-	include_once 'dependencies.php';
-	include_once 'functions/index_func.php';
-	include_once 'modals/index_modals.php';
+<?php include_once 'dependencies.php';
+	  include_once 'views/index.php';
+	  include_once 'modals/index.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -9,8 +8,10 @@
 	<head>
 		<title>ITS-Stuttgart - Mensa</title>
 		<?php
-			echo $head_dependencies;
+
+			echo $headDependencies;
 			setlocale(LC_TIME, 'de_DE', 'deu_deu'); // Set the timesetting to german
+
 			$dt = new DateTime;
 			if (isset($_GET['year']) && isset($_GET['week'])) { // set and get the year/weeks
 				$dt->setISODate($_GET['year'], $_GET['week']);
@@ -29,9 +30,9 @@
 		<div class="container col-sm-12">
 			<div class="d-inline-flex">
 				<div class="col-sm-1 align-self-center d-flex flex-row-reverse">
-					<?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); // Create the current week minus 3 ?>
+					<?PHP  $threeWeeksAgo = date("W", strtotime("- 3 week")); // Create the current week minus 3 ?>
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } // If we reach the week that was 3 weeks ago, then the link is disabled ?>">
-						<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } // If we reach the week that was 3 weeks ago, then the button is disabled ?> >
+						<button class="btn btn-success index-btns" <?PHP if($week == $threeWeeksAgo) { echo "disabled"; } // If we reach the week that was 3 weeks ago, then the button is disabled ?> >
 							<i class='fas fa-chevron-circle-left'> </i>
 						</button>
 					</a>
@@ -72,27 +73,27 @@
 
 								for ($i=1 ;$i <=5; $i++) { // Create the table and get every data we need (meals, dates)
 									$output=  "<td class='align-middle'>";
-									$daymeal_exists = false;
+									$daymealExists = false;
 									$gendate = new DateTime();
 									$gendate->setISODate($year, $week, $i);
 									$date = $gendate->format('Y-m-d');
 
 									foreach ($entries as $entry){
 										if ($entry['datum'] == $date) {
-											$daymeal_exists = true;
+											$daymealExists = true;
 											break;
 										}
 									}
 
-									if($daymeal_exists) { // Display attributes of the asocciated meal
+									if($daymealExists) { // Display attributes of the asocciated meal
 										$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; // Counts how many likes a meal has
 										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; // Saves the numbers of likes in a variable
 
 										if (isset($_SESSION["id"])) {
 											$checkLiked = "SELECT COUNT(*) AS userlike FROM likes WHERE speise_ID =" .$entry['speise_ID'] ." AND benutzer_ID =". $_SESSION["id"]; // Counts how many lines in the database have the user ID and the meal ID (should only be one)
-											$has_liked = $conn->query($checkLiked)->fetch_assoc()['userlike']; // The counted numbers are saved into a variable
+											$hasLiked = $conn->query($checkLiked)->fetch_assoc()['userlike']; // The counted numbers are saved into a variable
 										} else {
-											$has_liked = 1; // Otherwise the value is always 1
+											$hasLiked = 1; // Otherwise the value is always 1
 										}
 
 										$sql = "SELECT * FROM speise where speise_ID = ".$entry["speise_ID"];
@@ -178,7 +179,7 @@
 					</a>
 				</div>
 			</div>
-			<p class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
+			<p class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergenic.php">hier</a></p>
 		</div>
 
 		<!-- Add new daily meal Modal-->
@@ -190,25 +191,26 @@
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 					</div>
 					<div class="modal-body">
-						<form role="form" method="POST" action="#AddedTagesangebot">
+						<form role="form" method="POST" action="#AddDaymeal">
 							<div class="form-group">
-								<input type="hidden" id="date_field" name="date" value="">
+								<input type="hidden" id="dateField" name="date" value="">
 								<label for="foodlist">Speisen</label>
 								<select name="foodlist" id="foodlist">
 									<?php
 										$getFood = "SELECT * FROM speise";
 										$result = $conn->query($getFood);
-										$food_options ="";
+										$foodOptions ="";
 
 										while($food = $result->fetch_assoc()) {
-											$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>"; // Every meal is saved in a dropdown menu
+											$foodOptions = $foodOptions . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>"; // Every meal is saved in a dropdown menu
 										}
-										echo $food_options;
+										echo $foodOptions;
 									?>
 								</select>
+
 							</div>
 							<div class="modal-footer">
-								<input type="submit" name="create_daily_meal" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
+								<input type="submit" name="AddDaymeal" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
 						</form>
 					</div>

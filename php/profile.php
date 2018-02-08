@@ -1,13 +1,13 @@
 <?php
 	include 'dependencies.php';
-	include_once 'functions/profile_func.php';
-?>
+	include_once 'views/profile.php';
+ ?>
 <!DOCTYPE HTML>
 <html>
 	<head>
 		<title>Dein Profil</title>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 
 			$sql = "SELECT buchungsnummer, datum as tagesangebotsdatum, sp.name, sp.preis, sp.allergene_inhaltsstoffe, sp.sonstiges, buchungsdatum
 			FROM mensa.buchungen as b
@@ -38,26 +38,28 @@
 						<p>Das ist dein Profil. Hier kannst du deine Daten einsehen und falls nötig bearbeiten. Über den Reiter links kannst du außerdem auf deine Bestellungen zugreifen und sehen was du bisher gekauft hast.</p>
 						<br>
 						<table class="table table-bordered">
-							<tbody>
-								<tr>
-									<th scope="row">ID</th>
-									<td class='align-middle'><?PHP echo  $_SESSION['id'] ?></td>
-								</tr>
-								<tr>
-									<th scope="row">Name</th>
-									<td class='align-middle'><?PHP echo  $_SESSION['vorname'] . " " .  $_SESSION['nachname']?></td>
-								</tr>
-								<tr>
-									<th scope="row">E-Mail</th>
-									<td class='align-middle'><?PHP echo $_SESSION['email']?></td>
-								</tr>
-								<tr>
-									<th scope="row">Kontostand</th>
-									<td class='align-middle'><?PHP echo $_SESSION['kontostand'] . "€"?></td>
-								</tr>
-							</tbody>
+						  <tbody>
+							<tr>
+							  <th scope="row">ID</th>
+							  <td class='align-middle'><?PHP echo  $_SESSION['id'] ?></td>
+							</tr>
+							<tr>
+							  <th scope="row">Name</th>
+							  <td class='align-middle'><?PHP echo  $_SESSION['firstName'] . " " .  $_SESSION['lastName']?></td>
+							</tr>
+							<tr>
+							  <th scope="row">E-Mail</th>
+							  <td class='align-middle'><?PHP echo $_SESSION['email']?></td>
+							</tr>
+							<tr>
+							  <th scope="row">Kontostand</th>
+							  <td class='align-middle'><?PHP echo $_SESSION['balance'] . "€"?></td>
+							</tr>
+						  </tbody>
 						</table>
-						<button type='button' method='POST' benutzer_ID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#edit-profile' class='btn btn-success'>Bearbeiten <i class='fas fa-pencil-alt'></i></button>
+						<button type='button' method='POST'  userID='".$_SESSION['id']."' data-href='' data-toggle='modal' data-target='#editProfile' class='btn btn-success'>
+							Bearbeiten <i class='fas fa-pencil-alt'></i></button>
+						</button>
 					</div>
 					<div class="tab-pane fade" id="v-pills-order" role="tabpanel" aria-labelledby="v-pills-order-tab">
 						<h1>Deine Bestellungen</h1>
@@ -79,32 +81,34 @@
 							<tbody>
 							<?php
 								if ($result->num_rows > 0) {
-								// creates the table to show the data
-								while($row = $result->fetch_assoc()) {
-									$dateFormat = strtotime($row['tagesangebotsdatum']); // formats the date to Day-Month-Year
-									$buchungsdateFormat = strtotime($row['buchungsdatum']);
-									echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
-									echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
-									echo	"<td class='align-middle'>".$row['name']."€</td>";
-									echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
-									echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
-									echo	"<td class='align-middle'>".$row['preis']."€</td>";
-									echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
-                                    if ($row['tagesangebotsdatum'] > date('Y-m-d')) { // If the ordered meal is One day old then this button gets disabled
-    									echo "<td class='align-middle'>
-                                                <button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger'>
-                                                    <i class='fas fa-trash'> </i>
-                                                </button>
-                                             </td>";
-                                    } else { // Otherwise the user can cancle his order
-    									echo "<td class='align-middle'>
-                                                <button type='button' method='POST' class='btn btn-danger disabled'>
-                                                    <i class='fas fa-trash'> </i>
-                                                </button>
-                                             </td>";
-                                    }
-                                    echo "</tr>";
+									// creates the table to show the data
+									while($row = $result->fetch_assoc()) {
+
+										$dateFormat = strtotime($row['tagesangebotsdatum']); // formats the date to Day-Month-Year
+										$orderDateFormat = strtotime($row['buchungsdatum']);
+										echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
+										echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
+										echo	"<td class='align-middle'>".$row['name']."€</td>";
+										echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
+										echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
+										echo	"<td class='align-middle'>".$row['preis']."€</td>";
+										echo	"<td class='align-middle'>".date('d.m.Y', $orderDateFormat)."</td>";
+	                                    if ($row['tagesangebotsdatum'] > date('Y-m-d')) { // If the ordered meal is One day old then this button gets disabled
+	    									echo "<td class='align-middle'>
+	                                                <button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger'>
+	                                                    <i class='fas fa-trash'> </i>
+	                                                </button>
+	                                             </td>";
+	                                    } else { // Otherwise the user can cancle his order
+	    									echo "<td class='align-middle'>
+	                                                <button type='button' method='POST' class='btn btn-danger disabled'>
+	                                                    <i class='fas fa-trash'> </i>
+	                                                </button>
+	                                             </td>";
+	                                    }
+	                                    echo "</tr>";
 									}
+
 								} else {
 									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
 								}

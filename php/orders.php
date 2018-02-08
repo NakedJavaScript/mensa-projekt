@@ -4,7 +4,7 @@
 <html>
     <head>
         <?php
-            echo $head_dependencies;
+            echo $headDependencies;
             $sql = "SELECT buchungsnummer, datum as tagesangebotsdatum, sp.name, sp.preis, sp.allergene_inhaltsstoffe, sp.sonstiges, buchungsdatum, schueler_ID
                 FROM mensa.buchungen as b
                 INNER JOIN mensa.tagesangebot as t ON b.tagesangebot_ID = t.tagesangebot_ID
@@ -16,7 +16,8 @@
 
     <body>
         <?php include 'header.php';
-            if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // If an user isn't an admin, he can't see the site
+            if(((!isset($_SESSION['adminRights'])) || $_SESSION['adminRights'] != 2)) { // If an user isn't an admin, he can't see the site
+
                 include'footer.php';
                 die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.');
             }

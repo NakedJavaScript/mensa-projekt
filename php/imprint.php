@@ -4,7 +4,7 @@
 	<head>
 		<title>Impressum</title>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 		?>
 	</head>
 

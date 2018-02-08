@@ -56,25 +56,25 @@
                     $query = "SELECT * from mensa.benutzer WHERE benutzer_ID = ".$_SESSION['id'];
                     $user = $conn->query($query)->fetch_assoc();
                     $_SESSION['email'] = $user['email'];
-                    $_SESSION['vorname'] = $user['vorname'];
-                    $_SESSION['nachname'] = $user['nachname'];
-                    $Alert = successMessage("Profil erfolgreich bearbeitet.");
+                    $_SESSION['firstName'] = $user['vorname'];
+                    $_SESSION['lastName'] = $user['nachname'];
+                    $alert = successMessage("Profil erfolgreich bearbeitet.");
     				header('refresh: 1.5 ; url = profil.php');
                 } else {
-                    $Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
+                    $alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
     				header('refresh: 1.5 ; url = profil.php');
                 }
             } else {
                 if($email_invalid) {
-                    $Alert = dangerMessage("Im Feld 'email' dürfen keine Domänen angegeben werden, bitte entfernen Sie das <strong>'@'</strong> zeichen und die <strong>Domäne</strong>");
+                    $alert = dangerMessage("Im Feld 'email' dürfen keine Domänen angegeben werden, bitte entfernen Sie das <strong>'@'</strong> zeichen und die <strong>Domäne</strong>");
                     header('refresh: 1.5 ; url = profil.php');
                 } else {
-                    $Alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
+                    $alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
                     header('refresh: 1.5 ; url = profil.php');
                 }
             }
         } else {
-            $Alert = dangerMessage("Fehler: Keine Änderungen erkannt.");
+            $alert = dangerMessage("Fehler: Keine Änderungen erkannt.");
             header('refresh: 1.5 ; url = profil.php');
         }
     }

@@ -4,7 +4,7 @@
 	<head>
 		<title>Erfolgreiche Weiterleitung</title>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 		?>
 	</head>
 

@@ -1,6 +1,6 @@
 <?PHP
 	// Code to create a new daily meal
-	if (isset($_POST['create_daily_meal'])) {
+	if (isset($_POST['AddDaymeal'])) {
 		$s_ID = $_POST['foodlist'];
 		$datum = strtotime($_POST['date']);
 		$formated = date('Y-m-d', $datum);
@@ -12,6 +12,7 @@
 		} else {
 			$Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut.");
 			header('refresh: 1.5 ; url = index.php');
+
 		}
 	}
 
@@ -129,22 +130,24 @@
 			 </div> ";
 	}
 
+
 	// Code for the functionality of the like
 	if (isset($_POST['Speisen_liken'])) {
-		$user_ID = $_SESSION['id'];
-		$food_ID = $_POST['food_ID'];
+		$userID = $_SESSION['id'];
+		$foodID = $_POST['food_ID'];
 		$insert = "INSERT INTO likes (benutzer_ID, speise_ID)
-		VALUES (".$user_ID."," .$food_ID.")";
+		VALUES (".$userID."," .$foodID.")";
 
 		$conn->query($insert);
 		header('refresh: 0.1 ; url = index.php');
 	}
 
+
 	// Code for the functionality of the dislike
 	if (isset($_POST['Speisen_unliken'])) {
-		$food_ID =$_POST['food_ID'];
-		$user_ID = $_SESSION['id'];
-		$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
+		$foodID =$_POST['food_ID'];
+		$userID = $_SESSION['id'];
+		$delete = "DELETE FROM likes WHERE speise_ID = $foodID AND benutzer_ID = $userID";
 
 		$conn->query($delete);
 		header('refresh: 0.1 ; url = index.php');

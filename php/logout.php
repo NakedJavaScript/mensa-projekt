@@ -7,7 +7,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<?php echo $head_dependencies; ?>
+		<?php echo $headDependencies; ?>
 		<title>Mensa Logout </title>
 	</head>
 	<body>

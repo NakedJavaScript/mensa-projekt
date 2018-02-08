@@ -3,15 +3,15 @@
 <html>
     <head>
         <?php
-            echo $head_dependencies;
+            echo $headDependencies;
         ?>
-        <title>Passwort Reset</title>
+        <title>Passwort Zurücksetzen</title>
     </head>
 
     <body>
         <?php
             include 'header.php';
-            include 'functions/resetPW_function.php';
+            include 'views/resetPassword.php';
 
             if ($data->num_rows > 0) {
                 echo "<div class='container flat-form'>
@@ -31,9 +31,9 @@
                     </div>
                  </div>";
             } else {
-                $Alert = dangerMessage("Der aufgerufene Link ist abgelaufen oder falsch!");
+                $alert = dangerMessage("Der aufgerufene Link ist abgelaufen oder falsch!");
+                echo $alert . " <div class='container' class='d-flex justify-content-center'><img src='../images/taco-error.png'></div>
 
-                echo $Alert . " <div class='container' class='d-flex justify-content-center'><img src='../images/taco-error.png'></div>
                 <script>setTimeout(function () {
                     window.location.href= 'index.php';
                 },3000);</script>";

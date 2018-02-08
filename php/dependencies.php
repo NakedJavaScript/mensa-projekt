@@ -1,12 +1,14 @@
 <?php
 	// Initial session start and connection settings for the mysql database
 	session_start();
-	$servername = "localhost";
-	$username = "root";
+	$serverName = "localhost";
+	$userName = "root";
 	$password = "";
-	$dbname = "mensa";
+	$dbName = "mensa";
+
+
 	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
+	$conn = new mysqli($serverName, $userName, $password, $dbName);
 	// Check connection
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
@@ -18,8 +20,8 @@
 	$conn->query($deleteOldTagesangebote);
 
 	// Set the links, scripts and meta data in the header
-	$head_dependencies = '
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	$headDependencies = '
+		 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" type="text/css" href="../vendor/fontawesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
@@ -43,18 +45,22 @@
 		<script src="../js/script.js"></script>
 	';
 
-	$Alert = ''; // We use this variable to show our success and danger messages
+
+
+	$alert = '';
 
 	// Functions for the alert boxes
 	function successMessage($text) {
-		return "<div class='alert alert-success alert-dismissable fade show mt-4'>
-		<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
+		return "<div class='alert alert-success alert-dismissable fade show'>
+						<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 	}
 
+
 	function dangerMessage($text) {
-		return "<div class='alert alert-danger alert-dismissable fade show mt-4'>
-		<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
+		return "<div class='alert alert-danger alert-dismissable fade show'>
+	  <a href='foodList.php' class='close' data-dismiss='alert' aria-label='close'>&times;</a>".$text."</div>";
 	}
+
 
 	function confModal($headerText) {
 		echo "

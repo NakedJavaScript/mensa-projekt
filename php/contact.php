@@ -1,12 +1,14 @@
 <!DOCTYPE HTML>
 <html>
-  <?php include_once 'dependencies.php'; ?>
+  <?php include_once 'dependencies.php';
+        include 'views/contactSend.php';
+  ?>
   <head>
     <title>Kontaktformular</title>
-    <?php
-      echo $head_dependencies;
-    ?>
-  </head>
+        <?php
+            echo $headDependencies;
+        ?>
+    </head>
 
     <body>
         <?php include 'header.php'; ?>
@@ -21,19 +23,19 @@
                 <form class="" role="form" action="" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="name" class="form-control" name="Name" id="name" placeholder="Nachname Vorname" required>
+                        <input type="name" class="form-control" name="name" id="name" placeholder="Nachname Vorname" required>
                         <br>
                         <label for="email">Email Adresse:</label>
-                        <input type="email" class="form-control" name="Email" id="email" aria-describedby="emailInfo" placeholder="name@domain.de" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required />
+                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailInfo" placeholder="name@domain.de" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$" required />
                         <small id="emailInfo" class="form-text text-muted">Wir werden Ihre Email Adresse NIEMALS veröffentlichen oder teilen</small>
                     </div>
                     <div class="form-group">
-                        <label for="betreff">Betreff:</label>
-                        <input type="text" class="form-control" name="Betreff" id="betreff" placeholder="Betreffzeile" required>
+                        <label for="subject">Betreff:</label>
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Betreffzeile" required>
                     </div>
                     <div class="form-group">
-                        <label for="nachricht">Nachricht:</label>
-                        <textarea class="form-control" name="Nachricht" id="nachricht" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
+                        <label for="message">Nachricht:</label>
+                        <textarea class="form-control" name="message" id="message" rows="3" placeholder="Geben Sie hier Ihre Nachricht ein." required></textarea>
                     </div>
                     <button type="submit" class="btn btn-success" name="contactFormSubmit">Nachricht senden</button>
                 </form>

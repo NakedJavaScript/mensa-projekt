@@ -4,7 +4,8 @@
         die('Sieht so aus als wären Sie eingeloggt, da können Sie ihr Passwort doch nicht vergessen haben!');
     }
 
-    if (isset($_POST["forgotPass"])) { // If the user fills out the form and types in a valid email
+
+    if (isset($_POST["forgotPassword"])) { // If the user fills out the form and types in a valid email
         $email = $conn->real_escape_string($_POST["email"]);
         $data = $conn->query("SELECT benutzer_ID FROM benutzer WHERE email='$email'");
 
@@ -25,11 +26,13 @@
             $hashedPassword = password_hash($str . $pepper, PASSWORD_BCRYPT, $options);
             // Update the users password in the database
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
-            $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
-            header('refresh: 1.5 ; url = essensliste.php');
+            $alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
+            header('refresh: 1.5 ; url = forgotPassword.php');
+
         } else {
-            $Alert = dangerMessage("Diese E-Mail existiert nicht!");
-            header('refresh: 1.5 ; url = essensliste.php');
+            $alert = dangerMessage("Diese E-Mail existiert nicht!");
+            header('refresh: 1.5 ; url = forgotPassword.php');
+
         }
     }
 ?>

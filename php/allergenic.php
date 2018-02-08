@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<?php
-			echo $head_dependencies;
+			echo $headDependencies;
 			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
