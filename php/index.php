@@ -235,8 +235,8 @@
 				success: function(data) {
 					if(data.status == true) {
 						$("#confirm-submit").modal('hide');
-						$('#successOrder').addClass('show');
-						$('#errorOrder').hide();
+						$('#orderInfo').addClass('alert-success show');
+						$('#orderInfo').html(data.msg);
 						$('.indexCB:checked').prop('disabled', true);
 						$('.indexCB:checked').prop('checked', false);
 						window.setTimeout(function(){
@@ -245,10 +245,8 @@
 					}
 					else {
 						$("#confirm-submit").modal('hide');
-						$('#errorOrder').addClass('show');
-						$('#successOrder').hide();
-						$('.indexCB:checked').prop('disabled', true);
-						$('.indexCB:checked').prop('checked', false);
+						$('#orderInfo').addClass('alert-danger show');
+						$('#orderInfo').html("<strong>Es ist ein Fehler aufgetreten</strong> Bitte versuchen Sie es erneut oder prüfen sie ihr Guthaben");
 						window.setTimeout(function(){
 					        location.reload();
 				    	}, 4000);
