@@ -1,10 +1,9 @@
 <?php
     if (isset($_POST['contactFormSubmit'])) {
         $_POST = sanitize_form($_POST);
-        echo $_POST;
         if ($_POST) {
             function sendMail($to, $from, $fromName, $subject, $body) {
-                // PHP Mailer Konfiguration für das Kontaktformular
+                // PHP Mailer configuration for the contact form
                 $ContactMail = new PHPMailer();
                 $ContactMail->Host = "smtp.gmail.com";
                 $ContactMail->isSMTP();
@@ -20,9 +19,9 @@
                 $ContactMail ->isHTML(true);
 
                 return $ContactMail->send();
-
             }
 
+            // Set the data you'll want to send in the mail
             $name = $_POST['Name'];
             $email = $_POST['Email'];
             $subject = $_POST['Betreff'] . " <Von " . $email . " >";
@@ -32,7 +31,6 @@
             if (sendMail($to, $email, $name, $subject, $body)) {
                 $Alert = successMessage('Vielen dank für Ihre E-Mail!');
                 header('refresh: 1.5 ; url = kontakt.php');
-                die();
             } else {
                 $Alert = dangerMessage('Es tut uns leid aber irgendetwas ist schief gelaufen! Bitte versuchen Sie es erneut.');
                 header('refresh: 1.5 ; url = kontakt.php');
@@ -41,7 +39,6 @@
         } else {
             $Alert = dangerMessage('Fehler: Invalide Eingabe.');
             header('refresh: 1.5 ; url = kontakt.php');
-            die();
         }
     }
 ?>

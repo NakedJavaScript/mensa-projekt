@@ -1,7 +1,7 @@
 <?php
     include_once 'misc.php';
 
-    function endsWith($haystack, $needle) {
+    function endsWith($haystack, $needle) { // Checks if a string ends with a string
         return $needle === '' || substr_compare($haystack, $needle, -strlen($needle)) === 0;
     }
     if (isset($_POST['edit_profile'])) {
@@ -15,7 +15,7 @@
                   break;
               }
             }
-            if (!$is_empty) {
+            if (!$is_empty) { // Updates the user
                 $pepper = 'mensa_pfeffer';
                 $update = "UPDATE mensa.benutzer SET";
                 $email_invalid = false;
@@ -58,27 +58,24 @@
                         $Alert = successMessage("Profil erfolgreich bearbeitet.");
                     } else {
                         $Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
-                        header('refresh: 0.1 ; url = index.php');
-			                  die();
+                        header('refresh: 1.5 ; url = profil.php');
                     }
                 } else {
                     if($email_invalid) {
                         $Alert = dangerMessage("Im Feld 'email' dürfen keine Domänen angegeben werden, bitte entfernen Sie das <strong>'@'</strong> zeichen und die <strong>Domäne</strong>");
-                        header('refresh: 0.1 ; url = index.php');
-			                  die();
+                        header('refresh: 1.5 ; url = profil.php');
                     } else {
                         $Alert = dangerMessage("Fehler: Die von Ihnen eingegebenen Passwörter stimmen nicht überein.");
-                        header('refresh: 0.1 ; url = index.php');
-			                  die();
+                        header('refresh: 1.5 ; url = profil.php');
                     }
                 }
             } else {
                 $Alert = dangerMessage("Fehler: Keine Änderungen erkannt.");
+                header('refresh: 1.5 ; url = profil.php');
             }
         } else {
             $Alert = dangerMessage("Fehler: Invalide Eingabe.");
-            header('refresh: 0.1 ; url = index.php');
-			      die();
+            header('refresh: 1.5 ; url = profil.php');
         }
     }
 ?>

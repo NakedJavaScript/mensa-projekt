@@ -1,7 +1,7 @@
 <?PHP
 include_once 'misc.php';
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit'])){ // If the user hits the submit button in the login form, check his data
 	$_POST = sanitize_form($_POST);
 	if ($_POST) {
 		$email = trim($_POST['email']);
@@ -12,9 +12,9 @@ if(isset($_POST['submit'])){
 		$rs = $conn->query($sql);
 
 		if($rs -> num_rows  == 1){
-      
+
 			$row = $rs->fetch_assoc();
-			if(password_verify($passwort . $pepper,$row['passwort'])){
+			if(password_verify($passwort . $pepper,$row['passwort'])){ // Verifies the password
 				$_SESSION['email'] = $email;
 				$_SESSION['vorname'] = $row['vorname'];
 				$_SESSION['nachname'] = $row['nachname'];
@@ -22,23 +22,20 @@ if(isset($_POST['submit'])){
 				$_SESSION['id'] = $row['benutzer_ID'];
 				$_SESSION['adminrechte'] = $row['admin_rechte'];
 				$Alert = successMessage('Login erfolgreich');
-				header( 'Location: index.php' ); //Nach dem Login wird der Nutzer zum Index Redirected
+				header( 'refresh: 1.5 ; url = index.php' );
 			}
 			else{
 				$Alert = dangerMessage('Falsches Passwort');
-        header('refresh: 0.1 ; url = index.php');
-			  die();
+        header( 'refresh: 1.5 ; url = index.php' );
 			}
 		}
 		else{
 			$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
-      header('refresh: 0.1 ; url = index.php');
-			die();
+      header( 'refresh: 1.5 ; url = index.php' );
 		}
 	} else {
 		$Alert = dangerMessage('Fehler: Invalide Eingabe.');
-    header('refresh: 0.1 ; url = index.php');
-    die();
+    header( 'refresh: 1.5 ; url = index.php' );
 	}
 }
 ?>

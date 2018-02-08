@@ -1,12 +1,11 @@
 <?php
     include_once 'misc.php';
 
-    if(isset($_SESSION['email'])) {
+    if(isset($_SESSION['email'])) { // If you're logged in you won't be able to see this page
         include'footer.php';
         die('Sieht so aus als wären Sie eingeloggt, da können Sie ihr Passwort doch nicht vergessen haben!');
-    } //Verweigert nicht Admins den Zugriff auf diese Seite
-
-    if (isset($_POST["forgotPass"])) {
+    }
+    if (isset($_POST["forgotPass"])) { // If the user fills out the form and types in a valid email
         $_POST = sanitize_form($_POST);
         if ($_POST) {
             $email = $conn->real_escape_string($_POST["email"]);
@@ -18,32 +17,29 @@
                 $str = "0123456789qwertzuiopasdfghjklyxcvbnmQWERTZUIOPASDFGHJKLYXCVBNM";
                 $str = str_shuffle($str);
                 $str = substr($str, 0,10);
-                $url = "http://localhost/mensa-projekt/php/resetPassword.php?token=$str&email=$email";
+                $url = "http://localhost/mensa-projekt/php/resetPassword.php?token=$str&email=$email"; // Set the url for the user
                 $mail->Subject = "Passwort zuruecksetzen";
                 $mail->Body = "Um Ihr Passwort zurueckzusetzen, besuchen Sie bitte diese <a href='$url'>Seite</a>";
                 $mail->addAddress($email);
                 $mail->setFrom('foodmengroup@gmail.com', 'Foodmengroup');
-                $mail->send();
+                $mail->send(); // Send him the mail with the link
 
-                // Passwort wird gehashed
+                // Hash the new random password
                 $hashedPassword = password_hash($str . $pepper, PASSWORD_BCRYPT, $options);
-                // Passwort wird verändert
+                // Update the users password in the database
                 $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
 
                 $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
                 header('refresh: 1.5 ; url = essensliste.php');
-                die();
 
             } else {
                 $Alert = dangerMessage("Diese E-Mail existiert nicht!");
                 header('refresh: 1.5 ; url = essensliste.php');
-                die();
 
             }
         } else {
             $Alert = dangerMessage('Fehler: Invalide Eingabe.');
             header('refresh: 1.5 ; url = essensliste.php');
-            die();
         }
     }
 ?>

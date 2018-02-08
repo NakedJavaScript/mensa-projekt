@@ -1,5 +1,4 @@
-<?php include_once 'dependencies.php';
-?>
+<?php include_once 'dependencies.php'; ?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -19,7 +18,7 @@
                     <div id='reset' class='form-action'>
                         <h1>Neues Passwort setzen</h1>
                         <small>Geben Sie hier bitte Ihr neues Passwort ein.</small>
-                        <form role='form' method='POST' class='resetPasswordForm'>
+                        <form role='form' method='POST' class='mt-3'>
                             <ul>
                                 <li>
                                     <input type='password' name='neuesPasswort' class='form-control' required/>
@@ -34,12 +33,12 @@
             } else {
                 $Alert = dangerMessage("Der aufgerufene Link ist abgelaufen oder falsch!");
 
-                echo $Alert . " <div class='container' id='error-img-wrapper'><img src='../images/taco-error.png'></div>
+                echo $Alert . " <div class='container' class='d-flex justify-content-center'><img src='../images/taco-error.png'></div>
                 <script>setTimeout(function () {
                     window.location.href= 'index.php';
                 },3000);</script>";
             }
         ?>
     </body>
-<?php include 'footer.php'; ?>
+    <?php include 'footer.php'; ?>
 </html>

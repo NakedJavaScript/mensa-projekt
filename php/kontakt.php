@@ -20,7 +20,7 @@
                 <p>Für Fragen, Vorschläge oder Beschwerden nutzen Sie bitte das untenstehende Kontaktformular. Wir kümmern uns so schnell wie möglich um die Bearbeitung Ihrer Anfrage. Bei dringenden Angelegenheiten können Sie auch direkt unsere Angestellten ansprechen.</p>
                 <br>
             </div>
-            <div class="contact-box">
+            <div class="contact-box px-4 py-4 rounded">
                 <form class="" role="form" action="" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
@@ -42,7 +42,6 @@
                 </form>
             </div>
         </div>
-
         <?php include 'footer.php'; ?>
     </body>
 </html>

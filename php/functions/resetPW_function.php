@@ -1,7 +1,7 @@
 <?php
 include_once 'misc.php';
-
-if(isset($_GET["email"]) && isset($_GET["token"])) {
+// Code to reset the password
+if(isset($_GET["email"]) && isset($_GET["token"])) { // Checks if the mail and the tokens in the reset url link are correct and available in the Database
     $_GET = sanitize_form($_GET);
     if ($_GET) {
         $email = $conn->real_escape_string($_GET["email"]);
@@ -10,20 +10,17 @@ if(isset($_GET["email"]) && isset($_GET["token"])) {
         $pepper = 'mensa_pfeffer';
         $options = array("cost"=>12);
 
-        if ( isset( $_POST['submitNewPassword'] ) ) {
+        if ( isset( $_POST['submitNewPassword'] ) ) { // Sets a new Password for the user
             $newPassword = $_POST['neuesPasswort'];
-            // Passwort wird gehashed
             $hashedPassword = password_hash($newPassword . $pepper, PASSWORD_BCRYPT, $options);
-            // Passwort wird verändert, token wird wieder auf empty gesetzt
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='' WHERE email='$email'");
 
             $Alert = successMessage("Dein Passwort wurde erfolgreich geändert!");
 
             header('refresh: 1.5 ; url = index.php');
-            die();
         }
     } else {
-        $$Alert = successMessage("Fehler: Invalide Eingabe");
+        $Alert = dangerMessage("Fehler: Invalide Eingabe");
         header("Location: index.php");
         exit();
     }
