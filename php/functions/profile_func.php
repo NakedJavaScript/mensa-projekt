@@ -56,6 +56,7 @@
                         $_SESSION['vorname'] = $user['vorname'];
                         $_SESSION['nachname'] = $user['nachname'];
                         $Alert = successMessage("Profil erfolgreich bearbeitet.");
+                        header('refresh: 1.5 ; url = profil.php');
                     } else {
                         $Alert = dangerMessage("<strong>Error:</strong> " . $update . "<br>" . $conn->errno . " " . $conn->error);
                         header('refresh: 1.5 ; url = profil.php');

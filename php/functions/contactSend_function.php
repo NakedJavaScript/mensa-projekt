@@ -1,4 +1,6 @@
 <?php
+    include_once 'misc.php';
+    
     if (isset($_POST['contactFormSubmit'])) {
         $_POST = sanitize_form($_POST);
         if ($_POST) {
