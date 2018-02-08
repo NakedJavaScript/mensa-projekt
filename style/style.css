@@ -1,46 +1,56 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 body {
-  position: relative;
-  min-height: 100%;
-  padding-bottom: 6em;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 6em;
 }
 
-#search-btn {
-  padding: .5rem .75rem;
+/* General Additional CSS */
+
+list-group-item .btn-danger .btn-success {
+  float:right;
+  text-align:right;
 }
 
-.indexCB {
-  width: 15px;
-  height: 15px;
-  top: 0px;
-  left: 20px;
-  display: block;
-  position: relative;
-  padding: 0px;
+/* Additional Table CSS */
+
+.admin-highlight {
+    background-color: rgba(40, 167, 69, 0.2);
 }
 
-.bestellBtn {
-  float: right;
-
+table, thead, tbody, td, th {
+    text-align: center;
 }
+
+/* Additional Order CSS */
+
+.order-btn {
+    float: right;
+}
+
+/* Success Page CSS */
+
+.success-icn {
+    color: #28a745;
+}
+
+/* Footer CSS */
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #1b1e21;
-  text-align: center;
-  padding: 20px;   /* Height of the footer */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1b1e21;
+    color: #fff;
 }
 
 .footer-links {
@@ -52,545 +62,458 @@ body {
     text-decoration: none;
 }
 
-.close {
-  color: #000 !important;
-}
+/* Alert CSS */
 
 .alert-container {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 .alert {
-  position: relative;
-  z-index: 1039;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 8px 35px 8px 14px;
-  margin-bottom: 5px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+    position: relative;
+    z-index: 1039;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 35px 8px 14px;
+    margin-bottom: 5px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
-.user-table {
-  margin-top: 50px;
+/* Page Content Wrapper CSS */
+
+.page-content-wrapper {
+    margin-top: 80px;
 }
 
-.profile-btns {
-  margin-left: 5px;
-  float:right;
-  text-align:center;
-}
-
-.index-btns:hover {
-  cursor: pointer;
-}
-
-.navbar {
-	margin-bottom: 20px;
-}
-
-.pageContentWrapper {
-  margin-top: 80px;
-}
+/* Additional Navbar CSS */
 
 .mr-auto .nav-link:hover {
-  color: #e05120 !important;
+    color: #e05120 !important;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-  background-color: #28a745;
+.active-nav-links {
+    color: #e05120 !important;
+    font-weight:600;
 }
 
-.nav-pills .nav-link {
-  color: #000;
+.custom-nav-bg {
+    background-color: #eee!important;
 }
 
-.form-check-input {
-    position: absolute;
-    margin-top: .25rem;
+    /* Navbar Dropdown CSS */
+
+    .dropdown-menu {
+    	min-width: 0;
+    	max-width: 100%;
+    }
+
+/* Additional Profile Tabs CSS */
+
+.nav-pills .nav-link.active, .nav-pills .show >.nav-link { /* changes background color of the profile tabs */
+    background-color: #28a745;
 }
 
-.active-link {
-  color: #e05120 !important;
-  font-weight:600;
+.nav-pills .nav-link { /* And the link */
+    color: #000;
 }
 
-.bg-custom {
-  background-color: #eee!important;
-}
+/* Index Date Table CSS */
 
 .disable {
-  pointer-events: none;
-  cursor: default;
+    pointer-events: none;
+    cursor: default;
 }
 
-.dropdown {
-	margin-right: 15px;
-}
-
-.search-box {
-	padding: .5rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-.dropdown-menu {
-	min-width: 0;
-	max-width: 100%;
-}
-
-.dropdown-item {
-	padding: 0 5px 0 5px !important;
-    margin: 0px !important;
-}
-
-.index-btns {
-  position: relative;
-  top: 100px;
-  bottom: 400px;
-  transform: translateY(-50%);
-}
-
-.daymealTable {
+.day-meal-table {
     table-layout: fixed;
 }
 
-.foodDetailList {
-    list-style-type: none !important;
-    text-align: center !important;
-    padding: 0 !important;
-    margin: 0;
-    font-size: 1vw !important;
-    display: block !important;
-}
-
 .today {
-  background-color: #28a745 !important;
-  font-weight: bold !important;
-  color: white !important;
-}
-
-table, thead, tbody, td, th {
-  text-align: center;
-}
-
-list-group-item .btn-danger .btn-success {
-  float:right;
-  text-align:right;
-}
-
-.page_nav{
-	color: black;
-	text-align: center;
+    background-color: #28a745 !important;
+    font-weight: bold !important;
+    color: white !important;
 }
 
 /* Additional Cookie-CSS */
 
 .cc_container .cc_btn {
-  background-color: #28A745 !important; /* Farbe des Buttons */
-  color: #fff !important; /* Textfarbe des Buttons */
+    background-color: #28A745 !important; /* Farbe des Buttons */
+    color: #fff !important; /* Textfarbe des Buttons */
 }
 
 
-/* ----- CONTACT-FORM ----- */
+/* Additional Contactform CSS */
+
+.fa-envelope {
+    color: #007bff !important;
+}
 
 .contact-box {
-  background-color: #f7f7f9;
-  padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #d8d8d8;
+    background-color: #f7f7f9;
+    border: 1px solid #d8d8d8;
 }
+
+/* Additional Success Site CSS */
 
 .redo {
-  border: 1px solid #28a745;
-  border-radius: 3px;
-  background: #fff;
-  margin-bottom: 25px;
-}
-
-#topright {
-    position: relative;
-}
-#topright img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
-
-.text-box {
-  padding-bottom: 25px;
-}
-
-.login-modal-footer {
-    flex-direction: column;
+    border: 1px solid #28a745;
+    background: #fff;
 }
 
 .modalbox.success {
-  margin-top: 10%;
-  text-align: center;
+    margin-top: 10%;
+    text-align: center;
 }
 
 .modalbox.success.animate .icon {
-  -webkit-animation: fall-in 0.75s;
-  -moz-animation: fall-in 0.75s;
-  -o-animation: fall-in 0.75s;
-  animation: fall-in 0.75s;
-  padding-bottom: 25px;
+    -webkit-animation: fall-in 0.75s;
+    -moz-animation: fall-in 0.75s;
+    -o-animation: fall-in 0.75s;
+    animation: fall-in 0.75s;
+    padding-bottom: 25px;
 }
 
 .modalbox.success button,
 .modalbox.success button:active,
 .modalbox.success button:focus, {
-  -webkit-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  margin-top: 15px;
-  width: 80%;
-  background: transparent;
-  color: #4caf50;
-  border-color: #4caf50;
-  outline: none;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin-top: 15px;
+    width: 80%;
+    background: transparent;
+    color: #4caf50;
+    border-color: #4caf50;
+    outline: none;
 }
 
 .modalbox.success button:hover,
 .modalbox.success button:active:hover,
 .modalbox.success button:focus:hover {
-  color: #fff;
-  background: #4caf50;
-  border-color: transparent;
+    color: #fff;
+    background: #4caf50;
+    border-color: transparent;
 }
 
-.center {
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.center .change {
-  clearn: both;
-  display: block;
-  font-size: 10px;
-  color: #ccc;
-  margin-top: 10px;
+.change {
+    clear: both;
+    display: block;
+    font-size: 10px;
+    color: #ccc;
+    margin-top: 10px;
 }
 
 @-webkit-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-moz-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-o-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-webkit-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 25%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 25%;
+    }
 }
 
 @-moz-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 25%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 25%;
+    }
 }
 
 @-o-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 25%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 25%;
+    }
 }
 
 @-moz-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-webkit-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-o-keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @keyframes fall-in {
-  0% {
-    -ms-transform: scale(3, 3);
-    -webkit-transform: scale(3, 3);
-    transform: scale(3, 3);
-    opacity: 0;
-  }
-  50% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-    opacity: 1;
-  }
-  60% {
-    -ms-transform: scale(1.1, 1.1);
-    -webkit-transform: scale(1.1, 1.1);
-    transform: scale(1.1, 1.1);
-  }
-  100% {
-    -ms-transform: scale(1, 1);
-    -webkit-transform: scale(1, 1);
-    transform: scale(1, 1);
-  }
+    0% {
+        -ms-transform: scale(3, 3);
+        -webkit-transform: scale(3, 3);
+        transform: scale(3, 3);
+        opacity: 0;
+    }
+    50% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+        opacity: 1;
+    }
+    60% {
+        -ms-transform: scale(1.1, 1.1);
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+    100% {
+        -ms-transform: scale(1, 1);
+        -webkit-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
 }
 
 @-moz-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 @-webkit-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 @-o-keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
 @keyframes plunge {
-  0% {
-    margin-top: -100%;
-  }
-  100% {
-    margin-top: 15%;
-  }
+    0% {
+        margin-top: -100%;
+    }
+    100% {
+        margin-top: 15%;
+    }
 }
 
-/* Back to top button */
+/* Additional Imprint CSS */
+
+.foodmen-logo {
+    top: 0px;
+    right: 0px;
+}
+
+/* Back to top button CSS */
 
 .cd-top {
-  color: #fff;
-  display: inline-block;
-  padding: 20px 25px;
-  position: fixed;
-  bottom: 0px;
-  right: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-  border-radius: 5px;
-  overflow: hidden;
-  white-space: nowrap;
-  background: #28A745 no-repeat center 50%;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
+    color: #fff;
+    display: inline-block;
+    padding: 20px 25px;
+    position: fixed;
+    bottom: 0px;
+    right: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    background: #28A745 no-repeat center 50%;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }
 
 .cd-top.cd-is-visible {
-  /* the button becomes visible */
-  visibility: visible;
-  opacity: 1;
+    /* the button becomes visible */
+    visibility: visible;
+    opacity: 1;
 }
 
 .cd-top.cd-fade-out {
-  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
-  opacity: .5;
+    /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+    opacity: .5;
 }
 
 .cd-top:hover {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 @media only screen and (min-width: 768px) {
-  .cd-top {
-    right: 20px;
-    bottom: 20px;
-  }
+    .cd-top {
+        right: 20px;
+        bottom: 20px;
+    }
 }
 
 @media only screen and (min-width: 1024px) {
-  .cd-top {
-    padding: 20px 25px;
-    right: 30px;
-    bottom: 30px;
-  }
+    .cd-top {
+        padding: 20px 25px;
+        right: 30px;
+        bottom: 30px;
+    }
 }
 
-/* Like Button */
-
-.like-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Additional like Button CSS */
 
 .heart-btn {
     border: 1px solid #e2dede;
     background-color: transparent !important;
-
 }
 
 .like-btn {
     color: #007bff;
-}
-
-.fa-heart {
 }
 
 .like-count {
@@ -599,15 +522,15 @@ list-group-item .btn-danger .btn-success {
 }
 
 .unlike-btn {
-  color: #28a745;
+    color: #28a745;
 }
 
 .heart-btn:active {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .heart-btn:focus {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .like {
@@ -618,33 +541,25 @@ list-group-item .btn-danger .btn-success {
     color: #e05120;
 }
 
-/* Forgot Password CSS */
-
-.forgotPasswordForm {
-    margin-top: 50px;
-}
-
-.resetPasswordForm {
-    margin-top: 20px;
-}
+/* Additional Forgot Password Site CSS */
 
 .flat-form {
-  border: 2px solid #28a745;
-  border-radius: 5px;
-  margin: 25px auto;
-  width: 500px;
-  padding: 50px 0;
-  position: relative;
+    border: 2px solid #28a745;
+    border-radius: 5px;
+    margin: 25px auto;
+    width: 500px;
+    padding: 50px 0;
+    position: relative;
 }
 
 .flat-form .form-action {
-  padding: 0 20px;
-  position: relative;
+    padding: 0 20px;
+    position: relative;
 }
 
 .flat-form h1 {
-  font-size: 42px;
-  margin: 0;
+    font-size: 42px;
+    margin: 0;
 }
 
 .flat-form ul {
@@ -654,35 +569,80 @@ list-group-item .btn-danger .btn-success {
 }
 
 .flat-form form {
-  padding-right: 20px !important;
+    padding-right: 20px !important;
 }
 
 .flat-form form input[type=email], .flat-form form input[type=password] {
-  width: 100%;
-  height: 40px;
-  margin-bottom: 10px;
-  padding-left: 15px;
-  color: #28a745;
-  outline: none;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    color: #28a745;
+    outline: none;
 }
 
 .flat-form form input::-webkit-input-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 .flat-form form input:-moz-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 .flat-form form input::-moz-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
 .flat-form form input:-ms-input-placeholder {
-  color: #28a745;
+    color: #28a745;
 }
 
-#error-img-wrapper {
-    display:flex;
-    justify-content: center;
+/* Tablesorter Additional CSS */
+
+.tablesorter thead .disabled {
+    display: none
 }
+
+    /* Tablesorter Pager CSS */
+
+    .tablesorter-pager {
+        padding: 5px;
+    }
+
+    td.tablesorter-pager {
+        background-color: #e6eeee;
+        margin: 0; /* needed for bootstrap .pager gets a 18px bottom margin */
+    }
+
+    /* pager navigation arrows */
+    .tablesorter-pager img {
+        vertical-align: middle;
+        margin-right: 2px;
+        cursor: pointer;
+    }
+
+    /* pager output text */
+    .tablesorter-pager .pagedisplay {
+        padding: 0 5px 0 5px;
+        width: 50px;
+        text-align: center;
+    }
+
+    /* pager element reset (needed for bootstrap) */
+    .tablesorter-pager select {
+        margin: 0;
+        padding: 0;
+    }
+
+    /*** css used when "updateArrows" option is true ***/
+    /* the pager itself gets a disabled class when the number of rows is less than the size */
+    .tablesorter-pager.disabled {
+        display: none;
+    }
+    /* hide or fade out pager arrows when the first or last row is visible */
+    .tablesorter-pager .disabled {
+        /* visibility: hidden */
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        cursor: default;
+    }
