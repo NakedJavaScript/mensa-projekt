@@ -9,19 +9,22 @@
         <ul class="navbar-nav mr-auto">
             <?PHP
                 if (isset($_SESSION['adminrechte'])) {
-                    if($_SESSION['adminrechte'] == 2) { // Only admins can see this site
+                    if($_SESSION['adminrechte'] == 2) { // Only admins can see these sites
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
+                            <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
                         </li>
                         <li class='nav-item'>
-                        <a class='nav-link' href='essensliste.php'>Essensliste</a>
+                            <a class='nav-link' href='essensliste.php'>Essensliste</a>
                         </li>
                         <li class='nav-item'>
-                        <a class='nav-link' href='umsatz.php'>Umsatz</a>
+                            <a class='nav-link' href='orders.php'>Bestellungen</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='umsatz.php'>Umsatz</a>
                         </li>";
                     } else if($_SESSION['adminrechte'] == 3) { // Normal users will see this
                         echo "<li class='nav-item'>
-                        <a class='nav-link' href='profil.php'>Profil</a>
+                            <a class='nav-link' href='profil.php'>Profil</a>
                         </li>";
                     }
                 }
@@ -52,6 +55,12 @@
 
 <div class="container position-absolute ml-auto mr-auto alert-container">
     <?PHP echo $Alert; // This is used to show our messages which we defined in the dependencies.php ?>
+    <div class='alert alert-success alert-dismissable fade mt-4' id='successOrder'>
+        <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an
+    </div>
+    <div class='alert alert-danger alert-dismissable fade mt-4' id='errorOrder'>
+        <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Es ist ein Fehler aufgetreten! </strong>Leider konnt ihre Bestellung nicht entgegen genommen werden. Haben Sie genug Geld auf ihrem Konto?
+    </div>
 </div>
 
 <!-- Login Modal -->

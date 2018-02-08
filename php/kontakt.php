@@ -1,15 +1,12 @@
-<?php
-    include 'dependencies.php';
-    include 'functions/contactSend_function.php';
-?>
 <!DOCTYPE HTML>
 <html>
-    <head>
+  <?php include_once 'dependencies.php'; ?>
+  <head>
     <title>Kontaktformular</title>
-        <?php
-            echo $head_dependencies;
-        ?>
-    </head>
+    <?php
+      echo $head_dependencies;
+    ?>
+  </head>
 
     <body>
         <?php include 'header.php'; ?>

@@ -79,4 +79,24 @@
             header('refresh: 1.5 ; url = profil.php');
         }
     }
+
+    // Code to delete orders
+    if (isset($_GET['stornieren?buchungsnummer'])) {
+        $ordernumber = $_GET['stornieren?buchungsnummer'];
+        $delete = "DELETE FROM mensa.buchungen WHERE buchungsnummer = $ordernumber";
+        $getPrice = $conn->query("SELECT sp.preis FROM mensa.buchungen as bu INNER JOIN mensa.tagesangebot as t ON t.tagesangebot_ID = bu.tagesangebot_ID INNER JOIN mensa.speise as sp ON sp.speise_ID = t.speise_ID WHERE buchungsnummer = '$ordernumber' LIMIT 1");
+        $getPrice = $getPrice->fetch_object();
+        if ($conn->query($delete) === TRUE) { // if everything is correct and the user can delete his order, we calculate his new balance and show it to him
+            $price = $getPrice->preis;
+            $newBalance = $_SESSION['kontostand'] + $price;
+            $_SESSION['kontostand'] = $newBalance;
+            $conn->query("UPDATE mensa.benutzer SET kontostand = $newBalance  WHERE  benutzer_ID = ".$_SESSION['id']); // the new balance will be set
+            $Alert = successMessage("Sie haben ihre Bestellung erfolgreich storniert! <br/> <strong>Ihr neuer Kontostand: $newBalance €</strong>");
+            header('refresh: 1.5 ; url = profil.php#v-pills-order');
+        }
+        else {
+            $Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");
+            header('refresh: 1.5 ; url = profil.php#v-pills-order');
+        }
+    }
 ?>

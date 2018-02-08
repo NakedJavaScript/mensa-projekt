@@ -97,6 +97,41 @@
 
 										$sql = "SELECT * FROM speise where speise_ID = ".$entry["speise_ID"];
 										$meal = $conn->query($sql)->fetch_assoc(); // Create the index table
+
+										if (!isset($_SESSION['id'])) { // If the user is not logged in, all checkboxes are disabled
+												$output = $output . "<div class='form-check d-flex flex-column'>
+													<div class='d-flex'>
+														<b>Bestellen:</b>
+													</div>
+													<div class='d-flex'>
+														<input class='form-check-input indexCB ml-0' name='orders[]' type='checkbox' value='".$entry['tagesangebot_ID']."' disabled>
+														<label class='form-check-label text-left pl-3'>Bitte loggen Sie sich ein.</label>
+													</div>
+												</div><br>";
+										} else {
+											$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '".$_SESSION['id']."'AND tagesangebot_ID = '".$entry['tagesangebot_ID']."'");
+											if ($entry['datum'] <= date("Y-m-d") || $checkIfBooked->num_rows >= 1) { // If the daily meal is behind the date of today or when the user alrdy ordered it, the checkbox will also be disabled
+													$output = $output . "<div class='form-check d-flex flex-column'>
+														<div class='d-flex'>
+															<b>Bestellen:</b>
+														</div>
+														<div class='d-flex'>
+															<input class='form-check-input indexCB ml-0' name='orders[]' type='checkbox' value='".$entry['tagesangebot_ID']."' disabled>
+															<label class='form-check-label text-left pl-3'>Angebot bereits bestellt oder Bestellfrist abgelaufen</label>
+														</div>
+													</div><br>";
+											} else { // Otherwise you can just order the daily meal
+												$output = $output . "<div class='form-check d-flex flex-column'>
+													<div class='d-flex'>
+														<b>Bestellen:</b>
+													</div>
+													<div class='d-flex'>
+													<input class='form-check-input indexCB ml-0' name='orders[]' type='checkbox' value='".$entry['tagesangebot_ID']."'>
+														<label class='form-check-label text-left pl-3'>Einfach Häkchen setzen und bestellen!</label>
+													</div>
+												</div><br>";
+											}
+										}
 										$output = $output . "<div class='d-flex flex-column'>
 										<div class='p-2'><b>Name:</b><div>".$meal['name']."</div></div>
 										<div class='p-2'><b>Allergene/Inhaltsstoffe:</b><div>".$meal['allergene_inhaltsstoffe']."</div></div>
@@ -127,6 +162,13 @@
 							?>
 						</tbody>
 					</table>
+
+					<div class="order-btn">
+						<input type="button" name="bestellen" class="btn btn-success order-btn" id="order-btn" value="Kostenpflichtig bestellen" data-toggle='modal' data-target='#confirm-submit' disabled>
+							<!-- Confirm Modal -->
+							<?PHP confOrders(); ?>
+					</div>
+
 				</div>
 				<div class="col-sm-1 align-self-center">
 					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
@@ -166,7 +208,7 @@
 								</select>
 							</div>
 							<div class="modal-footer">
-								<input type="submit" name="Tagesangebot_erstellen" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
+								<input type="submit" name="create_daily_meal" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
 							</div>
 						</form>
 					</div>
@@ -178,4 +220,48 @@
 		confModal('Wollen Sie dieses Tagesangebot wirklich löschen?');
 		include 'footer.php';
 	?>
+	<script>
+		// Function for submitting the users order
+		function submit() {
+			var orders = [];
+			$(".indexCB:checked").each(function(){
+				orders.push($(this).val());
+			});
+
+			$.ajax({
+				type: "POST",
+				url: 'index.php',
+				data: ({orders}),
+				success: function(data) {
+					if(data.status == true) {
+						$("#confirm-submit").modal('hide');
+						$('#successOrder').addClass('show');
+						$('#errorOrder').hide();
+						$('.indexCB:checked').prop('disabled', true);
+						$('.indexCB:checked').prop('checked', false);
+						window.setTimeout(function(){
+					        location.reload();
+				    	}, 5000);
+					}
+					else {
+						$("#confirm-submit").modal('hide');
+						$('#errorOrder').addClass('show');
+						$('#successOrder').hide();
+						$('.indexCB:checked').prop('disabled', true);
+						$('.indexCB:checked').prop('checked', false);
+						window.setTimeout(function(){
+					        location.reload();
+				    	}, 4000);
+					}
+				}
+			});
+		}
+	</script>
+	<script>
+		var boxes = $('.indexCB');
+
+		boxes.on('change', function () {
+			$('#order-btn').prop('disabled', !boxes.filter(':checked').length);
+		}).trigger('change');
+	</script>
 </html>
