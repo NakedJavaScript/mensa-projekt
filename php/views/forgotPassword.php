@@ -27,13 +27,11 @@
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
 
             $alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
-            header('refresh: 1.5 ; url = essensliste.php');
-            die();
+            header('refresh: 1.5 ; url = forgotPassword.php');
 
         } else {
             $alert = dangerMessage("Diese E-Mail existiert nicht!");
-            header('refresh: 1.5 ; url = essensliste.php');
-            die();
+            header('refresh: 1.5 ; url = forgotPassword.php');
         }
     }
 ?>

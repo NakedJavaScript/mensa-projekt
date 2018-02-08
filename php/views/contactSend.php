@@ -29,11 +29,9 @@
         if (sendMail($to, $email, $name, $subject, $body)) {
             $alert = successMessage('Vielen dank für Ihre E-Mail!');
             header('refresh: 1.5 ; url = contact.php');
-            die();
         } else {
             $alert = dangerMessage('Es tut uns leid aber irgendetwas ist schief gelaufen! Bitte versuchen Sie es erneut.');
             header('refresh: 1.5 ; url = contact.php');
-            die();
         }
     }
 ?>

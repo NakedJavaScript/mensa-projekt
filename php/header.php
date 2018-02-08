@@ -26,7 +26,7 @@
 					 }
 					else if($_SESSION['adminRights'] == 3) { //normale user sehen das.
 						echo "<li class='nav-item'>
-							<a class='nav-link' href='profile.php'>profile</a>
+							<a class='nav-link' href='profile.php'>Profil</a>
 						</li>";
 					}
 					else {
@@ -42,7 +42,7 @@
 	 			<span class='sr-only'>" . $_SESSION['email'] . "</span>
  				</button>
  					<div class='dropdown-menu'>
-	 					<a class='dropdown-item' href='profile.php#v-pills-profile'>profile</a>
+	 					<a class='dropdown-item' href='profile.php#v-pills-profile'>Profil</a>
 	 					<a class='dropdown-item' href='profile.php#v-pills-order'>Bestellungen</a>
 	 					<div class='dropdown-divider'></div>
 	 					<a class='dropdown-item' href='logout.php'>Logout</a>

@@ -17,9 +17,7 @@ if(isset($_GET["email"]) && isset($_GET["token"])) {
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='' WHERE email='$email'");
 
             $alert = successMessage("Dein Passwort wurde erfolgreich geändert!");
-
             header('refresh: 1.5 ; url = index.php');
-            die();
         }
 
 } else {
