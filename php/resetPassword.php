@@ -1,4 +1,7 @@
-<?php include_once 'dependencies.php'; ?>
+<?php
+    include_once 'dependencies.php';
+    include 'functions/resetPW_function.php';
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -11,7 +14,6 @@
     <body>
         <?php
             include 'header.php';
-            include 'functions/resetPW_function.php';
 
             if ($data->num_rows > 0) {
                 echo "<div class='container flat-form'>
