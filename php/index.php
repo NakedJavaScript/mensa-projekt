@@ -236,24 +236,20 @@
 				data: ({orders}),
 				success: function(data) {
 					if(data.status == true) {
+						$('#orderInfo').removeClass('show');
 						$(".alert-cont").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
 						$('#orderInfo').addClass('alert-success show');
-						$('#orderInfo').html(data.msg);
+						$('#orderInfo').append(data.msg);
 						$('.indexCB:checked').prop('disabled', true);
 						$('.indexCB:checked').prop('checked', false);
-						window.setTimeout(function(){
-					        location.reload();
-				    	}, 5000);
 					}
 					else {
+						$('#orderInfo').removeClass('show')
 						$(".alert-cont").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
 						$('#orderInfo').addClass('alert-danger show');
-						$('#orderInfo').html("<strong>Es ist ein Fehler aufgetreten</strong> Bitte versuchen Sie es erneut oder prüfen sie ihr Guthaben");
-						window.setTimeout(function(){
-					        location.reload();
-				    	}, 4000);
+						$('#orderInfo').append(data.msg);
 					}
 				}
 			});

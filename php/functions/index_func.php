@@ -88,24 +88,23 @@
 				$json_array['msg'] = "Sie haben das bereits bestellt!";
 			} else if ($_SESSION['kontostand'] < $getPrice->preis) { // If the user has not enough money
 				$json_array['status'] = false;
-				$json_array['msg'] = "<strong>Leider haben sie nicht genug Geld auf ihrem Konto!</strong> Sie können ihr Konto beim Caterer aufladen.";
+				$json_array['msg'] = "<strong>Leider haben Sie nicht genug Guthaben für diese Bestellung!</strong> Bitte reduzieren Sie Ihre Bestellung, oder laden Sie Ihr Konto auf.";
 			} else {
-				if($conn->query($insertOrders) == true) { // If the order is okay
-					$price = $getPrice->preis;
-					$newBalance = $_SESSION['kontostand'] - $price; // Remove the price from the account balance
-					$_SESSION['kontostand'] = $newBalance; // new balance will be created
-					$conn->query("UPDATE mensa.benutzer SET kontostand = $newBalance  WHERE  benutzer_ID = $userID "); // new Balance is set in the database
-					$json_array['status'] = true;
-					$json_array['msg'] = "Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an. <br/> <strong>Ihr neuer Kontostand: $newBalance €</strong>";
-				} else {
-					$json_array['status'] = false;
-					$json_array['msg'] = "<strong>Error:</strong> Es is ein Fehler aufgetreten, bitte versuchen Sie es erneut oder infomieren Sie den Caterer";
+					if($conn->query($insertOrders) == true) { // If the order is okay
+						$price = $getPrice->preis;
+						$newBalance = $_SESSION['kontostand'] - $price; // Remove the price from the account balance
+						$_SESSION['kontostand'] = $newBalance; // new balance will be created
+						$conn->query("UPDATE mensa.benutzer SET kontostand = $newBalance  WHERE  benutzer_ID = $userID "); // new Balance is set in the database
+						$json_array['status'] = true;
+						$json_array['msg'] = "Ihre Bestellung war erfolgreich! Sehen Sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an. <strong>Ihr neuer Kontostand: $newBalance €</strong>";
+					} else {
+						$json_array['status'] = false;
+						$json_array['msg'] = "<strong>Error:</strong> Es is ein Fehler aufgetreten, bitte versuchen Sie es erneut oder infomieren Sie den Caterer";
+					}
 				}
-
-				header('Content-Type: application/json');
-				echo json_encode($json_array);
-				die();
-			}
+			header('Content-Type: application/json');
+			echo json_encode($json_array);
+			die();
 		}
 	}
 
