@@ -6,13 +6,13 @@
 		if ($_POST) {
 			if (!is_numeric($_POST['kontostand'])) { // Checks if the textfield has only numbers
 				$Alert = dangerMessage("Im Feld <strong>'Kontostand'</strong> sind nur numerische Zeichen erlaubt.");
-				header('refresh:1.5 ; url = benutzerliste.ph');
+				header('refresh:1.5 ; url = userList.php');
 			} else if ($_POST['kontostand'] < 0) { // Checks if its not a negative number
 				$Alert= dangerMessage("Im Feld <strong>'Kontostand'</strong> sind keine Negativen Zahlen erlaubt.");
-				header('refresh: 1.5 ; url = benutzerliste.ph');
+				header('refresh: 1.5 ; url = userList.php');
 			} else if(strpos($_POST['email'], '@') !== false) { // If the user types in a @ this message will show up
 				$Alert = dangerMessage("Im Feld Email soll keine Domäne angegeben werden, bitte entfernen Sie das <strong>'@'</strong> Zeichen und die <strong>Domäne</strong>");
-				header('refresh: 1.5 ; url = benutzerliste.ph');
+				header('refresh: 1.5 ; url = userList.php');
 			} else {
 				$forename = trim($_POST['vorname']); // trim removes white space
 				$surname = trim($_POST['nachname']);
