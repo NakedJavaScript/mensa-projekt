@@ -4,7 +4,7 @@
 
 <footer class="footer position-absolute text-center py-4 px-4">
 	<div class="container">
-		<a class="footer-links" href='kontakt.php'>Kontakt</a> | <a class="footer-links" href='impressum.php'>Impressum</a> | <a class="footer-links" href='datenschutz.php'>Datenschutz</a>
+		<a class="footer-links" href='contact.php'>Kontakt</a> | <a class="footer-links" href='imprint.php'>Impressum</a> | <a class="footer-links" href='privacy.php'>Datenschutz</a>
 	</div>
 	<a href="#cd-top-link" class="cd-top"><i class='fas fa-angle-double-up fa-2x'> </i></a>
 </footer>
@@ -17,7 +17,7 @@
 		message: 'Diese Website nutzt Cookies, um bestmögliche Funktionalität bieten zu können.',
 		dismiss: 'Verstanden',
 		learnMore: 'Mehr Infos',
-		link: 'datenschutz.php',
+		link: 'privacy.php',
 		theme: 'light-floating'
 	};
 </script>

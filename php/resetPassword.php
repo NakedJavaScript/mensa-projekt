@@ -1,6 +1,6 @@
 <?php
     include_once 'dependencies.php';
-    include 'functions/resetPW_function.php';
+    include 'views/resetPassword.php';
 ?>
 <!DOCTYPE HTML>
 <html>
