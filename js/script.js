@@ -22,6 +22,7 @@ function drawGraph(values) {
         labels =  ["Vor 11 Monaten","Vor 10 Monaten","Vor 9 Monaten","Vor 8 Monaten","Vor 7 Monaten","Vor 6 Monaten","Vor 5 Monaten","Vor 4 Monaten","Vor 3 Monaten","Vor 2 Monaten","Vor 1 Monat","Diesen Monat"]
     }
     var ctx = document.getElementById("myChart").getContext('2d');
+
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -29,20 +30,6 @@ function drawGraph(values) {
             datasets: [{
                 label: 'Einnahmen',
                 data: values,
-                backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)'
-                ],
-                borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)'
-                ],
                 borderWidth: 1
             }]
         },
