@@ -163,7 +163,7 @@ $(function(){
     // Settings of the tablesorter
     var $table = $('.tabelsorterTable').tablesorter({
         theme: 'jui', // Sets the theme
-        widgets: ["filter"], // Allowes additional widgets
+        widgets: ["filter"], // Allowes additional widget filter
         sortList: [[0,0],[2,0]], // Sorts the list on page load
         widgetOptions : {
             filter_columnFilters: true, // Allows to filter columns
