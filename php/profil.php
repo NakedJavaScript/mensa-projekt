@@ -75,7 +75,7 @@
 								<th>Sonstiges:</th>
 								<th>Preis:</th>
 								<th>Buchungsdatum</th>
-								<th class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
+								<th class="filter-false" data-sorter="false">Stornieren</th>
 							</thead>
 							<tbody>
 							<?php
