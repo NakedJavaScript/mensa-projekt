@@ -1,6 +1,9 @@
 <?php
-    // Code to reset the password
-    if(isset($_GET["email"]) && isset($_GET["token"])) { // Checks if the mail and the tokens in the reset url link are correct and available in the Database
+include_once 'misc.php';
+// Code to reset the password
+if(isset($_GET["email"]) && isset($_GET["token"])) { // Checks if the mail and the tokens in the reset url link are correct and available in the Database
+    $_GET = sanitize_form($_GET);
+    if ($_GET) {
         $email = $conn->real_escape_string($_GET["email"]);
         $token = $conn->real_escape_string($_GET["token"]);
         $data = $conn->query("SELECT benutzer_ID FROM mensa.benutzer WHERE email='$email' AND token='$token'");
@@ -16,8 +19,13 @@
             header('refresh: 1.5 ; url = index.php');
         }
     } else {
-        header('refresh: 1.5 ; url = index.php');
+        $Alert = dangerMessage("Fehler: Invalide Eingabe");
+        header("Location: index.php");
         exit();
     }
+} else {
+    header('refresh: 1.5 ; url = index.php');
+    exit();
+}
 
 ?>
