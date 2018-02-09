@@ -91,7 +91,7 @@
 									echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
 									echo	"<td class='align-middle'>".$row['preis']."€</td>";
 									echo	"<td class='align-middle'>".date('d.m.Y', $bookingDateFormat)."</td>";
-                                    if ($row['tagesangebotsdatum'] > date('Y-m-d')) { // If the ordered meal is One day old then this button gets disabled
+                                    if ($row['tagesangebotsdatum'] >= date('Y-m-d')) { // If the ordered meal is One day old then this button gets disabled
     									echo "<td class='align-middle'>
                                                 <button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger'>
                                                     <i class='fas fa-trash'> </i>
