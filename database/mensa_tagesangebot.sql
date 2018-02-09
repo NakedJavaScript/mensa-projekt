@@ -29,7 +29,7 @@ CREATE TABLE `tagesangebot` (
   PRIMARY KEY (`tagesangebot_ID`),
   KEY `_speise_ID_idx` (`speise_ID`),
   CONSTRAINT `_speise_ID` FOREIGN KEY (`speise_ID`) REFERENCES `speise` (`speise_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `tagesangebot` (
 
 LOCK TABLES `tagesangebot` WRITE;
 /*!40000 ALTER TABLE `tagesangebot` DISABLE KEYS */;
-INSERT INTO `tagesangebot` VALUES (4,1,'2018-01-22'),(5,2,'2018-01-23'),(6,3,'2018-01-24'),(7,4,'2018-01-25'),(8,5,'2018-01-26'),(9,1,'2018-01-29'),(10,1,'2018-02-08');
+INSERT INTO `tagesangebot` VALUES (4,1,'2018-01-22'),(5,2,'2018-01-23'),(6,3,'2018-01-24'),(7,4,'2018-01-25'),(8,5,'2018-01-26'),(9,1,'2018-01-29'),(10,1,'2018-02-08'),(11,1,'2018-02-12'),(13,4,'2018-02-14'),(14,6,'2018-02-15'),(15,13,'2018-02-16');
 /*!40000 ALTER TABLE `tagesangebot` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-09 21:19:55
+-- Dump completed on 2018-02-09 23:19:39
