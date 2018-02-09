@@ -3,7 +3,7 @@
 
 	// Code to add a new meal
 	if (isset($_POST['add_food'])) {
-		$allergens = sanitize_form($_POST['allergens']);
+		$allergens = $_POST['allergens'];
 		$others = $_POST['sonstiges'];
 		unset($_POST['allergens']);
 		unset($_POST['sonstiges']);
