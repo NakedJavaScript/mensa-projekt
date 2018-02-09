@@ -21,6 +21,10 @@ list-group-item .btn-danger .btn-success {
   text-align:right;
 }
 
+.dropdown-item:hover {
+    cursor: pointer;
+}
+
 /* Additional Table CSS */
 
 .admin-highlight {
