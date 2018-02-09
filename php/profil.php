@@ -1,6 +1,7 @@
 <?php
 	include 'dependencies.php';
 	include_once 'functions/profile_func.php';
+	include_once 'modals/profile.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -117,8 +118,7 @@
 			</div>
 		</div>
 		<?php
-            confModal("Wollen Sie diese Bestellung wirklich stornieren?");
-            include 'modals/profile_modals.php';
+			confModal("Wollen Sie diese Bestellung wirklich stornieren?");
 			include 'footer.php';
 		?>
 		<script>
