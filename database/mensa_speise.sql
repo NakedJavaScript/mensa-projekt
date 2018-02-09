@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.28-MariaDB
+-- Server version	5.5.5-10.1.29-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -39,7 +39,7 @@ CREATE TABLE `speise` (
 
 LOCK TABLES `speise` WRITE;
 /*!40000 ALTER TABLE `speise` DISABLE KEYS */;
-INSERT INTO `speise` VALUES (1,'Schweineschnitzel',5.5,0,'GG, Ei, Nus, Ses','Mit Pommes oder Brötchen'),(2,'Maultaschen in Bratensoße',3.5,0,'GG, Ei, Sel',''),(3,'Leberkäse mit Brötchen',2.2,0,'Sel, Sen','Ketchup, Mayo oder Senf'),(4,'Kleine Pommes',1.2,0,'- Keine Allergene -','Ketchup, Mayo oder Senf'),(5,'Große Pommes',1.8,0,'- Keine Allergene -','Ketchup, Mayo oder Senf'),(6,'Döner',4.5,0,'GG, Ei, Nus, Ses','Lamm oder Kalbfleisch'),(7,'Spätzle mit Soß',6,0,'GG, Ei','Dunkle oder Helle Soße'),(8,'Käsespätzle',6,0,'GG, Ei','Gouda oder Mozarella'),(9,'Hamburger',7.5,0,'GG, Ei, Nus, Ses','dazu Pommes'),(10,'Cheeseburger',8,0,'GG, Ei, Mil, Nus, Ses','dazu Pommes'),(11,'Pizza Salami',5,0,'GG, Ei, Nus, Wei',''),(12,'Pizza Schinken',5,0,'GG, Ei, Mil',''),(13,'Bratkartoffeln',3,0,'- Keine Allergene -','Keptchup, Mayo oder Senf'),(14,'Koberind Steak',500,0,'- Keine Allergene -','eine Cola');
+INSERT INTO `speise` VALUES (1,'SCHWEINEHALS SCHNITZEL',5.5,0,'GG, Ei, Nus, Ses','POMMES ODER BRöTCHEN'),(2,'MAULTASCHEN IN BRATENSOßE',3.5,0,'GG, Ei, Sel',''),(3,'LEBERKäSBRöTCHEN',2.2,0,'Sel, Sen','KETCHUP ODER MAYO ODER SENF'),(4,'KLEINE POMMES',1.2,0,'- Keine Allergene -','KETCHUP ODER MAYO ODER SENF'),(5,'GROßE POMMES',1.8,0,'- Keine Allergene -','KETCHUP ODER MAYO ODER SENF'),(6,'DöNER',4.5,0,'GG, Ei, Nus, Ses','LAMM ODER HAMMELFLEISCH'),(8,'KäSESPäTZLE',6,0,'GG, Ei','GOUDA UND MOZZARELLA'),(9,'HAMBURGER',7.5,0,'GG, Ei, Nus, Ses','DAZU POMMES'),(10,'CHEESEBURGER',8,0,'GG, Ei, Mil, Nus, Ses','DAZU KLEINE POMMES'),(11,'PIZZA SALAMI',5,0,'GG, Ei, Nus, Wei','ALS VIERECK ODER KLASSISCHEN KREIS'),(12,'PIZZA MAGHERITA',5,0,'GG, Ei, Mil','MOZZARELLA/EMMENTALER MIX'),(13,'BRATKARTOFFEL',3,0,'- Keine Allergene -','MIT KETCHUP, MAYO ODER SENF'),(14,'YOLONESSE',1999,0,'- Keine Allergene -','ARSCHRITZE DAZU');
 /*!40000 ALTER TABLE `speise` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-09  8:17:56
+-- Dump completed on 2018-02-09 21:19:55

@@ -12,48 +12,37 @@ function AddValuesToModal(date, addFood='') {
 };
 
 // Function to draw the graph for the sales page, using Chart.js
-function drawGraph() {
-    var ctx = document.getElementById("myChart").getContext('2d');
-    if (days) {
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag"],
-                datasets: [{
-                    label: 'Bestellte Tagesessen',
-                    data: [12, 19, 3, 5, 2],
-                    backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)'
-                    ],
-                    borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-    } else if (weeks) {
-
+function drawGraph(values) {
+    values = values.split(",");
+    if (values.length == 7) {
+        labels =  ["Vor 6 Tagen","Vor 5 Tagen","Vor 4 Tagen","Vor 3 Tagen","Vor 2 Tagen","Vor 1 Tag","Heute"]
+    } else if (values.length == 4) {
+        labels =  ["Vor 3 Wochen","Vor 2 Wochen","Vor 1 Wochen","Diese Woche"]
     } else {
-
+        labels =  ["Vor 11 Monaten","Vor 10 Monaten","Vor 9 Monaten","Vor 8 Monaten","Vor 7 Monaten","Vor 6 Monaten","Vor 5 Monaten","Vor 4 Monaten","Vor 3 Monaten","Vor 2 Monaten","Vor 1 Monat","Diesen Monat"]
     }
+     document.getElementById("myChart").outerHTML = '<canvas id="myChart" width="400" height="400"></canvas>';
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Einnahmen',
+                data: values,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
 };
 
 // Scripts for foodList.php

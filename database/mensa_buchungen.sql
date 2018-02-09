@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: mensa
 -- ------------------------------------------------------
--- Server version	5.5.5-10.1.28-MariaDB
+-- Server version	5.5.5-10.1.29-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,13 +27,13 @@ CREATE TABLE `buchungen` (
   `schueler_ID` int(11) NOT NULL,
   `tagesangebot_ID` int(11) NOT NULL,
   `buchungsdatum` datetime NOT NULL,
-  `menge` int(2) NOT NULL,
+  `preis` double NOT NULL,
   PRIMARY KEY (`buchungsnummer`),
   KEY `schueler_ID_idx` (`schueler_ID`),
   KEY `tagesangebot_ID_idx` (`tagesangebot_ID`),
   CONSTRAINT `schueler_ID` FOREIGN KEY (`schueler_ID`) REFERENCES `benutzer` (`benutzer_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tagesangebot_ID` FOREIGN KEY (`tagesangebot_ID`) REFERENCES `tagesangebot` (`tagesangebot_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='hier sind die Buchungen der Schüler';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='hier sind die Buchungen der Schüler';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `buchungen` (
 
 LOCK TABLES `buchungen` WRITE;
 /*!40000 ALTER TABLE `buchungen` DISABLE KEYS */;
+INSERT INTO `buchungen` VALUES (1,1,10,'2018-02-08 00:00:00',5.5);
 /*!40000 ALTER TABLE `buchungen` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-09  8:17:56
+-- Dump completed on 2018-02-09 21:19:54

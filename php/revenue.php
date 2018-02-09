@@ -25,9 +25,9 @@
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Auswahl treffen</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<?php
-							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick="drawGraph("' . getRevenue('days') . '")">Wochen</a>';
-							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick="drawGraph("' . getRevenue('weeks') . '")">Monate</a>';
-							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick="drawGraph("' . getRevenue('months') . '")">Jahr</a>';
+							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" onclick="drawGraph(\''.getRevenue('days') .'\')">Letze Woche</a>';
+							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" onclick="drawGraph(\''.getRevenue('weeks') .'\')">Letzer Monat</a>';
+							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" onclick="drawGraph(\''.getRevenue('months') .'\')">Letztes Jahr</a>';
 						?>
 					</div>
 				</div>
