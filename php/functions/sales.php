@@ -8,26 +8,13 @@
         $dbname = "mensa";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
-        $sql = "SELECT tagesangebot_ID
+        $sql = "SELECT sum(preis) as bla
                 FROM mensa.buchungen
                 WHERE buchungsdatum >= '$startDate' AND  buchungsdatum <= '$endDate'";
         $result = $conn->query($sql);
-        $sum = 0.0;
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                $daymealID = $row['tagesangebot_ID'];
-                $sql = "SELECT speise_ID
-                        FROM mensa.tagesangebot
-                        WHERE tagesangebot_ID = '$daymealID'
-                        LIMIT 1";
-                $chicken = $conn->query($sql);
-                while($row = $chicken->fetch_assoc()) {
-                    $mealID = $row['speise_ID'];
-                    $shit = "SELECT preis FROM mensa.speise WHERE speise_ID = '$mealID'";
-                    $price = $conn->query($shit)->fetch_assoc();
-                    $sum = $sum + $price['preis'];
-                }
-            }
+        while($row = $result->fetch_assoc()) {
+            echo $row['bla'];
+            $sum = $row['bla'];
         }
         return $sum;
     }
@@ -47,7 +34,7 @@
                     } else {
                         $lineEnd = "";
                     }
-                    $values = $values . getSum($startDate,$endDate)['sum'] . $lineEnd;
+                    $values = $values . getSum($startDate,$endDate) . $lineEnd;
                 }
                 break;
             case "weeks":
@@ -63,7 +50,7 @@
                     } else {
                         $lineEnd = "";
                     }
-                    $values = $values . getSum($startDate,$endDate)['sum'] . $lineEnd;
+                    $values = $values . getSum($startDate,$endDate) . $lineEnd;
 
                 }
                 break;
@@ -80,7 +67,7 @@
                     } else {
                         $lineEnd = "";
                     }
-                    $values = $values . getSum($startDate,$endDate)['sum'] . $lineEnd;
+                    $values = $values . getSum($startDate,$endDate) . $lineEnd;
                 }
                 break;
         }

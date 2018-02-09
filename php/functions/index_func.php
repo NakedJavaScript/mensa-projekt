@@ -131,10 +131,10 @@
 		$orderDate = date("Y-m-d");
 
 		foreach ($orders as $key => $value) {
-			$insertOrders = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum) VALUES ('$userID', '$value', '$orderDate')";
-			$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '$userID' AND tagesangebot_ID = '$value'"); // Checks if the user didn't book the meal alrdy
 			$getPrice = $conn->query("SELECT sp.preis FROM mensa.tagesangebot as t INNER JOIN mensa.speise as sp ON sp.speise_ID = t.speise_ID WHERE tagesangebot_ID = '$value' LIMIT 1"); // Selects the price of the meal
 			$getPrice = $getPrice->fetch_object(); // Selection will be fetched
+			$insertOrders = "INSERT INTO buchungen (schueler_ID, tagesangebot_ID, buchungsdatum, preis) VALUES ('$userID', '$value', '$orderDate', ' $getPrice->preis')";
+			$checkIfBooked = $conn->query("SELECT * FROM mensa.buchungen WHERE schueler_ID = '$userID' AND tagesangebot_ID = '$value'"); // Checks if the user didn't book the meal alrdy
 
 			if($checkIfBooked->num_rows >= 1) { // Checks if the user didn't book the meal alrdy
 				$json_array['status'] = false;
