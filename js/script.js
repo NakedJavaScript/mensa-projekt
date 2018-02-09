@@ -21,6 +21,7 @@ function drawGraph(values) {
     } else {
         labels =  ["Vor 11 Monaten","Vor 10 Monaten","Vor 9 Monaten","Vor 8 Monaten","Vor 7 Monaten","Vor 6 Monaten","Vor 5 Monaten","Vor 4 Monaten","Vor 3 Monaten","Vor 2 Monaten","Vor 1 Monat","Diesen Monat"]
     }
+     document.getElementById("myChart").outerHTML = '<canvas id="myChart" width="400" height="400"></canvas>';
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
