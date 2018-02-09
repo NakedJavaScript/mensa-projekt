@@ -1,6 +1,4 @@
 <?php
-
-
     function getSum($startDate, $endDate) {
         $servername = "localhost";
         $username = "root";
