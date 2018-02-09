@@ -21,7 +21,7 @@
                 die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.');
             }
         ?>
-        <div class="container">
+        <div class="container col-sm-10">
             <h1>Bestellungen</h1>
             <table class="tabelsorterTable table table-hover tablesorter">
                 <thead>

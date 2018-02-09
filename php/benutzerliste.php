@@ -23,7 +23,7 @@
 			}
 		?>
 
-		<div class="container">
+		<div class="container col-sm-10">
 			<h1>Benutzerliste</h1>
 			<br>
 			<p>Das ist die globale Benutzerliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Nutzer existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mithilfe des "Hinzufügen"-Buttons neue Nutzer anlegen.</p>
