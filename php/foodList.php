@@ -48,9 +48,9 @@
 						if ($result->num_rows > 0) {
 							// Returns the data in a table
 							while($row = $result->fetch_assoc()) {
-								echo "<tr><td class='align-middle'>".$row['name']."</td>";
+								echo "<tr><td class='align-middle'>".ucfirst($row['name'])."</td>";
 								echo "<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
-								echo "<td class='align-middle'>".$row['sonstiges']."</td>";
+								echo "<td class='align-middle'>".ucfirst($row['sonstiges'])."</td>";
 								echo "<td class='align-middle'>".$row['preis']."€</td>";
 								echo "<td class='align-middle'><button type='button' method='POST' data-href='?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 								<i class='fas fa-trash'> </i></button>

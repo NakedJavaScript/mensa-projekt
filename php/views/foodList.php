@@ -4,12 +4,14 @@
 	// Code to add a new meal
 	if (isset($_POST['add_food'])) {
 		$allergens = sanitize_form($_POST['allergens']);
+		$others = $_POST['sonstiges'];
 		unset($_POST['allergens']);
-		$_POST = sanitize_form($_POST);
-		if ($_POST && $allergens) {
+		unset($_POST['sonstiges']);
+		if ($_POST) {
 			$_POST['allergens'] = $allergens;
-			$name = strtoupper(trim($_POST['name']));
-			$other = strtoupper(trim($_POST['sonstiges']));
+			$_POST['sonstiges'] = $others;
+			$name = strtolower(trim($_POST['name']));
+			$other = strtolower(trim($_POST['sonstiges']));
 
 			if (!is_numeric($_POST['preis'])) { // Checks if the textfield has only numbers
 				$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
@@ -25,7 +27,7 @@
 				$food_price = doubleval($_POST['preis']); // Changes the price into a double
 				$check = $conn->query("SELECT * FROM speise WHERE name = '$name'"); // Checks if the meal already exists
 				if ($check->num_rows < 1 ) {   //Wenn keine Zeilen zurückgegeben werden, dann wird das Produkt eingefügt.
-					$insert = "INSERT INTO speise (name,allergene_inhaltsstoffe,sonstiges,preis)
+					$insert = "INSERT INTO speise (name,allergene_inhaltsstoffe, sonstiges,preis)
 					VALUES ('$name', '$all_allergens', '$other','$food_price')";
 
 					if ($conn->query($insert) === TRUE) {
@@ -45,11 +47,17 @@
 
 	// Code to edit an existing meal
 	if (isset($_POST['edit_food'])) {
+		$allergens = sanitize_form($_POST['allergens']);
+		$others = $_POST['sonstiges'];
+		unset($_POST['allergens']);
+		unset($_POST['sonstiges']);
 		$_POST = sanitize_form($_POST);
-		if ($_POST) {
+		if ($_POST && $allergens) {
+			$_POST['allergens'] = $allergens;
+			$_POST['sonstiges'] = $others;
 			$meal_ID = $_POST['speise_ID'];
-			$name = strtoupper(trim($_POST['name']));
-			$other = strtoupper(trim($_POST['sonstiges']));
+			$name = strtolower(trim($_POST['name']));
+			$other = strtolower(trim($_POST['sonstiges']));
 
 			if (!is_numeric($_POST['preis'])) { // Checks if the textfield has only numbers
 				$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
@@ -106,7 +114,7 @@
 			}
 		} else {
 			$Alert = dangerMessage('Fehler: Invalide Eingabe.');
-			header('refresh: 1.5 ; url = foodList.php');
+			#header('refresh: 1.5 ; url = foodList.php');
 		}
 	}
 
