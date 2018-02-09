@@ -51,8 +51,8 @@ function drawGraph(values) {
 $(document).on("click",'#edit_food' , function (e) {
     var identity= $(this).attr('speise_ID'); // Values from the attributes are assigned variables
     var name=$(this).attr('speise_name');
-    var allergene=$(this).attr('allergene')
-    var allergenArr = allergene.split(', ') // Create an array out of the allergens
+    var allergens=$(this).attr('allergens')
+    var allergensArr = allergens.split(', ') // Create an array out of the allergens
     var sonstiges=$(this).attr('sonstiges');
     var preis=$(this).attr('preis');
     //set what we got to our form
@@ -60,8 +60,8 @@ $(document).on("click",'#edit_food' , function (e) {
     $('#name').val(name);
     $('#sonstiges').val(sonstiges);
     $('#preis').val(preis);
-    for (i=0; i!=allergenArr.length;i++) { // Every checkbox whose value match with the element of the array receives the attribute "checked"
-        var checkbox = $("input[type='checkbox'][value='"+allergenArr[i]+"']");
+    for (i=0; i!=allergensArr.length;i++) { // Every checkbox whose value match with the element of the array receives the attribute "checked"
+        var checkbox = $("input[type='checkbox'][value='"+allergensArr[i]+"']");
         checkbox.attr("checked","checked");
     }
 });
@@ -152,7 +152,7 @@ $(function(){
     // Settings of the tablesorter
     var $table = $('.tabelsorterTable').tablesorter({
         theme: 'jui', // Sets the theme
-        widgets: ["filter"], // Allowes additional widgets
+        widgets: ["filter"], // Allowes additional widget filter
         sortList: [[0,0],[2,0]], // Sorts the list on page load
         widgetOptions : {
             filter_columnFilters: true, // Allows to filter columns

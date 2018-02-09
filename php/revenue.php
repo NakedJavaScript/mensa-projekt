@@ -1,6 +1,6 @@
 <?php
 	include_once 'dependencies.php';
-	include_once 'functions/revenue.php';
+	include 'views/revenue.php';
 ?>
 <!DOCTYPE HTML>
 <html>

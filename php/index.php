@@ -1,6 +1,6 @@
 <?php
 	include_once 'dependencies.php';
-	include_once 'functions/index_func.php';
+	include_once 'views/index.php';
 	include_once 'modals/index.php';
 ?>
 
@@ -66,7 +66,7 @@
 								$result = $conn->query($sql);
 								$entries =[];
 
-								while($entry = $result->fetch_assoc()) { // Get all daily meals and save them into the array
+								while ($entry = $result->fetch_assoc()) { // Get all daily meals and save them into the array
 									$entries[] = $entry;
 								}
 
@@ -84,7 +84,7 @@
 										}
 									}
 
-									if($daymeal_exists) { // Display attributes of the asocciated meal
+									if ($daymeal_exists) { // Display attributes of the asocciated meal
 										$countLikes = "SELECT COUNT(*) AS speise_likes FROM likes WHERE speise_ID =" .$entry['speise_ID']; // Counts how many likes a meal has
 										$foodLikes = $conn->query($countLikes)->fetch_assoc()['speise_likes']; // Saves the numbers of likes in a variable
 
@@ -140,7 +140,7 @@
 										<div class='p-2'>" . likeButtons($meal["speise_ID"], $foodLikes, $has_liked) . "</div>
 										</div>";
 
-										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { // If you have admin rights you can delete/edit the daily meals and you'll see how often a meal was bought
+										if (((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { // If you have admin rights you can delete/edit the daily meals and you'll see how often a meal was bought
 											$sql = "SELECT COUNT(*) AS orders FROM buchungen WHERE tagesangebot_ID = ".$entry['tagesangebot_ID'];
 											$orders = $conn->query($sql)->fetch_assoc();
 											$output = $output . "<button type='button' method='POST' data-href='?delete?daymeal_ID=" .$entry["tagesangebot_ID"]. "' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
@@ -151,7 +151,7 @@
 																<p><b>Bestellungen: </b>".$orders['orders']."</p></div>";
 										}
 									} else {
-										if(((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { // Display a button to add a new meal (if you're an Admin)
+										if (((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { // Display a button to add a new meal (if you're an Admin)
 											$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
 										}
 									}
@@ -179,7 +179,7 @@
 				</div>
 			</div>
 			<div class="container col-sm-10 p-0">
-				<small class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <strong><a href="allergene.php" class="footer-links">hier</a></strong>.</small>
+				<small class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <strong><a href="allergens.php" class="footer-links">hier</a></strong>.</small>
 			</div>
 		</div>
 	</body>
@@ -222,7 +222,6 @@
 	</script>
 	<script>
 		var boxes = $('.indexCB');
-
 		boxes.on('change', function () {
 			$('#order-btn').prop('disabled', !boxes.filter(':checked').length);
 		}).trigger('change');

@@ -16,7 +16,7 @@
 
     <body>
         <?php include 'header.php';
-            if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // If an user isn't an admin, he can't see the site
+            if (((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // If an user isn't an admin, he can't see the site
                 include'footer.php';
                 die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als ein Administrator ein.');
             }
@@ -26,12 +26,12 @@
             <table class="tabelsorterTable table table-hover tablesorter">
                 <thead>
                     <tr>
-                        <th>buchungsnummer</th>
-                        <th>tagesangebotsdatum</th>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                        <th>Speise</th>
-                        <th>Preis</th>
+                        <th>Buchungsnummer <i class="fas fa-exchange-alt"></i></th>
+                        <th>Tagesangebotsdatum <i class="fas fa-exchange-alt"></i></th>
+                        <th>Vorname <i class="fas fa-exchange-alt"></i></th>
+                        <th>Nachname <i class="fas fa-exchange-alt"></i></th>
+                        <th>Speise <i class="fas fa-exchange-alt"></i></th>
+                        <th>Preis <i class="fas fa-exchange-alt"></i></th>
                         <th class="filter-false" data-sorter="false">Essen abgeholt</th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                     <?php
                         if ($result->num_rows > 0) {
                             // Echos the table rows with the data
-                            while($row = $result->fetch_assoc()) {
+                            while ($row = $result->fetch_assoc()) {
                                 $sql = "SELECT vorname, nachname FROM mensa.benutzer WHERE benutzer_ID =". $row['schueler_ID']; // fetch the user of the order
                                 $user = $conn->query($sql)->fetch_assoc();
                                 $dateFormat = strtotime($row['tagesangebotsdatum']); // format the date to day-month-year
@@ -77,7 +77,6 @@
                 </form>
             </div>
         </div>
-
         <?php include 'footer.php'; ?>
     </body>
 </html>
