@@ -5,6 +5,7 @@
         include'footer.php';
         die('Sieht so aus als wären Sie eingeloggt, da können Sie ihr Passwort doch nicht vergessen haben!');
     }
+
     if (isset($_POST["forgotPass"])) { // If the user fills out the form and types in a valid email
         $_POST = sanitize_form($_POST);
         if ($_POST) {
@@ -35,6 +36,7 @@
             } else {
                 $Alert = dangerMessage("Diese E-Mail existiert nicht!");
                 header('refresh: 1.5 ; url = index.php');
+            }
 
             // Hash the new random password
             $hashedPassword = password_hash($str . $pepper, PASSWORD_BCRYPT, $options);
@@ -42,13 +44,9 @@
             $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
             $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
             header('refresh: 1.5 ; url = forgotPassword.php');
-            } else {
-                $Alert = dangerMessage("Diese E-Mail existiert nicht!");
-                header('refresh: 1.5 ; url = forgotPassword.php');
-            }
         } else {
-            $Alert = dangerMessage('Fehler: Invalide Eingabe.');
-            header('refresh: 1.5 ; url = index.php');
+            $Alert = dangerMessage("Diese E-Mail existiert nicht!");
+            header('refresh: 1.5 ; url = forgotPassword.php');
         }
     }
 ?>

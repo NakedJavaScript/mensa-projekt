@@ -1,6 +1,6 @@
 <?php
 	include_once 'dependencies.php';
-	include_once 'functions/essensliste_func.php';
+	include_once 'views/foodList.php';
 	include_once 'modals/foodList.php';
 ?>
 
@@ -28,7 +28,7 @@
 			<br>
 			<p>Das ist die globale Essensliste auf die nur Sie als Administrator Zugriff haben. Hier können Sie sehen welche Essen existieren, diese sortieren, nach ihnen suchen, sie bearbeiten oder löschen. Zudem können Sie mit dem Button weiter unten ein neues Essen erstellen.</p>
 			<br>
-			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#NewFood">Hinzufügen <i class='fas fa-plus'></i></button>
+			<button type='button' class='btn btn-success btn-lg' data-toggle="modal" data-target="#new-food">Hinzufügen <i class='fas fa-plus'></i></button>
 
 			<br/>
 			<br/>
@@ -36,10 +36,10 @@
 			<table class="tabelsorterTable table table-hover tablesorter">
 				<thead>
 					<tr>
-						<th>Name der Speise</th>
-						<th>Allergene/Inhaltsstoffe</th>
-						<th>Sonstiges</th>
-						<th>Preis</th>
+						<th>Name der Speise <i class="fas fa-exchange-alt"></i></th>
+						<th>Allergene/Inhaltsstoffe <i class="fas fa-exchange-alt"></i></th>
+						<th>Sonstiges <i class="fas fa-exchange-alt"></i></th>
+						<th>Preis <i class="fas fa-exchange-alt"></i></th>
 						<th class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
 					</tr>
 				</thead>
@@ -48,13 +48,13 @@
 						if ($result->num_rows > 0) {
 							// Returns the data in a table
 							while($row = $result->fetch_assoc()) {
-								echo "<tr><td class='align-middle'>".$row['name']."</td>";
+								echo "<tr><td class='align-middle'>".ucfirst($row['name'])."</td>";
 								echo "<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
-								echo "<td class='align-middle'>".$row['sonstiges']."</td>";
+								echo "<td class='align-middle'>".ucfirst($row['sonstiges'])."</td>";
 								echo "<td class='align-middle'>".$row['preis']."€</td>";
 								echo "<td class='align-middle'><button type='button' method='POST' data-href='?delete?speiseID=".$row['speise_ID']."' data-toggle='modal' data-target='#confirm-delete' class='btn btn-danger'>
 								<i class='fas fa-trash'> </i></button>
-								<button type='button' class='btn btn-success' speise_ID='".$row['speise_ID']."' speise_name='".$row['name']."' sonstiges='".$row['sonstiges']."' allergene='".$row['allergene_inhaltsstoffe']."' preis='".$row['preis']."' data-toggle='modal' data-target='#EditFood' method='POST' id='edit_food'  >
+								<button type='button' class='btn btn-success' speise_ID='".$row['speise_ID']."' speise_name='".$row['name']."' sonstiges='".$row['sonstiges']."' allergens='".$row['allergene_inhaltsstoffe']."' preis='".$row['preis']."' data-toggle='modal' data-target='#editFood' method='POST' id='edit_food'  >
 								<i class='fas fa-pencil-alt'> </i></button>
 								</td>
 								</tr>";

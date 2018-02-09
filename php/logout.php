@@ -8,7 +8,7 @@
 <html>
 	<head>
 		<?php echo $head_dependencies; ?>
-		<title>Mensa Logout </title>
+		<title>Mensa Logout</title>
 	</head>
 	<body>
 		<div class="container">

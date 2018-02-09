@@ -1,6 +1,6 @@
 <?php
 	include_once 'dependencies.php';
-	include_once 'functions/benutzerliste_func.php';
+	include_once 'views/userList.php';
 	include_once 'modals/userList.php';
 ?>
 
@@ -17,7 +17,7 @@
 
 	<body>
 		<?php include 'header.php';
-			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // Checks if the user has Admin rights
+			if (((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) { // Checks if the user has Admin rights
 				include 'footer.php';
 				die('Sie haben keinen Zugriff auf diese Seite. Bitte loggen Sie sich als Administrator ein.'); // If not the user wont be able to access the site
 			}
@@ -36,11 +36,11 @@
 			<table class="tabelsorterTable table table-hover tablesorter">
 				<thead>
 					<tr>
-						<th>Vorname</th>
-						<th>Nachname</th>
-						<th>Email</th>
-						<th>Kontostand</th>
-						<th>Admin?</th>
+						<th>Vorname <i class="fas fa-exchange-alt"></i></th>
+						<th>Nachname <i class="fas fa-exchange-alt"></i></th>
+						<th>Email <i class="fas fa-exchange-alt"></i></th>
+						<th>Kontostand <i class="fas fa-exchange-alt"></i></th>
+						<th>Admin? <i class="fas fa-exchange-alt"></i></th>
 						<th class="filter-false" data-sorter="false">Löschen/Bearbeiten</th>
 					</tr>
 				</thead>
@@ -48,7 +48,7 @@
 					<?php
 						if ($result->num_rows > 0) {
 							// Returns the data in a table
-							while($row = $result->fetch_assoc()) {
+							while ($row = $result->fetch_assoc()) {
 								if ($row['admin_rechte'] == 2) { // Sets the admin rights for the user
 									$adminRecht = "Ja";
 									echo "<tr class='admin-highlight'>";
@@ -106,13 +106,13 @@
 	<?php include 'footer.php'; ?>
 	<script>
 		// Additional Javascript code for editing users
-		$(document).on("click",'#edit_user' , function (e) {
-			var vorname= $(this).attr('vorname');
-			var nachname=$(this).attr('nachname');
-			var email=$(this).attr('email');
-			var kontostand=$(this).attr('kontostand');
-			var identity=$(this).attr('benutzer_ID');
-			var adminrechte=$(this).attr('adminrechte');
+		$(document).on("click", '#edit_user', function (e) {
+			var vorname = $(this).attr('vorname');
+			var nachname = $(this).attr('nachname');
+			var email = $(this).attr('email');
+			var kontostand = $(this).attr('kontostand');
+			var identity = $(this).attr('benutzer_ID');
+			var adminrechte = $(this).attr('adminrechte');
 			var sessID = <?php echo json_encode($_SESSION['id']) ?>; // This script part has to be in this file due to the PHP part in it
 			// set what we got to our form
 			$('#vorname').val(vorname);
@@ -121,7 +121,7 @@
 			$('#kontostand').val(kontostand);
 			$('#benutzer_ID').val(identity);
 			$("input[name=adminrechte][value=" + adminrechte + "]").prop('checked', true); // Depending wether the user is admin or not the correct radiobutton will show up
-			if(identity == sessID) { // If you want to edit yourself (as admin), you can't change your rights
+			if (identity == sessID) { // If you want to edit yourself (as admin), you can't change your rights
 				$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").hide(); // Hide the fields
 			} else {
 				$("input[name=adminrechte], label[for=adminrechte], span[name=adminrechte]").show(); // Else if your not editing yourself, show them

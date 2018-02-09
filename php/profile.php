@@ -1,6 +1,6 @@
 <?php
 	include 'dependencies.php';
-	include_once 'functions/profile_func.php';
+	include_once 'views/profile.php';
 	include_once 'modals/profile.php';
 ?>
 <!DOCTYPE HTML>
@@ -21,12 +21,12 @@
 	<body>
 		<?php
 			include 'header.php';
-			if(!isset($_SESSION['email'])) {
+			if (!isset($_SESSION['email'])) {
 				include'footer.php';
 				die('Du musst eingeloggt sein um dein Profil zu sehen.');
 			} // If you're not logged in you won't see this site
 		?>
-		<div class="container pt-3">
+		<div class="container pt-3 col-sm-10">
 			<div class="row">
 				<div class="nav flex-column nav-pills nav-tabs-sticky col-sm-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 					<a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profil</a>
@@ -81,16 +81,16 @@
 							<?php
 								if ($result->num_rows > 0) {
 								// creates the table to show the data
-								while($row = $result->fetch_assoc()) {
+								while ($row = $result->fetch_assoc()) {
 									$dateFormat = strtotime($row['tagesangebotsdatum']); // formats the date to Day-Month-Year
-									$buchungsdateFormat = strtotime($row['buchungsdatum']);
+									$bookingDateFormat = strtotime($row['buchungsdatum']);
 									echo  "<tr><td class='align-middle'><strong> ". $row['buchungsnummer'] . "</strong></td>";
 									echo 	"<td class='align-middle'>".date('d.m.Y', $dateFormat)."</td>";
 									echo	"<td class='align-middle'>".$row['name']."€</td>";
 									echo	"<td class='align-middle'>".$row['allergene_inhaltsstoffe']."</td>";
 									echo	"<td class='align-middle'>".$row['sonstiges']."</td>";
 									echo	"<td class='align-middle'>".$row['preis']."€</td>";
-									echo	"<td class='align-middle'>".date('d.m.Y', $buchungsdateFormat)."</td>";
+									echo	"<td class='align-middle'>".date('d.m.Y', $bookingDateFormat)."</td>";
                                     if ($row['tagesangebotsdatum'] > date('Y-m-d')) { // If the ordered meal is One day old then this button gets disabled
     									echo "<td class='align-middle'>
                                                 <button type='button' method='POST'data-href='?stornieren?buchungsnummer=".$row['buchungsnummer']."' data-toggle='modal' data-target='#confirm-delete' name='stornieren' class='btn btn-danger'>
@@ -104,7 +104,7 @@
                                                 </button>
                                              </td>";
                                     }
-                                    echo "</tr>";
+                                    	echo "</tr>";
 									}
 								} else {
 									echo "<td>Sie haben noch keine Buchungen getätigt</td>";
