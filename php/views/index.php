@@ -6,18 +6,18 @@
 
 		if (isset($_SESSION['email'])) {
 			if ($_SESSION['adminrechte'] == 2 ) { // If you're admin you wont be able to click the like button
-				return '<div class="like-container"><button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
+				return '<div class="like-container d-flex justify-content-center"><button type="button" class="btn heart-btn disabled" data-toggle="tooltip" data-placement="bottom" title="Als Administrator können Sie das Essen nicht liken!">
 				<i class="fas fa-heart like-heart-disabled"></i></button><p class="like-count">+'.$foodLikes.'</p></div>';
 			} else if ($has_liked) { // If you've already liked
 				return '<form role="form" method="POST" action="">
 				<input type="hidden" name="food_ID" value="'.$foodID.'">
-				<div class="like-container"><button type="submit" name="Speisen_unliken" class="btn heart-btn like-btn unlike" data-toggle="tooltip" data-placement="bottom" title="Diese Speise nicht mehr liken">
+				<div class="like-container d-flex justify-content-center"><button type="submit" name="Speisen_unliken" class="btn heart-btn like-btn unlike" data-toggle="tooltip" data-placement="bottom" title="Diese Speise nicht mehr liken">
 				<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
 				</form>';
 			} else { // If you're a normal user you can smash the like button
 				return '<form role="form" method="POST" action="">
 				<input type="hidden" name="food_ID" value="'.$foodID.'">
-				<div class="like-container"><button type="submit" name="Speisen_liken" class="btn heart-btn like-btn like"data-toggle="tooltip" data-placement="bottom" title="Diese Speise liken.">
+				<div class="like-container d-flex justify-content-center"><button type="submit" name="Speisen_liken" class="btn heart-btn like-btn like"data-toggle="tooltip" data-placement="bottom" title="Diese Speise liken.">
 				<i class="fas fa-heart like-heart"></i></button><p class="like-count">+'.$foodLikes.'</p></div>
 				</form>';
 			}
@@ -37,9 +37,10 @@
 			VALUES (".$user_ID."," .$food_ID.")";
 
 			$conn->query($insert);
+			header('refresh: 0.1 ; url = index.php');
 		} else {
 			$Alert = dangerMessage('Fehler: Invalide Eingabe.');
-    		header('refresh: 1.5 ; url = index.php');
+    		header('refresh: 0.1 ; url = index.php');
 		}
 	}
 
@@ -52,9 +53,10 @@
 			$delete = "DELETE FROM likes WHERE speise_ID = $food_ID AND benutzer_ID = $user_ID";
 
 			$conn->query($delete);
+			header('refresh: 0.1 ; url = index.php');
 		} else {
 			$Alert = dangerMessage('Fehler: Invalide Eingabe.');
-  			header('refresh: 1.5 ; url = index.php');
+  			header('refresh: 0.1 ; url = index.php');
 		}
 	}
 
