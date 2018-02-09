@@ -10,8 +10,8 @@
 		if ($_POST) {
 			$_POST['allergens'] = $allergens;
 			$_POST['sonstiges'] = $others;
-			$name = strtolower(trim($_POST['name']));
-			$other = strtolower(trim($_POST['sonstiges']));
+			$name = mb_strtolower(trim($_POST['name']));
+			$other = mb_strtolower(trim($_POST['sonstiges']));
 
 			if (!is_numeric($_POST['preis'])) { // Checks if the textfield has only numbers
 				$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
@@ -56,8 +56,8 @@
 			$_POST['allergens'] = $allergens;
 			$_POST['sonstiges'] = $others;
 			$meal_ID = $_POST['speise_ID'];
-			$name = strtolower(trim($_POST['name']));
-			$other = strtolower(trim($_POST['sonstiges']));
+			$name = mb_strtolower(trim($_POST['name']));
+			$other = mb_strtolower(trim($_POST['sonstiges']));
 
 			if (!is_numeric($_POST['preis'])) { // Checks if the textfield has only numbers
 				$Alert = dangerMessage("Im Feld <strong>'Preis'</strong> sind nur numerische Zeichen erlaubt.");
