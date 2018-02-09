@@ -9,9 +9,7 @@
 	<head>
 		<?php
 			echo $head_dependencies;
-			if (isset($_GET["page"])) { $page  = $_GET["page"]; } else { $page = 1; };//Schaut bei welcher Site wir gerade sind, falls keine eingegeben wurde, zeigt er die erste Seite.
-			$start_from = ($page-1) * 10; //Rechnet aus bei welchen Eintrag wir nun sind
-			$sql = "SELECT * FROM benutzer ORDER BY benutzer_ID ASC LIMIT $start_from ,10";
+			$sql = "SELECT * FROM benutzer";
 			$result = $conn->query($sql);
 		?>
 		<title>Benutzerliste</title>
