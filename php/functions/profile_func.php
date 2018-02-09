@@ -91,8 +91,8 @@
             $newBalance = $_SESSION['kontostand'] + $price;
             $_SESSION['kontostand'] = $newBalance;
             $conn->query("UPDATE mensa.benutzer SET kontostand = $newBalance  WHERE  benutzer_ID = ".$_SESSION['id']); // the new balance will be set
-            $Alert = successMessage("Sie haben ihre Bestellung erfolgreich storniert! <br/> <strong>Ihr neuer Kontostand: $newBalance €</strong>");
-            header('refresh: 1.5 ; url = profil.php#v-pills-order');
+            $Alert = successMessage("Sie haben ihre Bestellung erfolgreich storniert! <strong>Ihr neuer Kontostand: $newBalance €</strong>");
+            header('refresh: 1000.5 ; url = profil.php#v-pills-order');
         }
         else {
             $Alert = dangerMessage("Es ist etwas schief gelaufen, bitte versuchen Sie es erneut!");

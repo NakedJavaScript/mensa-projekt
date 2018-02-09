@@ -36,6 +36,15 @@
                 $Alert = dangerMessage("Diese E-Mail existiert nicht!");
                 header('refresh: 1.5 ; url = index.php');
 
+            // Hash the new random password
+            $hashedPassword = password_hash($str . $pepper, PASSWORD_BCRYPT, $options);
+            // Update the users password in the database
+            $conn->query("UPDATE benutzer SET passwort='$hashedPassword', token='$str' WHERE email='$email'");
+            $Alert = successMessage('Sie haben eine E-Mail von uns erhalten.');
+            header('refresh: 1.5 ; url = forgotPassword.php');
+            } else {
+                $Alert = dangerMessage("Diese E-Mail existiert nicht!");
+                header('refresh: 1.5 ; url = forgotPassword.php');
             }
         } else {
             $Alert = dangerMessage('Fehler: Invalide Eingabe.');

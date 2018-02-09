@@ -1,6 +1,7 @@
 <?php
 	include 'dependencies.php';
 	include_once 'functions/profile_func.php';
+	include_once 'modals/profile.php';
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -25,7 +26,7 @@
 				die('Du musst eingeloggt sein um dein Profil zu sehen.');
 			} // If you're not logged in you won't see this site
 		?>
-		<div class="container">
+		<div class="container pt-3">
 			<div class="row">
 				<div class="nav flex-column nav-pills nav-tabs-sticky col-sm-2" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 					<a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profil</a>
@@ -117,8 +118,7 @@
 			</div>
 		</div>
 		<?php
-            confModal("Wollen Sie diese Bestellung wirklich stornieren?");
-            include 'modals/profile_modals.php';
+			confModal("Wollen Sie diese Bestellung wirklich stornieren?");
 			include 'footer.php';
 		?>
 		<script>

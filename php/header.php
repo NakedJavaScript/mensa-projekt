@@ -1,4 +1,7 @@
-<?PHP include_once 'functions/login.php'; ?>
+<?PHP
+    include_once 'functions/login.php';
+    include_once 'modals/header.php';
+?>
 <nav class="navbar navbar-expand-lg navbar-light custom-nav-bg" id="cd-top-link">
     <a class="navbar-brand" href="index.php"><img src='../images/logo.png' width="120px"/></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,7 +12,7 @@
         <ul class="navbar-nav mr-auto">
             <?PHP
                 if (isset($_SESSION['adminrechte'])) {
-                    if($_SESSION['adminrechte'] == 2) { // Only admins can see these sites
+                    if ($_SESSION['adminrechte'] == 2) { // Only admins can see these sites
                         echo "<li class='nav-item'>
                             <a class='nav-link' href='benutzerliste.php'>Benutzerliste <span class='sr-only'>(current)</span></a>
                         </li>
@@ -22,7 +25,7 @@
                         <li class='nav-item'>
                             <a class='nav-link' href='umsatz.php'>Umsatz</a>
                         </li>";
-                    } else if($_SESSION['adminrechte'] == 3) { // Normal users will see this
+                    } else if ($_SESSION['adminrechte'] == 3) { // Normal users will see this
                         echo "<li class='nav-item'>
                             <a class='nav-link' href='profil.php'>Profil</a>
                         </li>";
@@ -55,34 +58,9 @@
 
 <div class="container position-absolute ml-auto mr-auto alert-container">
     <?PHP echo $Alert; // This is used to show our messages which we defined in the dependencies.php ?>
-    <div class='alert alert-success alert-dismissable fade mt-4' id='successOrder'>
-        <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Ihre Bestellung war erfolgreich! Sehen sie sich <a href='profil.php#v-pills-order'>hier</a> Ihre Bestellungen an
-    </div>
-    <div class='alert alert-danger alert-dismissable fade mt-4' id='errorOrder'>
-        <a href='' class='close' data-dismiss='alert' aria-label='close'>&times;</a><strong>Es ist ein Fehler aufgetreten! </strong>Leider konnt ihre Bestellung nicht entgegen genommen werden. Haben Sie genug Geld auf ihrem Konto?
-    </div>
-</div>
-
-<!-- Login Modal -->
-<div class="modal fade" id="popUpWindow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Login</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form role="form" method="POST" enctype="multipart/form-data" action="<?php echo $_SERVER['PHP_SELF']?>">
-                    <div class="form-group">
-                        <label for="email">Email</label><input type="email" name="email" class="form-control"  placeholder="Email" required/><br>
-                        <label for="password" >Passwort</label><input type="password" name="passwort" class="form-control" placeholder="Passwort" required/>
-                    </div>
-                    <div class="modal-footer flex-column">
-                        <input type="submit" name="submit" class="btn btn-primary btn-block" value="Einloggen">
-                        <a href="forgotPassword.php">Passwort vergessen?</a>
-                    </div>
-                </form>
-            </div>
+    <div class="alert-cont d-none">
+        <div class='alert alert-dismissable fade mt-4' id='orderInfo'>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
         </div>
     </div>
 </div>

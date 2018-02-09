@@ -1,7 +1,7 @@
 <?php
 	include_once 'dependencies.php';
 	include_once 'functions/index_func.php';
-	include_once 'modals/index_modals.php';
+	include_once 'modals/index.php';
 ?>
 
 <!DOCTYPE HTML>
@@ -178,41 +178,8 @@
 					</a>
 				</div>
 			</div>
-			<p class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <a href="allergene.php">hier</a></p>
-		</div>
-
-		<!-- Add new daily meal Modal-->
-		<div class="modal fade" id="AddDayMeal" tabindex="-1" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title">Ein neues Tagesangebot erstellen</h3>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<div class="modal-body">
-						<form role="form" method="POST" action="#AddedTagesangebot">
-							<div class="form-group">
-								<input type="hidden" id="date_field" name="date" value="">
-								<label for="foodlist">Speisen</label>
-								<select name="foodlist" id="foodlist">
-									<?php
-										$getFood = "SELECT * FROM speise";
-										$result = $conn->query($getFood);
-										$food_options ="";
-
-										while($food = $result->fetch_assoc()) {
-											$food_options = $food_options . "<option value=". $food['speise_ID'] .">" . $food['name'] ."</option>"; // Every meal is saved in a dropdown menu
-										}
-										echo $food_options;
-									?>
-								</select>
-							</div>
-							<div class="modal-footer">
-								<input type="submit" name="create_daily_meal" class="btn btn-primary btn-block" value="Tagesangebot erstellen">
-							</div>
-						</form>
-					</div>
-				</div>
+			<div class="container col-sm-10 p-0">
+				<small class="mt-2 mb-2">Für mehr Informationen bezüglich der Deklaration von Allergenen klicken sie <strong><a href="allergene.php" class="footer-links">hier</a></strong>.</small>
 			</div>
 		</div>
 	</body>
@@ -234,24 +201,20 @@
 				data: ({orders}),
 				success: function(data) {
 					if(data.status == true) {
+						$('#orderInfo').removeClass('show');
+						$(".alert-cont").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
-						$('#successOrder').addClass('show');
-						$('#errorOrder').hide();
+						$('#orderInfo').addClass('alert-success show');
+						$('#orderInfo').append(data.msg);
 						$('.indexCB:checked').prop('disabled', true);
 						$('.indexCB:checked').prop('checked', false);
-						window.setTimeout(function(){
-					        location.reload();
-				    	}, 5000);
 					}
 					else {
+						$('#orderInfo').removeClass('show')
+						$(".alert-cont").removeClass('d-none');
 						$("#confirm-submit").modal('hide');
-						$('#errorOrder').addClass('show');
-						$('#successOrder').hide();
-						$('.indexCB:checked').prop('disabled', true);
-						$('.indexCB:checked').prop('checked', false);
-						window.setTimeout(function(){
-					        location.reload();
-				    	}, 4000);
+						$('#orderInfo').addClass('alert-danger show');
+						$('#orderInfo').append(data.msg);
 					}
 				}
 			});
