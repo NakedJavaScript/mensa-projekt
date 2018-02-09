@@ -1,4 +1,7 @@
-<?php include_once 'dependencies.php'; ?>
+<?php
+	include_once 'dependencies.php';
+	include 'functions/sales.php';
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -13,7 +16,7 @@
 			if(((!isset($_SESSION['adminrechte'])) || $_SESSION['adminrechte'] != 2)) {
 				include'footer.php';
 				die('Du hast keinen Zugriff auf diese Seite. Bitte logge dich als ein Administrator ein.');
-			} //Verweigert leuten den Zugriff auf diese Seite
+			}
 		?>
 		<div class="container">
 			<div class="row">
@@ -21,9 +24,11 @@
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Auswahl treffen</button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick=drawGraph()>Wochen</a>
-						<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick=drawGraph()>Monate</a>
-						<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick=drawGraph()>Jahr</a>
+						<?php
+							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick="drawGraph("' . getRevenue('days') . '")">Wochen</a>';
+							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick="drawGraph("' . getRevenue('weeks') . '")">Monate</a>';
+							echo '<a class="dropdown-item mx-0 my-0 pt-0 pb-0 pl-2 pr-2" href="#" onclick="drawGraph("' . getRevenue('months') . '")">Jahr</a>';
+						?>
 					</div>
 				</div>
 			</div>

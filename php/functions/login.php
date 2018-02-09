@@ -17,14 +17,11 @@
 				$_SESSION['id'] = $row['benutzer_ID'];
 				$_SESSION['adminrechte'] = $row['admin_rechte'];
 				$Alert = successMessage('Login erfolgreich');
-				header( 'refresh: 1.5 ; url = index.php' );
 			} else {
 				$Alert = dangerMessage('Falsches Passwort');
-				header('refresh: 1.5 ; url = index.php');
 			}
 		} else {
 			$Alert = dangerMessage('Keinen Nutzer mit dieser E-Mail Adresse gefunden.');
-			header('refresh: 1.5 ; url = index.php');
 		}
 	}
 ?>
