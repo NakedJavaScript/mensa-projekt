@@ -14,7 +14,6 @@ function AddValuesToModal(date, addFood='') {
 // Function to draw the graph for the sales page, using Chart.js
 function drawGraph(values) {
     values = values.split(",");
-    
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
