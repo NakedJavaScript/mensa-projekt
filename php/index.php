@@ -152,7 +152,11 @@
 										}
 									} else {
 										if (((isset($_SESSION['adminrechte'])) && $_SESSION['adminrechte'] == 2)) { // Display a button to add a new meal (if you're an Admin)
-											$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
+											if ($date < date("Y-m-d")) {
+												$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."') disabled>Hinzufügen</button>";
+											} else {
+												$output = $output . "<button type='button' class='btn btn-success btn-lg' data-toggle='modal' data-target='#AddDayMeal' onclick=AddValuesToModal('".$date."')>Hinzufügen</button>";
+											}
 										}
 									}
 
