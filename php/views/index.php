@@ -148,10 +148,11 @@
 						$json_array['msg'] = "<strong>Error:</strong> Es is ein Fehler aufgetreten, bitte versuchen Sie es erneut oder infomieren Sie den Caterer";
 					}
 				}
-			header('Content-Type: application/json');
-			echo json_encode($json_array);
-			die();
+
 		}
+		header('Content-Type: application/json');
+		echo json_encode($json_array);
+		die();
 	}
 
 	// Function that creates a modal for the food order
