@@ -134,6 +134,7 @@ table, thead, tbody, td, th {
 
 .day-meal-table {
     table-layout: fixed;
+    font-size: 1vw
 }
 
 .today {
