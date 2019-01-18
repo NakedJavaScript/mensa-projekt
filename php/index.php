@@ -21,6 +21,8 @@
 			$year = $dt->format('o');
 			$week = $dt->format('W');
 		?>
+		<?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); // Create the current week minus 3 ?>
+		<?PHP  $yThreeWeeksAgo = date("o", strtotime("- 3 week")); // Create the current week minus 3 ?>
 	</head>
 
 	<body>
@@ -28,10 +30,9 @@
 
 		<div class="container col-sm-12">
 			<div class="d-inline-flex">
-				<div class="col-sm-1 align-self-center d-flex flex-row-reverse">
-					<?PHP  $ThreeWeeksAgo = date("W", strtotime("- 3 week")); // Create the current week minus 3 ?>
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? 52 : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo) { echo " class='disable' "; } // If we reach the week that was 3 weeks ago, then the link is disabled ?>">
-						<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo) { echo "disabled"; } // If we reach the week that was 3 weeks ago, then the button is disabled ?> >
+				<div class="col-sm-1 align-self-center">
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 1 ? num_weeks_in_year($year) : $week -1).'&year='.($week == 1 ? $year - 1 : $year) . '"'; if($week <= $ThreeWeeksAgo && $year == $yThreeWeeksAgo) { echo " class='disable' "; } // If we reach the week that was 3 weeks ago, then the link is disabled ?>">
+						<button class="btn btn-success index-btns" <?PHP if($week == $ThreeWeeksAgo && $year==$yThreeWeeksAgo ) { echo "disabled"; } // If we reach the week that was 3 weeks ago, then the button is disabled ?> >
 							<i class='fas fa-chevron-circle-left'> </i>
 						</button>
 					</a>
@@ -175,7 +176,7 @@
 
 				</div>
 				<div class="col-sm-1 align-self-center">
-					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == 52 ? 1 : 1 + $week).'&year='.($week == 52 ? 1 + $year : $year); ?>" class="right-arrow">
+					<a href="<?php echo $_SERVER['PHP_SELF'].'?week='.($week == num_weeks_in_year($year) ? 1 : 1 + $week).'&year='.($week == num_weeks_in_year($year) ? 1 + $year : $year); ?>" class="right-arrow">
 						<button class="btn btn-success position-relative">
 							<i class='fas fa-chevron-circle-right'> </i>
 						</button>
